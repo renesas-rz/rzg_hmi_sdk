@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+<!-- start extrahead block -->
+{% block extrahead %}
+  {% include 'g_translate.html' ignore missing %}
+  {{ super() }}
+{% endblock %}
+<!-- end extrahead block -->
+<!-- start announce block -->
+{% block announce %}
+  {% include 'announce.html' ignore missing %}
+{% endblock %}
+<!-- end announce block -->

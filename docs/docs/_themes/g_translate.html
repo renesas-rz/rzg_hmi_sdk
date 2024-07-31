@@ -1,0 +1,24 @@
+{#-
+  This code was originally taken from
+    https://stackoverflow.com/a/32020855
+  by
+    Mousey
+  and may be subject to copyright.
+-#}
+
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+  var userLang = navigator.language || navigator.userLanguage || navigator.languages;
+  if (userLang.substr(0,2) != "en"){
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT
+      }, 'google_translate_element');
+    }
+  }
+  else {
+    document.getElementById("google_translate_element").style.display="none";
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

@@ -1,0 +1,133 @@
+site_name: RZ/G HMI SDK
+site_description: The best solution for starting your HMI applications.
+site_url: https://renesas-rz.github.io/rzg_hmi_sdk
+site_author: Renesas Electronics Corporation
+
+repo_name: rzg_hmi_sdk
+repo_url: https://github.com/renesas-rz/rzg_hmi_sdk
+
+nav:
+  # - Guidelines: guidelines/index.md
+  # - RZ/G HMI SDK: index.md
+  - Overview: overview/index.md
+  - Getting Started: getting_started/index.md
+  - How To Build HMI SDK: how_to_build_hmi_sdk/index.md
+  - FAQ: faq/index.md
+
+theme:
+  name: material
+  custom_dir: docs/_themes
+  favicon: assets/icons/6723.T.png
+  features:
+    - announce.dismiss
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.prune
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - toc.integrate
+    - toc.follow
+  nav_top:
+    logos:
+      - assets/icons/board.svg
+      - assets/icons/ai_sdk.svg
+    btn:
+      name: Get the Board and Software
+      url: download/
+  palette:
+    primary: custom
+
+copyright: '&copy;2024 Renesas Electronics Corporation.'
+
+extra:
+  announcements:
+    # the following line is displayed in the announcement bar
+    # keep length under 164 characters (less HTML tags) to fit on 1280px desktop window
+    - '<b>Announcement!</b> RZ/G2L HMI SDK v1.00 is available.'
+  announcements_urls:
+    - available: '#whats-new'
+  header_link: true
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/renesas-rz
+      name: Renesas RZ Software on GitHub
+    - icon: fontawesome/solid/house
+      link: https://www.renesas.com/
+      name: Go to Renesas.com website
+  version:
+    provider: mike
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - assets/javascripts/tablesort.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - markdown_grid_tables
+  - markdown_include.include:
+      base_path: docs
+  - md_in_html
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tilde
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - exclude:
+      glob:
+        - _*
+        # - guidelines/_*/*
+        - guidelines/*
+        - overview/_*/*
+        - getting_started/_*/*
+        - how_to_build_hmi_sdk/_*/*
+        - hmi_applications/*
+        - faq/_*/*
+        - download/_*/*
+        - history/_*/*
+        - demo/*
+        - video/*
+  - glightbox
+  - mkdocs-video
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      cache_safe: true
+      js_files:
+          - assets/javascripts/tablesort.js
+      css_files:
+          - assets/stylesheets/extra.css
+  - search
+  - table-reader

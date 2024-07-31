@@ -1,0 +1,20 @@
+{#-
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+  Copyright (c) 2024 Renesas Electronics Corporation and/or its affiliates
+  SPDX-License-Identifier: MIT
+
+  This code was originally taken from
+    https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/source.html
+  and have sources in
+    https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/source.html
+-#}
+
+<a href="{{ config.repo_url }}" title="{{ lang.t('source') }}" class="md-source" data-md-component="source" target="_blank">
+  <div class="md-source__icon md-icon">
+    {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </div>
+  <div class="md-source__repository">
+    {{ config.repo_name }}
+  </div>
+</a>

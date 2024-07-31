@@ -1,0 +1,9 @@
+{% if config.theme.nav_top and config.theme.nav_top.btn %}
+  <li class="md-nav__item" id="md-nav-top-btn">
+    <a href="{{ config.theme.nav_top.btn.url | url }}" class="md-nav__link md-button md-button--primary btn-yellow">
+      <span class="md-ellipsis">
+        {{ config.theme.nav_top.btn.name }}
+      </span>
+    </a>
+  </li>
+{% endif %}

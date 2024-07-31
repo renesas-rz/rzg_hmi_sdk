@@ -1,0 +1,16 @@
+{% if config.extra.announcements %}
+  <p>
+    {% for announce in config.extra.announcements %}
+      {% if config.extra.announcements_urls %}
+        {% for urls in config.extra.announcements_urls %}
+          {% for key, value in urls.items() %}
+            {{ announce | replace(key, "<a href=" + nav.homepage.url | url + "/" + value + ">" + key + "</a>") }}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        {{ announce }}
+      {% endif %}
+      <br/>
+    {% endfor %}
+  </p>
+{% endif %}
