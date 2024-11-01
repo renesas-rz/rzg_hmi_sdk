@@ -65,6 +65,7 @@ typedef struct {
 	lv_obj_t *screen;
 	lv_obj_t *menu[LSAP_MENU_NUM];
         lv_obj_t *playback_ctrl[LSAP_MENU_NUM][LSAP_CTRL_BTN_NUM];
+	lv_style_t disabled_style;
 
 	lsap_menu_t enabled_menu;
 	lsap_status_t status;

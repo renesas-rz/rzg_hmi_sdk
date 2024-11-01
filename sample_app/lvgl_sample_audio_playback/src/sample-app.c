@@ -57,6 +57,42 @@ void lsap_quit_with_error(void)
 	lv_wayland_close_window(app->disp);
 }
 
+/** Change state of buttons
+ *
+ */
+static void change_button_state(lsap_sample_app_t *app)
+{
+	int i;
+	lv_obj_t **btn;
+
+	switch (app->status) {
+	case LSAP_STATUS_STOP:
+		for (i = 0; i < LSAP_MENU_NUM; i++) {
+			btn = app->playback_ctrl[i];
+			lv_obj_clear_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+			lv_obj_add_state(btn[LSAP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+			lv_obj_add_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		}
+		break;
+	case LSAP_STATUS_PLAY:
+		for (i = 0; i < LSAP_MENU_NUM; i++) {
+			btn = app->playback_ctrl[i];
+			lv_obj_add_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		}
+		btn = app->playback_ctrl[app->enabled_menu];
+		lv_obj_clear_state(btn[LSAP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_clear_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		break;
+	case LSAP_STATUS_PAUSE:
+		btn = app->playback_ctrl[app->enabled_menu];
+		lv_obj_clear_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_add_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		break;
+	default:
+		break;
+	}
+}
+
 /** Complete playing audio
  *
  * Complete palyeng audio at the end of stream
@@ -72,6 +108,7 @@ void lsap_complete_playing(void)
 	pthread_mutex_lock(&mutex_app_data);
 	app->enabled_menu = LSAP_MENU_NUM;	/* Set invalid value */
 	app->status = LSAP_STATUS_STOP;
+	change_button_state(app);
 	pthread_mutex_unlock(&mutex_app_data);
 }
 
@@ -143,6 +180,7 @@ static void play_audio(lsap_sample_app_t *app, lsap_menu_t type)
 
 	app->enabled_menu = type;
 	app->status = LSAP_STATUS_PLAY;
+	change_button_state(app);
 }
 
 /** Stop audio
@@ -161,6 +199,7 @@ static void stop_audio(lsap_sample_app_t *app, lsap_menu_t type)
 
 	app->enabled_menu = LSAP_MENU_NUM;	/* Set invalid value */
 	app->status = LSAP_STATUS_STOP;
+	change_button_state(app);
 }
 
 /** Pause audio
@@ -175,6 +214,7 @@ static void pause_audio(lsap_sample_app_t *app, lsap_menu_t type)
 		return;
 
 	app->status = LSAP_STATUS_PAUSE;
+	change_button_state(app);
 }
 
 /** Restart audio
@@ -189,6 +229,7 @@ static void restart_audio(lsap_sample_app_t *app, lsap_menu_t type)
 		return;
 
 	app->status = LSAP_STATUS_PLAY;
+	change_button_state(app);
 }
 
 /** Playback control button callback
@@ -256,6 +297,7 @@ static int32_t create_buttons(lsap_sample_app_t *app, lv_obj_t *obj,
 							lsap_menu_t menu)
 {
 	lv_obj_t *imgbtn;
+	lv_style_t *style_ptr = &app->disabled_style;
 
 	/* Play button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -269,6 +311,7 @@ static int32_t create_buttons(lsap_sample_app_t *app, lv_obj_t *obj,
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 260, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Stop button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -282,6 +325,7 @@ static int32_t create_buttons(lsap_sample_app_t *app, lv_obj_t *obj,
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 350, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Pause button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -295,6 +339,7 @@ static int32_t create_buttons(lsap_sample_app_t *app, lv_obj_t *obj,
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 440, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	return 0;
 }
@@ -306,6 +351,7 @@ static int32_t create_playback_menu(lsap_sample_app_t *app, lv_obj_t *screen)
 {
 	lv_obj_t *menu;
 	lv_obj_t *txtimg;
+	lv_style_t *style_ptr = &app->disabled_style;
 	const lsap_rect_t menu_rect[LSAP_MENU_NUM] = {
 		{40,  40, 560, 120},
 		{40, 180, 560, 120},
@@ -319,6 +365,11 @@ static int32_t create_playback_menu(lsap_sample_app_t *app, lv_obj_t *screen)
 	};
 	int i;
 	int32_t ret;
+
+	/* Set up a style for disabled buttons */
+	lv_style_init(style_ptr);
+	lv_style_set_img_recolor_opa(style_ptr, LV_OPA_50);
+	lv_style_set_img_recolor(style_ptr, lv_color_white());
 
 	for (i = 0; i < LSAP_MENU_NUM; i++) {
 		menu = lv_obj_create(screen);
@@ -371,6 +422,7 @@ static int32_t create_audio_file_playback_screen(lsap_sample_app_t *app)
 	app->screen = screen;
 	app->enabled_menu = LSAP_MENU_NUM;
 	app->status = LSAP_STATUS_STOP;
+	change_button_state(app);
 
 	return ret;
 }
