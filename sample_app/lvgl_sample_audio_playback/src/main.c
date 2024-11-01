@@ -28,11 +28,20 @@
 
 static pthread_t id_playback_thread = 0;
 
-static int32_t check_options(int argc, char *argv[])
+static void show_usage(void)
+{
+	printf("Usage: lvgl_sample_audio_playback [OPTION]\n\n"
+		"Options are:\n"
+		"\t-v, --version"
+		"\toutput version information and exit\n"
+		"\t-h, --help"
+		"\tdisplay this help message and exit\n");
+}
+
+static void check_options(int argc, char *argv[])
 {
 	int option;
 	int index;
-	int32_t ret = 0;
 	const char *optstring = "vh";
 	const struct option longopts[] = {
 		{"version", no_argument, NULL, 'v'},
@@ -51,23 +60,21 @@ static int32_t check_options(int argc, char *argv[])
 				"Copyright (C) 2024 Renesas Electronics Corp. "
 				"All rights reserved.\n",
 				LSAP_MAJOR_VERSION, LSAP_MINOR_VERSION);
-			ret = 1;
+			exit(EXIT_SUCCESS);
 			break;
 		case 'h':
-			printf("Usage: lvgl_sample_audio_playback [OPTION]\n\n"
-				"Options are:\n"
-				"\t-v, --version"
-				"\toutput version information and exit\n"
-				"\t-h, --help"
-				"\tdisplay this help message and exit\n");
-			ret = 1;
+			show_usage();
+			exit(EXIT_SUCCESS);
 			break;
 		default:
-			ret = -1;
+			printf("ERROR!! an unsupported option was"
+							" specified.\n");
+			show_usage();
+			exit(EXIT_FAILURE);
 			break;
 		}
 	}
-	return ret;
+	return;
 }
 
 int main(int argc, char *argv[])
@@ -80,13 +87,7 @@ int main(int argc, char *argv[])
 	int32_t ret;
 	lv_disp_t *disp;
 
-	ret = check_options(argc, argv);
-	if (ret < 0) {
-		return 1;
-	}
-	else if (ret > 0) {
-		return 0;
-	}
+	check_options(argc, argv);
 
 	if (pthread_create (&id_playback_thread, NULL, lsap_playback_loop, NULL)) {
 		printf("ERROR!! pthread_create() failed.\n");
