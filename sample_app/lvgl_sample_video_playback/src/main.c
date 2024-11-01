@@ -101,7 +101,14 @@ int main(int argc, char *argv[])
 
 	check_options(argc, argv, &input, &audio);
 	if (input == NULL) {
-		printf("ERROR!! input movie file is not set\n");
+		printf("ERROR!! input movie file is not set.\n");
+		return 1;
+	}
+	/* check input file */
+	ret = access(input, R_OK);
+	if (ret) {
+		printf("ERROR!! the input movie file '%s' cannot be read.\n",
+									input);
 		return 1;
 	}
 
