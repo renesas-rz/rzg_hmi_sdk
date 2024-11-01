@@ -28,11 +28,23 @@
 
 static pthread_t id_playback_thread = 0;
 
-static int32_t check_options(int argc, char *argv[], char **input, int32_t *audio)
+static void show_usage(void)
+{
+	printf("Usage: lvgl_sample_video_playback [OPTION]\n\n"
+		"Options are:\n"
+		"\t-i, --input"
+		"\tinput movie file\n"
+		"\tThis option is mandatory.\n"
+		"\t-v, --version"
+		"\toutput version information and exit\n"
+		"\t-h, --help"
+		"\tdisplay this help message and exit\n");
+}
+
+static void check_options(int argc, char *argv[], char **input, int32_t *audio)
 {
 	int option;
 	int index;
-	int32_t ret = 0;
 	const char *optstring = "i:vh";
 	const struct option longopts[] = {
 		{"input", required_argument, NULL, 'i'},
@@ -58,26 +70,21 @@ static int32_t check_options(int argc, char *argv[], char **input, int32_t *audi
 				"Copyright (C) 2024 Renesas Electronics Corp. "
 				"All rights reserved.\n",
 				LSVP_MAJOR_VERSION, LSVP_MINOR_VERSION);
-			ret = 1;
+			exit(EXIT_SUCCESS);
 			break;
 		case 'h':
-			printf("Usage: lvgl_sample_video_playback [OPTION]\n\n"
-				"Options are:\n"
-				"\t-i, --input"
-				"\tinput movie file\n"
-				"\tThis option is mandatory.\n"
-				"\t-v, --version"
-				"\toutput version information and exit\n"
-				"\t-h, --help"
-				"\tdisplay this help message and exit\n");
-			ret = 1;
+			show_usage();
+			exit(EXIT_SUCCESS);
 			break;
 		default:
-			ret = -1;
+			printf("ERROR!! an unsupported option was"
+							" specified.\n");
+			show_usage();
+			exit(EXIT_FAILURE);
 			break;
 		}
 	}
-	return ret;
+	return;
 }
 
 int main(int argc, char *argv[])
@@ -92,13 +99,7 @@ int main(int argc, char *argv[])
 	char *input = NULL;
 	int32_t audio = 0;
 
-	ret = check_options(argc, argv, &input, &audio);
-	if (ret < 0) {
-		return 1;
-	}
-	else if (ret > 0) {
-		return 0;
-	}
+	check_options(argc, argv, &input, &audio);
 	if (input == NULL) {
 		printf("ERROR!! input movie file is not set\n");
 		return 1;
