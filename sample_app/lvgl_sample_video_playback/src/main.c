@@ -34,7 +34,11 @@ static void show_usage(void)
 		"Options are:\n"
 		"\t-i, --input"
 		"\tinput movie file\n"
-		"\tThis option is mandatory.\n"
+		"\t\tThis option is mandatory.\n"
+		"\t-a, --audio"
+		"\tplayback a movie with sound\n"
+		"\t\tWhen a movie file that has audio data is played with"
+		" this option, audio will be output.\n"
 		"\t-v, --version"
 		"\toutput version information and exit\n"
 		"\t-h, --help"
@@ -45,15 +49,16 @@ static void check_options(int argc, char *argv[], char **input, int32_t *audio)
 {
 	int option;
 	int index;
-	const char *optstring = "i:vh";
+	const char *optstring = "i:avh";
 	const struct option longopts[] = {
 		{"input", required_argument, NULL, 'i'},
+		{"audio", no_argument, NULL, 'a'},
 		{"version", no_argument, NULL, 'v'},
 		{"help", no_argument, NULL, 'h'},
 		{NULL, 0, NULL, 0}
 	};
-	if (audio)	/* This value is always 1 in this version. */
-		*audio = 1;
+	if (audio)
+		*audio = 0;
 
 	while (1) {
 		option = getopt_long(argc, argv, optstring, longopts, &index);
@@ -63,6 +68,10 @@ static void check_options(int argc, char *argv[], char **input, int32_t *audio)
 		case 'i':
 			if (input)
 				*input = optarg;
+			break;
+		case 'a':
+			if (audio)
+				*audio = 1;
 			break;
 		case 'v':
 			printf("LVGL sample program for audio playback, "
@@ -112,7 +121,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	if (pthread_create (&id_playback_thread, NULL, lsvp_playback_loop, NULL)) {
+	if (pthread_create (&id_playback_thread, NULL, lsvp_playback_loop,
+							(void *)&audio)) {
 		printf("ERROR!! pthread_create() failed.\n");
 	}
 

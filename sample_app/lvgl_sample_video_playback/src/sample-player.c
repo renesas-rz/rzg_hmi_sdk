@@ -31,6 +31,7 @@ typedef struct {
 	GstElement *video_capsfilter;
 	GstElement *video_sink;
 	gint64 media_length;
+	int32_t audio;
 } UserData;
 
 #define AUDIO_SAMPLE_RATE		44100
@@ -189,42 +190,52 @@ int32_t lsvp_play_new_file(char *path)
 	/* wait until the changing is complete */
 	gst_element_get_state (pipeline, NULL, NULL, GST_CLOCK_TIME_NONE);
 
-	/* Unlink and remove audio elements */
-	/* Keep the element to still exist after removing */
-	audio_queue = gst_bin_get_by_name (GST_BIN (pipeline), "audio-queue");
-	if (NULL != audio_queue) {
-		ret = gst_bin_remove (GST_BIN (pipeline), data->audio_queue);
-		LOGMSG("gst_bin_remove audio_queue from pipeline: %s\n",
+	if (data->audio) {
+		/* Unlink and remove audio elements */
+		/* Keep the element to still exist after removing */
+		audio_queue = gst_bin_get_by_name (GST_BIN (pipeline),
+							"audio-queue");
+		if (NULL != audio_queue) {
+			ret = gst_bin_remove (GST_BIN (pipeline),
+							data->audio_queue);
+			LOGMSG("gst_bin_remove audio_queue from pipeline: %s\n",
 					(ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	/* Keep the element to still exist after removing */
-	audio_decoder = gst_bin_get_by_name (GST_BIN (pipeline), "aac-decoder");
-	if (NULL != audio_decoder) {
-		ret = gst_bin_remove (GST_BIN (pipeline), data->audio_decoder);
-		LOGMSG("gst_bin_remove audio_decoder from pipeline: %s\n",
+		}
+		/* Keep the element to still exist after removing */
+		audio_decoder = gst_bin_get_by_name (GST_BIN (pipeline),
+							"aac-decoder");
+		if (NULL != audio_decoder) {
+			ret = gst_bin_remove (GST_BIN (pipeline),
+							data->audio_decoder);
+			LOGMSG("gst_bin_remove audio_decoder from pipeline: %s\n",
 					(ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	audio_resample = gst_bin_get_by_name (GST_BIN (pipeline), "audio-resample");
-	if (NULL != audio_resample) {
-		ret = gst_bin_remove (GST_BIN (pipeline), data->audio_resample);
-		LOGMSG("gst_bin_remove audio_resample from pipeline: %s\n",
+		}
+		audio_resample = gst_bin_get_by_name (GST_BIN (pipeline),
+							"audio-resample");
+		if (NULL != audio_resample) {
+			ret = gst_bin_remove (GST_BIN (pipeline),
+							data->audio_resample);
+			LOGMSG("gst_bin_remove audio_resample from pipeline: %s\n",
 					(ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	audio_capsfilter = gst_bin_get_by_name (GST_BIN (pipeline),
+		}
+		audio_capsfilter = gst_bin_get_by_name (GST_BIN (pipeline),
 							"audio-capsfilter");
-	if (NULL != audio_capsfilter) {
-		ret = gst_bin_remove (GST_BIN (pipeline), data->audio_capsfilter);
-		LOGMSG("gst_bin_remove audio_capsfilter from pipeline: %s\n",
+		if (NULL != audio_capsfilter) {
+			ret = gst_bin_remove (GST_BIN (pipeline),
+						data->audio_capsfilter);
+			LOGMSG("gst_bin_remove audio_capsfilter from pipeline: %s\n",
 					(ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	/* Keep the element to still exist after removing */
-	audio_sink = gst_bin_get_by_name (GST_BIN (pipeline), "audio-output");
-	if (NULL != audio_sink) {
-		ret = gst_bin_remove (GST_BIN (pipeline), data->audio_sink);
-		LOGMSG("gst_bin_remove audio_sink from pipeline: %s\n",
+		}
+		/* Keep the element to still exist after removing */
+		audio_sink = gst_bin_get_by_name (GST_BIN (pipeline),
+							"audio-output");
+		if (NULL != audio_sink) {
+			ret = gst_bin_remove (GST_BIN (pipeline),
+							data->audio_sink);
+			LOGMSG("gst_bin_remove audio_sink from pipeline: %s\n",
 					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
 	}
-
 	/* Unlink and remove video elements */
 	/* Keep the element to still exist after removing */
 	video_queue = gst_bin_get_by_name (GST_BIN (pipeline), "video-queue");
@@ -300,7 +311,7 @@ static void on_pad_added(GstElement * element, GstPad * pad, gpointer data)
 
 	pthread_mutex_lock(&mutex_gst_data);
 
-	if (g_str_has_prefix(new_pad_type, "audio")) {
+	if (puser_data->audio && g_str_has_prefix(new_pad_type, "audio")) {
 		/* Need to set Gst State to PAUSED before change state from NULL to
 		* PLAYING */
 		gst_element_get_state(puser_data->audio_queue, &currentState, &pending,
@@ -463,44 +474,67 @@ void *lsvp_playback_loop(void *data)
 	/* Initialization */
 	gst_init(NULL, NULL);
 	user_data.loop = g_main_loop_new(NULL, FALSE);
+	user_data.audio = *(int32_t *)data;
 
 	/* Create GStreamer elements */
 	user_data.pipeline = gst_pipeline_new("video-player");
 	user_data.source = gst_element_factory_make("filesrc", "file-source");
 	user_data.demuxer = gst_element_factory_make("qtdemux", "qt-demuxer");
-	/* elements for Video thread */
-	user_data.video_queue = gst_element_factory_make("queue", "video-queue");
-	user_data.video_sink = NULL;
-	/* elements for Audio thread */
-	user_data.audio_queue = gst_element_factory_make("queue", "audio-queue");
-	user_data.audio_decoder = gst_element_factory_make("faad", "aac-decoder");
-	user_data.audio_resample = gst_element_factory_make("audioresample",
-							"audio-resample");
-	user_data.audio_capsfilter = gst_element_factory_make("capsfilter",
-							"audio-capsfilter");
-	user_data.audio_sink = gst_element_factory_make("alsasink", "audio-output");
-
-
-	if (!user_data.pipeline || !user_data.source || !user_data.demuxer ||
-			!user_data.video_queue || !user_data.audio_queue ||
-			!user_data.audio_decoder || !user_data.audio_resample ||
-			!user_data.audio_capsfilter || !user_data.audio_sink) {
+	if (!user_data.pipeline || !user_data.source || !user_data.demuxer) {
 		g_printerr("One element could not be created. Exiting.\n");
 		return NULL;
 	}
+	/* elements for Video thread */
+	user_data.video_queue = gst_element_factory_make("queue", "video-queue");
+	user_data.video_sink = NULL;
+	if (!user_data.video_queue) {
+		g_printerr("One element for video could not be created."
+								" Exiting.\n");
+		return NULL;
+	}
+	/* elements for Audio thread */
+	if (user_data.audio) {
+		user_data.audio_queue =
+			gst_element_factory_make("queue", "audio-queue");
+		user_data.audio_decoder =
+			gst_element_factory_make("faad", "aac-decoder");
+		user_data.audio_resample =
+			gst_element_factory_make("audioresample",
+						"audio-resample");
+		user_data.audio_capsfilter =
+			gst_element_factory_make("capsfilter",
+						"audio-capsfilter");
+		user_data.audio_sink =
+			gst_element_factory_make("alsasink", "audio-output");
 
-
-	/* Set the caps option to the caps-filter element */
-	caps = gst_caps_new_simple("audio/x-raw", "rate", G_TYPE_INT,
+		if (!user_data.audio_queue || !user_data.audio_decoder ||
+			!user_data.audio_resample ||
+			!user_data.audio_capsfilter || !user_data.audio_sink) {
+			g_printerr("One element for audio could not be created."
+								" Exiting.\n");
+			return NULL;
+		}
+		/* Set the caps option to the caps-filter element */
+		caps = gst_caps_new_simple("audio/x-raw", "rate", G_TYPE_INT,
 						AUDIO_SAMPLE_RATE, NULL);
-	g_object_set(G_OBJECT(user_data.audio_capsfilter), "caps", caps, NULL);
-	gst_caps_unref(caps);
+		g_object_set(G_OBJECT(user_data.audio_capsfilter), "caps",
+								caps, NULL);
+		gst_caps_unref(caps);
 
-	/* Add all created elements into the pipeline */
-	gst_bin_add_many(GST_BIN(user_data.pipeline),
-		user_data.source, user_data.demuxer, user_data.video_queue,
-		user_data.audio_queue, user_data.audio_decoder, user_data.audio_resample,
-		user_data.audio_capsfilter, user_data.audio_sink, NULL);
+		/* Add all created elements into the pipeline */
+		gst_bin_add_many(GST_BIN(user_data.pipeline),
+			user_data.source, user_data.demuxer,
+			user_data.video_queue,
+			user_data.audio_queue, user_data.audio_decoder,
+			user_data.audio_resample, user_data.audio_capsfilter,
+			user_data.audio_sink, NULL);
+	}
+	else {
+		/* Add all created elements into the pipeline */
+		gst_bin_add_many(GST_BIN(user_data.pipeline),
+				user_data.source, user_data.demuxer,
+				user_data.video_queue, NULL);
+	}
 
 	if (gst_element_link(user_data.source, user_data.demuxer) != TRUE) {
 		g_printerr("File source could not be linked.\n");
