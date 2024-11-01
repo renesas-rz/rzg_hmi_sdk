@@ -54,6 +54,32 @@ void lsvp_quit_with_error(void)
 	lv_wayland_close_window(app->disp);
 }
 
+/** Change state of buttons
+ *
+ */
+static void change_button_state(lsvp_sample_app_t *app)
+{
+	switch (app->status) {
+	case LSVP_STATUS_STOP:
+		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		break;
+	case LSVP_STATUS_PLAY:
+		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		break;
+	case LSVP_STATUS_PAUSE:
+		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		break;
+	default:
+		break;
+	}
+}
+
 /** Complete playing video
  *
  * Complete palyeng video at the end of stream
@@ -65,6 +91,7 @@ void lsvp_complete_playing(void)
 
 	pthread_mutex_lock(&mutex_app_data);
 	app->status = LSVP_STATUS_STOP;
+	change_button_state(app);
 	pthread_mutex_unlock(&mutex_app_data);
 }
 
@@ -80,6 +107,7 @@ static void play_video(lsvp_sample_app_t *app)
 		return;
 
 	app->status = LSVP_STATUS_PLAY;
+	change_button_state(app);
 }
 
 /** Stop video
@@ -94,6 +122,7 @@ static void stop_video(lsvp_sample_app_t *app)
 		return;
 
 	app->status = LSVP_STATUS_STOP;
+	change_button_state(app);
 }
 
 /** Pause video
@@ -108,6 +137,7 @@ static void pause_video(lsvp_sample_app_t *app)
 		return;
 
 	app->status = LSVP_STATUS_PAUSE;
+	change_button_state(app);
 }
 
 /** Restart video
@@ -122,6 +152,7 @@ static void restart_video(lsvp_sample_app_t *app)
 		return;
 
 	app->status = LSVP_STATUS_PLAY;
+	change_button_state(app);
 }
 
 /** Playback control button callback
@@ -177,6 +208,12 @@ static void button_clicked_cb(lv_event_t *e)
 static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 {
 	lv_obj_t *imgbtn;
+	lv_style_t *style_ptr = &app->disabled_style;
+
+	/* Set up a style for disabled buttons */
+	lv_style_init(style_ptr);
+	lv_style_set_img_recolor_opa(style_ptr, LV_OPA_50);
+	lv_style_set_img_recolor(style_ptr, lv_color_white());
 
 	/* Play button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -190,6 +227,7 @@ static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 24, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Stop button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -203,6 +241,7 @@ static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 120, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Pause button */
 	imgbtn = lv_imgbtn_create(obj);
@@ -216,6 +255,7 @@ static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 216, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	return 0;
 }
@@ -248,6 +288,7 @@ static int32_t create_video_file_playback_screen(lsvp_sample_app_t *app)
 
 	app->screen = screen;
 	app->status = LSVP_STATUS_STOP;
+	change_button_state(app);
 
 	return ret;
 }

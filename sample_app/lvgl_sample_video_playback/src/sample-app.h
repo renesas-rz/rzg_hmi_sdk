@@ -57,6 +57,7 @@ typedef struct {
 
 	lv_obj_t *screen;
 	lv_obj_t *playback_ctrl[LSVP_CTRL_BTN_NUM];
+	lv_style_t disabled_style;
 
 	lsvp_status_t status;
 	int32_t quit_flag;
