@@ -74,7 +74,7 @@ static void check_options(int argc, char *argv[], char **input, int32_t *audio)
 				*audio = 1;
 			break;
 		case 'v':
-			printf("LVGL sample program for audio playback, "
+			printf("LVGL sample program for video playback, "
 				"Ver. %d.%02d\n" 
 				"Copyright (C) 2024 Renesas Electronics Corp. "
 				"All rights reserved.\n",
