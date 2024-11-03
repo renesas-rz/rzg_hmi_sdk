@@ -151,23 +151,13 @@ static void play_audio(lsap_sample_app_t *app, lsap_menu_t type)
 		format = LSAP_FORMAT_MP3;
 		break;
 	case LSAP_MENU_WAV:
-#if 0
 		path = "/usr/share/sounds/sample/sample_audio_stereo.wav";
 		format = LSAP_FORMAT_WAV;
 		break;
-#else
-		printf("WAV file has not been supported yet.\n");
-		return;
-#endif
 	case LSAP_MENU_AAC:
-#if 0
 		path = "/usr/share/sounds/sample/sample_audio_stereo.aac";
 		format = LSAP_FORMAT_AAC;
 		break;
-#else
-		printf("AAC file has not been supported yet.\n");
-		return;
-#endif
 	default:
 		return;
 	}

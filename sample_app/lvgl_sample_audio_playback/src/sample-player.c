@@ -18,8 +18,11 @@ typedef struct {
 	GMainLoop *loop;
 	GstElement *pipeline;
 	GstElement *source;
-	GstElement *parser;
-	GstElement *decoder;
+	GstElement *mp3_parser;
+	GstElement *mp3_decoder;
+	GstElement *aac_parser;
+	GstElement *aac_decoder;
+	GstElement *wav_parser;
 	GstElement *audioresample;
 	GstElement *capsfilter;
 	GstElement *sink;
@@ -161,6 +164,7 @@ int32_t lsap_play_new_file(char *path, lsap_format_t format)
 	GstElement *sink;
 	gboolean ret = FALSE;
 	int32_t ret_val = 0;
+	static lsap_format_t prev_fmt = LSAP_FORMAT_NUM;
 
 	pthread_mutex_lock(&mutex_gst_data);
 
@@ -172,82 +176,164 @@ int32_t lsap_play_new_file(char *path, lsap_format_t format)
 						GST_SEEK_FLAG_FLUSH, 0);
 	}
 
-	source = data->source;
-	parser = data->parser;
-	decoder = data->decoder;
-	audioresample = data->audioresample;
-	capsfilter = data->capsfilter;
-	sink = data->sink;
-
 	/* Seek to start and flush all old data */
-	gst_element_seek_simple(data->pipeline, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, 0);
+	gst_element_seek_simple(data->pipeline, GST_FORMAT_TIME,
+						GST_SEEK_FLAG_FLUSH, 0);
 	gst_element_set_state(data->pipeline, GST_STATE_READY);
 
 	/* wait until the changing is complete */
 	gst_element_get_state(data->pipeline, NULL, NULL, GST_CLOCK_TIME_NONE);
 
-	/* Keep the element to still exist after removing */
+	/* Remove the previous elements */
+	/* We need to call gst_bin_get_by_name() to keep the elements existing
+	 * after we call get_bin_remove().*/
 	source = gst_bin_get_by_name(GST_BIN (data->pipeline), "file-source");
 	if (NULL != source) {
 		ret = gst_bin_remove(GST_BIN (data->pipeline), data->source);
-		LOGMSG("gst_bin_remove parser from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
+		LOGMSG("gst_bin_remove source from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
 	}
-	/* Keep the element to still exist after removing */
-	parser = gst_bin_get_by_name(GST_BIN (data->pipeline), "mp3-parser");
-	if (NULL != parser) {
-		ret = gst_bin_remove(GST_BIN (data->pipeline), data->parser);
-		LOGMSG("gst_bin_remove parser from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	/* Keep the element to still exist after removing */
-	decoder = gst_bin_get_by_name(GST_BIN (data->pipeline), "mp3-decoder");
-	if (NULL != decoder) {
-		ret = gst_bin_remove(GST_BIN (data->pipeline), data->decoder);
-		LOGMSG("gst_bin_remove decoder from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
-	}
-	/* Keep the element to still exist after removing */
-	audioresample = gst_bin_get_by_name(GST_BIN (data->pipeline), "audio-resample");
+	audioresample = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"audio-resample");
 	if (NULL != audioresample) {
-		ret = gst_bin_remove(GST_BIN (data->pipeline), data->audioresample);
-		LOGMSG("gst_bin_remove audioresample from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
+		ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->audioresample);
+		LOGMSG("gst_bin_remove audioresample from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
 	}
-	/* Keep the element to still exist after removing */
-	capsfilter = gst_bin_get_by_name(GST_BIN (data->pipeline), "resample_capsfilter");
+	capsfilter = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"resample_capsfilter");
 	if (NULL != capsfilter) {
-		ret = gst_bin_remove(GST_BIN (data->pipeline), data->capsfilter);
-		LOGMSG("gst_bin_remove capsfilter from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
+		ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->capsfilter);
+		LOGMSG("gst_bin_remove capsfilter from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
 	}
-	/* Keep the element to still exist after removing */
 	sink = gst_bin_get_by_name(GST_BIN (data->pipeline), "audio-output");
 	if (NULL != sink) {
 		ret = gst_bin_remove(GST_BIN (data->pipeline), data->sink);
-		LOGMSG("gst_bin_remove sink from pipeline: %s\n", (ret) ? ("SUCCEEDED") : ("FAILED"));
+		LOGMSG("gst_bin_remove sink from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+	}
+
+	switch (prev_fmt) {
+	case LSAP_FORMAT_MP3:
+		parser = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"mp3-parser");
+		if (NULL != parser) {
+			ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->mp3_parser);
+			LOGMSG("gst_bin_remove parser from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
+		decoder = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"mp3-decoder");
+		if (NULL != decoder) {
+			ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->mp3_decoder);
+			LOGMSG("gst_bin_remove decoder from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
+		break;
+	case LSAP_FORMAT_WAV:
+		parser = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"wav-parser");
+		if (NULL != parser) {
+			ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->wav_parser);
+			LOGMSG("gst_bin_remove parser from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
+		break;
+	case LSAP_FORMAT_AAC:
+		parser = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"aac-parser");
+		if (NULL != parser) {
+			ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->aac_parser);
+			LOGMSG("gst_bin_remove parser from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
+		decoder = gst_bin_get_by_name(GST_BIN (data->pipeline),
+							"aac-decoder");
+		if (NULL != decoder) {
+			ret = gst_bin_remove(GST_BIN (data->pipeline),
+							data->aac_decoder);
+			LOGMSG("gst_bin_remove decoder from pipeline: %s\n",
+					(ret) ? ("SUCCEEDED") : ("FAILED"));
+		}
+		break;
+	default:
+		break;
 	}
 
 	/* Update file location */
 	g_object_set(G_OBJECT (data->source), "location", (gchar *)path, NULL);
 
 	/* Add the elements into the pipeline and then link them together */
-	gst_bin_add_many(GST_BIN (data->pipeline), data->source, data->parser,
-			data->decoder, data->audioresample, data->capsfilter,
-			data->sink, NULL);
-	if (gst_element_link_many(data->source, data->parser, data->decoder,
-			data->audioresample, data->capsfilter,
-			data->sink, NULL) != TRUE) {
-		g_print("Elements could not be linked.\n");
-		gst_object_unref(data->pipeline);
+	switch (format) {
+	case LSAP_FORMAT_MP3:
+		gst_bin_add_many(GST_BIN (data->pipeline), data->source,
+				data->mp3_parser, data->mp3_decoder,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL);
+		if (gst_element_link_many(data->source,
+				data->mp3_parser, data->mp3_decoder,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL) != TRUE) {
+			g_print("Elements could not be linked.\n");
+			gst_object_unref(data->pipeline);
+			ret_val = -1;
+		}
+		break;
+	case LSAP_FORMAT_WAV:
+		gst_bin_add_many(GST_BIN (data->pipeline), data->source,
+				data->wav_parser,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL);
+		if (gst_element_link_many(data->source,
+				data->wav_parser,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL) != TRUE) {
+			g_print("Elements could not be linked.\n");
+			gst_object_unref(data->pipeline);
+			ret_val = -1;
+		}
+		break;
+	case LSAP_FORMAT_AAC:
+		gst_bin_add_many(GST_BIN (data->pipeline), data->source,
+				data->aac_parser, data->aac_decoder,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL);
+		if (gst_element_link_many(data->source,
+				data->aac_parser, data->aac_decoder,
+				data->audioresample, data->capsfilter,
+				data->sink, NULL) != TRUE) {
+			g_print("Elements could not be linked.\n");
+			gst_object_unref(data->pipeline);
+			ret_val = -1;
+		}
+		break;
+	default:
+		g_printerr("ERROR!! An unsupported format was specified.\n");
 		ret_val = -1;
+		break;
 	}
 
 	/* Set the pipeline to "playing" state */
-	if (gst_element_set_state(data->pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
-		g_printerr("Unable to set the pipeline to the playing state.\n");
+	if (gst_element_set_state(data->pipeline, GST_STATE_PLAYING) ==
+						GST_STATE_CHANGE_FAILURE) {
+		g_printerr("Unable to set the pipeline to playing state.\n");
 		gst_object_unref(data->pipeline);
 		ret_val = -1;
 	}
 
 	/* Wait the state become PLAYING to get the audio length */
 	gst_element_get_state(data->pipeline, NULL, NULL, GST_CLOCK_TIME_NONE);
-	gst_element_query_duration(data->pipeline, GST_FORMAT_TIME, &(data->audio_length));
+	gst_element_query_duration(data->pipeline, GST_FORMAT_TIME,
+							&(data->audio_length));
+	/* Save the latest format */
+	prev_fmt = format;
 
 	pthread_mutex_unlock(&mutex_gst_data);
 
@@ -267,15 +353,20 @@ void *lsap_playback_loop(void *data)
 	/* Create GStreamer elements */
 	user_data.pipeline = gst_pipeline_new("audio-player");
 	user_data.source = gst_element_factory_make("filesrc", "file-source");
-	user_data.parser = gst_element_factory_make("mpegaudioparse", "mp3-parser");
-	user_data.decoder = gst_element_factory_make("mpg123audiodec", "mp3-decoder");
+	user_data.mp3_parser = gst_element_factory_make("mpegaudioparse", "mp3-parser");
+	user_data.mp3_decoder = gst_element_factory_make("mpg123audiodec", "mp3-decoder");
+	user_data.aac_parser = gst_element_factory_make("aacparse", "aac-parser");
+	user_data.aac_decoder = gst_element_factory_make("faad", "aac-decoder");
+	user_data.wav_parser = gst_element_factory_make("wavparse", "wav-parser");
 	user_data.audioresample = gst_element_factory_make("audioresample", "audio-resample");
 	user_data.capsfilter = gst_element_factory_make("capsfilter", "resample_capsfilter");
 	user_data.sink = gst_element_factory_make("alsasink", "audio-output");
 	user_data.audio_length = 0;
 
-	if (!user_data.pipeline || !user_data.source || !user_data.parser ||
-			!user_data.decoder || !user_data.audioresample ||
+	if (!user_data.pipeline || !user_data.source ||
+			!user_data.mp3_parser || !user_data.mp3_decoder ||
+			!user_data.aac_parser || !user_data.aac_decoder ||
+			!user_data.wav_parser || !user_data.audioresample ||
 			!user_data.capsfilter || !user_data.sink) {
 		g_printerr("One element could not be created. Exiting.\n");
 		return NULL;
