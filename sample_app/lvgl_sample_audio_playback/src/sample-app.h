@@ -18,7 +18,7 @@
   * Declarations and definition for sample applicaiton
 *****************************************************************************/
 #define		LSAP_MAJOR_VERSION		(1)
-#define		LSAP_MINOR_VERSION		(0)
+#define		LSAP_MINOR_VERSION		(1)
 
 #define		LSAP_WINDOW_WIDTH		((lv_coord_t)640)
 #define		LSAP_WINDOW_HEIGHT		((lv_coord_t)480)
