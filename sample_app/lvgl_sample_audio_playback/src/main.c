@@ -28,6 +28,12 @@
 
 static pthread_t id_playback_thread = 0;
 
+static const char *audio_file[LSAP_MENU_NUM] = {
+	"/usr/share/sounds/sample/sample_audio_stereo.mp3",
+	"/usr/share/sounds/sample/sample_audio_stereo.wav",
+	"/usr/share/sounds/sample/sample_audio_stereo.aac"
+};
+
 static void show_usage(void)
 {
 	printf("Usage: lvgl_sample_audio_playback [OPTION]\n\n"
@@ -77,6 +83,22 @@ static void check_options(int argc, char *argv[])
 	return;
 }
 
+static int32_t check_audio_files(void)
+{
+	int i;
+	int ret;
+
+	for (i = 0; i < LSAP_MENU_NUM; i++) {
+		ret = access(audio_file[i], R_OK);
+		if (ret) {
+			printf("ERROR!! the sample audio file "
+				"'%s' cannot be read.\n", audio_file[i]);
+			return 1;
+		}
+	}
+	return 0;
+}
+
 int main(int argc, char *argv[])
 {
 	struct pollfd pfd;
@@ -88,6 +110,11 @@ int main(int argc, char *argv[])
 	lv_disp_t *disp;
 
 	check_options(argc, argv);
+
+	/* check audio files */
+	ret = check_audio_files();
+	if (ret)
+		return 1;
 
 	if (pthread_create (&id_playback_thread, NULL, lsap_playback_loop, NULL)) {
 		printf("ERROR!! pthread_create() failed.\n");
@@ -108,7 +135,7 @@ int main(int argc, char *argv[])
 	pfd.fd = lv_wayland_get_fd();
 	pfd.events = POLLIN;
 
-	ret = lsap_sample_app_setup(width, height, disp);
+	ret = lsap_sample_app_setup(width, height, disp, audio_file);
 	if (ret < 0) {
 		printf("ERROR!! lb_demo_gui() failed.\n");
 		lv_wayland_deinit();

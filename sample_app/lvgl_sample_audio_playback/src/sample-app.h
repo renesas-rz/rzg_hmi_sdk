@@ -61,6 +61,7 @@ typedef struct {
 	lv_disp_t *disp;
 	lv_coord_t width;
 	lv_coord_t height;
+	const char **audio_file;
 
 	lv_obj_t *screen;
 	lv_obj_t *menu[LSAP_MENU_NUM];
@@ -72,7 +73,8 @@ typedef struct {
 	int32_t quit_flag;
 } lsap_sample_app_t;
 
-int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp);
+int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+							const char **audio);
 void lsap_sample_app_quit(void);
 void lsap_complete_playing(void);
 void lsap_quit_with_error(void);

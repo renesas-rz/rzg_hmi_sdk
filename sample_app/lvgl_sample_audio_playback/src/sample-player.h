@@ -24,7 +24,7 @@ typedef enum {
 
 void *lsap_playback_loop(void *data);
 
-int32_t lsap_play_new_file(char *path, lsap_format_t format);
+int32_t lsap_play_new_file(const char *path, lsap_format_t format);
 int32_t lsap_stop_playback(void);
 int32_t lsap_pause_playback(void);
 int32_t lsap_restart_playback(void);

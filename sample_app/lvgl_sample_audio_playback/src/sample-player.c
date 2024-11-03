@@ -152,7 +152,7 @@ int32_t lsap_stop_playback(void)
 	return ret_val;
 }
 
-int32_t lsap_play_new_file(char *path, lsap_format_t format)
+int32_t lsap_play_new_file(const char *path, lsap_format_t format)
 {
 	UserData *data = &user_data;
 	GstState current_state;

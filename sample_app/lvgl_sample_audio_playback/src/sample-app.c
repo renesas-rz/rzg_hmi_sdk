@@ -141,21 +141,21 @@ static int32_t check_target_btn(lsap_sample_app_t *app, lv_obj_t *target,
  */
 static void play_audio(lsap_sample_app_t *app, lsap_menu_t type)
 {
-	char *path = NULL;
+	const char *path = NULL;
 	lsap_format_t format;
 	int32_t ret;
 
 	switch (type) {
 	case LSAP_MENU_MP3:
-		path = "/usr/share/sounds/sample/sample_audio_stereo.mp3";
+		path = app->audio_file[LSAP_MENU_MP3];
 		format = LSAP_FORMAT_MP3;
 		break;
 	case LSAP_MENU_WAV:
-		path = "/usr/share/sounds/sample/sample_audio_stereo.wav";
+		path = app->audio_file[LSAP_MENU_WAV];
 		format = LSAP_FORMAT_WAV;
 		break;
 	case LSAP_MENU_AAC:
-		path = "/usr/share/sounds/sample/sample_audio_stereo.aac";
+		path = app->audio_file[LSAP_MENU_AAC];
 		format = LSAP_FORMAT_AAC;
 		break;
 	default:
@@ -421,7 +421,8 @@ static int32_t create_audio_file_playback_screen(lsap_sample_app_t *app)
  *
  * Basic objects for each screen are created, and data structures are allocated.
  */
-int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp)
+int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+							const char **audio)
 {
 	int32_t ret;
 
@@ -433,6 +434,7 @@ int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp)
 	app_obj->width = (lv_coord_t)width;
 	app_obj->height = (lv_coord_t)height;
 	app_obj->disp = disp;
+	app_obj->audio_file = audio;
 
 	/* create audio file playback screen */
 	ret = create_audio_file_playback_screen(app_obj);
