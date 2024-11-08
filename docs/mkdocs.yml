@@ -62,6 +62,9 @@ extra:
       name: Go to Renesas.com website
   version:
     provider: mike
+  analytics:
+    provider: google
+    property: G-D3XVMNKJJR
 
 extra_css:
   - assets/stylesheets/extra.css
