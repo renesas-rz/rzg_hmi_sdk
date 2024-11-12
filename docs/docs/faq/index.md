@@ -8,9 +8,9 @@ Please check Renesas よくあるご質問 (FAQ) | Knowledge Base (FAQ's) | 知�
 
 And Renesas Engineering Community website.
 
-* [[JP] RZ MPU](https://community-ja.renesas.com/cafe_rene/forums-groups/mcu-mpu/rz/){: target="_blank" }
-* [[EN] Microprocessors (RZ)](https://community.renesas.com/rz/){: target="_blank" }
-* [[CN] RZ MPU](https://community-ja.renesas.com/zh/forums-groups/mcu-mpu/rz-mpu/){: target="_blank" }
+* [[JP] RZ MPU](https://community.renesas.com/cafe_rene/forums-groups/mcu-mpu/rz/f/103__-_forum){: target="_blank" }
+* [[EN] Microprocessors (RZ)](https://community.renesas.com/rz/f/rz-forum){: target="_blank" }
+* [[CN] RZ MPU](https://community.renesas.com/zh/forums-groups/mcu-mpu/rz-mpu/f){: target="_blank" }
 
 Also check our Wiki's: [RZ/G](https://jira-gasg.renesas.eu/confluence/pages/viewpage.action?pageId=184060061){: target="_blank" }.
 

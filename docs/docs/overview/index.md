@@ -2,7 +2,7 @@
 
 ![](images/hmi-sdk.svg){ align=right width=320 }
 
-RZ/G HMI Software Development Kit (HMI SDK) is a HMI application development
+RZ/G HMI Software Development Kit (HMI SDK) is an HMI application development
 environment for Evaluation Board Kit of RZ/G series.
 
 Since it contains [Yocto](https://www.yoctoproject.org/){: target="_blank" } Linux with bootloader,

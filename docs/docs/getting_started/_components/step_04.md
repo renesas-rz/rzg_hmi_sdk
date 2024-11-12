@@ -1,6 +1,6 @@
 ## Step 4: Prepare HMI SDK SD card image for demo
 
-Prebuilt binary are prepared as `#!bash wic` image.
+Prebuilt binary prepared as `#!bash wic` image
 
 === "RZ/G2L"
 
