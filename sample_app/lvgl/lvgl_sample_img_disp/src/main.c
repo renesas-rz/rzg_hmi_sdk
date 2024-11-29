@@ -24,12 +24,21 @@
 
 #include	"sample-app.h"
 
+static void show_usage(void)
+{
+	printf("Usage: lvgl_sample_img_disp [OPTION]\n\n"
+		"Options are:\n"
+		"\t-f, --fullscreen\tfull screen mode\n"
+		"\t\tunless specified, %d x %d\n"
+		"\t-v, --version\toutput version information and exit\n"
+		"\t-h, --help\tdisplay this help message and exit\n",
+		LSID_WINDOW_WIDTH, LSID_WINDOW_HEIGHT);
+}
 
-static int32_t check_options(int argc, char *argv[], int32_t *mode)
+static void check_options(int argc, char *argv[], int32_t *mode)
 {
 	int option;
 	int index;
-	int32_t ret = 0;
 	const char *optstring = "fvh";
 	const struct option longopts[] = {
 		{"fullscreen", no_argument, NULL, 'f'},
@@ -53,26 +62,21 @@ static int32_t check_options(int argc, char *argv[], int32_t *mode)
 				"Copyright (C) 2024 Renesas Electronics Corp. "
 				"All rights reserved.\n",
 				LSID_MAJOR_VERSION, LSID_MINOR_VERSION);
-			ret = 1;
+			exit(EXIT_SUCCESS);
 			break;
 		case 'h':
-			printf("Usage: lvgl_sample_img_disp [OPTION]\n\n"
-				"Options are:\n"
-				"\t-f, --fullscreen\tfull screen mode\n"
-				"\t\t\tunless specified, %d x %d\n"
-				"\t-v, --version"
-				"\toutput version information and exit\n"
-				"\t-h, --help"
-				"\tdisplay this help message and exit\n",
-				LSID_WINDOW_WIDTH, LSID_WINDOW_HEIGHT);
-			ret = 1;
+			show_usage();
+			exit(EXIT_SUCCESS);
 			break;
 		default:
-			ret = -1;
+			printf("ERROR!! an unsupported option was"
+							" specified.\n");
+			show_usage();
+			exit(EXIT_FAILURE);
 			break;
 		}
 	}
-	return ret;
+	return;
 }
 
 int main(int argc, char *argv[])
@@ -86,13 +90,7 @@ int main(int argc, char *argv[])
 	int32_t mode = 0;
 	lv_disp_t *disp;
 
-	ret = check_options(argc, argv, &mode);
-	if (ret < 0) {
-		return 1;
-	}
-	else if (ret > 0) {
-		return 0;
-	}
+	check_options(argc, argv, &mode);
 
 	/*LittlevGL init*/
 	lv_init();
