@@ -14,26 +14,27 @@ HMI SDK provides following files.
     | Package             | Items                                       | Details                                                             |
     +=====================+=============================================+=====================================================================+
     | HMI SDK             | Release Note                                | PDF documentation that contains RZ/G HMI SDK release information.   |
-    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
-    |                     | board_setup   | SD card Image (WIC format)  | Boot image of HMI SDK for eSD Boot.                                 |
-    |                     |               +-----------------------------+---------------------------------------------------------------------+
-    |                     |               | Bootloader                  | Files to boot the board. (Option*)                                  |
-    |                     |               +-----------------------------+---------------------------------------------------------------------+
-    |                     |               | Linux Kernel Files          | Pre-build binary files for RZ/G Linux Kernel. (Option*)             |
-    |                     |               +-----------------------------+---------------------------------------------------------------------+
-    |                     |               | Root filesystem             | Filesystem for the RZ/G Linux. (Option*)                            |
-    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
-    |                     | hmi_sdk_setup | HMI SDK Installer           | Installer for HMI application development environment on Docker.    |
-    |                     |               +-----------------------------+---------------------------------------------------------------------+
-    |                     |               | Cross Compiler              | Compiler for Linux application on RZ/G Linux.                       |
-    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
-    |                     | documents     | Related Documents           | License List.                                                       |
-    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
-    |                     | references    | Reference information       | Files that is referred by Linux license information documentation.  |
-    +---------------------+---------------+-----------------------------+---------------------------------------------------------------------+
-    | HMI SDK Source Code | README                                      | Release information of HMI SDK Source Code                          |
     |                     +---------------------------------------------+---------------------------------------------------------------------+
-    |                     | Yocto Linux   Recipe                        | Linux source code of HMI SDK.                                       |
+    |                     | README                                      | Information of HMI SDK package                                      |
     |                     +---------------------------------------------+---------------------------------------------------------------------+
-    |                     | OSS Source   Code                           | Source code of Open Source Software packages used to build HMI SDK. |
+    |                     | SD card image for eSD boot                  | A bootable SD card image in WIC format                              |
+    |                     +---------------------------------------------+---------------------------------------------------------------------+
+    |                     | Installer for pre-built cross-toolchain     | Cross-toolchain installer built by Yocto build system               |
+    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
+    |                     | Pre-build     | Boot loader                 | Files to boot the board.                                            |
+    |                     | binaries      +-----------------------------+---------------------------------------------------------------------+
+    |                     |               | Linux kernel image          | Linux kerlel and device tree for the RZ/G Linux                     |
+    |                     |               +-----------------------------+---------------------------------------------------------------------+
+    |                     |               | Linux root filesystem       | Filesystem for the RZ/G Linux                                       |
+    |                     |               +-----------------------------+---------------------------------------------------------------------+
+    |                     |               | Flash writer                | Flash writer for the RZ/G EVK                                       |
+    |                     +---------------+-----------------------------+---------------------------------------------------------------------+
+    |                     | OSS license files                           | License files for open-source software used in HMI SDK              |
     +---------------------+---------------------------------------------+---------------------------------------------------------------------+
+    | HMI SDK Source Code | README                                      | Information of HMI SDK Source Code package                          |
+    |                     +---------------------------------------------+---------------------------------------------------------------------+
+    |                     | Yocto Recipe                                | Yocto meta layers for HMI SDK                                       |
+    |                     +---------------------------------------------+---------------------------------------------------------------------+
+    |                     | Source Code                                 | Source code of Open Source Software packages used to build HMI SDK  |
+    +---------------------+---------------------------------------------+---------------------------------------------------------------------+
+

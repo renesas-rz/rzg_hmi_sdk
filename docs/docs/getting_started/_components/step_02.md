@@ -76,3 +76,6 @@ Please prepare the following equipment for your EVK.
 Please install following software **on Linux PC**.
 
 * git
+
+For information about installation and configuration of the tool, please refer to the first two instructions at [Step 2: Build HMI SDK source code](../how_to_build_hmi_sdk/#step-2-build-hmi-sdk-source-code) in [How To Build HMI SDK](../how_to_build_hmi_sdk/#how-to-build-hmi-sdk).
+

@@ -41,10 +41,18 @@ To see the overview about HMI Applications, please refer to [HMI Applications](.
     ```
     { .dollar }
 
-4.  Go to source code working directory
+4.  Switch branches
 
     ```bash
-    cd rzg_hmi_sdk/sample_app/<sample-application-directory>
+    cd rzg_hmi_sdk/
+    git checkout -b tmp 087ced2f9b3639cf71e46795377b62e9626d3517
+    ```
+    { .dollar }
+
+5.  Go to source code working directory
+
+    ```bash
+    cd sample_app/<sample-application-directory>
     ```
     { .dollar }
 
@@ -57,7 +65,7 @@ To see the overview about HMI Applications, please refer to [HMI Applications](.
         | `#!bash lvgl_sample_audio_playback`     | LVGL Sample Program for Audio Playback |
         | `#!bash lvgl_sample_video_playback`     | LVGL Sample Program for Video Playback |
 
-5.  Build sample application
+6.  Build sample application
 
     !!! note
         This step is optional, as prebuilt binaries was prepared.
@@ -67,7 +75,7 @@ To see the overview about HMI Applications, please refer to [HMI Applications](.
     ```
     { .dollar }
 
-6.  Executable file of sample application
+7.  Executable file of sample application
 
     Each executable file of sample application built as `#!bash rzg_hmi_sdk/sample_app/<sample-application-directory>/<sample-application-binary>`.
 

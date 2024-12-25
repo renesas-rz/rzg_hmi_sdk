@@ -38,9 +38,9 @@ Please setup following below diagram.
 
 === "RZ/G2L"
 
-    1.  Insert the bootable SD card created at [Step 4](#step-4-prepare-hmi-sdk-sd-card-image-for-demo)
-    2.  Connect a USB cable to CN6 for power supply
-    3.  Press and hold power button (SW9) for 1 second to turn on the EVK
+    1.  Insert the bootable SD card created at [Step 4](#step-4-prepare-hmi-sdk-sd-card-image-for-demo) into the microSD card slot on SMARC module board as illustrated in the figure at ["1. Setup EVK's peripheral"](#1-setup-evks-peripheral).
+    2.  Connect a USB cable to CN6 for power supply.
+    3.  Press and hold power button (SW9) for 1 second to turn on the EVK.
 
         !!! note
             Press and hold the button for 2 seconds when you turn off the EVK.
