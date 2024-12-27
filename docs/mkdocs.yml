@@ -50,7 +50,7 @@ extra:
   announcements:
     # the following line is displayed in the announcement bar
     # keep length under 164 characters (less HTML tags) to fit on 1280px desktop window
-    - '<b>Announcement!</b> RZ/G2L HMI SDK v1.00 is available.'
+    - '<b>Announcement!</b> RZ/G HMI SDK v2.3.0.0 is available.'
   announcements_urls:
     - available: '#whats-new'
   header_link: true
