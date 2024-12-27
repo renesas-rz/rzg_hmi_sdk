@@ -2,9 +2,9 @@
 
 RZ/G HMI SDK includes the following software packages:
 
-* RZ/G Verified Linux Package Version 3.0.6-update2
+* RZ/G Verified Linux Package Version 3.0.6-update3
 * RZ MPU Graphics Library V1.2.2 Unrestricted Version for Verified Linux Package of RZ/G2L and RZ/G2LC
-* RZ MPU Video Codec Library v1.2.1 Unrestricted Version for Verified Linux Package of RZ/G2L
+* RZ MPU Video Codec Library v1.2.2 Unrestricted Version for Verified Linux Package of RZ/G2L
 
 Please refer to the table below for more information.
 

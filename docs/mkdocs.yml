@@ -12,6 +12,7 @@ nav:
   - Overview: overview/index.md
   - Getting Started: getting_started/index.md
   - How To Build HMI SDK: how_to_build_hmi_sdk/index.md
+  - Wiki: wiki/index.md
   - FAQ: faq/index.md
 
 theme:
@@ -114,6 +115,7 @@ plugins:
         - getting_started/_*/*
         - how_to_build_hmi_sdk/_*/*
         - hmi_applications/*
+        - wiki/_*/*
         - faq/_*/*
         - download/_*/*
         - history/_*/*

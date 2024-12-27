@@ -4,7 +4,15 @@ Prebuilt binary prepared as `#!bash wic` image
 
 === "RZ/G2L"
 
-    `#!bash wic` image is available inside `#!bash image-file_rzg2l_hmi-sdk_v1.0.zip`.
+    `#!bash wic` image is available inside `#!bash image-file_rzg2l_hmi-sdk_v2.3.0.0.zip`.
+
+=== "RZ/G2LC"
+
+    `#!bash wic` image is available inside `#!bash image-file_rzg2lc_hmi-sdk_v2.3.0.0.zip`.
+
+=== "RZ/G2UL"
+
+    `#!bash wic` image is available inside `#!bash image-file_rzg2ul_hmi-sdk_v2.3.0.0.zip`.
 
 ### 1. In case of Windows PC
 
@@ -19,6 +27,18 @@ Prebuilt binary prepared as `#!bash wic` image
         Image file is:
 
         * `#!bash core-image-weston-smarc-rzg2l.wic.gz`
+
+    === "RZ/G2LC"
+
+        Image file is:
+
+        * `#!bash core-image-weston-smarc-rzg2lc.wic.gz`
+
+    === "RZ/G2UL"
+
+        Image file is:
+
+        * `#!bash core-image-bsp-smarc-rzg2ul.wic.gz`
 
 	!!! danger "Caution"
         Even if you see a message such as `#!bash you need to format the disk` before/after writing the image, do not format the SD card.
@@ -98,3 +118,25 @@ Prebuilt binary prepared as `#!bash wic` image
             Additionally, the files below are also required:
 
             * `#!bash core-image-weston-smarc-rzg2l.wic.bmap`
+
+    === "RZ/G2LC"
+
+        Image file is:
+
+        * `#!bash core-image-weston-smarc-rzg2lc.wic.gz`
+
+        !!! note
+            Additionally, the files below are also required:
+
+            * `#!bash core-image-weston-smarc-rzg2lc.wic.bmap`
+
+    === "RZ/G2UL"
+
+        Image file is:
+
+        * `#!bash core-image-bsp-smarc-rzg2ul.wic.gz`
+
+        !!! note
+            Additionally, the files below are also required:
+
+            * `#!bash core-image-bsp-smarc-rzg2ul.wic.bmap`

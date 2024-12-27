@@ -27,4 +27,15 @@ The right diagram in the figure shows the development method with the HMI SDK. T
 
 For information about VLP, please visit the website [RZ/G Software Package](https://www.renesas.com/en/products/microcontrollers-microprocessors/rz-mpus/rzg-series/verified-linux-package).
 
+### Q. What rules does HMI SDK version numbering follow?
+
+The version number of the HMI SDK consists of four numbers.
+
+* Version W.X.Y.Z
+    * W = This number is updated when we add new application frameworks or update existing frameworks.
+    * X = This number is linked to the major version number of VLP.
+    * Y = This number is updated when we make semi-annual VLP updates, add device support, and make minor updates in frameworks. 
+    * Z = This number is updated when we fix bugs.
+
+This rule was effective from December 27, 2024.
 

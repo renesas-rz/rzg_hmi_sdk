@@ -10,10 +10,22 @@
     Connect an ethernet cable to RJ45 port for networking.
 
     === "RZ/G2L"
-        RJ45 ports are CN8 and CN9.
+        RJ45 ports are CN9 (Ethernet 0) and CN8 (Ethernet 1).
 
         !!! note
-            Just connect 1 ethernet cable to CN8 or CN9.
+            Just connect 1 ethernet cable to CN9 or CN8.
+
+    === "RZ/G2LC"
+        RJ45 ports is CN9 (Ethernet 0).
+
+        !!! note
+            Just connect a ethernet cable to CN9.
+
+    === "RZ/G2UL"
+        RJ45 ports are CN9 (Ethernet 0) and CN8 (Ethernet 1).
+
+        !!! note
+            Just connect 1 ethernet cable to CN9 or CN8.
 
     !!! note
         Your EVK will run the demo program automatically.
@@ -63,7 +75,7 @@
     === "`#!bash lvgl_sample_img_disp`"
 
         ```bash
-        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_img_disp/sample/* root@<your-EVK-IP>:/usr/share/images/
+        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_img_disp/sample/* root@<your-EVK-IP>:/usr/share/images/
         ```
         {: .dollar }
 
@@ -73,7 +85,7 @@
     === "`#!bash lvgl_sample_audio_playback`"
 
         ```bash
-        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_audio_playback/sample/* root@<your-EVK-IP>:/usr/share/sounds/sample/
+        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_audio_playback/sample/* root@<your-EVK-IP>:/usr/share/sounds/sample/
         ```
         {: .dollar }
 
@@ -83,7 +95,7 @@
     === "`#!bash lvgl_sample_video_playback`"
 
         ```bash
-        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_video_playback/sample/* root@<your-EVK-IP>:/usr/share/movies/
+        scp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_video_playback/sample/* root@<your-EVK-IP>:/usr/share/movies/
         ```
         {: .dollar }
 
@@ -117,7 +129,7 @@
     === "`#!bash lvgl_sample_img_disp`"
 
         ```bash
-        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_img_disp/sample/* /media/user/rootfs/usr/share/images/
+        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_img_disp/sample/* /media/user/rootfs/usr/share/images/
         ```
         {: .dollar }
 
@@ -127,7 +139,7 @@
     === "`#!bash lvgl_sample_audio_playback`"
 
         ```bash
-        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_audio_playback/sample/* /media/user/rootfs/usr/share/sounds/sample/
+        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_audio_playback/sample/* /media/user/rootfs/usr/share/sounds/sample/
         ```
         {: .dollar }
 
@@ -137,7 +149,7 @@
     === "`#!bash lvgl_sample_video_playback`"
 
         ```bash
-        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl_sample_video_playback/sample/* /media/user/rootfs/usr/share/movies/
+        cp <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_video_playback/sample/* /media/user/rootfs/usr/share/movies/
         ```
         {: .dollar }
 

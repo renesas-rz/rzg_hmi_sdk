@@ -17,6 +17,4 @@ HMI SDK are quick and easy solutions for starting HMI.
 
 {! hmi_applications/_components/__front_matter.md !}
 
-{! demo/_components/__front_matter.md !}
-
 {! video/_components/__front_matter.md !}
