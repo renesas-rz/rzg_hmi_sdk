@@ -29,6 +29,22 @@ Then, run the sample program as follows.
 
     # ./lvgl_sample_img_disp
 
+### How to identify an input event device file
+
+When you run this sample program without weston, you need to specify an input event device file with '-i' or '--input' option.
+The device file for an input device (such as mice and touchpads) appears as '_/dev/input/eventN_' (where _N_ is a number).
+When there are multiple device files such as event0, event1, ..., run the following commnad to check the device file.
+
+    # cat /dev/input/event0
+
+Then, operate your input device (move a mouse, or tap a touchpad).
+If you see something output on the console, '_/dev/input/event0_' is the right file for the device.
+You can run this prgram, as follows:
+
+    # ./lvgl_sample_img_disp -i /dev/input/event0
+
+If you see nothing, check the next file (event1, event2, ...) in the same way as above.
+
 ## Notice
 * LVGL v8.3 library uses [TJpgDec (Tiny JPEG Decompressor)](http://elm-chan.org/fsw/tjpgd/) for JPEG decompression. Since the library does not support progressive JPEG, this sample app cannot display a progressive JPEG image.
 * LVGL v8.3 library supports 24-bit RGB888 and 32-bit ARGB8888 bitmap. Please note that it does not support 32-bit XRGB8888 bitmap. When you use a 32-bit bitmap image, you need to set appropriate alpha values.
