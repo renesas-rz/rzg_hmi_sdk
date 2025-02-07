@@ -47,7 +47,7 @@ typedef struct {
  * Declarations and definition for sample applicaiton
  *****************************************************************************/
 #define		LSID_MAJOR_VERSION		(1)
-#define		LSID_MINOR_VERSION		(0)
+#define		LSID_MINOR_VERSION		(1)
 
 #define		LSID_WINDOW_WIDTH		((lv_coord_t)1280)
 #define		LSID_WINDOW_HEIGHT		((lv_coord_t)720)

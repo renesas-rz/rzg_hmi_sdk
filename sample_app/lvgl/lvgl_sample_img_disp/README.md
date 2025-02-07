@@ -2,7 +2,7 @@
 
 ## Overview
 
-This program runs on RZ/G2L Evaluation Board Kit (EVK).
+This program runs on RZ/G2L, RZ/G2LC, and RZ/G2UL Evaluation Board Kit (EVK).
 
 ## How to Build
 
