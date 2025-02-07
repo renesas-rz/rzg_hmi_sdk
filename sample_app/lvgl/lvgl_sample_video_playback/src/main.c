@@ -111,6 +111,7 @@ int main(int argc, char *argv[])
 	check_options(argc, argv, &input, &audio);
 	if (input == NULL) {
 		printf("ERROR!! input movie file is not set.\n");
+		show_usage();
 		return 1;
 	}
 	/* check input file */
