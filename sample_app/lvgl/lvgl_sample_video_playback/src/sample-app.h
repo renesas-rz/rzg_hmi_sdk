@@ -18,7 +18,7 @@
  * Declarations and definition for sample applicaiton
  *****************************************************************************/
 #define		LSVP_MAJOR_VERSION		(1)
-#define		LSVP_MINOR_VERSION		(1)
+#define		LSVP_MINOR_VERSION		(2)
 
 #define		LSVP_WINDOW_WIDTH		((lv_coord_t)320)
 #define		LSVP_WINDOW_HEIGHT		((lv_coord_t)240)
