@@ -9,8 +9,6 @@
 #include	<unistd.h>
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
-
 #include	"sample-app.h"
 
 /* Image data for GUI */
@@ -57,7 +55,12 @@ static void quit_button_clicked_cb(lv_event_t *e)
 
 	app = (lsid_sample_app_t *)lv_event_get_user_data(e);
 
-	lv_wayland_close_window(app->disp);
+#ifdef RUNS_ON_WAYLAND
+	lv_wayland_close_window((lv_disp_t *)app->disp);
+#else /* FBDEV and EVDEV  */
+	lsid_dispinf_t *dispinf = (lsid_dispinf_t *)app->disp;
+	dispinf->end = true;
+#endif
 }
 
 /** Create a quit button
@@ -314,7 +317,7 @@ static int32_t create_image_file_display_screen(lsid_sample_app_t *app)
  *
  * Basic objects for each screen are created, and data structures are allocated.
  */
-int32_t lsid_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp, int32_t mode)
+int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp, int32_t mode)
 {
 	int32_t ret;
 

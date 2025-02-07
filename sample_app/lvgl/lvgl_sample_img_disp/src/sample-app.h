@@ -12,7 +12,36 @@
 
 
 #include	"lvgl/lvgl.h"
+#include	"lvgl/lv_drivers/lv_drv_conf.h"
+
+#if	USE_FBDEV && USE_EVDEV
+  #undef	RUNS_ON_WAYLAND
+#elif	USE_WAYLAND
+  #define	RUNS_ON_WAYLAND
+#else
+  #error	LVGL drivers configration error.
+#endif
+
+#ifdef	RUNS_ON_WAYLAND
 #include	"lvgl/lv_drivers/wayland/wayland.h"
+
+#else
+#include	"lvgl/lv_drivers/display/fbdev.h"
+#include	"lvgl/lv_drivers/indev/evdev.h"
+
+typedef struct {
+	lv_coord_t width;
+	lv_coord_t height;
+	bool end;
+	lv_color_t *buff;
+	lv_disp_draw_buf_t draw_buf;
+	lv_disp_drv_t drv;
+	lv_disp_t *disp;
+	lv_indev_drv_t indev_drv;
+	lv_indev_t *mouse_indev;
+} lsid_dispinf_t;
+#endif	/* RUNS_ON_WAYLAND */
+
 
 /******************************************************************************
  * Declarations and definition for sample applicaiton
@@ -53,7 +82,7 @@ typedef struct {
 } lsid_img_set_t; 
 
 typedef struct {
-	lv_disp_t *disp;
+	void *disp;
 	lv_coord_t width;
 	lv_coord_t height;
 	int32_t mode;
@@ -67,8 +96,8 @@ typedef struct {
 } lsid_sample_app_t;
 
 
-int32_t lsid_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
-																int32_t mode);
+int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp,
+								int32_t mode);
 void lsid_sample_app_quit(void);
 
 
