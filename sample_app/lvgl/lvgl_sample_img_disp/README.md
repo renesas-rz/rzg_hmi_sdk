@@ -32,6 +32,7 @@ Then, run the sample program as follows.
 ## Notice
 * LVGL v8.3 library uses [TJpgDec (Tiny JPEG Decompressor)](http://elm-chan.org/fsw/tjpgd/) for JPEG decompression. Since the library does not support progressive JPEG, this sample app cannot display a progressive JPEG image.
 * LVGL v8.3 library supports 24-bit RGB888 and 32-bit ARGB8888 bitmap. Please note that it does not support 32-bit XRGB8888 bitmap. When you use a 32-bit bitmap image, you need to set appropriate alpha values.
+* Information about image files used in this program (such as file path and image size) is hard-coded. If you would like to change displayed image files, edit '_create_buttons_' function in '_src/sample-app.c_'.
 
 ## License
 
