@@ -1,4 +1,4 @@
-site_name: RZ/G HMI SDK
+site_name: Renesas RZ/G HMI SDK
 site_description: The best solution for starting your HMI applications.
 site_url: https://renesas-rz.github.io/rzg_hmi_sdk
 site_author: Renesas Electronics Corporation
@@ -9,6 +9,7 @@ repo_url: https://github.com/renesas-rz/rzg_hmi_sdk
 nav:
   # - Guidelines: guidelines/index.md
   # - RZ/G HMI SDK: index.md
+  - Home: index.md
   - Overview: overview/index.md
   - Getting Started: getting_started/index.md
   - How To Build HMI SDK: how_to_build_hmi_sdk/index.md

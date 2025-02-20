@@ -39,3 +39,9 @@ The version number of the HMI SDK consists of four numbers.
 
 This rule was effective from December 27, 2024.
 
+### Q. Does the Chromium included in HMI SDK v2.3.0.0 support hardware decoding?
+
+The Chromium included in HMI SDK v2.3.0.0 does not support hardware-accelerated video playback using HW codecs. 
+However, support is planned for the next version. 
+Graphics rendering in Chromium already utilizes hardware acceleration. 
+
