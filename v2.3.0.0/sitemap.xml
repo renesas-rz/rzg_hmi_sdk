@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/download/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/faq/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/getting_started/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/history/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/how_to_build_hmi_sdk/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/overview/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/common_boot-linux-from-sd/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/common_change-display-resolution/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/common_debug-application-with-gdb/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/common_update-firmware/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.0.0/wiki/lvgl_develop-gui-using-eez-studio/</loc>
-         <lastmod>2025-03-14</lastmod>
+         <lastmod>2025-05-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
