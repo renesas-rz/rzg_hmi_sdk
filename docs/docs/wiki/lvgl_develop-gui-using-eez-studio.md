@@ -1,4 +1,4 @@
-# Develop LVGL GUI applicaitons using EEZ Studio
+# Develop LVGL GUI applications using EEZ Studio
 
 [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) is a free and cross-platform tool that can be used for development of LVGL GUIs.
 It is an open-source tool licensed under [GPL v3](https://github.com/eez-open/studio/blob/master/LICENSE.TXT).
@@ -32,7 +32,7 @@ If you cannot find the installer in the list, click 'Show all xx assets' at the 
 The development flow described in this guide is as follows.
 
 1. Create GUI and generate source code in EEZ Studio on your PC.
-2. Build the GUI applicaiton from the generated source code on your Linux PC.
+2. Build the GUI application from the generated source code on your Linux PC.
 3. Copy the built executable file into a microSD card and run it on the EVK.
 
 ### 1. Create GUI and Generate source code
@@ -42,7 +42,7 @@ And it supports generating source code.
 
 #### Creating a project
 
-1. Start EEZ Studio, select "File" on the left tab and choose "NewProject".
+1. Start EEZ Studio, select "File" on the left tab and choose "New Project".
   ![newproject-image](images/eezstudio_create-project-1.png)
 
 2. Select "LVGL" and enter an arbitrary project name in PROJECT SETTINGS and press Create Project.
@@ -60,10 +60,10 @@ You can resize the widgets (e.g. Arc) by expanding the blue frame.
   ![UI-widgetsresize-image](images/eezstudio_create-gui-3.png)
 You can also change the size from POSITION AND SIZE in widgets (e.g. Arc).
   ![UI-widgetsposition-image](images/eezstudio_create-gui-4.png)
-	- left - Move widgets left and right.
-	- top - Move widgets up and down.
-	- width - Set the width of widgets.
-	- hight - Set the height of widgets.
+	- Left - Move widgets left and right.
+	- Top - Move widgets up and down.
+	- Width - Set the width of widgets.
+	- Height - Set the height of widgets.
 	<br>
 SPECIFIC in WIDGETS (e.g. Arc) to change the way it is displayed.
 SPECIFIC has different items that can be changed depending on the widgets displayed.
@@ -71,8 +71,8 @@ SPECIFIC has different items that can be changed depending on the widgets displa
 	- Range min - Minimum value of range
 	- Range max - Maximum value of range
 	- Value - Length of the blue line (depends on the application.)
-	- be start angle - Starting point of the blue line
-	- be end angle - End of the blue line
+	- Bg start angle - Starting point of the blue line
+	- Bg end angle - End of the blue line
 	- Mode - Select from three types.
 	<br>
 NORMAL appears at the fixed position of the blue line, SYMMETRICAL at the symmetrical position of the fixed position of the blue line, and REVERSE at the exact opposite position of the fixed position of the blue line.
@@ -81,14 +81,14 @@ NORMAL appears at the fixed position of the blue line, SYMMETRICAL at the symmet
 Click on bitmaps on the right and drag and drop image files from Explorer into the red box.
   ![UI-widgetsposition-image](images/eezstudio_create-gui-6.png)
 
-4. Apply image to wigets(image).
+4. Apply image to widgets (image).
 Drag and drop the necessary widgets (image) from the Components Palettes.
   ![UI-components-image](images/eezstudio_create-gui-1.png)
-  ![UI-wigets-image](images/eezstudio_create-gui-7.png)
+  ![UI-widgets-image](images/eezstudio_create-gui-7.png)
 Add the image files added in Add Image Files.
   ![UI-gallery-image](images/eezstudio_create-gui-8.png)
 
-5. Apply image to wigets(imagebutton).
+5. Apply image to widgets (imagebutton).
 Drag and drop the necessary widgets (imagebutton) from the Components Palettes.
   ![UI-components-image](images/eezstudio_create-gui-1.png)
   ![UI-imagebutton-image](images/eezstudio_create-gui-9.png)
@@ -182,7 +182,7 @@ Copy the built executable file into a microSD card so that you can run it on the
 1. Copy the generated executable file to the root filesystem in an SD card.
 For information about how to copy the file, see [Step 7: Deploy sample application](../..//getting_started/#step-7-deploy-sample-application).
 
-2. Set execute peremission on the file.
+2. Set execute permission on the file.
 ```bash
 chmod +x <executable file name>
 ```
@@ -226,7 +226,7 @@ chmod +x <executable file name>
 #elif  USE_WAYLAND
   #define  RUNS_ON_WAYLAND
 #else
-  #error   LVGL drivers configration error.
+  #error   LVGL drivers configuration error.
 #endif
 
 #ifdef RUNS_ON_WAYLAND

@@ -16,7 +16,7 @@ And The following tools are used in this instructions. Please install them to yo
 
 	[minicom](https://help.ubuntu.com/community/Minicom)
 
-For information about how to use use QSPI boot, see [Boot Linux from microSD card](../common_boot-linux-from-sd/).
+For information about how to use QSPI boot, see [Boot Linux from microSD card](../common_boot-linux-from-sd/).
 And for information about how to use eMMC boot, refer to [RZ/G2L, RZ/G2LC and RZ/G2UL-EVKIT Linux Start-up Guide](https://www.renesas.com/ja/document/gde/smarc-evk-rzg2l-rzg2lc-rzg2ul-linux-start-guide-rev105?r=1467991).
 
 ## 1. Set boot mode to SCIF download mode
@@ -43,7 +43,7 @@ Configure the setting of serial communication on terminal software as follows:
 
 ## 3. Prepare flash writer and bootloaders
 
-The flash writer and the bootloaders are stored in the pre-built binaries pacakge of the HMI SDK. 
+The flash writer and the bootloaders are stored in the pre-built binaries package of the HMI SDK. 
 See [file contents](../..//overview/#file-contents).
 
 Unzip the pre-built binaries package to pick up flash write and bootloaders as follows:

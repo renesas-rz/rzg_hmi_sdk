@@ -11,7 +11,7 @@ This page contains information and tips related to the RZ/G HMI SDK.
 
 ## LVGL
 
-* [Develop LVGL GUI applicaiton using EEZ Studio](./lvgl_develop-gui-using-eez-studio.md)
+* [Develop LVGL GUI application using EEZ Studio](./lvgl_develop-gui-using-eez-studio.md)
 
 ## Chromium
 
