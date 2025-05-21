@@ -1,0 +1,18 @@
+{#-
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+  Copyright (c) 2025 Renesas Electronics Corporation and/or its affiliates
+  SPDX-License-Identifier: MIT
+
+  This code was originally taken from
+    https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/javascripts/outdated.html
+  and have sources in
+    https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/javascripts/outdated.html
+
+  Minified using https://www.toptal.com/developers/javascript-minifier
+
+  Renesas RZ/G HMI SDK website use case: Hide announce if outdated
+
+  NOTE: At beggining, outdated cache is null, so need to wait to recheck
+-#}
+
+<script>function sleep(e){return new Promise(t=>setTimeout(t,e))}async function check(){for(var e=document.querySelector("[data-md-component=outdated]"),t=document.querySelector("[data-md-component=announce]"),n=document.querySelector("[data-md-component=sidebar]"),o=new URL("{{ config.extra.scope | d(base_url) }}",location),d=__md_get("__outdated",sessionStorage,o);null===d||null===n;)await sleep(100),d=__md_get("__outdated",sessionStorage,o),n=document.querySelector("[data-md-component=sidebar]");if(!0===d&&e){e.hidden=!1;var a=e.getBoundingClientRect();a.width<1200&&n&&(n.style.top=a.height.toString()+"px")}!0===d&&t&&(t.hidden=!0)}check();</script>
