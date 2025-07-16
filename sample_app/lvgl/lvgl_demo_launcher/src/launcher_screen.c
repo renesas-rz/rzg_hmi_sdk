@@ -29,25 +29,51 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
        lv_init();
        lv_png_init();
 
+#ifndef RUNS_ON_WAYLAND
+       /*back_ground*/
+       lv_obj_set_style_bg_color(lv_scr_act(),
+                                 lv_color_hex(0x000000), LV_PART_MAIN);
+
        /*window*/
+       lv_obj_t *window = lv_obj_create(lv_scr_act());
+       lv_obj_set_size(window, 640, 480);
+       lv_obj_set_align(window, LV_ALIGN_CENTER);
+       lv_obj_set_style_pad_top(window, 0, LV_PART_MAIN);
+       lv_obj_set_style_pad_bottom(window, 0, LV_PART_MAIN);
+       lv_obj_set_style_pad_left(window, 0, LV_PART_MAIN);
+       lv_obj_set_style_pad_right(window, 0, LV_PART_MAIN);
+       lv_obj_set_style_radius(window, 0, 0);
+       lv_obj_set_style_bg_color(window, lv_color_hex(0x2A289D), LV_PART_MAIN);
        static lv_style_t win_style;
+       lv_style_init(&win_style);
+       lv_style_set_border_width(&win_style, 0);
+       lv_obj_add_style(window, &win_style, 0);
+
+       lv_obj_t *title_text = lv_label_create(window);
+       lv_obj_t *guide_text = lv_label_create(window);
+       lv_obj_t *logo_image = lv_img_create(window);
+#else
+       /*window*/
        lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0x2A289D),LV_PART_MAIN);
 
        lv_obj_t *title_text = lv_label_create(lv_scr_act()) ;
        lv_obj_t *guide_text = lv_label_create(lv_scr_act()) ;
        lv_obj_t *logo_image = lv_img_create(lv_scr_act());
-
+#endif
        static lv_style_t btn_style;
        lv_style_init(&btn_style);
        lv_style_set_radius(&btn_style, 3);
        lv_style_set_bg_opa(&btn_style, LV_OPA_100);
        lv_style_set_bg_color(&btn_style, lv_color_hex(0xFFFFFF));
-       lv_style_set_bg_grad_color(&btn_style, lv_palette_darken(LV_PALETTE_BLUE, 2));
 
-       for(btn_num = 0; btn_num < btn_cnt;btn_num++)
+       /* btn */
+       for (btn_num = 0; btn_num < btn_cnt; btn_num++)
        {
-       	/* btn */
-       	btn_conf[btn_num].btn = lv_btn_create(lv_scr_act());
+#ifndef RUNS_ON_WAYLAND
+              btn_conf[btn_num].btn = lv_btn_create(window);
+#else
+              btn_conf[btn_num].btn = lv_btn_create(lv_scr_act());
+#endif
        	lv_obj_set_pos(btn_conf[btn_num].btn, 40, (140 * btn_num + 80));
        	lv_obj_set_size(btn_conf[btn_num].btn, 560, 120);
        	lv_obj_add_style(btn_conf[btn_num].btn, &btn_style, 0);
@@ -71,12 +97,11 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
    		lv_obj_set_align(icon_img,LV_ALIGN_LEFT_MID);
    		lv_obj_update_layout(icon_img);
    		img_ratio = img_ratio_calc(icon_img,100, 100);
-   		
    		lv_img_set_zoom(icon_img,img_ratio);
    		lv_img_set_size_mode(icon_img, LV_IMG_SIZE_MODE_REAL);
    		lv_obj_set_size(icon_img, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-
        }
+
        /*Title_text*/
        lv_label_set_text(title_text,"HMI SDK Demo Launcher");
        lv_obj_set_pos(title_text, 160, 24);

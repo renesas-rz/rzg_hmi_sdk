@@ -65,11 +65,9 @@ static dispinf_fbevdev_t *create_fbdev_window()
 	lv_obj_t *cursor_obj;
 	bool ret;
 
-	width = WINDOW_WIDTH;
-	height = WINDOW_HEIGHT;
-	
 	/* Init Linux frame buffer device for LVGL */
 	fbdev_init();
+	fbdev_get_sizes(&width, &height, NULL);
 
 	dispinf = lv_mem_alloc(sizeof (dispinf_fbevdev_t));
 	if (!dispinf) {
