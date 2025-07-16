@@ -23,3 +23,45 @@ Currently, RZ Linux '_demo-launcher_' supports the following EVK.
 ## License
 
 This project is licensed under the [MIT License](LICENSE.txt). You are free to modify and customize it as you wish.
+
+## Functional description of the config files under the config directory
+
+1. Setting details
+
+   Configure the UI settings for the buttons that are displayed when demo-launcher is opened.
+
+2. File name (The application to be displayed depends on the evaluation board used.)
+   - lvgl_launcher_smarc-rzg2l.json : configuration file for RZ/G2L
+
+      Benchmark demo, showing the CHROMIUM app.
+
+   - lvgl_launcher_smarc-rzg2lc.json : configuration file for RZ/G2LC
+
+	   A benchmark demo will be displayed.
+
+   - lvgl_launcher_smarc-rzg2ul.json : configuration file for RZ/G2UL
+
+	   A benchmark demo will be displayed.
+
+3. Setup Method
+
+   Up to 8 buttons can be added to be displayed when demo-launcher is opened.
+
+EXAMPLE . How to set up the first button (after the second button, duplicate the following source code according to the number of buttons you want to set up.)
+
+    {
+      exe_cmd : " aaa/bb/e ",     Benchmark demo, startup command to execute chromium app startup file path
+      icon_image : " xxx.png ",   Path to demo-launcher button icon image
+      description : " **\*** "    Button description string for demo-launcher (max. 28 characters)
+    {
+
+Path to the demo-launcher configuration file installed on the evaluation board
+- /usr/share/demo-launcher/
+
+## When building the demo-launcher source code, the following command is used to specify the machine name.
+
+Execution command(Enter the name of the evaluation board to be used in smarc-rzg2l,smarc-rzg2lc,smarc-rzg2ul in "MACHINE NAME".)
+```
+$export MACHINE=<MACHINE NAME>
+$make
+```

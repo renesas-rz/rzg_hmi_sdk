@@ -42,11 +42,11 @@ all: default
 
 default: $(OBJS) $(MAINOBJ)
 	$(CC) -o $(BIN) $(MAINOBJ) $(OBJS) $(LDFLAGS)
-
+	cp $(PWD)/config/lvgl_launcher_$(MACHINE).json $(PWD)/demo-launcher.json
 clean: 
 	@echo "Cleaning ... "
 	rm -f $(BIN) $(MAINOBJ) $(OBJS)
-
+	rm -f $(PWD)/demo-launcher.json
 install:
 	install -d $(bindir)
 	install $(BIN) $(bindir)
