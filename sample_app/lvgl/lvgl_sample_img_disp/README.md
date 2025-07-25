@@ -1,4 +1,4 @@
-# HMI SDK / RZ/G Linux LVGL sample program for iamge display
+# HMI SDK / RZ/G Linux LVGL sample program for image display
 
 ## Overview
 

@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux LVGL sample program for image display
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2025 Renesas Electronics Corp. All rights reserved.
  */
 
 #ifndef	SAMPLE_APP_H
@@ -47,7 +47,7 @@ typedef struct {
  * Declarations and definition for sample applicaiton
  *****************************************************************************/
 #define		LSID_MAJOR_VERSION		(1)
-#define		LSID_MINOR_VERSION		(1)
+#define		LSID_MINOR_VERSION		(2)
 
 #define		LSID_WINDOW_WIDTH		((lv_coord_t)1280)
 #define		LSID_WINDOW_HEIGHT		((lv_coord_t)720)

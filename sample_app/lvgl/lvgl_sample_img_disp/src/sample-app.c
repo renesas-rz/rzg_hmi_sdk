@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux LVGL sample program for image display
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2025 Renesas Electronics Corp. All rights reserved.
  */
 
 #include	<stdio.h>
@@ -336,7 +336,7 @@ int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp, int32_t
 	if (ret)
 		return ret;
 
-	/* create iamge file display screen */
+	/* create image file display screen */
 	ret = create_image_file_display_screen(app_obj);
 	if (ret)
 		return ret;

@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux LVGL sample program for image display
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2025 Renesas Electronics Corp. All rights reserved.
  */
 
 
@@ -66,9 +66,10 @@ static void check_options(int argc, char *argv[], int32_t *mode, char **input)
 				*mode = 1;
 			break;
 		case 'v':
-			printf("LVGL sample program for iamge display, "
+			printf("LVGL sample program for image display, "
 				"Ver. %d.%02d\n" \
-				"Copyright (C) 2024 Renesas Electronics Corp. "
+				"Copyright (C) 2024, 2025 "
+				"Renesas Electronics Corp. "
 				"All rights reserved.\n",
 				LSID_MAJOR_VERSION, LSID_MINOR_VERSION);
 			exit(EXIT_SUCCESS);
