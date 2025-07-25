@@ -1,6 +1,6 @@
 ## Getting Started
 
-*Getting Started* is a complete guide to learn **how to run HMI Applications**,
+[*Getting Started*](getting_started/index.md) is a complete guide to learn **how to run HMI Applications**,
 which explains the procedure for setting up the development environment,
 compiling HMI Applications, setting up the board and running HMI Applications.
 

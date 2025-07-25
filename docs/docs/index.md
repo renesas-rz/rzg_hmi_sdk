@@ -8,7 +8,7 @@ The HMI SDK provides a Linux HMI application development environment for the RZ/
 
 * Easy-to-Use
 
-    The HMI SDK provides a quick and easy development environment, lowering the barrier to entry for beginners to Linux to use a Linux MPU.
+    The HMI SDK provides a quick and easy development environment, making it easier for Linux beginners to start using a Linux MPU.
 
 * Free of Charge
 
@@ -16,12 +16,20 @@ The HMI SDK provides a Linux HMI application development environment for the RZ/
 
 * Ready-to-Use
 
-    The HMI SDK includes GUI frameworks and libraries that are appropriate for HMI.
+    The HMI SDK includes the following GUI frameworks and libraries that are appropriate for HMI.
+
+    * [**LVGL** (Light and Versatile Graphics Library)](https://lvgl.io/), which is a lightweight, free, open-source embedded graphics library.
+    * **Chromium**, which is a free and browser-based framework for application programs with GPU.
 
 ![](assets/images/banner-01.svg){ width=27.2% .zoom #banner-left }
 ![](assets/images/banner-02.svg){ width=35.75% .zoom }
 ![](assets/images/banner-03.svg){ width=32.2% .zoom #banner-right }
 {: .center }
+
+By using the image files from the SDK, you can easily create a bootable SD card.
+Insert the SD card into the board, and the HMI demo will automatically start on Linux.
+You can then begin developing your own application with ease, as the SDK includes an installer for a cross-development toolchain.
+Additionally, sample applications that run on the HMI SDK Linux environment are available on our GitHub.
 
 For more information, see [Overview](overview/index.md).
 
@@ -29,6 +37,6 @@ For more information, see [Overview](overview/index.md).
 
 {! getting_started/_components/__front_matter.md !}
 
-{! hmi_applications/_components/__front_matter.md !}
+{! hmi_frameworks/_components/__front_matter.md !}
 
 {! video/_components/__front_matter.md !}

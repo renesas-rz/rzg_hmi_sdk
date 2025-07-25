@@ -9,15 +9,15 @@ Since it contains [Yocto](https://www.yoctoproject.org/){: target="_blank" } Lin
 Linux Kernel, Cross Compiler, multimedia and graphics package, users can
 develop HMI Applications easily and quickly with HMI SDK.
 
-HMI SDK is specifically made for the supported Evaluation Board Kit with fixed
-Linux components. For those of you who would like to customize Linux
-environment, i.e., change memory map or develop your own board, you need to
-build the Yocto Linux source code.
+HMI SDK is specifically made for the supported Evaluation Board Kit with fixed Linux components.
+If you need to customize the Linux environment—such as modifying the memory map or developing support for your own board—you will need to build Yocto Linux from source.
 
-Please refer to How to Build HMI SDK.
+For detailed instructions, please refer to How to build HMI SDK.
 
 [How To Build HMI SDK](../how_to_build_hmi_sdk/index.md){ .md-button .md-button--primary .btn-grey .btn-indent }
 
-{! overview/_components/key_features.md !}
+{! overview/_components/supported_boards.md !}
+
+{! overview/_components/sdk_components.md !}
 
 {! overview/_components/specification.md !}
