@@ -15,7 +15,9 @@ export class DashboardPage extends LitElement {
         <icon-widget
           class="image-gallery"
           title="Image Gallery"
-          href="/webgl-gallery"
+          href=${import.meta.env.VITE_RZG2LC !== "true"
+            ? "/webgl-gallery"
+            : "/image-gallery"}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <style type="text/css">

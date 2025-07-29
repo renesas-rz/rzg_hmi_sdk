@@ -180,6 +180,9 @@ export class MusicWidget extends LitElement {
    */
   seekTo() {
     const seekto = this.track.duration * (this._seekSlider.value / 100);
+    this.track.pause();
+    this.track.load();
+    this.track.play();
     this.track.currentTime = seekto;
   }
 

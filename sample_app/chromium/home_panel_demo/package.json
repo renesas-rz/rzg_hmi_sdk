@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --mode=default",
+    "dev:RZG2LC": "vite --mode=rzg2lc",
+    "build": "vite build --mode=default",
+    "build:RZG2LC": "vite build --mode=rzg2lc",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,7 +21,7 @@
     "luxon": "^3.5.0"
   },
   "devDependencies": {
-    "vite": "^3.2.4",
+    "vite": "^4.5.12",
     "vite-plugin-node-polyfills": "^0.22.0"
   }
 }

@@ -1,7 +1,13 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-export default defineConfig({
+export default ({ mode }) => {
+  process.env = {
+    ...process.env,
+    ...loadEnv(mode, process.cwd()),
+  };
+
+ return defineConfig({
   root: "./",
   build: {
     outDir: "dist",
@@ -21,3 +27,4 @@ export default defineConfig({
     __APP_VERSION__: JSON.stringify("1.00"),
   },
 });
+};

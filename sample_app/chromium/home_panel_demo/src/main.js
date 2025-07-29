@@ -72,8 +72,73 @@ const routes = [
   },
 ];
 
+const routesG2LC = [
+  {
+    path: "/",
+    component: "app-layout",
+    action: async () => {
+      await import("./components/sidebar/list-items");
+      await import("./components/sidebar/sidebar");
+    },
+    children: [
+      {
+        path: "/",
+        component: "dashboard-page",
+        action: async () => {
+          await import("./components/music-player/music-widget");
+          await import("./components/widgets/widget-container");
+          await import("./components/widgets/icon-widget");
+          await import("./components/widgets/weather-widget");
+          await import("./pages/dashboard");
+        },
+      },
+      {
+        path: "chart",
+        component: "wheather-info-page",
+        action: async () => {
+          await import("./components/chart/temperature-chart");
+          await import("./pages/weather-info");
+        },
+      },
+      {
+        path: "home-automation",
+        component: "home-automation-page",
+        action: async () => {
+          await import("./components/buttons/toggle-button");
+          await import("./components/slider/round-slider");
+          await import("./components/slider/slider");
+          await import("./components/widgets/widget-container");
+          await import("./components/widgets/date-widget");
+          await import("./components/widgets/aircon-widget");
+          await import("./components/widgets/progress-widget");
+          await import("./components/widgets/device-widget");
+          await import("./components/widgets/graph-widget/graph-widget");
+          await import("./pages/home-automation");
+        },
+      },
+      {
+        path: "camera",
+        component: "live-camera-page",
+        action: async () => {
+          await import("./components/select-box/select-box");
+          await import("./components/video-camera/video-camera");
+          await import("./pages/live-camera");
+        },
+      },
+      {
+        path: "image-gallery",
+        component: "image-gallery-page",
+        action: async () => {
+          await import("./components/image-gallery/image-gallery");
+          await import("./pages/images-gallery");
+        },
+      },
+    ],
+  },
+];
 // Configure the application routes
-router.setRoutes(routes);
+if (import.meta.env.VITE_RZG2LC !== "true") router.setRoutes(routes);
+else router.setRoutes(routesG2LC);
 
 // Define a layout component for the whole application
 export class AppLayout extends LitElement {
