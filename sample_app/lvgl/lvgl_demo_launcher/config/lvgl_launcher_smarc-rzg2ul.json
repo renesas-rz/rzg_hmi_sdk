@@ -3,5 +3,10 @@
     "exe_cmd": "/usr/bin/rz_benchmark_demo",
     "icon_image": "L:/usr/share/demo-launcher/images/LVGL-Logo.png",
     "description": "Benchmark demo"
+  },
+  {
+    "exe_cmd": "/usr/bin/lvgl-home-panel-demo",
+    "icon_image": "L:/usr/share/demo-launcher/images/LVGL-Logo.png",
+    "description": "LVGL Home panel demo"
   }
 ]
