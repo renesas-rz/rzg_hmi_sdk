@@ -14,7 +14,7 @@ If your questions are common in RZ/G and/or RZ MPU Linux, you may have answers o
 	- [[EN] Microprocessors (RZ)](https://community.renesas.com/rz/f/rz-forum){: target="_blank" }
 	- [[CN] RZ MPU](https://community.renesas.com/zh/forums-groups/mcu-mpu/rz-mpu/f){: target="_blank" }
 
-* Renesas Wiki's: [RZ/G](https://jira-gasg.renesas.eu/confluence/pages/viewpage.action?pageId=184060061){: target="_blank" }
+* Renesas Wiki's: [RZ/G](https://renesas-wiki.atlassian.net/wiki/spaces/REN/pages/1016364/RZ+G){: target="_blank" }
 
 ---
 
@@ -42,6 +42,10 @@ This rule was effective from December 27, 2024.
 ### Q. Does the Chromium included in HMI SDK v2.3.0.0 support hardware decoding?
 
 The Chromium included in HMI SDK v2.3.0.0 does not support hardware-accelerated video playback using HW codecs. 
-However, support is planned for the next version. 
-Graphics rendering in Chromium already utilizes hardware acceleration. 
+However, Chromium in HMI SDK v2.3.1.0 is now offering hardware-accelerated video playback.
+Graphics rendering in Chromium utilizes hardware acceleration. 
+
+### Q. In the Chromium Home Panel Demo, the seek bar in the video player doesn't seem to be working.
+
+Please refresh the browser and try again.
 

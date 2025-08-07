@@ -110,7 +110,7 @@ The mode with the flags 'current' is the currently used mode.
 
 Execute 'modetest' in the terminal for Linux running on the EVK as follows.
 ```bash
-modetest -M rcar-du -c
+modetest -M rzg2l-du -c
 ```
 {: .hash }
 

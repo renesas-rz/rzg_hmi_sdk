@@ -17,12 +17,15 @@ and customize Linux environment (i.e., memory map, additional OSS etc...).
 
         !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-            +-----------+--------------------------------------------------+
-            | Equipment | Details                                          |
-            +===========+==================================================+
-            | Linux PC  | Approximately **110GB free space** is necessary. |
-            |           +-------------+------------------------------------+
-            |           | OS          | **Ubuntu 20.04 LTS**               |
-            |           |             |                                    |
-            |           |             | 64bit OS must be used.             |
-            +-----------+-------------+------------------------------------+
+            +-----------+------------------------------------------------------+
+            | Equipment | Details                                              |
+            +===========+======================================================+
+            | Linux PC  | Approximately the following free space is necessary. |
+            |           | - **150 GB for RZ/G2L EVK**                          |
+            |           | - **150 GB for RZ/G2LC EVK**                         |
+            |           | - **85 GB for RZ/G2UL EVK**                          |
+            |           +-------------+----------------------------------------+
+            |           | OS          | **Ubuntu 22.04 LTS**                   |
+            |           |             |                                        |
+            |           |             | 64bit OS must be used.                 |
+            +-----------+-------------+----------------------------------------+

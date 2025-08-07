@@ -29,7 +29,7 @@ Please prepare the following equipment for your EVK.
     |                                                        | on a PC, rebuild HMI SDK Linux, or use it as a development device | debugging using a serial connection and cannot be used for       |
     |                                                        | for applications.                                                 | development such as building software.                           |
     |                                                        |                                                                   |                                                                  |
-    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 20.04 LTS, 64-bit version                               |
+    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 22.04 LTS, 64-bit version                               |
     |                                                        | * 8GB or more RAM                                                 | * Windows 10 or 11                                               |
     |                                                        | * 4-core or more CPU                                              |                                                                  |
     +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
@@ -57,6 +57,11 @@ Please prepare the following equipment for your EVK.
     |                                                        | HMI SDK.                                                          |                                                                  |
     |                                                        |                                                                   |                                                                  |
     |                                                        | * USB HID Compliant                                               |                                                                  |
+    +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
+    | USB camera                                             | Used to evaluate camera input in applications provided by         |                                                                  |
+    |                                                        | HMI SDK.                                                          |                                                                  |
+    |                                                        |                                                                   |                                                                  |
+    |                                                        | * UVC Compliant                                                   |                                                                  |
     +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
     | Audio speaker                                          | Used to evaluate the audio output demo programs or applications   |                                                                  |
     |                                                        | provided by HMI SDK.                                              |                                                                  |
@@ -96,7 +101,7 @@ Please prepare the following equipment for your EVK.
     |                                                        | on a PC, rebuild HMI SDK Linux, or use it as a development device | debugging using a serial connection and cannot be used for       |
     |                                                        | for applications.                                                 | development such as building software.                           |
     |                                                        |                                                                   |                                                                  |
-    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 20.04 LTS, 64-bit version                               |
+    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 22.04 LTS, 64-bit version                               |
     |                                                        | * 8GB or more RAM                                                 | * Windows 10 or 11                                               |
     |                                                        | * 4-core or more CPU                                              |                                                                  |
     +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
@@ -166,7 +171,7 @@ Please prepare the following equipment for your EVK.
     |                                                        | on a PC, rebuild HMI SDK Linux, or use it as a development device | debugging using a serial connection and cannot be used for       |
     |                                                        | for applications.                                                 | development such as building software.                           |
     |                                                        |                                                                   |                                                                  |
-    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 20.04 LTS, 64-bit version                               |
+    |                                                        | * At least 100GB or more free space of HDD/SDD                    | * Ubuntu 22.04 LTS, 64-bit version                               |
     |                                                        | * 8GB or more RAM                                                 | * Windows 10 or 11                                               |
     |                                                        | * 4-core or more CPU                                              |                                                                  |
     +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
@@ -194,11 +199,6 @@ Please prepare the following equipment for your EVK.
     |                                                        | HMI SDK.                                                          |                                                                  |
     |                                                        |                                                                   |                                                                  |
     |                                                        | * USB HID Compliant                                               |                                                                  |
-    +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
-    | Audio speaker                                          | Used to evaluate the audio output demo programs or applications   |                                                                  |
-    |                                                        | provided by HMI SDK.                                              |                                                                  |
-    |                                                        |                                                                   |                                                                  |
-    |                                                        | * 3.5mm mini plug connector required                              |                                                                  |
     +--------------------------------------------------------+-------------------------------------------------------------------+------------------------------------------------------------------+
     | micro SD card                                          | Linux and demo images provided by the HMI SDK are written and     | Linux on the RZ/G2UL EVK is booted from a micro SD card by eSD   |
     |                                                        | used as a Linux boot device.                                      | boot.                                                            |

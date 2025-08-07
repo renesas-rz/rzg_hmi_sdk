@@ -15,7 +15,7 @@ This step explains how to build Linux environment with HMI SDK source code.
 
     ```bash
     sudo apt-get update
-    sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev libssl-dev bmap-tools
+    sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev libssl-dev bmap-tools
 
     ```
     {: .dollar }
@@ -68,25 +68,23 @@ This step explains how to build Linux environment with HMI SDK source code.
         {: .dollar }
 
     !!! note
-        The directory set to `#!bash SDK_PKG_DIR` shall include the HMI SDK
-        source code package such as `#!bash RTK0EF0195F*SJ_linux-src.zip`.
+        The directory set to `#!bash SDK_PKG_DIR` shall include the HMI SDK packages such as `#!bash RTK0EF0195F*SJ_*_yocto-and-pre-built-image.zip` and `#!bash RTK0EF0195F*SJ_linux-src.zip`.
 
 4.  Extract Yocto recipe package
 
-    Decompress the source code package, create a working directory, and
+    Decompress the Yocto recipe and pre-built binary image package, create a working directory, and
     extract Yocto recipe package.
 
     ```bash
     cd ${SDK_PKG_DIR}
-    unzip RTK0EF0195F*SJ_linux-src.zip
+    unzip RTK0EF0195F*SJ_*_yocto-and-pre-built-image.zip
     ```
     {: .dollar }
 
     ```bash
     mkdir -p ${WORK}
     cd ${WORK}
-    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components 1
-
+    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_*_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components 1
     ```
     {: .dollar }
 
@@ -113,6 +111,7 @@ This step explains how to build Linux environment with HMI SDK source code.
         bitbake-layers add-layer ../meta-clang
         bitbake-layers add-layer ../meta-browser/meta-chromium
         bitbake-layers add-layer ../meta-openembedded/meta-networking
+        bitbake-layers add-layer ../meta-browser-hwdecode
         bitbake-layers add-layer ../meta-rz-demos
         ```
         {: .dollar }
@@ -125,6 +124,7 @@ This step explains how to build Linux environment with HMI SDK source code.
         bitbake-layers add-layer ../meta-clang
         bitbake-layers add-layer ../meta-browser/meta-chromium
         bitbake-layers add-layer ../meta-openembedded/meta-networking
+        bitbake-layers add-layer ../meta-browser-hwdecode
         bitbake-layers add-layer ../meta-rz-demos
         ```
         {: .dollar }
@@ -154,13 +154,15 @@ This step explains how to build Linux environment with HMI SDK source code.
     ```
     {: .dollar }
 
-    Decompress OSS source code package and set it into the build
+    Decompress source code package and set it into the build
     environment.
 
     ```bash
+    cd ${SDK_PKG_DIR}
+    unzip RTK0EF0195F*SJ_linux-src.zip
     cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
     7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
-    mv oss-souce-code-pkg_rzg2_hmi-sdk_v*/downloads/ ${WORK}/build/
+    mv downloads/ ${WORK}/build/
     ```
     {: .dollar }
 
@@ -209,6 +211,24 @@ This step explains how to build Linux environment with HMI SDK source code.
         ```
         {: .dollar }
 
+        After the above build process, change the setting of EMMC from '1' to '0'.
+        ```bash
+        cd $WORK/build/tmp/work-shared/${BOARD}/kernel-source
+        vi arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+            (change EMMC setting)
+                before) #define EMMC	1
+                after)  #define EMMC	0
+        ```
+        {: .dollar }
+
+        After the change above, you need to have additional build process as follows:
+        ```bash
+        cd $WORK/build
+        MACHINE=${BOARD} bitbake linux-renesas -C compile
+        MACHINE=${BOARD} bitbake core-image-weston
+        ```
+        {: .dollar }
+
         !!! note
             If you need to create an SDK toolchain, run `#!bash bitbake`
             command as follows.
@@ -223,6 +243,24 @@ This step explains how to build Linux environment with HMI SDK source code.
 
         ```bash
         cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-weston
+        ```
+        {: .dollar }
+
+        After the above build process, change the setting of SW_SD0_DEV_SEL from '1' to '0'.
+        ```bash
+        cd $WORK/build/tmp/work-shared/${BOARD}/kernel-source
+        vi arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+            (change SW_SD0_DEV_SEL setting)
+                before) #define SW_SD0_DEV_SEL 1
+                after)  #define SW_SD0_DEV_SEL 0
+        ```
+        {: .dollar }
+
+        After the change above, you need to have additional build process as follows:
+        ```bash
+        cd $WORK/build
+        MACHINE=${BOARD} bitbake linux-renesas -C compile
         MACHINE=${BOARD} bitbake core-image-weston
         ```
         {: .dollar }

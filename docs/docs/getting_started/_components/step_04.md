@@ -4,15 +4,15 @@ Prebuilt binary prepared as `#!bash wic` image
 
 === "RZ/G2L"
 
-    `#!bash wic` image is available inside `#!bash image-file_rzg2l_hmi-sdk_v2.3.0.0.zip`.
+    `#!bash wic` image is available inside `#!bash image-file_rzg2l_hmi-sdk_v2.3.1.0.zip`.
 
 === "RZ/G2LC"
 
-    `#!bash wic` image is available inside `#!bash image-file_rzg2lc_hmi-sdk_v2.3.0.0.zip`.
+    `#!bash wic` image is available inside `#!bash image-file_rzg2lc_hmi-sdk_v2.3.1.0.zip`.
 
 === "RZ/G2UL"
 
-    `#!bash wic` image is available inside `#!bash image-file_rzg2ul_hmi-sdk_v2.3.0.0.zip`.
+    `#!bash wic` image is available inside `#!bash image-file_rzg2ul_hmi-sdk_v2.3.1.0.zip`.
 
 ### 1. In case of Windows PC
 

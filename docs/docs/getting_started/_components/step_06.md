@@ -8,34 +8,46 @@ To see the overview about HMI Applications, please refer to [HMI Applications](.
 
     The prebuilt binary of executable files are also provided, and you can run them without building.
 
-1.  Install cross compiler to you Linux PC (Ubuntu)
+1.  Install cross-toolchain to you Linux PC (Ubuntu)
 
     !!! note
         This step is optional, as prebuilt binaries was prepared.
 
     === "RZ/G2L"
 
+        The toolchain installer is available inside toolchain-installer_rzg2l_hmi-sdk_v2.3.1.0.zip.
+        Unzip the package, and extract the installer.
+        Then, install the toolchain as follows:
+
         ```bash
-        sudo sh poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzg2l-toolchain-3.1.31.sh
+        sudo sh poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzg2l-toolchain-3.1.33.sh
         ```
         { .dollar }
 
     === "RZ/G2LC"
 
+        The toolchain installer is available inside toolchain-installer_rzg2lc_hmi-sdk_v2.3.1.0.zip.
+        Unzip the package, and extract the installer.
+        Then, install the toolchain as follows:
+
         ```bash
-        sudo sh poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzg2lc-toolchain-3.1.31.sh
+        sudo sh poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzg2lc-toolchain-3.1.33.sh
         ```
         { .dollar }
 
     === "RZ/G2UL"
 
+        The toolchain installer is available inside toolchain-installer_rzg2ul_hmi-sdk_v2.3.1.0.zip.
+        Unzip the package, and extract the installer.
+        Then, install the toolchain as follows:
+
         ```bash
-        sudo sh poky-glibc-x86_64-core-image-bsp-aarch64-smarc-rzg2ul-toolchain-3.1.31.sh
+        sudo sh poky-glibc-x86_64-core-image-bsp-aarch64-smarc-rzg2ul-toolchain-3.1.33.sh
         ```
         { .dollar }
 
     !!! Note
-        Please set target directory (default: `#!bash /opt/poky/3.1.31`).
+        Please set target directory (default: `#!bash /opt/poky/3.1.33`).
 
 2.  Enable cross compiler
 
@@ -43,12 +55,12 @@ To see the overview about HMI Applications, please refer to [HMI Applications](.
         This step is optional, as prebuilt binaries was prepared.
 
     ```bash
-    source /opt/poky/3.1.31/environment-setup-aarch64-poky-linux
+    source /opt/poky/3.1.33/environment-setup-aarch64-poky-linux
     ```
     { .dollar }
 
     !!! Note
-        Please make sure where cross compiler is installed (default: `#!bash /opt/poky/3.1.31`).
+        Please make sure where cross compiler is installed (default: `#!bash /opt/poky/3.1.33`).
 
 3.  Clone sample application source code
 

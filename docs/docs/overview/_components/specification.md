@@ -2,9 +2,9 @@
 
 RZ/G HMI SDK includes the following software packages:
 
-* RZ/G Verified Linux Package Version 3.0.6-update3
-* RZ MPU Graphics Library V1.2.2 Unrestricted Version for Verified Linux Package of RZ/G2L and RZ/G2LC
-* RZ MPU Video Codec Library v1.2.2 Unrestricted Version for Verified Linux Package of RZ/G2L
+* RZ/G Verified Linux Package Version 3.0.7
+* RZ MPU Graphics Library V3.1.2.3 for RZ/G2L and RZ/G2LC
+* RZ MPU Video Codec Library V3.1.3.0 for RZ/G2L
 
 Please refer to the table below for more information.
 
@@ -15,7 +15,7 @@ Please refer to the table below for more information.
 
     | Components                            | Version                                 | Detail                                                                                                                                                                              |
     |---------------------------------------|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Linux Kernel                          | 5.10.201-cip41                          | SLTS(Super Long Term Support) Kernel                                                                                                                                                |
+    | Linux Kernel                          | 5.10.229-cip54                          | SLTS(Super Long Term Support) Kernel                                                                                                                                                |
     | Yocto                                 | 3.1.31 (dunfell)                        | Distribution for embedded Linux                                                                                                                                                     |
     | gcc                                   | 8.3.0 (Arm GCC 8.3-2019.03)             | Compiler                                                                                                                                                                            |
     | glibc                                 | 2.28                                    |                                                                                                                                                                                     |
