@@ -45,3 +45,6 @@ To run the project, use the following command:
 ```bash
 npm run dev
 ```
+### NOTE
+
+Please click the browser's refresh button before using the seek bar of the "Video Player".
