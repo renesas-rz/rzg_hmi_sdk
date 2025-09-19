@@ -1,0 +1,36 @@
+{#-
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+  Copyright (c) 2025 Renesas Electronics Corporation and/or its affiliates
+  SPDX-License-Identifier: MIT
+
+  This code was originally taken from
+    https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/social.html
+  and have sources in
+    https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/social.html
+-#}
+
+{% macro split_and_get(value, sep, index) %}
+  {%- if value.split is defined -%}
+    {%- set parts = value.split(sep) -%}
+  {%- else -%}
+    {%- set parts = value | split(sep) -%}
+  {%- endif -%}
+  {{- parts[index] -}}
+{% endmacro %}
+<div class="md-social">
+  {% include "partials/footer-link.html" %}
+  {% for social in config.extra.social %}
+    {% set rel = "noopener" %}
+    {% if "mastodon" in social.icon %}
+      {% set rel = rel ~ " me" %}
+    {% endif %}
+    {% set title = social.name %}
+    {% if not title and "//" in social.link %}
+      {% set url = split_and_get(social.link, "//", 1) %}
+      {% set title = split_and_get(url, "/", 0) %}
+    {% endif %}
+    <a href="{{ social.link }}" target="_blank" rel="{{ rel }}" title="{{ title | e }}" class="md-social__link">
+      {% include ".icons/" ~ social.icon ~ ".svg" %}
+    </a>
+  {% endfor %}
+</div>

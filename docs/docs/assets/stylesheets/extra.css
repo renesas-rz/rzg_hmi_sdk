@@ -755,3 +755,15 @@ p.hash + .language-bash code>span::before {
   font-weight: bold;
   color: white;
 }
+
+/* footers */
+/* ======= */
+
+.footer-link {
+  margin: 0.3em 0.7em;
+  padding: 0 0.3em;
+}
+
+a.md-source[target=_blank].footer-link::after {
+  margin-top: 0.375em;
+}

@@ -1,0 +1,12 @@
+{% if config.extra.footer_link %}
+  {% for footer_link in config.extra.footer_link %}
+    {% if footer_link.new_tab %}
+      {% set target = "_blank" %}
+    {% else %}
+      {% set target = "" %}
+    {% endif %}
+    <a href="{{ footer_link.link | url }}" target="{{ target }}" title="{{ footer_link.name }}" class="footer-link">
+      {{ footer_link.name }}
+    </a>
+  {% endfor %}
+{% endif %}

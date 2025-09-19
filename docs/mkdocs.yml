@@ -45,7 +45,7 @@ theme:
   palette:
     primary: custom
 
-copyright: '&copy;2024 Renesas Electronics Corporation.'
+copyright: '&copy;2024, 2025 Renesas Electronics Corporation.'
 
 extra:
   announcements:
@@ -55,6 +55,10 @@ extra:
   announcements_urls:
     - available: '#whats-new'
   header_link: true
+  footer_link:
+    - link: https://renesas-rz.github.io/rz_solution/legal_notices/
+      name: Notices & Terms
+      new_tab: true
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/renesas-rz
@@ -97,7 +101,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      preserve_tabs: true
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tilde
