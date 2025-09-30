@@ -7,13 +7,17 @@
   <a id="md-nav-top-home" href="{{ nav.homepage.url | url }}">
     {{ config.site_name }}
   </a>
-  <span>
-    {{ config.site_name }}
-  </span>
-  {% if config.site_description %}
-    <p class="md-nav-top-subtitle">
-      {{ config.site_description }}
-    </p>
+  {% if config.theme.nav_top.no_title %}
+    {#- do nothing -#}
+  {% else %}
+    <span>
+      {{ config.site_name }}
+    </span>
+    {% if config.site_description %}
+      <p class="md-nav-top-subtitle">
+        {{ config.site_description }}
+      </p>
+    {% endif %}
   {% endif %}
   <div class="md-nav-top-logos md-typeset">
     {% if config.theme.nav_top %}
@@ -21,12 +25,25 @@
         <img src="{{ logo | url }}">
       {% endfor %}
     {% endif %}
-    {% if config.theme.nav_top and config.theme.nav_top.btn %}
-      <p>
-        <a class="md-button md-button--primary btn-yellow btn-round btn-small" href="{{ config.theme.nav_top.btn.url | url }}" >
-          {{ config.theme.nav_top.btn.name }}
-        </a>
-      </p>
+    {% if config.theme.nav_top and config.theme.nav_top.btns %}
+      {% for btn in config.theme.nav_top.btns %}
+        {% if btn.new_tab %}
+          {% set target = "_blank" %}
+        {% else %}
+          {% set target = "" %}
+        {% endif %}
+        {% if btn.image %}
+          <a href="{{ btn.url | url }}" target="{{ target }}" >
+            <img src="{{ btn.image | url }}">
+          </a>
+        {% else %}
+          <p>
+            <a class="md-button md-button--primary btn-yellow btn-round btn-small" href="{{ btn.url | url }}" target="{{ target }}" >
+              {{ btn.name }}
+            </a>
+          </p>
+        {% endif %}
+      {% endfor %}
     {% endif %}
     <hr/>
   </div>

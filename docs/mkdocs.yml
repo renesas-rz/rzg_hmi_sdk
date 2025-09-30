@@ -36,12 +36,21 @@ theme:
     - toc.integrate
     - toc.follow
   nav_top:
-    logos:
-      - assets/icons/board.svg
-      - assets/icons/ai_sdk.svg
-    btn:
-      name: Get the Board and Software
-      url: download/
+    # logos:
+    #   - assets/icons/board.svg
+    #   - assets/icons/ai_sdk.svg
+    btns:
+      - name: Go to Renesas RZ Linux Solutions homepage
+        url: https://renesas-rz.github.io/rz_solution/
+        image: assets/images/Explore_more_RZ_Linux_Solutions.png
+        new_tab: true
+        mobile_text_link: false
+      - name: Get the Board and Software
+        url: download/
+        image: assets/images/Get the Board and Software.png
+        new_tab: false
+        mobile_text_link: true
+    no_title: true
   palette:
     primary: custom
 

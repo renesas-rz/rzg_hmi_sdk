@@ -1,9 +1,30 @@
-{% if config.theme.nav_top and config.theme.nav_top.btn %}
-  <li class="md-nav__item" id="md-nav-top-btn">
-    <a href="{{ config.theme.nav_top.btn.url | url }}" class="md-nav__link md-button md-button--primary btn-yellow">
-      <span class="md-ellipsis">
-        {{ config.theme.nav_top.btn.name }}
-      </span>
-    </a>
-  </li>
+{% if config.theme.nav_top and config.theme.nav_top.btns %}
+  {% for btn in config.theme.nav_top.btns %}
+    {% if btn.new_tab %}
+      {% set target = "_blank" %}
+    {% else %}
+      {% set target = "" %}
+    {% endif %}
+    <li class="md-nav__item" id="md-nav-top-btn">
+      {% if btn.image %}
+        {% if btn.mobile_text_link %}
+          <a href="{{ btn.url | url }}" class="md-nav__link md-button md-button--primary btn-yellow " target="{{ target }}" >
+            <span class="md-ellipsis">
+              {{ btn.name }}
+            </span>
+          </a>
+        {% else %}
+          <a href="{{ btn.url | url }}" target="{{ target }}" >
+            <img src="{{ btn.image | url }}">
+          </a>
+        {% endif %}
+      {% else %}
+        <a href="{{ btn.url | url }}" class="md-nav__link md-button md-button--primary btn-yellow " target="{{ target }}" >
+          <span class="md-ellipsis">
+            {{ btn.name }}
+          </span>
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
 {% endif %}

@@ -501,6 +501,17 @@ p:has(.btn-right) {
     height: 4rem;
     object-fit: contain;
   }
+
+  a img {
+    margin: 0.1rem 0;
+    width: 100%;
+    height: auto;
+  }
+
+  a[target=_blank]:has(img)::after {
+    top: 0.4rem;
+    right: 0.7rem;
+  }
 }
 
 #md-nav-top-btn {
@@ -552,6 +563,18 @@ p:has(.btn-right) {
 
   #md-nav-top-home + span {
     display: none;
+  }
+
+  #md-nav-top-btn {
+    a img {
+      margin: 0.4em 0.4em 0 0.4em;
+      width: calc(100% - 0.8em);
+      object-fit: contain;
+    }
+
+    a[target=_blank]::after {
+      display: none;
+    }
   }
 }
 
