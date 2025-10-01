@@ -156,3 +156,6 @@ plugins:
   - table-reader
   # macros must be in the bottom one
   - macros
+
+hooks:
+  - mkdocs_event_hook.py
