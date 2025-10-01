@@ -4,10 +4,12 @@
   --renesas-primary-color-fg-blue:            rgb(42, 40, 157);   /* #282a9d Cerulean Blue */
   --renesas-primary-color-fg-grey:            rgb(112, 111, 111); /* #706f6f Dim Gray */
 
-  --renesas-primary-color-bg-blue:            rgba(42, 40, 157, 0.1);
-  --renesas-primary-color-bg-grey:            rgba(112, 111, 111, 0.1);
+  /* https://www.colorhexa.com/<hex> --> tint color variatian -> 2 from last (right) */
+  /* check using https://simplecss.eu/rgbatohex.html to alpha 0.1 */
+  --renesas-primary-color-bg-blue:            rgb(224, 225, 247); /* rgba(42, 40, 157, 0.1);   --> #e0e1f7 */
+  --renesas-primary-color-bg-grey:            rgb(239, 239, 239); /* rgba(112, 111, 111, 0.1); --> #efefef */
 
-  --renesas-primary-color-bg-blue--softer:    rgba(42, 40, 157, 0.075);
+  /* --renesas-primary-color-bg-blue--softer:    rgba(42, 40, 157, 0.075); */
 
   /* renesas secondary colors */
   --renesas-secondary-color-fg-grey:          rgb(124, 144, 156); /* #7c909c Light Slate Grey */
@@ -23,18 +25,18 @@
   --renesas-secondary-color-fg-green-shade:   rgb(117, 136, 89);  /* #758859 Highland */
   --renesas-secondary-color-fg-black:         rgb(0, 0, 0);       /* #000000 Black */
 
-  --renesas-secondary-color-bg-grey:          rgba(124, 144, 156, 0.1);
-  --renesas-secondary-color-bg-violet-purple: rgba(97, 94, 142, 0.1);
-  --renesas-secondary-color-bg-blue:          rgba(67, 171, 226, 0.1);
-  --renesas-secondary-color-bg-blue-teal:     rgba(96, 169, 180, 0.1);
-  --renesas-secondary-color-bg-blue-sky:      rgba(48, 102, 131, 0.1);
-  --renesas-secondary-color-bg-yellow:        rgba(223, 177, 24, 0.1);
-  --renesas-secondary-color-bg-red-orange:    rgba(235, 98, 9, 0.1);
-  --renesas-secondary-color-bg-red:           rgba(183, 25, 33, 0.1);
-  --renesas-secondary-color-bg-violet:        rgba(136, 61, 144, 0.1);
-  --renesas-secondary-color-bg-green:         rgba(96, 154, 59, 0.1);
-  --renesas-secondary-color-bg-green-shade:   rgba(117, 136, 89, 0.1);
-  --renesas-secondary-color-bg-black:         rgba(0, 0, 0, 0.1);
+  --renesas-secondary-color-bg-grey:          rgb(236, 239, 240); /* rgba(124, 144, 156, 0.1); --> #eceff0 */
+  --renesas-secondary-color-bg-violet-purple: rgb(232, 232, 240); /* rgba(97, 94, 142, 0.1);   --> #e8e8f0 */
+  --renesas-secondary-color-bg-blue:          rgb(237, 247, 252); /* rgba(67, 171, 226, 0.1);  --> #edf7fc */
+  --renesas-secondary-color-bg-blue-teal:     rgb(229, 241, 243); /* rgba(96, 169, 180, 0.1);  --> #e5f1f3 */
+  --renesas-secondary-color-bg-blue-sky:      rgb(228, 239, 245); /* rgba(48, 102, 131, 0.1);  --> #e4eff5 */
+  --renesas-secondary-color-bg-yellow:        rgb(252, 247, 230); /* rgba(223, 177, 24, 0.1);  --> #fcf7e6 */
+  --renesas-secondary-color-bg-red-orange:    rgb(254, 237, 226); /* rgba(235, 98, 9, 0.1);    --> #feede2 */
+  --renesas-secondary-color-bg-red:           rgb(252, 231, 232); /* rgba(183, 25, 33, 0.1);   --> #fce7e8 */
+  --renesas-secondary-color-bg-violet:        rgb(245, 234, 246); /* rgba(136, 61, 144, 0.1);  --> #f5eaf6 */
+  --renesas-secondary-color-bg-green:         rgb(243, 249, 239); /* rgba(96, 154, 59, 0.1);   --> #f3f9ef */
+  --renesas-secondary-color-bg-green-shade:   rgb(241, 243, 237); /* rgba(117, 136, 89, 0.1);  --> #f1f3ed */
+  --renesas-secondary-color-bg-black:         rgb(245, 245, 245); /* rgba(0, 0, 0, 0.1);       --> #f5f5f5 */
 
   /* https://www.colorhexa.com/282a9d */
   /* material for mkdocs - primary color */
@@ -43,7 +45,7 @@
   --md-primary-fg-color--dark:                #1a1860;
 
   /* target_blank icon */
-  --md-target_blank-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"></path></svg>')
+  --md-target_blank-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"></path></svg>');
 }
 
 /* admonitions */
@@ -370,8 +372,9 @@
   color: white !important;
   font-style: italic;
   font-weight: 500 !important;
-  padding: 0.6rem;
+  padding: 0.6rem 1rem;
   border-radius: 0.2rem;
+  box-shadow: 0 0 .0735rem .075rem var(--renesas-primary-color-bg-blue) !important;
 }
 
 .md-typeset h1 > .headerlink {
@@ -734,6 +737,10 @@ p.dollar + .language-bash code>span::before {
 
 p.diamond + .language-bash code>span::before {
   content: "> ";
+}
+
+p.diamond2 + .language-bash code>span::before {
+  content: "=> ";
 }
 
 p.hash + .language-bash code>span::before {
