@@ -138,6 +138,9 @@ plugins:
         - video/*
   - glightbox
   - mkdocs-video
+  - minify_html:
+      keep_closing_tags: true
+      keep_html_and_head_opening_tags: true
   - minify:
       minify_html: true
       minify_js: true
