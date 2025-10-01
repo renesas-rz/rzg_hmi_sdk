@@ -81,7 +81,7 @@ extra:
     provider: mike
   analytics:
     provider: google
-    property: G-D3XVMNKJJR
+    property: !ENV GOOGLE_ANALYTICS_KEY
 
 extra_css:
   - assets/stylesheets/extra.css
