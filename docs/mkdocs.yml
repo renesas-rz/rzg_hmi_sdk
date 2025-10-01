@@ -57,6 +57,8 @@ theme:
 copyright: '&copy;2024, 2025 Renesas Electronics Corporation.'
 
 extra:
+  # announcements will be over-written from docs/_announcements/announcements.md (markdown)
+  # ignore this
   announcements:
     # the following line is displayed in the announcement bar
     # keep length under 164 characters (less HTML tags) to fit on 1280px desktop window
