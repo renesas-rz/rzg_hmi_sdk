@@ -7,20 +7,20 @@ This page explains how to start-up the HMI SDK.
 
     * **EVK**: Refers "Evaluation Board Kit".
 
-{! getting_started/_components/introduction.md !}
+{% include "./_components/introduction.md" %}
 
-{! getting_started/_components/step_01.md !}
+{% include "./_components/step_01.md" %}
 
-{! getting_started/_components/step_02.md !}
+{% include "./_components/step_02.md" %}
 
-{! getting_started/_components/step_03.md !}
+{% include "./_components/step_03.md" %}
 
-{! getting_started/_components/step_04.md !}
+{% include "./_components/step_04.md" %}
 
-{! getting_started/_components/step_05.md !}
+{% include "./_components/step_05.md" %}
 
-{! getting_started/_components/step_06.md !}
+{% include "./_components/step_06.md" %}
 
-{! getting_started/_components/step_07.md !}
+{% include "./_components/step_07.md" %}
 
-{! getting_started/_components/step_08.md !}
+{% include "./_components/step_08.md" %}

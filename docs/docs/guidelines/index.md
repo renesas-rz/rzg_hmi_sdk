@@ -256,7 +256,7 @@ The `#!python range()` function is used to generate a sequence of numbers.
 
 ## Test include page
 
-{! guidelines/_components/image.md !}
+{% include "./_components/image.md" %}
 
 ## Test text formatting
 

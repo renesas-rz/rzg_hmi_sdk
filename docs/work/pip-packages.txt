@@ -1,1 +1,1 @@
-mkdocs-material markdown-grid-tables mkdocs-table-reader-plugin markdown-include mkdocs-exclude mike mkdocs-glightbox mkdocs-video mkdocs-minify-plugin mkdocs-minify-html-plugin
+mkdocs-material markdown-grid-tables mkdocs-table-reader-plugin mkdocs-exclude mike mkdocs-glightbox mkdocs-video mkdocs-minify-plugin mkdocs-include-markdown-plugin mkdocs-minify-html-plugin

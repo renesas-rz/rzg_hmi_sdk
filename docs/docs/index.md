@@ -33,10 +33,10 @@ Additionally, sample applications that run on the HMI SDK Linux environment are 
 
 For more information, see [Overview](overview/index.md).
 
-{! history/_components/__front_matter.md !}
+{% include "./history/_components/__front_matter.md" %}
 
-{! getting_started/_components/__front_matter.md !}
+{% include "./getting_started/_components/__front_matter.md" %}
 
-{! hmi_frameworks/_components/__front_matter.md !}
+{% include "./hmi_frameworks/_components/__front_matter.md" %}
 
-{! video/_components/__front_matter.md !}
+{% include "./video/_components/__front_matter.md" %}

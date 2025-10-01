@@ -93,8 +93,6 @@ markdown_extensions:
   - attr_list
   - footnotes
   - markdown_grid_tables
-  - markdown_include.include:
-      base_path: docs
   - md_in_html
   - pymdownx.caret
   - pymdownx.critic
@@ -137,6 +135,7 @@ plugins:
         - demo/*
         - video/*
   - glightbox
+  - include-markdown
   - mkdocs-video
   - minify_html:
       keep_closing_tags: true

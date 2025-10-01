@@ -16,8 +16,8 @@ For detailed instructions, please refer to How to build HMI SDK.
 
 [How To Build HMI SDK](../how_to_build_hmi_sdk/index.md){ .md-button .md-button--primary .btn-grey .btn-indent }
 
-{! overview/_components/supported_boards.md !}
+{% include "./_components/supported_boards.md" %}
 
-{! overview/_components/sdk_components.md !}
+{% include "./_components/sdk_components.md" %}
 
-{! overview/_components/specification.md !}
+{% include "./_components/specification.md" %}
