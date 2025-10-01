@@ -119,6 +119,8 @@ markdown_extensions:
       toc_depth: 3
 
 plugins:
+  # search must be in the top one
+  - search
   - exclude:
       glob:
         - _*
@@ -151,5 +153,6 @@ plugins:
           - assets/javascripts/tablesort.js
       css_files:
           - assets/stylesheets/extra.css
-  - search
   - table-reader
+  # macros must be in the bottom one
+  - macros
