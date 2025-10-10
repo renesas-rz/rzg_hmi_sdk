@@ -8,6 +8,7 @@ This page contains information and tips related to the RZ/G HMI SDK.
 * [Update firmware (bootloaders) on EVK](./common_update-firmware.md)
 * [Boot Linux from microSD card](./common_boot-linux-from-sd.md)
 * [Debug application using GDB](./common_debug-application-with-gdb.md)
+* [Update Linux Package in HMI SDK](./common_update-linux-package.md)
 
 ## LVGL
 

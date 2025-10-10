@@ -68,7 +68,7 @@ This step explains how to build Linux environment with HMI SDK source code.
         {: .dollar }
 
     !!! note
-        The directory set to `#!bash SDK_PKG_DIR` shall include the HMI SDK packages such as `#!bash RTK0EF0195F*SJ_*_yocto-and-pre-built-image.zip` and `#!bash RTK0EF0195F*SJ_linux-src.zip`.
+        The directory set to `#!bash SDK_PKG_DIR` shall include the HMI SDK packages such as `#!bash RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image.zip` and `#!bash RTK0EF0195F*SJ_linux-src.zip`.
 
 4.  Extract Yocto recipe package
 
@@ -77,14 +77,14 @@ This step explains how to build Linux environment with HMI SDK source code.
 
     ```bash
     cd ${SDK_PKG_DIR}
-    unzip RTK0EF0195F*SJ_*_yocto-and-pre-built-image.zip
+    unzip RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image.zip
     ```
     {: .dollar }
 
     ```bash
     mkdir -p ${WORK}
     cd ${WORK}
-    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_*_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components 1
+    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components 1
     ```
     {: .dollar }
 

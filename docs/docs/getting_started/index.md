@@ -2,10 +2,10 @@
 
 This page explains how to start-up the HMI SDK.
 
-!!! note
-    Hereafter, we use following terminology.
+!!! failure "Notice"
+	Several updated OSS components, aimed at addressing vulnerabilities and improving drivers, have been published on Renesas' GitHub.
+	Please refer to [Update Linux Package in HMI SDK](../wiki/common_update-linux-package/) for instructions on how to replace them.
 
-    * **EVK**: Refers "Evaluation Board Kit".
 
 {% include "./_components/introduction.md" %}
 
