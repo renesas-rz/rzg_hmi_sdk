@@ -43,5 +43,6 @@ jobs:
       - name: Compile Documentations
         run: |
           cd docs
-          GOOGLE_ANALYTICS_KEY=$(cat g-analytics-key.txt) mike deploy --push --update-aliases ${GITHUB_REF_NAME} latest
+          export GOOGLE_ANALYTICS_KEY=$(cat g-analytics-key.txt)
+          mike deploy --push --update-aliases ${GITHUB_REF_NAME} latest
           mike set-default --push latest
