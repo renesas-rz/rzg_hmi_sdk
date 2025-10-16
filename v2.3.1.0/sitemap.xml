@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/download/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/faq/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/getting_started/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/history/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/hmi_frameworks/_components/__front_matter/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/how_to_build_hmi_sdk/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/overview/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/common_boot-linux-from-sd/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/common_change-display-resolution/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/common_debug-application-with-gdb/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/common_update-firmware/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/common_update-linux-package/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
     <url>
          <loc>https://renesas-rz.github.io/rzg_hmi_sdk/v2.3.1.0/wiki/lvgl_develop-gui-using-eez-studio/</loc>
-         <lastmod>2025-10-14</lastmod>
+         <lastmod>2025-10-16</lastmod>
     </url>
 </urlset>
