@@ -9,12 +9,12 @@ You may continue step by step or jump directly to advanced sections.
 Here are the recommended flows based on your purpose:
 
 🆕 First-time users:
-[Getting Started](../getting_started/) → [HMI Applications](../hmi_applications/)<br>
+[Getting Started](getting_started/index.md) → [HMI Applications](hmi_applications/index.md)<br>
 💻 Developers:
-[Building the HMI SDK with Yocto](../building_the_hmi_sdk_with_yocto/) → *[HMI Applications](../hmi_applications/) → [Wiki](../wiki/)
+[Building the HMI SDK with Yocto](building_the_hmi_sdk_with_yocto/index.md) → *[HMI Applications](hmi_applications/index.md) → [Wiki](wiki/index.md)
 
-Before following any flow, we recommend reading [Overview](../overview/) first to understand the HMI SDK at a glance.<br>
-If you have any questions or feedback, please feel free to contact us via [FAQ](../faq/).
+Before following any flow, we recommend reading [Overview](overview/index.md) first to understand the HMI SDK at a glance.<br>
+If you have any questions or feedback, please feel free to contact us via [FAQ](faq/index.md).
 
 
 <div class="card-grid">
@@ -37,7 +37,7 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
       <p>
         👉 Next, go to 
-        <a href="../hmi_applications/">HMI Applications</a> 
+        <a href="/rzg_hmi_sdk/hmi_applications/">HMI Applications</a> 
         to review the details of the demo applications
         or challenge yourself by deploying sample applications.
       </p>
@@ -97,12 +97,12 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
       <p>
         👉 Next, go to 
-        <a href="../hmi_applications/">HMI Applications</a> 
+        <a href="/rzg_hmi_sdk/hmi_applications/">HMI Applications</a> 
         to try the demo and sample applications.
       </p>
       <p>   
         👉 Or move on to further development in 
-        <a href="../wiki/">Wiki</a>.
+        <a href="/rzg_hmi_sdk/wiki/">Wiki</a>.
       </p>
     </div>
   </div>
