@@ -1,4 +1,4 @@
-# Debug application with GDB
+# How to Debug an Application with GDB
 
 This guide describes the use of GDB to debug programs created in C on the EVK.
 For more detailed information about GDB, refer to [Debugging with GDB](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html).

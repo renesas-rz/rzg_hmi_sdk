@@ -2,19 +2,14 @@
 
 ![](images/hmi-sdk.svg){ align=right width=320 }
 
-RZ/G HMI Software Development Kit (HMI SDK) is an HMI application development
-environment for Evaluation Board Kit of RZ/G series.
+The HMI SDK provides a [Yocto](https://www.yoctoproject.org/){: target="_blank" }-based Linux environment with development tools, system libraries, graphics and multimedia support, and HMI frameworks such as HTML5 or LVGL, making it easy to create and run HMI applications.
 
-Since it contains [Yocto](https://www.yoctoproject.org/){: target="_blank" } Linux with bootloader,
-Linux Kernel, Cross Compiler, multimedia and graphics package, users can
-develop HMI Applications easily and quickly with HMI SDK.
+The HMI SDK is specifically designed for the supported RZ/G EVKs and includes fixed Linux components. The source is also provided for further development and customization.
+<br>
 
-HMI SDK is specifically made for the supported Evaluation Board Kit with fixed Linux components.
-If you need to customize the Linux environment—such as modifying the memory map or developing support for your own board—you will need to build Yocto Linux from source.
+For an easy setup and quick access to the out-of-the-box demo applications, please refer to [Getting Started](../getting_started/index.md). For a customized Linux environment—such as modifying the memory map or adding support for your own board, please refer to [Building the HMI SDK with Yocto](../building_the_hmi_sdk_with_yocto/index.md).
 
-For detailed instructions, please refer to How to build HMI SDK.
 
-[How To Build HMI SDK](../how_to_build_hmi_sdk/index.md){ .md-button .md-button--primary .btn-grey .btn-indent }
 
 {% include "./_components/supported_boards.md" %}
 

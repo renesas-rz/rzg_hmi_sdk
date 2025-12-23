@@ -1,4 +1,4 @@
-# Change display resolution
+# How to Change the Display Resolution
 
 
 This page describes how to change display resolution for weston (window manager).

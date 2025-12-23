@@ -1,105 +1,116 @@
-## Step 5: Run HMI SDK demo
+## Step 5: Run the HMI Demo Applications
 
-### 1. Setup EVK's peripheral
+The HMI SDK supports the following demo applications. Follow the steps below to use them.
 
-Please setup following below diagram.
+* LVGL Benchmark Demo
+* LVGL Home Panel Demo
+* Chromium Home Panel Demo
 
-=== "RZ/G2L"
+<br>
+Follow the steps below to use them.
 
-    ![](images/hardware-requirements_rzg2l.png)
+1. Prepare the necessary equipment and connect it to your EVK board by following the instructions in [Hardware Setup](../hmi_applications/#hardware-setup).
 
-=== "RZ/G2LC"
+2.  Set up the DIP switch for ***eSD boot mode***.
 
-    ![](images/hardware-requirements_rzg2lc.png)
+    === "RZ/G2L"
 
-=== "RZ/G2UL"
+        Set up DIP switch SW1 and SW11 as follows.
 
-    ![](images/hardware-requirements_rzg2ul.png)
+        * SW1
 
-### 2. Setup EVK's DIP switch
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-=== "RZ/G2L"
+                ![](images/smarc-rzg2l-board-SW1.png){ align=left .switch-icon }
 
-    Set up DIP switch SW1 and SW11 as follows.
+                |      SW1-1     |      SW1-2     |
+                |:--------------:|:--------------:|
+                | ON {: .green } | ON {: .green } |
 
-    * SW1
+        * SW11
 
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-            ![](images/smarc-rzg2l-board-SW1.png){ align=left .switch-icon }
+                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
 
-            |      SW1-1     |      SW1-2     |
-            |:--------------:|:--------------:|
-            | ON {: .green } | ON {: .green } |
+                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+                |:--------------:|:--------------:|:------------:|:--------------:|
+                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
-    * SW11
+    === "RZ/G2LC"
 
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+        Set up DIP switch SW1 and SW11 as follows.
 
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
+        * SW1
 
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-=== "RZ/G2LC"
+                ![](images/smarc-rzg2lc-board-SW1.png){ align=left .switch-icon }
 
-    Set up DIP switch SW1 and SW11 as follows.
+                |      SW1-1     |      SW1-2     |       SW1-3     |     SW1-4     |      SW1-5      |      SW1-6     |
+                |:--------------:|:--------------:|:---------------:|:-------------:|:---------------:|:--------------:|
+                | ON {: .green } | ON {: .green } | ON* {: .green } | OFF* {: .red} | ON* {: .green } | Not used       |
 
-    * SW1
+                *These switches are not related to the settings required for this boot mode.
 
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+        * SW11
 
-            ![](images/smarc-rzg2lc-board-SW1.png){ align=left .switch-icon }
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-            |      SW1-1     |      SW1-2     |       SW1-3     |     SW1-4     |      SW1-5      |      SW1-6     |
-            |:--------------:|:--------------:|:---------------:|:-------------:|:---------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | ON* {: .green } | OFF* {: .red} | ON* {: .green } | Not used       |
+                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
 
-            \* Set the switches to suit your purpose.
+                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+                |:--------------:|:--------------:|:------------:|:--------------:|
+                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
-    * SW11
+    === "RZ/G2UL"
 
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+        Set up DIP switch SW1 and SW11 as follows.
 
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
+        * SW1
 
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-=== "RZ/G2UL"
+                ![](images/smarc-rzg2ul-board-SW1.png){ align=left .switch-icon }
 
-    Set up DIP switch SW1 and SW11 as follows.
+                |      SW1-1     |      SW1-2     |      SW1-3      |
+                |:--------------:|:--------------:|:---------------:|
+                | ON {: .green } | ON {: .green } | ON* {: .green } |
 
-    * SW1
+                *This switch is not related to the settings required for this boot mode.
 
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+        * SW11
 
-            ![](images/smarc-rzg2ul-board-SW1.png){ align=left .switch-icon }
+            !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-            |      SW1-1     |      SW1-2     |      SW1-3      |
-            |:--------------:|:--------------:|:---------------:|
-            | ON {: .green } | ON {: .green } | ON* {: .green } |
+                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
 
-            \* Set the switches to suit your purpose.
-
-    * SW11
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-### 3. Turn on EVK and run demo
+                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+                |:--------------:|:--------------:|:------------:|:--------------:|
+                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
 
-1.  Insert the bootable SD card created at [Step 4](#step-4-prepare-hmi-sdk-sd-card-image-for-demo) into the microSD card slot on SMARC module board as illustrated in the figure at ["1. Setup EVK's peripheral"](#1-setup-evks-peripheral).
-2.  Connect a USB cable to CN6 for power supply.
-3.  Press and hold power button (SW9) for 1 second to turn on the EVK.
+3.  Insert the bootable microSD card created in [Step 4](../getting_started/#step-4-create-sd-cards-with-the-prebuilt-image) into the microSD card slot for eSD boot mode (*sd ChC CN3 port* on Module Board), and then power on the EVK board.
 
-    !!! note
-        Press and hold the button for 2 seconds when you turn off the EVK.
+    !!! success "Tip"
+        *  Please refer to the [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for the location of the microSD card slot.
+        *  Press and hold the power button (red button, SW9) for 1 second to turn on the EVK board, and for 2 seconds to turn it off.
+
+4.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted.<br> 
+
+    Right after boot, you will see the launch window as shown below.
+
+    ![](images/demo_launching.png){: width="40%"} 
+
+    After a few seconds, the HMI SDK Demo Launcher will appear.<br>
+    Click the corresponding button to try each demo application we provide.
+
+    ![](images/demo_launcher.png){: width="40%"}
+
+
+This concludes the Getting Started guide.
+<br><br>
+For detailed information about each demo application, see [Demo Applications](../hmi_applications/#demo-applications).<br>
+For further development of sample applications, see [Sample Applications](../hmi_applications/#sample-applications).<br>
+For additional customizations, see [Wiki](../wiki/).
+

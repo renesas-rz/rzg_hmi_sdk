@@ -4,15 +4,15 @@ This page contains information and tips related to the RZ/G HMI SDK.
 
 ## Common
 
-* [Change display resolution](./common_change-display-resolution.md)
-* [Update firmware (bootloaders) on EVK](./common_update-firmware.md)
-* [Boot Linux from microSD card](./common_boot-linux-from-sd.md)
-* [Debug application using GDB](./common_debug-application-with-gdb.md)
-* [Update Linux Package in HMI SDK](./common_update-linux-package.md)
+* [How to Change the Display Resolution](./common_change-display-resolution.md)
+* [How to Update Firmware (Flash Writer and Bootloaders)](./common_update-firmware.md)
+* [How to Boot from a microSD Card in QSPI Boot Mode](./common_qspi-boot-mode.md)
+* [How to Update Linux Packages in the HMI SDK](./common_update-linux-package.md)
+* [How to Debug an Application with GDB](./common_debug-application-with-gdb.md)
 
 ## LVGL
 
-* [Develop LVGL GUI application using EEZ Studio](./lvgl_develop-gui-using-eez-studio.md)
+* [How to Develop LVGL HMI Applications Using EEZ Studio](./lvgl_develop-hmi-using-eez-studio.md)
 
 ## Chromium
 

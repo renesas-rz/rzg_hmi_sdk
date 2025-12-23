@@ -1,4 +1,4 @@
-# Update firmware (bootloaders) on EVK
+# How to Update Firmware (Flash Writer and Bootloaders)
 
 When you use QSPI boot mode or eMMC boot mode, you should update firmware (bootloaders).
 This page describes how to write flash writer and bootloaders.

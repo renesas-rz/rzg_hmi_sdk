@@ -1,4 +1,4 @@
-# Develop LVGL GUI applications using EEZ Studio
+# How to Develop LVGL HMI Applications Using EEZ Studio
 
 [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) is a free and cross-platform tool that can be used for development of LVGL GUIs.
 It is an open-source tool licensed under [GPL v3](https://github.com/eez-open/studio/blob/master/LICENSE.TXT).
@@ -163,15 +163,15 @@ Please note that you need to build the applications on a Linux PC.
 #### Setting up cross compiler
 
 Install cross compiler to your Linux PC, and enable the compiler.
-To install and enable the compiler, see [Step 6: Build sample application](../../getting_started/#step-6-build-sample-application).
+To install and enable the compiler, see [Step 1: Build Sample Applications](../../hmi_applications/#step-1-build-sample-applications).
 
 #### Building GUI application
 
 1. Add "main.c" to the generated “src/ui folder.
-An example of main.c is shown in [Appendix](#Appendix).
+An example of main.c is shown in [Appendix](#appendix).
 
 2. Create a Makefile in the generated "src/ui folder" and execute make command.
-An example of MakeFile is shown in [Appendix](#Appendix).
+An example of MakeFile is shown in [Appendix](#appendix).
 
 ### 3. Deploy and run LVGL GUI applications
 
@@ -180,7 +180,7 @@ Copy the built executable file into a microSD card so that you can run it on the
 #### Checking operation of the application on EVK
 
 1. Copy the generated executable file to the root filesystem in an SD card.
-For information about how to copy the file, see [Step 7: Deploy sample application](../..//getting_started/#step-7-deploy-sample-application).
+For information about how to copy the file, see [Step 2: Deploy Sample Applications](../../hmi_applications/#step-2-deploy-sample-applications).
 
 2. Set execute permission on the file.
 ```bash

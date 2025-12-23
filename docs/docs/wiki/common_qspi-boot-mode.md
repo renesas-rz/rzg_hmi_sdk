@@ -1,16 +1,16 @@
-# Boot Linux from microSD card
+# How to Boot from a microSD Card in QSPI Boot Mode
 
 This page describes how to boot Linux of the HMI SDK from a microSD card in QSPI boot mode.
 
 Please note that you need to update bootloaders in Flash ROM on the EVK to use the QSPI boot mode. 
 In the eSD boot mode, bootloaders stored in the microSD card are used, but bootloaders stored in the ROM are used when you use the QSPI boot mode. 
-For information about how to update bootloaders, see [Update firmware (bootloaders) on EVK](./common_update-firmware.md).
+For information about how to update bootloaders, see [How to Update Firmware (Flash Writer and Bootloaders)](./common_update-firmware.md).
 
 
 ## 1. Create a bootable microSD card
 
-Get a microSD card ready. For information about requirements for the microSD card, see [1. Necessary Equipment](../../getting_started/#1-necessary-equipment).
-And for information about how to create a bootable microSD card, see [Step 4: Prepare HMI SDK SD card image for demo](../../getting_started/#step-4-prepare-hmi-sdk-sd-card-image-for-demo).
+Get a microSD card ready. For information about requirements for the microSD card, see [Necessary Equipment](hmi_applications/#necessary-equipment).
+And for information about how to create a bootable microSD card, see [Step 4: Create SD Cards with the Prebuilt Image](../../getting_started/#step-4-create-sd-cards-with-the-prebuilt-image).
 
 
 ## 2. Set boot mode to QSPI boot mode
@@ -89,7 +89,7 @@ You can login as root without password.
 	The messages in the console depend on the EVK and software that you are using.
 
 If you are faced with an error in the boot process, it may be caused by u-boot configuration.
-See [Configure U-boot](../../wiki/common_boot-linux-from-sd/#configure-u-boot).
+See [Configure U-boot](../../wiki/common_qspi-boot-mode/#configure-u-boot).
 
 ## 5. Shutdown 
 

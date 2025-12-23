@@ -1,21 +1,24 @@
 ## HMI Frameworks
 
-The HMI SDK supports the following GUI frameworks and libraries that are appropriate for HMI.
-In addition, the HMI SDK provides HMI sample applications implemented by using the GUI frameworks and libraries.
+The HMI SDK supports the following GUI frameworks and libraries for HMI development. It also includes sample applications built with these frameworks and libraries. 
 For more information about the applications, see [Overview](overview/index.md).
 
 ### [LVGL (Light and Versatile Graphics Library)](https://lvgl.io/)
 
-LVGL is the most popular free and open-source embedded graphics library to create beautiful UIs for any MCU, MPU and display type.
-It is a lightweight graphics library, and it works without GPU. In addition, a lot of sample applications are available.
-They would be helpful to users.
+LVGL is a free and open-source graphics library that provides everything needed to create an embedded GUI with easy-to-use graphical elements, beautiful visual effects, and a low memory footprint. It is hardware-independent, works with any microcontroller or display, and does not require a GPU, making it ideal for resource-constrained environments.
+
+<br>
+A GUI built with LVGL offers several advantages:
+
+* Lightweight and efficient for low-resource devices
+* Highly customizable and flexible
+* No GPU required, reducing hardware costs
 
 ### [Chromium](https://www.chromium.org/Home/)
 
-Chromium is the most popular browser in recent years, and it is increasingly being adopted for embedded products.
-You can implement HTML5-based solutions using Chromium.
-It uses GPU for its rendering.
+Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web. Chromium supports HTML5-based solutions, making it a strong choice for embedded systems requiring modern web technologies. It uses GPU acceleration for rendering, enabling high-performance graphics and smooth user experiences.
 
+<br>
 A browser-based GUI on Chromium (HTML5 solutions) offers several advantages:
 
 * Feature-rich user interface

@@ -531,7 +531,7 @@ p:has(.btn-right) {
   }
 
   #md-nav-top-home + span {
-    display: block:
+    display: block;
   }
 
   .md-nav-top-subtitle,
@@ -604,6 +604,13 @@ p:has(.btn-right) {
   font-style: italic;
   line-height: 24pt;
 }
+
+.subtitle-normal {
+  font-size: 18pt;
+  font-style: normal;
+  line-height: 24pt;
+}
+
 
 .sub-subtitle {
   font-size: 14pt;
