@@ -1,3 +1,7 @@
+---
+title: HMI Applications
+---
+
 # HMI Applications
 
 There are several ways to explore running HMI applications using the HMI SDK on RZ/G EVK boards.

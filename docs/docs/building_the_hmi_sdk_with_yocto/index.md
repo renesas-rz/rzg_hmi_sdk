@@ -1,4 +1,9 @@
+---
+title: Building the HMI SDK with Yocto
+---
+
 # Building the HMI SDK with Yocto
+
 
 {% include "./_components/introduction.md" %}
 

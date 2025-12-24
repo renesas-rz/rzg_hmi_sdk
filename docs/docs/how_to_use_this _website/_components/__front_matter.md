@@ -21,7 +21,7 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
   <div class="card">
     <div class="card-header">
-      <a href="/rzg_hmi_sdk/getting_started/">Getting Started</a>
+      <a href="getting_started/#getting-started">Getting Started</a>
     </div>
 
     <div class="card-body">
@@ -37,7 +37,7 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
       <p>
         👉 Next, go to 
-        <a href="/rzg_hmi_sdk/hmi_applications/">HMI Applications</a> 
+        <a href="hmi_applications/#hmi-applications">HMI Applications</a> 
         to review the details of the demo applications
         or challenge yourself by deploying sample applications.
       </p>
@@ -46,7 +46,7 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
   <div class="card">
     <div class="card-header">
-      <a href="/rzg_hmi_sdk/hmi_applications/">HMI Applications</a>
+      <a href="hmi_applications/#hmi-applications">HMI Applications</a>
     </div>
 
     <div class="card-body">
@@ -61,13 +61,13 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
       <p>
         👉 Can be used after 
-        <a href="/rzg_hmi_sdk/getting_started/">Getting Started</a> 
+        <a href="getting_started/#getting-started">Getting Started</a> 
         or after
-        <a href="/rzg_hmi_sdk/building_the_hmi_sdk_with_yocto/">Building the HMI SDK with Yocto</a>.
+        <a href="building_the_hmi_sdk_with_yocto/#building-the-hmi-sdk-with-yocto">Building the HMI SDK with Yocto</a>.
       </p>
       <p>  
         👉 For further development, refer to 
-        <a href="/rzg_hmi_sdk/wiki/">Wiki</a> 
+        <a href="wiki/#wiki">Wiki</a> 
         for creating your own applications.
       </p>
     </div>
@@ -80,7 +80,7 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
   <div class="card">
     <div class="card-header">
-      <a href="/rzg_hmi_sdk/building_the_hmi_sdk_with_yocto/">Building the HMI SDK with Yocto</a>
+      <a href="building_the_hmi_sdk_with_yocto/#building-the-hmi-sdk-with-yocto">Building the HMI SDK with Yocto</a>
     </div>
 
     <div class="card-body">
@@ -97,19 +97,19 @@ If you have any questions or feedback, please feel free to contact us via [FAQ](
 
       <p>
         👉 Next, go to 
-        <a href="/rzg_hmi_sdk/hmi_applications/">HMI Applications</a> 
+        <a href="hmi_applications/#hmi-applications">HMI Applications</a> 
         to try the demo and sample applications.
       </p>
       <p>   
         👉 Or move on to further development in 
-        <a href="/rzg_hmi_sdk/wiki/">Wiki</a>.
+        <a href="wiki/#wiki">Wiki</a>.
       </p>
     </div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <a href="/rzg_hmi_sdk/wiki/">Wiki</a>
+      <a href="wiki/#wiki">Wiki</a>
     </div>
 
     <div class="card-body">

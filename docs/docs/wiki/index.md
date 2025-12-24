@@ -1,3 +1,7 @@
+---
+title: Wiki
+---
+
 # Wiki
 
 This page contains information and tips related to the RZ/G HMI SDK.

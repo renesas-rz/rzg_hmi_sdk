@@ -9,7 +9,7 @@ RZ/G HMI SDK includes the following software modules:
 !!! note
     Please refer to [RZ/G Verified Linux Package (5.10-CIP)](https://www.renesas.com/en/software-tool/rzg-verified-linux-package-cip) for more details on the software modules.
 !!! warning "Notice"
-    Several updated OSS components, released to address security vulnerabilities and enhance driver performance, are now available on Renesas' GitHub. Please refer to [Update Linux Package in HMI SDK](../wiki/common_update-linux-package/) in [Wiki](../wiki) for instructions on how to replace them.
+    Several updated OSS components, released to address security vulnerabilities and enhance driver performance, are now available on Renesas' GitHub. Please refer to [How to Update Linux Packages in the HMI SDK](../wiki/common_update-linux-package/) in [Wiki](../wiki) for instructions on how to replace them.
 
 ### Component Information
 
