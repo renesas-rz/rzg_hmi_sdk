@@ -19,33 +19,19 @@
 #include	<json-glib/json-glib.h>
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/lv_drv_conf.h"
 
-#if	USE_FBDEV && USE_EVDEV
+#if	LV_USE_LINUX_FBDEV && LV_USE_EVDEV
   #undef	RUNS_ON_WAYLAND
-#elif	USE_WAYLAND
+#elif	LV_USE_WAYLAND
   #define	RUNS_ON_WAYLAND
 #else
   #error	LVGL drivers configration error.
 #endif
 
 #ifdef	RUNS_ON_WAYLAND
-  #include	"lvgl/lv_drivers/wayland/wayland.h" 
+  #include	"lvgl/src/drivers/wayland/lv_wayland.h"
 #else
-#include	"lvgl/lv_drivers/display/fbdev.h"
-#include	"lvgl/lv_drivers/indev/evdev.h"
-
-typedef struct {
-	lv_coord_t width;
-	lv_coord_t height;
-	bool end;
-	lv_color_t *buff;
-	lv_disp_draw_buf_t draw_buf;
-	lv_disp_drv_t drv;
-	lv_disp_t *disp;
-	lv_indev_drv_t indev_drv;
-	lv_indev_t *mouse_indev;
-} dispinf_fbevdev_t;
+#include	"lvgl/src/drivers/display/fb/lv_linux_fbdev.h"
 #endif	/* RUNS_ON_WAYLAND */
 
 #include	"include/launcher_screen.h"
@@ -56,104 +42,35 @@ typedef struct {
 
 #ifndef RUNS_ON_WAYLAND
 
-/* Create fbdev window with evdev */
-static dispinf_fbevdev_t *create_fbdev_window()
-{
-	uint32_t width, height;
-	dispinf_fbevdev_t *dispinf;
-	lv_disp_drv_t *disp_drv;
-	lv_obj_t *cursor_obj;
-	bool ret;
-
-	/* Init Linux frame buffer device for LVGL */
-	fbdev_init();
-	fbdev_get_sizes(&width, &height, NULL);
-
-	dispinf = lv_mem_alloc(sizeof (dispinf_fbevdev_t));
-	if (!dispinf) {
-		printf("ERROR!! memory allocation failed at lv_mem_alloc()\n");
-		return NULL;
-	}
-
-	dispinf->buff = lv_mem_alloc(width * height * sizeof(lv_color_t));
-	if (!dispinf->buff) {
-		printf("ERROR!! memory allocation failed at lv_mem_alloc()\n");
-		lv_mem_free(dispinf);
-		return NULL;
-	}
-	lv_disp_draw_buf_init(&dispinf->draw_buf, dispinf->buff, NULL,
-							width * height);
-
-	disp_drv = &dispinf->drv;
-	/* Initialize and register a display driver */
-	lv_disp_drv_init(disp_drv);
-
-	disp_drv->draw_buf		= &dispinf->draw_buf;
-	disp_drv->flush_cb		= fbdev_flush;
-	disp_drv->hor_res		= (lv_coord_t)width;
-	disp_drv->ver_res		= (lv_coord_t)height;
-	disp_drv->physical_hor_res	= (lv_coord_t)width;
-	disp_drv->physical_ver_res	= (lv_coord_t)height;
-
-	dispinf->disp = lv_disp_drv_register(disp_drv);
-
-	dispinf->width = (lv_coord_t)width;
-	dispinf->height = (lv_coord_t)height;
-
-	/* Init evdev for LVGL */
-	evdev_init();
-
-	lv_indev_drv_init(&dispinf->indev_drv);
-
-	dispinf->indev_drv.type = LV_INDEV_TYPE_POINTER;
-	/* This function will be called periodically (by the library)
-	   to get the mouse position and state */
-	dispinf->indev_drv.read_cb = evdev_read;
-
-	dispinf->mouse_indev = lv_indev_drv_register(&dispinf->indev_drv);
-
-	/* Set a cursor for the mouse */
-	LV_IMG_DECLARE(mouse_cursor);
-	/* Create an image object for the cursor */
-	cursor_obj = lv_img_create(lv_scr_act());
-	lv_img_set_src(cursor_obj, &mouse_cursor);
-	/* Connect the image  object to the driver */
-	lv_indev_set_cursor(dispinf->mouse_indev, cursor_obj);
-
-	return dispinf;
-}
-
-static void close_fbdev_window(dispinf_fbevdev_t *dispinf)
+static void close_fbdev_window(lv_display_t *dispinf, lv_indev_t *pointerinf)
 {
 	if (!dispinf) {
 		printf("ERROR!! no object to be freed.\n");
 		return;
 	}
 
-	if (dispinf->mouse_indev)
-		lv_indev_delete(dispinf->mouse_indev);
+	if (pointerinf)
+		lv_indev_delete(pointerinf);
 
-	if (dispinf->disp)
-		lv_disp_remove(dispinf->disp);
+	if (dispinf)
+		lv_display_delete(dispinf);
 
-	if (dispinf->buff)
-		lv_mem_free(dispinf->buff);
+	lv_mem_deinit();
+}
 
-	lv_mem_free(dispinf);
-
-	fbdev_exit();
+static const char *getenv_default(const char *name, const char *dflt)
+{
+    return getenv(name) ? : dflt;
 }
 #endif
 
 int main(int argc, char *argv[])
 {
+	lv_display_t *disp;
 #ifdef RUNS_ON_WAYLAND
 	struct pollfd pfd;
 	uint32_t time_till_next;
 	int sleep;
-	lv_disp_t *disp;
-#else /* FBDEV and EVDEV  */
-	dispinf_fbevdev_t *disp;
 #endif		
 	int32_t window_width = WINDOW_WIDTH;
 	int32_t window_height = WINDOW_HEIGHT;
@@ -162,14 +79,12 @@ int main(int argc, char *argv[])
 	config btn_conf[MAX_JSON_ARR];
 	int btn_cnt = 0; 
 
-
 	/*LVGL init*/
 	lv_init();
 
 #ifdef RUNS_ON_WAYLAND
-	lv_wayland_init();
 
-	disp = lv_wayland_create_window(window_width,window_height,
+	disp = lv_wayland_window_create(window_width,window_height,
 						    "Window Demo", NULL);
 	if (disp == NULL) {
 		printf("ERROR!! lv_wayland_create_window\n");
@@ -180,15 +95,19 @@ int main(int argc, char *argv[])
 	pfd.events = POLLIN;
 
 #else /* FBDEV and EVDEV  */
-	disp = create_fbdev_window();
+	const char *device = getenv_default("LV_LINUX_FBDEV_DEVICE", "/dev/fb0");
+	disp =  lv_linux_fbdev_create();
 	if (disp == NULL) {
-		printf("ERROR!! lv_wayland_create_window\n");
+		printf("ERROR!! lv_linux_fbdev_create\n");
 		goto APP_EXIT;
 	}
-	/* Clear end flag */
-	disp->end = false;
-	window_width = disp->width;
-	window_height = disp->height;
+	lv_indev_t *pointer = lv_evdev_create(LV_INDEV_TYPE_POINTER, "/dev/input/event1");
+	LV_IMG_DECLARE(mouse_cursor);
+	lv_obj_t* cursor_obj = lv_image_create(lv_screen_active());
+	lv_img_set_src(cursor_obj, &mouse_cursor);
+	lv_indev_set_cursor(pointer, cursor_obj);
+	lv_indev_set_display(pointer, disp);
+	lv_linux_fbdev_set_file(disp, device);
 #endif
 
 	/*read json file */
@@ -223,18 +142,16 @@ int main(int argc, char *argv[])
 #else /* FBDEV and EVDEV  */
 		lv_timer_handler();
 		usleep(5000);
-		if (disp->end)
-			break;
 #endif	
 	}
 
 APP_EXIT:
 
 #ifdef RUNS_ON_WAYLAND
-	lv_wayland_deinit();
+	lv_wayland_window_close(disp);
 
 #else /* FBDEV and EVDEV  */
-	close_fbdev_window(disp);
+	close_fbdev_window(disp, pointer);
 #endif
 	return 0;
 }

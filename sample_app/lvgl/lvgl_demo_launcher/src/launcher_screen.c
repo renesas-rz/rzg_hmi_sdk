@@ -11,31 +11,31 @@
 
 #include	"../lvgl/lvgl.h"
 #include	"../lvgl/src/misc/lv_fs.h"
-#include	"../lvgl/src/extra/libs/png/lv_png.h"
-#include	"../lvgl/src/extra/libs/fsdrv/lv_fsdrv.h"
+#include 	"../lvgl/src/misc/lv_fs_private.h"
+#include	"../lvgl/src/libs/fsdrv/lv_fsdrv.h"
 
 int32_t lb_demo_gui(int32_t width, int32_t height, lv_disp_t *disp, char *cfg_path);
 static void btn_event_cb(lv_event_t* event);
-static uint16_t img_ratio_calc(lv_obj_t* img,uint16_t scr_width, uint16_t scr_height);
+static int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height);
 
 int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_conf)
 {
-	int btn_num = 0;
-	uint16_t img_ratio;
-	
+       int btn_num = 0;
+       int32_t img_ratio;
+
        /* init */
-       _lv_fs_init();
+       lv_fs_init();
        lv_fs_stdio_init();
        lv_init();
-       lv_png_init();
+       lv_lodepng_init();
 
 #ifndef RUNS_ON_WAYLAND
        /*back_ground*/
-       lv_obj_set_style_bg_color(lv_scr_act(),
+       lv_obj_set_style_bg_color(lv_screen_active(),
                                  lv_color_hex(0x000000), LV_PART_MAIN);
 
        /*window*/
-       lv_obj_t *window = lv_obj_create(lv_scr_act());
+       lv_obj_t *window = lv_obj_create(lv_screen_active());
        lv_obj_set_size(window, 640, 480);
        lv_obj_set_align(window, LV_ALIGN_CENTER);
        lv_obj_set_style_pad_top(window, 0, LV_PART_MAIN);
@@ -54,11 +54,11 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
        lv_obj_t *logo_image = lv_img_create(window);
 #else
        /*window*/
-       lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0x2A289D),LV_PART_MAIN);
+       lv_obj_set_style_bg_color(lv_screen_active(), lv_color_hex(0x2A289D),LV_PART_MAIN);
 
-       lv_obj_t *title_text = lv_label_create(lv_scr_act()) ;
-       lv_obj_t *guide_text = lv_label_create(lv_scr_act()) ;
-       lv_obj_t *logo_image = lv_img_create(lv_scr_act());
+       lv_obj_t *title_text = lv_label_create(lv_screen_active()) ;
+       lv_obj_t *guide_text = lv_label_create(lv_screen_active()) ;
+       lv_obj_t *logo_image = lv_image_create(lv_screen_active());
 #endif
        static lv_style_t btn_style;
        lv_style_init(&btn_style);
@@ -70,38 +70,36 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
        for (btn_num = 0; btn_num < btn_cnt; btn_num++)
        {
 #ifndef RUNS_ON_WAYLAND
-              btn_conf[btn_num].btn = lv_btn_create(window);
+              btn_conf[btn_num].btn = lv_button_create(window);
 #else
-              btn_conf[btn_num].btn = lv_btn_create(lv_scr_act());
+              btn_conf[btn_num].btn = lv_button_create(lv_screen_active());
 #endif
-       	lv_obj_set_pos(btn_conf[btn_num].btn, 40, (140 * btn_num + 80));
-       	lv_obj_set_size(btn_conf[btn_num].btn, 560, 120);
-       	lv_obj_add_style(btn_conf[btn_num].btn, &btn_style, 0);
-       	lv_obj_add_event_cb(btn_conf[btn_num].btn, btn_event_cb, LV_EVENT_CLICKED, &btn_conf[btn_num]);
+              lv_obj_set_pos(btn_conf[btn_num].btn, 40, (140 * btn_num + 80));
+              lv_obj_set_size(btn_conf[btn_num].btn, 560, 120);
+              lv_obj_add_style(btn_conf[btn_num].btn, &btn_style, 0);
+              lv_obj_add_event_cb(btn_conf[btn_num].btn, btn_event_cb, LV_EVENT_CLICKED, &btn_conf[btn_num]);
 
-       	/* discription */
-       	lv_obj_t* btn_disc =lv_label_create(btn_conf[btn_num].btn);
-       	lv_label_set_text(btn_disc,btn_conf[btn_num].discription);
-       	lv_obj_set_width(btn_disc, 420);
-       	lv_obj_set_height(btn_disc, 90);
-       	lv_obj_set_pos(btn_disc, 115, 36);
-       	static lv_style_t btn_disc_style;
-   		lv_style_init(&btn_disc_style);
-   		lv_style_set_text_font(&btn_disc_style, &FiraCode_Regular_24);
-   		lv_obj_add_style(btn_disc, &btn_disc_style, 0);
-   		lv_style_set_text_color(&btn_disc_style, lv_color_hex(0x06418C));
+              /* discription */
+              lv_obj_t* btn_disc =lv_label_create(btn_conf[btn_num].btn);
+              lv_label_set_text(btn_disc,btn_conf[btn_num].discription);
+              lv_obj_set_width(btn_disc, 420);
+              lv_obj_set_height(btn_disc, 90);
+              lv_obj_set_pos(btn_disc, 115, 36);
+              static lv_style_t btn_disc_style;
+              lv_style_init(&btn_disc_style);
+              lv_style_set_text_font(&btn_disc_style, &FiraCode_Regular_24);
+              lv_obj_add_style(btn_disc, &btn_disc_style, 0);
+              lv_style_set_text_color(&btn_disc_style, lv_color_hex(0x06418C));
 
-   		/* icon_img */
-   		lv_obj_t* icon_img = lv_img_create(btn_conf[btn_num].btn);
-   		lv_img_set_src(icon_img,btn_conf[btn_num].icon_image);
-   		lv_obj_set_align(icon_img,LV_ALIGN_LEFT_MID);
-   		lv_obj_update_layout(icon_img);
-   		img_ratio = img_ratio_calc(icon_img,100, 100);
-   		lv_img_set_zoom(icon_img,img_ratio);
-   		lv_img_set_size_mode(icon_img, LV_IMG_SIZE_MODE_REAL);
-   		lv_obj_set_size(icon_img, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+              /* icon_img */
+              lv_obj_t* icon_img = lv_image_create(btn_conf[btn_num].btn);
+              lv_image_set_src(icon_img,btn_conf[btn_num].icon_image);
+              lv_obj_set_align(icon_img,LV_ALIGN_LEFT_MID);
+              lv_obj_update_layout(icon_img);
+              img_ratio = img_ratio_calc(icon_img,100, 100);
+              lv_obj_set_size(icon_img, 100, 100);
+              lv_image_set_scale(icon_img,img_ratio);
        }
-
        /*Title_text*/
        lv_label_set_text(title_text,"HMI SDK Demo Launcher");
        lv_obj_set_pos(title_text, 160, 24);
@@ -121,40 +119,39 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
        lv_style_set_text_color(&guide_text_style, lv_color_hex(0xB9D7FC));
 
        /*Logo image */
-       lv_img_set_src(logo_image,"L:/usr/share/demo-launcher/images/renesas_logomark_white.png");
+       lv_image_set_src(logo_image,"L:/usr/share/demo-launcher/images/renesas_logomark_white.png");
        lv_obj_set_pos(logo_image, 10, 10);
        lv_obj_update_layout(logo_image);
        img_ratio = img_ratio_calc(logo_image,100, 16);
-       lv_img_set_zoom(logo_image,img_ratio);
-       lv_img_set_size_mode(logo_image, LV_IMG_SIZE_MODE_REAL);
-       lv_obj_set_size(logo_image, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+       lv_obj_set_size(logo_image, 100, 16);
+       lv_image_set_scale(logo_image,img_ratio);
 
 	return 0;
 }
 
 static void btn_event_cb(lv_event_t* event)
 {	
-	config *cmd = lv_event_get_user_data(event);
-	
-	execlp(cmd->exe_cmd,cmd->exe_cmd,NULL);
-	perror(cmd->exe_cmd);
+       config *cmd = lv_event_get_user_data(event);
+
+       execlp(cmd->exe_cmd,cmd->exe_cmd,NULL);
+       perror(cmd->exe_cmd);
 }
 
-static uint16_t img_ratio_calc(lv_obj_t* img,uint16_t scr_width, uint16_t scr_height)
+static int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height)
 {
-	uint16_t ratio;
-	u_int16_t img_width;
-	u_int16_t img_height;
-	u_int16_t img_obj_width = lv_obj_get_width(img);
-	u_int16_t img_obj_height = lv_obj_get_height(img);
-	
-	if(img_obj_width > img_obj_height)
-	{
-		ratio = 256.0 * (double)scr_width/(double)img_obj_width;
-	}
-	else
-	{
-		ratio = 256.0 * (double)scr_height/(double)img_obj_height;
-	}
-	return ratio;
+       int32_t ratio;
+       u_int16_t img_width;
+       u_int16_t img_height;
+       u_int16_t img_obj_width = lv_obj_get_width(img);
+       u_int16_t img_obj_height = lv_obj_get_height(img);
+
+       if(img_obj_width > img_obj_height)
+       {
+              ratio = 256.0 * (double)scr_width/(double)img_obj_width;
+       }
+       else
+       {
+              ratio = 256.0 * (double)scr_height/(double)img_obj_height;
+       }
+       return ratio;
 }

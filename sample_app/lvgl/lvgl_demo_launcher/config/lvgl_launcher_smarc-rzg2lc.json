@@ -5,11 +5,6 @@
     "description": "Benchmark demo"
   },
   {
-    "exe_cmd": "/usr/share/chromium_demo/chromium-app.sh",
-    "icon_image": "L:/usr/share/demo-launcher/images/Chromium_Logo.png",
-    "description": "Chromium Home panel demo"
-  },
-  {
     "exe_cmd": "/usr/bin/lvgl-home-panel-demo",
     "icon_image": "L:/usr/share/demo-launcher/images/LVGL-Logo.png",
     "description": "LVGL Home panel demo"
