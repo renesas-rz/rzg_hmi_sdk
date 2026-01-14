@@ -1,11 +1,12 @@
 /**
  * HMI SDK / RZ/G Linux LVGL sample program for image display
  *
- * Copyright (C) 2024, 2025 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024-2026 Renesas Electronics Corp. All rights reserved.
  */
 
 #include	<stdio.h>
 #include	<stdlib.h>
+#include	<string.h>
 #include	<unistd.h>
 
 #include	"lvgl/lvgl.h"
@@ -54,13 +55,7 @@ static void quit_button_clicked_cb(lv_event_t *e)
 	lsid_sample_app_t *app;
 
 	app = (lsid_sample_app_t *)lv_event_get_user_data(e);
-
-#ifdef RUNS_ON_WAYLAND
-	lv_wayland_close_window((lv_disp_t *)app->disp);
-#else /* FBDEV and EVDEV  */
-	lsid_dispinf_t *dispinf = (lsid_dispinf_t *)app->disp;
-	dispinf->end = true;
-#endif
+	end = true;
 }
 
 /** Create a quit button
@@ -72,15 +67,15 @@ static int32_t create_quit_button(lsid_sample_app_t *app, lv_obj_t *obj)
 {
 	lv_obj_t *imgbtn;
 
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
 	if (app->imgdsp_scr == obj)
 		app->quit_btn = imgbtn;	/* quit button in the image file display screen */
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSID_1_btn_quit, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSID_1_btn_quit, NULL);
 
 	lv_obj_add_event_cb(imgbtn, quit_button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_set_size(imgbtn, 60, 60);
@@ -101,8 +96,8 @@ static void set_image(lsid_sample_app_t *app, lsid_img_file_t *img_file)
 		lv_gif_set_src(img, img_file->file_path);
 	}
 	else {
-		img = lv_img_create(app->imgdsp_scr);
-		lv_img_set_src(img, img_file->file_path);
+		img = lv_image_create(app->imgdsp_scr);
+		lv_image_set_src (img, img_file->file_path);
 	}
 	lv_obj_align(img, LV_ALIGN_TOP_LEFT, 0, 0);
 	lv_obj_set_size(img, img_file->width, img_file->height);
@@ -129,7 +124,7 @@ static void img_button_clicked_cb(lv_event_t *e)
 	lv_obj_move_foreground(app->back_btn);
 
 	/* Screen transition */
-	lv_scr_load(app->imgdsp_scr);
+	lv_screen_load(app->imgdsp_scr);
 }
 
 /** Create 8 buttons
@@ -164,7 +159,7 @@ static int32_t create_buttons(lsid_sample_app_t *app, lv_obj_t *obj)
 	{
 		NULL, 
 		{LSID_IMG_FORMAT_JPG, 1280, 720,
-		"L:/usr/share/images/sample_image_1280x720.sjpg"}
+		"L:/usr/share/images/sample_image_1280x720.jpg"}
 	},
 	{
 		NULL, 
@@ -195,12 +190,12 @@ static int32_t create_buttons(lsid_sample_app_t *app, lv_obj_t *obj)
 
 	imgset = &img_data[0];
 	for (i = 0; i < LSID_NUMBER_BTNS; i++) {
-		imgbtn = lv_imgbtn_create(obj);
+		imgbtn = lv_imagebutton_create(obj);
 		if (imgbtn == NULL) {
-			fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+			fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 			return -1;
 		}
-		lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, btn_img[i], NULL);
+		lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, btn_img[i], NULL);
 
 		imgset->data = app;
 		lv_obj_add_event_cb(imgbtn, img_button_clicked_cb, LV_EVENT_CLICKED, imgset);
@@ -220,16 +215,16 @@ static int32_t create_image_file_selection_screen(lsid_sample_app_t *app)
 	lv_obj_t *guide;
 	int32_t ret;
 
-	screen = lv_scr_act();
+	screen = lv_screen_active();
 	lv_obj_set_style_bg_color(screen, lv_color_hex(LSID_BG_COLOR), 0);
 
 	/* Ceate a image for guide */
-	guide = lv_img_create(screen);
+	guide = lv_image_create(screen);
 	if (guide == NULL) {
-		fprintf(stderr, "ERROR!! lv_img_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_image_create() failed.\n");
 		return -1;
 	}
-	lv_img_set_src(guide, &LSID_1_guide);
+	lv_image_set_src (guide, &LSID_1_guide);
 	lv_obj_align(guide, LV_ALIGN_TOP_LEFT, LSID_GUIDE_POS_X, LSID_GUIDE_POS_Y);
 
 	/* Create 8 buttons */
@@ -258,10 +253,10 @@ static void back_button_clicked_cb(lv_event_t *e)
 	app = (lsid_sample_app_t *)lv_event_get_user_data(e);
 
 	/* Delete image object with a delay */
-	lv_obj_del_async(app->img_obj);
+	lv_obj_delete_async(app->img_obj);
 
 	/* Screen transition */
-	lv_scr_load(app->imgsel_scr);
+	lv_screen_load(app->imgsel_scr);
 }
 
 /** Create a back button
@@ -271,14 +266,14 @@ static int32_t create_back_button(lsid_sample_app_t *app, lv_obj_t *obj)
 {
 	lv_obj_t *imgbtn;
 
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
 	app->back_btn = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSID_2_btn_back, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSID_2_btn_back, NULL);
 
 	lv_obj_add_event_cb(imgbtn, back_button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_set_size(imgbtn, 160, 64);
@@ -326,8 +321,8 @@ int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp, int32_t
 		return -1;
 	}
 
-	app_obj->width = (lv_coord_t)width;
-	app_obj->height = (lv_coord_t)height;
+	app_obj->width = (int32_t)width;
+	app_obj->height = (int32_t)height;
 	app_obj->disp = disp;
 	app_obj->mode = mode;
 
@@ -355,8 +350,8 @@ void lsid_sample_app_quit(void)
 	if (!app)
 		return;
 
-	lv_obj_del(app->imgsel_scr);
-	lv_obj_del(app->imgdsp_scr);
+	lv_obj_delete(app->imgsel_scr);
+	lv_obj_delete(app->imgdsp_scr);
 
 	/* Release memory for GUI screen */
 	free(app);
