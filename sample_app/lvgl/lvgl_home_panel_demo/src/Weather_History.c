@@ -8,7 +8,7 @@ uint32_t pcnt;
 static void slider_all_event_cb(lv_event_t* e);
 
 /* Source: https://github.com/ankur219/ECG-Arrhythmia-classification/blob/642230149583adfae1e4bd26c6f0e1fd8af2be0e/sample.csv　*/
-static const lv_coord_t ecg_sample[] = {
+static const int32_t ecg_sample[] = {
     -2, 2, 0, -15, -39, -63, -71, -68, -67, -69, -84, -95, -104, -107, -108, -107, -107, -107, -107, -114, -118, -117,
     -112, -100, -89, -83, -71, -64, -58, -58, -62, -62, -58, -51, -46, -39, -27, -10, 4, 7, 1, -3, 0, 14, 24, 30, 25, 19,
     13, 7, 12, 15, 18, 21, 13, 6, 9, 8, 17, 19, 13, 11, 11, 11, 23, 30, 37, 34, 25, 14, 15, 19, 28, 31, 26, 23, 25, 31,
@@ -64,38 +64,43 @@ void create_Weather_History(void)
     lv_obj_set_style_bg_color(header_background, lv_color_hex(0xE3E1FF), 0);
     lv_obj_set_size(header_background, background_width, 79);
 
-    header_logo = lv_img_create(header_background);
-    lv_img_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
-    lv_img_set_zoom(header_logo, logo_ratio);
+    header_logo = lv_image_create(header_background);
+    lv_image_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
+    lv_image_set_scale(header_logo, logo_ratio);
     lv_obj_center(header_logo);
 
-    Weather_History_chart = lv_chart_create(Weather_History_background);
+    lv_obj_t* chart_background = lv_obj_create(Weather_History_background);
+    Weather_History_chart = lv_chart_create(chart_background);
+    lv_obj_set_size(chart_background, 1761, 490);
+    lv_obj_align(chart_background, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_pad_all(chart_background, 0, 0);
+    lv_obj_set_style_border_width(chart_background, 0, 0);
+    lv_obj_set_style_outline_width(chart_background, 0, 0);
     lv_obj_set_size(Weather_History_chart, 1761, 490);
-    lv_obj_set_scroll_snap_x(Weather_History_chart, LV_SCROLL_SNAP_CENTER); 
-    lv_obj_align(Weather_History_chart, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_scroll_snap_x(Weather_History_chart, LV_SCROLL_SNAP_CENTER);
     lv_chart_set_range(Weather_History_chart, LV_CHART_AXIS_PRIMARY_Y, -1000, 1000);
+    lv_obj_add_flag(Weather_History_chart, LV_OBJ_FLAG_SCROLLABLE);
 
-    //Do not display points on the data
-    lv_obj_set_style_size(Weather_History_chart, 0, LV_PART_INDICATOR);
+    /* Do not display points on the data */
+    lv_obj_set_style_size(Weather_History_chart, 0, 0, LV_PART_INDICATOR);
 
     ser = lv_chart_add_series(Weather_History_chart, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
 
     pcnt = sizeof(ecg_sample) / sizeof(ecg_sample[0]);
     lv_chart_set_point_count(Weather_History_chart, pcnt);
-    lv_chart_set_ext_y_array(Weather_History_chart, ser, (lv_coord_t*)ecg_sample);
+    lv_chart_set_ext_y_array(Weather_History_chart, ser, (int32_t*)ecg_sample);
 
     lv_obj_t* slider;
     slider = lv_slider_create(Weather_History_background);
     lv_obj_add_flag(slider, LV_OBJ_FLAG_SCROLLABLE);
-    lv_slider_set_range(slider, LV_IMG_ZOOM_NONE, LV_IMG_ZOOM_NONE * 10);
+    lv_slider_set_range(slider, LV_SCALE_NONE, LV_SCALE_NONE * 10);
     lv_obj_add_event_cb(slider, slider_all_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_align_to(slider, Weather_History_chart, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
-    lv_obj_update_snap(Weather_History_chart, LV_ANIM_ON);
 }
 static void slider_all_event_cb(lv_event_t* e)
 {
     lv_obj_t* obj = lv_event_get_target(e);
     int32_t v = lv_slider_get_value(obj);
-    lv_chart_set_zoom_x(Weather_History_chart, v);
-    lv_chart_set_zoom_y(Weather_History_chart, v);
+    int32_t zoom_value = v / 256;
+    lv_obj_set_size(Weather_History_chart, 1761 * zoom_value, 490 * zoom_value);
 }

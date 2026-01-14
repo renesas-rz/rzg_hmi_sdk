@@ -12,7 +12,6 @@ lv_obj_t* TV_icon;
 lv_obj_t* Air_Conditioner_sw;
 lv_obj_t* meter;
 lv_obj_t* Air_Conditioner_meter;
-lv_meter_scale_t* scale;
 lv_obj_t* Air_Conditioner_set_arc;
 static lv_style_t Air_Conditioner_ON_style;
 static lv_style_t Air_Conditioner_OFF_style;
@@ -43,7 +42,7 @@ static void Air_Conditioner_humidity_slider_handler(lv_event_t* e);
 static void Air_Conditioner_wind_slider_handler(lv_event_t* e);
 
 
-static const lv_coord_t ecg_sample[] = {
+static const int32_t ecg_sample[] = {
     -2, 2, 0, -15, -39, -63, -71, -68, -67, -69, -84, -95, -104, -107, -108, -107, -107, -107, -107, -114, -118, -117,
     -112, -100, -89, -83, -71, -64, -58, -58, -62, -62, -58, -51, -46, -39, -27, -10, 4, 7, 1, -3, 0, 14, 24, 30, 25, 19,
     13, 7, 12, 15, 18, 21, 13, 6, 9, 8, 17, 19, 13, 11, 11, 11, 23, 30, 37, 34, 25, 14, 15, 19, 28, 31, 26, 23, 25, 31,
@@ -101,7 +100,7 @@ void create_Home_Automation(void)
     lv_style_init(&Air_Conditioner_OFF_style);
     lv_style_set_arc_color(&Air_Conditioner_OFF_style, lv_color_hex(0xA9A9A9));
 
-    //Home_Automation_background
+    /* Home_Automation_background */
     lv_obj_t* Home_Automation_background = lv_obj_create(Home_Automation);
     lv_obj_set_size(Home_Automation_background, background_width, background_height);
     lv_obj_align(Home_Automation_background, LV_ALIGN_TOP_LEFT, 0, 0);
@@ -113,9 +112,9 @@ void create_Home_Automation(void)
     lv_obj_set_size(header_background, background_width, 79);
     lv_obj_set_style_bg_color(header_background, lv_color_hex(0xE3E1FF), 0);
 
-    header_logo = lv_img_create(header_background);
-    lv_img_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
-    lv_img_set_zoom(header_logo, logo_ratio);
+    header_logo = lv_image_create(header_background);
+    lv_image_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
+    lv_image_set_scale(header_logo, logo_ratio);
     lv_obj_center(header_logo);
 
     static lv_style_t Home_Automation_text_style;
@@ -134,7 +133,7 @@ void create_Home_Automation(void)
     lv_style_init(&Air_Conditioner_set_value_style);
     lv_style_set_text_color(&Air_Conditioner_set_value_style, lv_color_hex(0xFFFFFF));
 
-    //Room_Temperature_panel
+    /* Room_Temperature_panel */
     lv_obj_t* Room_Temperature_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(Room_Temperature_panel, 263, 274);
     lv_obj_set_pos(Room_Temperature_panel, 250, 165);
@@ -155,14 +154,14 @@ void create_Home_Automation(void)
     lv_arc_set_rotation(Room_Temperature_arc, 270);
     lv_arc_set_bg_angles(Room_Temperature_arc, 0, 360);
     lv_obj_remove_style(Room_Temperature_arc, NULL, LV_PART_KNOB);
-    lv_obj_clear_flag(Room_Temperature_arc, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(Room_Temperature_arc, LV_OBJ_FLAG_CLICKABLE);
 
     lv_obj_t* Room_Temperature_value = lv_label_create(Room_Temperature_panel);
     lv_obj_center(Room_Temperature_value);
     lv_label_set_text(Room_Temperature_value, "25°");
     lv_obj_add_style(Room_Temperature_value, &arc_value_style, 0);
 
-    //Power_Consumption_panel
+    /* Power_Consumption_panel */
     lv_obj_t* Power_Consumption_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(Power_Consumption_panel, 263, 274);
     lv_obj_set_pos(Power_Consumption_panel, 250, 456);
@@ -183,14 +182,14 @@ void create_Home_Automation(void)
     lv_arc_set_rotation(Power_Consumption_arc, 270);
     lv_arc_set_bg_angles(Power_Consumption_arc, 0, 360);
     lv_obj_remove_style(Power_Consumption_arc, NULL, LV_PART_KNOB);
-    lv_obj_clear_flag(Power_Consumption_arc, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(Power_Consumption_arc, LV_OBJ_FLAG_CLICKABLE);
 
     lv_obj_t* Power_Consumption_value = lv_label_create(Power_Consumption_panel);
     lv_obj_center(Power_Consumption_value);
     lv_label_set_text(Power_Consumption_value, "700kWh");
     lv_obj_add_style(Power_Consumption_value, &arc_value_style, 0);
 
-    //Light1_panel
+    /* Light1_panel */
     lv_obj_t* Light1_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(Light1_panel, 263, 274);
     lv_obj_set_pos(Light1_panel, 531, 165);
@@ -204,8 +203,8 @@ void create_Home_Automation(void)
     lv_label_set_text(Light1_panel_text, "Light 1");
     lv_obj_add_style(Light1_panel_text, &Home_Automation_text_style, 0);
 
-    Light1_icon = lv_img_create(Light1_panel);
-    lv_img_set_src(Light1_icon, &Light_OFF_icon);
+    Light1_icon = lv_image_create(Light1_panel);
+    lv_image_set_src(Light1_icon, &Light_OFF_icon);
     lv_obj_center(Light1_icon);
 
     Light1_sw = lv_switch_create(Light1_panel);
@@ -223,7 +222,7 @@ void create_Home_Automation(void)
     lv_label_set_text(Light1_sw_text_ON, "ON");
     lv_obj_add_style(Light1_sw_text_ON, &sw_state_text_style, 0);
 
-    //WiFi_panel
+    /* WiFi_panel */
     lv_obj_t* WiFi_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(WiFi_panel, 263, 274);
     lv_obj_set_pos(WiFi_panel, 531, 456);
@@ -237,8 +236,8 @@ void create_Home_Automation(void)
     lv_label_set_text(WiFi_panel_text, "WiFi");
     lv_obj_add_style(WiFi_panel_text, &Home_Automation_text_style, 0);
 
-    WiFi_icon = lv_img_create(WiFi_panel);
-    lv_img_set_src(WiFi_icon, &WiFi_OFF_icon);
+    WiFi_icon = lv_image_create(WiFi_panel);
+    lv_image_set_src(WiFi_icon, &WiFi_OFF_icon);
     lv_obj_center(WiFi_icon);
 
     WiFi_sw = lv_switch_create(WiFi_panel);
@@ -256,7 +255,7 @@ void create_Home_Automation(void)
     lv_label_set_text(WiFi_sw_text_ON, "ON");
     lv_obj_add_style(WiFi_sw_text_ON, &sw_state_text_style, 0);
 
-    //Light2_panel
+    /* Light2_panel */
     lv_obj_t* Light2_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(Light2_panel, 263, 274);
     lv_obj_set_pos(Light2_panel, 811, 165);
@@ -270,8 +269,8 @@ void create_Home_Automation(void)
     lv_label_set_text(Light2_panel_text, "Light 2");
     lv_obj_add_style(Light2_panel_text, &Home_Automation_text_style, 0);
 
-    Light2_icon = lv_img_create(Light2_panel);
-    lv_img_set_src(Light2_icon, &Light_OFF_icon);
+    Light2_icon = lv_image_create(Light2_panel);
+    lv_image_set_src(Light2_icon, &Light_OFF_icon);
     lv_obj_center(Light2_icon);
 
     Light2_sw = lv_switch_create(Light2_panel);
@@ -289,7 +288,7 @@ void create_Home_Automation(void)
     lv_label_set_text(Light2_sw_text_ON, "ON");
     lv_obj_add_style(Light2_sw_text_ON, &sw_state_text_style, 0);
 
-    //TV_panel
+    /* TV_panel */
     lv_obj_t* TV_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(TV_panel, 263, 274);
     lv_obj_set_pos(TV_panel, 811, 456);
@@ -303,8 +302,8 @@ void create_Home_Automation(void)
     lv_label_set_text(TV_panel_text, "TV");
     lv_obj_add_style(TV_panel_text, &Home_Automation_text_style, 0);
 
-    TV_icon = lv_img_create(TV_panel);
-    lv_img_set_src(TV_icon, &TV_OFF_icon);
+    TV_icon = lv_image_create(TV_panel);
+    lv_image_set_src(TV_icon, &TV_OFF_icon);
     lv_obj_center(TV_icon);
 
     TV_sw = lv_switch_create(TV_panel);
@@ -322,7 +321,7 @@ void create_Home_Automation(void)
     lv_label_set_text(TV_sw_text_ON, "ON");
     lv_obj_add_style(TV_sw_text_ON, &sw_state_text_style, 0);
 
-    //Air_Conditioner_panel
+    /* Air_Conditioner_panel */
     lv_obj_t* Air_Conditioner_panel = lv_obj_create(Home_Automation_background);
     lv_obj_set_size(Air_Conditioner_panel, 519, 829);
     lv_obj_set_pos(Air_Conditioner_panel, 1092, 165);
@@ -351,22 +350,29 @@ void create_Home_Automation(void)
     lv_label_set_text(Air_Conditioner_sw_text_ON, "ON");
     lv_obj_add_style(Air_Conditioner_sw_text_ON, &sw_state_text_style, 0);
 
-    Air_Conditioner_meter = lv_meter_create(Air_Conditioner_panel);
-    lv_obj_set_size(Air_Conditioner_meter, 460, 460);
+    Air_Conditioner_meter = lv_scale_create(Air_Conditioner_panel);
+    lv_scale_set_angle_range(Air_Conditioner_meter, 180);
+    lv_scale_set_rotation(Air_Conditioner_meter, 180);
+    lv_obj_set_size(Air_Conditioner_meter, 450, 450);
+    lv_scale_set_label_show(Air_Conditioner_meter, true);
+    lv_scale_set_mode(Air_Conditioner_meter, LV_SCALE_MODE_ROUND_INNER);
     lv_obj_center(Air_Conditioner_meter);
-    lv_obj_set_style_bg_color(Air_Conditioner_meter, lv_color_hex(0x686868), 0);
-    lv_obj_set_style_border_width(Air_Conditioner_meter, 0, 0);
+    lv_scale_set_total_tick_count(Air_Conditioner_meter, 16);
+    lv_scale_set_major_tick_every(Air_Conditioner_meter, 5);
+    lv_obj_set_style_length(Air_Conditioner_meter, 10, LV_PART_ITEMS);
+    lv_obj_set_style_length(Air_Conditioner_meter, 15, LV_PART_INDICATOR);
+    lv_scale_set_range(Air_Conditioner_meter, 15, 30);
+    static const char * custom_labels[] = {"15", "20", "25", "30", NULL};
+    lv_scale_set_text_src(Air_Conditioner_meter, custom_labels);
 
-    //Remove the circle from the middle
-    lv_obj_remove_style(Air_Conditioner_meter, NULL, LV_PART_INDICATOR);
+    static lv_style_t Air_Conditioner_meter_style;
+    lv_style_init(&Air_Conditioner_meter_style);
+    lv_style_set_line_width(&Air_Conditioner_meter_style, 3);
+    lv_style_set_line_color(&Air_Conditioner_meter_style, lv_color_black());
+    lv_obj_add_style(Air_Conditioner_meter, &Air_Conditioner_meter_style, LV_PART_INDICATOR);
+    lv_obj_add_style(Air_Conditioner_meter, &Air_Conditioner_meter_style, LV_PART_ITEMS);
 
-    //Add a scale first
-    scale = lv_meter_add_scale(Air_Conditioner_meter);
-    lv_meter_set_scale_ticks(Air_Conditioner_meter, scale, 151, 1, 1, lv_palette_main(LV_PALETTE_GREY));
-    lv_meter_set_scale_major_ticks(Air_Conditioner_meter, scale, 50, 5, 15, lv_color_black(), 10);
-    lv_meter_set_scale_range(Air_Conditioner_meter, scale, 15, 30, 180, 180);
-
-    //Add a three arc indicator
+    /* Add a three arc indicator */
     Air_Conditioner_set_arc = lv_arc_create(Air_Conditioner_panel);
     lv_obj_set_size(Air_Conditioner_set_arc, 460, 460);
     lv_obj_center(Air_Conditioner_set_arc);
@@ -376,8 +382,8 @@ void create_Home_Automation(void)
     lv_arc_set_rotation(Air_Conditioner_set_arc, 180);
     lv_obj_add_event_cb(Air_Conditioner_set_arc, value_changed_event_cb, LV_EVENT_VALUE_CHANGED, 0);
     lv_obj_add_style(Air_Conditioner_set_arc, &Air_Conditioner_OFF_style, 0);
-    lv_obj_clear_state(Air_Conditioner_set_arc, LV_STATE_DEFAULT);
-    lv_obj_add_state(Air_Conditioner_set_arc, LV_STATE_DISABLED); 
+    lv_obj_remove_state(Air_Conditioner_set_arc, LV_STATE_DEFAULT);
+    lv_obj_add_state(Air_Conditioner_set_arc, LV_STATE_DISABLED);
 
     lv_obj_t* Air_Conditioner_set_value_background = lv_obj_create(Air_Conditioner_panel);
     lv_obj_set_size(Air_Conditioner_set_value_background, 230, 230);
@@ -419,7 +425,7 @@ void create_Home_Automation(void)
     lv_obj_set_style_bg_color(Air_Conditioner_set_humidity_value_background, lv_color_hex(0xFFFFFF), 0);
     lv_obj_set_style_radius(Air_Conditioner_set_humidity_value_background, LV_RADIUS_CIRCLE, 0);
     lv_obj_set_style_border_width(Air_Conditioner_set_humidity_value_background, 0, 0);
-    lv_obj_clear_flag(Air_Conditioner_set_humidity_value_background, LV_OBJ_FLAG_SCROLLABLE);   
+    lv_obj_remove_flag(Air_Conditioner_set_humidity_value_background, LV_OBJ_FLAG_SCROLLABLE);
 
     Air_Conditioner_set_humidity_value_label = lv_label_create(Air_Conditioner_set_humidity_value_background);
     lv_label_set_text(Air_Conditioner_set_humidity_value_label, "0%");
@@ -438,7 +444,7 @@ void create_Home_Automation(void)
     lv_obj_set_style_bg_color(Air_Conditioner_set_wind_value_background, lv_color_hex(0xFFFFFF), 0);
     lv_obj_set_style_radius(Air_Conditioner_set_wind_value_background, LV_RADIUS_CIRCLE, 0);
     lv_obj_set_style_border_width(Air_Conditioner_set_wind_value_background, 0, 0);
-    lv_obj_clear_flag(Air_Conditioner_set_wind_value_background, LV_OBJ_FLAG_SCROLLABLE);   
+    lv_obj_remove_flag(Air_Conditioner_set_wind_value_background, LV_OBJ_FLAG_SCROLLABLE);
 
     Air_Conditioner_set_wind_value_label = lv_label_create(Air_Conditioner_set_wind_value_background);
     lv_label_set_text(Air_Conditioner_set_wind_value_label, "0");
@@ -450,76 +456,85 @@ void create_Home_Automation(void)
     lv_obj_set_scroll_snap_x(Home_Automation_chart, LV_SCROLL_SNAP_CENTER);
     lv_chart_set_range(Home_Automation_chart, LV_CHART_AXIS_PRIMARY_Y, -1000, 1000);
 
-    //Do not display points on the data
-    lv_obj_set_style_size(Home_Automation_chart, 0, LV_PART_INDICATOR);
+    /* Do not display points on the data */
+    lv_obj_set_style_size(Home_Automation_chart, 0, 0, LV_PART_INDICATOR);
 
     ser = lv_chart_add_series(Home_Automation_chart, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
 
     pcnt = sizeof(ecg_sample) / sizeof(ecg_sample[0]);
     lv_chart_set_point_count(Home_Automation_chart, pcnt);
-    lv_chart_set_ext_y_array(Home_Automation_chart, ser, (lv_coord_t*)ecg_sample);
+    lv_chart_set_ext_y_array(Home_Automation_chart, ser, (int32_t*)ecg_sample);
 
 }
 
 static void Light1_event_handler(lv_event_t* e)
 {
-    if(light1_state == 0) //Light1_OFF
+    /* Light1_OFF */
+    if(light1_state == 0)
     {
-        lv_img_set_src(Light1_icon, &Light_ON_icon);
+        lv_image_set_src(Light1_icon, &Light_ON_icon);
         light1_state = 1;
     } 
-    else if(light1_state == 1) //Light1_ON
+    /* Light1_ON */
+    else if(light1_state == 1)
     {
-        lv_img_set_src(Light1_icon, &Light_OFF_icon);
+        lv_image_set_src(Light1_icon, &Light_OFF_icon);
         light1_state = 0;
     }
 }
 
 static void WiFi_event_handler(lv_event_t* e)
 {
-    if(WiFi_state == 0) //WiFi_OFF
+    /* WiFi_OFF */
+    if(WiFi_state == 0)
     {
-        lv_img_set_src(WiFi_icon, &WiFi_ON_icon);
+        lv_image_set_src(WiFi_icon, &WiFi_ON_icon);
         WiFi_state = 1;
     } 
-    else if(WiFi_state == 1) //Wifi_ON
+    /* Wifi_ON */
+    else if(WiFi_state == 1)
     {
-        lv_img_set_src(WiFi_icon, &WiFi_OFF_icon);
+        lv_image_set_src(WiFi_icon, &WiFi_OFF_icon);
         WiFi_state = 0;
     }
 }
 
 static void Light2_event_handler(lv_event_t* e)
 {
-    if(Light2_state == 0) //Light2_OFF
+    /* Light2_OFF */
+    if(Light2_state == 0)
     {
-        lv_img_set_src(Light2_icon, &Light_ON_icon);
+        lv_image_set_src(Light2_icon, &Light_ON_icon);
         Light2_state = 1;
     } 
-    else if(Light2_state == 1) //Light2_ON
+    /* Light2_ON */
+    else if(Light2_state == 1)
     {
-        lv_img_set_src(Light2_icon, &Light_OFF_icon);
+        lv_image_set_src(Light2_icon, &Light_OFF_icon);
         Light2_state = 0;
     }
 }
 
 static void TV_event_handler(lv_event_t* e)
 {
-    if(TV_state == 0) //TV_OFF
+    /* TV_OFF */
+    if(TV_state == 0)
     {
-        lv_img_set_src(TV_icon, &TV_ON_icon);
+        lv_image_set_src(TV_icon, &TV_ON_icon);
         TV_state = 1;
     } 
-    else if(TV_state == 1) //TV_ON
+    /* TV_ON */
+    else if(TV_state == 1)
     {
-        lv_img_set_src(TV_icon, &TV_OFF_icon);
+        lv_image_set_src(TV_icon, &TV_OFF_icon);
         TV_state = 0;
     }
 }
 
 static void Air_Conditioner_event_handler(lv_event_t* e)
 {
-    if (Air_Conditioner_state == 0) //Air_Conditioner_OFF
+    /* Air_Conditioner_OFF */
+    if (Air_Conditioner_state == 0)
     {
         lv_obj_set_style_bg_color(Air_Conditioner_set_arc, lv_color_hex(0xFFFFFF), LV_PART_KNOB);
         lv_obj_set_style_arc_color(Air_Conditioner_set_arc, lv_color_hex(0xFFC500), LV_PART_INDICATOR);
@@ -527,23 +542,24 @@ static void Air_Conditioner_event_handler(lv_event_t* e)
         lv_obj_remove_style(Air_Conditioner_set_arc, &Air_Conditioner_OFF_style, 0);
         lv_obj_add_style(Air_Conditioner_set_arc, &Air_Conditioner_ON_style, 0);
         lv_obj_add_state(Air_Conditioner_set_arc, LV_STATE_DEFAULT);
-        lv_obj_clear_state(Air_Conditioner_set_arc, LV_STATE_DISABLED);
+        lv_obj_remove_state(Air_Conditioner_set_arc, LV_STATE_DISABLED);
 
         lv_obj_set_style_bg_color(Air_Conditioner_set_humidity_slider, lv_color_hex(0xFFFFFF), LV_PART_KNOB);
         lv_obj_set_style_bg_color(Air_Conditioner_set_humidity_slider, lv_color_hex(0x575CAE),LV_PART_INDICATOR);
         lv_obj_remove_style(Air_Conditioner_set_humidity_slider, &Air_Conditioner_OFF_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_humidity_slider, &Air_Conditioner_humidity_ON_style, LV_PART_INDICATOR);
         lv_obj_add_state(Air_Conditioner_set_humidity_slider, LV_STATE_DEFAULT);
-        lv_obj_clear_state(Air_Conditioner_set_humidity_slider, LV_STATE_DISABLED);
+        lv_obj_remove_state(Air_Conditioner_set_humidity_slider, LV_STATE_DISABLED);
         
         lv_obj_set_style_bg_color(Air_Conditioner_set_wind_slider, lv_color_hex(0xFFFFFF), LV_PART_KNOB);
         lv_obj_set_style_bg_color(Air_Conditioner_set_wind_slider, lv_color_hex(0x068A42),LV_PART_INDICATOR);
         lv_obj_remove_style(Air_Conditioner_set_wind_slider, &Air_Conditioner_OFF_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_wind_slider, &Air_Conditioner_humidity_ON_style, LV_PART_INDICATOR);
         lv_obj_add_state(Air_Conditioner_set_wind_slider, LV_STATE_DEFAULT);
-        lv_obj_clear_state(Air_Conditioner_set_wind_slider, LV_STATE_DISABLED);
+        lv_obj_remove_state(Air_Conditioner_set_wind_slider, LV_STATE_DISABLED);
     }
-    else if (Air_Conditioner_state == 1) //Air_Conditioner_ON
+    /* Air_Conditioner_ON */
+    else if (Air_Conditioner_state == 1)
     {
         lv_obj_set_style_bg_color(Air_Conditioner_set_arc, lv_color_hex(0x555555), LV_PART_KNOB);
         lv_obj_set_style_arc_color(Air_Conditioner_set_arc, lv_color_hex(0xA9A9A9),LV_PART_INDICATOR);
@@ -551,7 +567,7 @@ static void Air_Conditioner_event_handler(lv_event_t* e)
         lv_obj_remove_style(Air_Conditioner_set_arc, &Air_Conditioner_ON_style, 0);
         lv_obj_remove_style(Air_Conditioner_set_arc, &Air_Conditioner_ON_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_arc, &Air_Conditioner_OFF_style, 0);
-        lv_obj_clear_state(Air_Conditioner_set_arc, LV_STATE_DEFAULT);
+        lv_obj_remove_state(Air_Conditioner_set_arc, LV_STATE_DEFAULT);
         lv_obj_add_state(Air_Conditioner_set_arc, LV_STATE_DISABLED);
 
         lv_obj_set_style_bg_color(Air_Conditioner_set_humidity_slider, lv_color_hex(0x555555), LV_PART_KNOB);
@@ -559,7 +575,7 @@ static void Air_Conditioner_event_handler(lv_event_t* e)
         lv_obj_remove_style(Air_Conditioner_set_humidity_slider, &Air_Conditioner_humidity_ON_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_humidity_slider, &Air_Conditioner_OFF_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_humidity_slider, &Air_Conditioner_OFF_style, 0);
-        lv_obj_clear_state(Air_Conditioner_set_humidity_slider, LV_STATE_DEFAULT);
+        lv_obj_remove_state(Air_Conditioner_set_humidity_slider, LV_STATE_DEFAULT);
         lv_obj_add_state(Air_Conditioner_set_humidity_slider, LV_STATE_DISABLED);
 
         lv_obj_set_style_bg_color(Air_Conditioner_set_wind_slider, lv_color_hex(0x555555), LV_PART_KNOB);
@@ -567,7 +583,7 @@ static void Air_Conditioner_event_handler(lv_event_t* e)
         lv_obj_remove_style(Air_Conditioner_set_wind_slider, &Air_Conditioner_humidity_ON_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_wind_slider, &Air_Conditioner_OFF_style, LV_PART_INDICATOR);
         lv_obj_add_style(Air_Conditioner_set_wind_slider, &Air_Conditioner_OFF_style, 0);
-        lv_obj_clear_state(Air_Conditioner_set_wind_slider, LV_STATE_DEFAULT);
+        lv_obj_remove_state(Air_Conditioner_set_wind_slider, LV_STATE_DEFAULT);
         lv_obj_add_state(Air_Conditioner_set_wind_slider, LV_STATE_DISABLED);
     } 
 }
@@ -580,11 +596,9 @@ static void value_changed_event_cb(lv_event_t* e)
 static void Air_Conditioner_humidity_slider_handler(lv_event_t* e)
 {
     lv_label_set_text_fmt(Air_Conditioner_set_humidity_value_label, "%d%%", (int)lv_slider_get_value(Air_Conditioner_set_humidity_slider));
-    
 }
 
 static void Air_Conditioner_wind_slider_handler(lv_event_t* e)
 {
     lv_label_set_text_fmt(Air_Conditioner_set_wind_value_label, "%d", (int)lv_slider_get_value(Air_Conditioner_set_wind_slider));
-    
 }

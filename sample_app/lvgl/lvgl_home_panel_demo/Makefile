@@ -1,8 +1,8 @@
 BIN = lvgl-home-panel-demo
 
-CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/lvgl  -I${SDKTARGETSYSROOT}/usr/include/lvgl/lv_drivers -DLV_CONF_INCLUDE_SIMPLE
+CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/lvgl -DLV_CONF_INCLUDE_SIMPLE
 CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/glib-2.0 -I${SDKTARGETSYSROOT}/usr/lib64/glib-2.0/include
-LDFLAGS += -llvgl -llv_drivers -lwayland-client -lpthread 
+LDFLAGS += -llvgl
 
 GLIB_CFLAGS :=${shell pkg-config --cflags glib-2.0}
 GLIB_LIBS :=${shell pkg-config --libs glib-2.0}
@@ -18,12 +18,17 @@ LDFLAGS += ${GOBJ_GLIB_LIBS}
 
 ifeq ($(MACHINE),smarc-rzg2l)
  CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/gstreamer-1.0
- LDFLAGS += -lgstreamer-1.0
+ LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
 endif
 
 ifeq ($(MACHINE),smarc-rzg2lc)
  CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/gstreamer-1.0
- LDFLAGS += -lgstreamer-1.0
+ LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
+ifeq ($(MACHINE),smarc-rzg3e)
+ CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/gstreamer-1.0
+ LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
 endif
 
 prefix ?= /usr
