@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux sample program for video playback
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2026 Renesas Electronics Corp. All rights reserved.
  */
 
 #ifndef	SAMPLE_APP_H
@@ -12,25 +12,25 @@
 
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
+#include	"lvgl/src/drivers/wayland/lv_wayland.h"
 
 /******************************************************************************
  * Declarations and definition for sample applicaiton
  *****************************************************************************/
-#define		LSVP_MAJOR_VERSION		(1)
-#define		LSVP_MINOR_VERSION		(2)
+#define		LSVP_MAJOR_VERSION		(2)
+#define		LSVP_MINOR_VERSION		(0)
 
-#define		LSVP_WINDOW_WIDTH		((lv_coord_t)320)
-#define		LSVP_WINDOW_HEIGHT		((lv_coord_t)240)
+#define		LSVP_WINDOW_WIDTH		((int32_t)320)
+#define		LSVP_WINDOW_HEIGHT		((int32_t)240)
 
 #define		LSVP_BG_COLOR			((uint32_t)0xFFFFFF)
 
 typedef struct {
-	lv_coord_t x, y;
+	int32_t x, y;
 } lsvp_pos_t;
 
 typedef struct {
-	lv_coord_t x, y, w, h;
+	int32_t x, y, w, h;
 } lsvp_rect_t;
 
 typedef enum {
@@ -48,9 +48,9 @@ typedef enum {
 } lsvp_status_t;
 
 typedef struct {
-	lv_disp_t *disp;
-	lv_coord_t width;
-	lv_coord_t height;
+	lv_display_t *disp;
+	int32_t width;
+	int32_t height;
 
 	char *input;
 	int32_t audio;
@@ -63,7 +63,7 @@ typedef struct {
 	int32_t quit_flag;
 } lsvp_sample_app_t;
 
-int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
 						char *input, int32_t audio);
 void lsvp_sample_app_quit(void);
 void lsvp_complete_playing(void);

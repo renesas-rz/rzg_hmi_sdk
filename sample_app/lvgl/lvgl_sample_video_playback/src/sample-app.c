@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux sample program for video playback
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2026 Renesas Electronics Corp. All rights reserved.
  */
 
 #include	<stdio.h>
@@ -10,7 +10,7 @@
 #include	<pthread.h>
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
+#include	"lvgl/src/drivers/wayland/lv_wayland.h"
 
 #include	"sample-app.h"
 #include	"sample-player.h"
@@ -51,7 +51,7 @@ void lsvp_quit_with_error(void)
 
 	app->quit_flag = 1;
 
-	lv_wayland_close_window(app->disp);
+	lv_wayland_window_close(app->disp);
 }
 
 /** Change state of buttons
@@ -61,18 +61,18 @@ static void change_button_state(lsvp_sample_app_t *app)
 {
 	switch (app->status) {
 	case LSVP_STATUS_STOP:
-		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
 		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
 		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		break;
 	case LSVP_STATUS_PLAY:
 		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
-		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
-		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		break;
 	case LSVP_STATUS_PAUSE:
-		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
-		lv_obj_clear_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(app->playback_ctrl[LSVP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(app->playback_ctrl[LSVP_CTRL_STOP_BTN], LV_STATE_DISABLED);
 		lv_obj_add_state(app->playback_ctrl[LSVP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		break;
 	default:
@@ -212,46 +212,46 @@ static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 
 	/* Set up a style for disabled buttons */
 	lv_style_init(style_ptr);
-	lv_style_set_img_recolor_opa(style_ptr, LV_OPA_50);
-	lv_style_set_img_recolor(style_ptr, lv_color_white());
+	lv_style_set_image_recolor_opa(style_ptr, LV_OPA_50);
+	lv_style_set_image_recolor(style_ptr, lv_color_white());
 
 	/* Play button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
 	app->playback_ctrl[LSVP_CTRL_PLAY_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_play, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_play, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 24, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Stop button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
 	app->playback_ctrl[LSVP_CTRL_STOP_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_stop, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_stop, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 120, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Pause button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
 	app->playback_ctrl[LSVP_CTRL_PAUSE_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_pause, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSVP_btn_pause, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 216, 136);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
@@ -270,16 +270,16 @@ static int32_t create_video_file_playback_screen(lsvp_sample_app_t *app)
 	int32_t ret;
 	lv_obj_t *txtimg;
 
-	screen = lv_scr_act();
+	screen = lv_screen_active();
 	lv_obj_set_style_bg_color(screen, lv_color_hex(LSVP_BG_COLOR), 0);
 
 	/* Create image for text */
-	txtimg = lv_img_create(screen);
+	txtimg = lv_image_create(screen);
 	if (txtimg == NULL) {
-		fprintf(stderr, "ERROR!! lv_img_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_image_create() failed.\n");
 		return -1;
 	}
-	lv_img_set_src(txtimg, &LSVP_text);
+	lv_image_set_src (txtimg, &LSVP_text);
 	lv_obj_align(txtimg, LV_ALIGN_TOP_LEFT, 20, 20);
 
 	ret = create_buttons(app, screen);
@@ -297,7 +297,7 @@ static int32_t create_video_file_playback_screen(lsvp_sample_app_t *app)
  *
  * Basic objects for each screen are created, and data structures are allocated.
  */
-int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
 													char *input, int32_t audio)
 {
 	int32_t ret;
@@ -307,8 +307,8 @@ int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
 		return -1;
 	}
 
-	app_obj->width = (lv_coord_t)width;
-	app_obj->height = (lv_coord_t)height;
+	app_obj->width = (int32_t)width;
+	app_obj->height = (int32_t)height;
 	app_obj->disp = disp;
 	app_obj->input = input;
 	app_obj->audio = audio;
@@ -335,7 +335,7 @@ void lsvp_sample_app_quit(void)
 	if (!app->quit_flag)	/* Quit player */
 		lsvp_quit_playback();
 
-	lv_obj_del(app->screen);
+	lv_obj_delete(app->screen);
 
 	/* Release memory for GUI screen */
 	free(app);
