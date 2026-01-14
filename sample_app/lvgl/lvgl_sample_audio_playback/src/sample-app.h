@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux sample program for audio playback
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2026 Renesas Electronics Corp. All rights reserved.
  */
 
 #ifndef	SAMPLE_APP_H
@@ -12,16 +12,16 @@
 
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
+#include	"lvgl/src/drivers/wayland/lv_wayland.h"
 
 /******************************************************************************
   * Declarations and definition for sample applicaiton
 *****************************************************************************/
-#define		LSAP_MAJOR_VERSION		(1)
-#define		LSAP_MINOR_VERSION		(1)
+#define		LSAP_MAJOR_VERSION		(2)
+#define		LSAP_MINOR_VERSION		(0)
 
-#define		LSAP_WINDOW_WIDTH		((lv_coord_t)640)
-#define		LSAP_WINDOW_HEIGHT		((lv_coord_t)480)
+#define		LSAP_WINDOW_WIDTH		((int32_t)640)
+#define		LSAP_WINDOW_HEIGHT		((int32_t)480)
 
 #define		LSAP_BG_COLOR			((uint32_t)0xFFFFFF)
 #define		LSAP_MENU_ENABLED_COLOR		((uint32_t)0xFFC4C4)
@@ -29,11 +29,11 @@
 
 
 typedef struct {
-	lv_coord_t x, y;
+	int32_t x, y;
 } lsap_pos_t;
 
 typedef struct {
-	lv_coord_t x, y, w, h;
+	int32_t x, y, w, h;
 } lsap_rect_t;
 
 typedef enum {
@@ -58,9 +58,9 @@ typedef enum {
 } lsap_status_t;
 
 typedef struct {
-	lv_disp_t *disp;
-	lv_coord_t width;
-	lv_coord_t height;
+	lv_display_t *disp;
+	int32_t width;
+	int32_t height;
 	const char **audio_file;
 
 	lv_obj_t *screen;
@@ -73,7 +73,7 @@ typedef struct {
 	int32_t quit_flag;
 } lsap_sample_app_t;
 
-int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
 							const char **audio);
 void lsap_sample_app_quit(void);
 void lsap_complete_playing(void);

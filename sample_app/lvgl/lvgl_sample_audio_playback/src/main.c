@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux sample program for audio playback
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2026 Renesas Electronics Corp. All rights reserved.
  */
 
 
@@ -21,7 +21,7 @@
 #include	<pthread.h>
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
+#include	"lvgl/src/drivers/wayland/lv_wayland.h"
 
 #include	"sample-app.h"
 #include	"sample-player.h"
@@ -63,7 +63,8 @@ static void check_options(int argc, char *argv[])
 		case 'v':
 			printf("LVGL sample program for audio playback, "
 				"Ver. %d.%02d\n" 
-				"Copyright (C) 2024 Renesas Electronics Corp. "
+				"Copyright (C) 2024, 2026 "
+				"Renesas Electronics Corp. "
 				"All rights reserved.\n",
 				LSAP_MAJOR_VERSION, LSAP_MINOR_VERSION);
 			exit(EXIT_SUCCESS);
@@ -104,10 +105,10 @@ int main(int argc, char *argv[])
 	struct pollfd pfd;
 	uint32_t time_till_next;
 	int sleep;
-	lv_coord_t width = LSAP_WINDOW_WIDTH;
-	lv_coord_t height = LSAP_WINDOW_HEIGHT;
+	int32_t width = LSAP_WINDOW_WIDTH;
+	int32_t height = LSAP_WINDOW_HEIGHT;
 	int32_t ret;
-	lv_disp_t *disp;
+	lv_display_t *disp;
 
 	check_options(argc, argv);
 
@@ -123,12 +124,10 @@ int main(int argc, char *argv[])
 	/*LittlevGL init*/
 	lv_init();
 
-	lv_wayland_init();
-
-	disp = lv_wayland_create_window(width, height, "Window Demo", NULL);
+	disp = lv_wayland_window_create(width, height, "Window Demo", NULL);
 	if (disp == NULL) {
 		printf("ERROR!! lv_wayland_create_window\n");
-		lv_wayland_deinit();
+		lv_wayland_window_close(disp);
 		return 1;
 	}
 
@@ -138,7 +137,7 @@ int main(int argc, char *argv[])
 	ret = lsap_sample_app_setup(width, height, disp, audio_file);
 	if (ret < 0) {
 		printf("ERROR!! lb_demo_gui() failed.\n");
-		lv_wayland_deinit();
+		lv_wayland_window_close(disp);
 		return 1;
 	}
 
@@ -164,7 +163,7 @@ int main(int argc, char *argv[])
 
 	lsap_sample_app_quit();
 
-	lv_wayland_deinit();
+	lv_wayland_window_close(disp);
 
 	pthread_join(id_playback_thread, NULL);
 

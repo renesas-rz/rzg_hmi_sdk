@@ -1,7 +1,7 @@
 /**
  * HMI SDK / RZ/G Linux sample program for audio playback
  *
- * Copyright (C) 2024 Renesas Electronics Corp. All rights reserved.
+ * Copyright (C) 2024, 2026 Renesas Electronics Corp. All rights reserved.
  */
 
 #include	<stdio.h>
@@ -10,7 +10,7 @@
 #include	<pthread.h>
 
 #include	"lvgl/lvgl.h"
-#include	"lvgl/lv_drivers/wayland/wayland.h"
+#include	"lvgl/src/drivers/wayland/lv_wayland.h"
 
 #include	"sample-app.h"
 #include	"sample-player.h"
@@ -54,7 +54,7 @@ void lsap_quit_with_error(void)
 
 	app->quit_flag = 1;
 
-	lv_wayland_close_window(app->disp);
+	lv_wayland_window_close(app->disp);
 }
 
 /** Change state of buttons
@@ -69,7 +69,7 @@ static void change_button_state(lsap_sample_app_t *app)
 	case LSAP_STATUS_STOP:
 		for (i = 0; i < LSAP_MENU_NUM; i++) {
 			btn = app->playback_ctrl[i];
-			lv_obj_clear_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+			lv_obj_remove_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
 			lv_obj_add_state(btn[LSAP_CTRL_STOP_BTN], LV_STATE_DISABLED);
 			lv_obj_add_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		}
@@ -80,12 +80,12 @@ static void change_button_state(lsap_sample_app_t *app)
 			lv_obj_add_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
 		}
 		btn = app->playback_ctrl[app->enabled_menu];
-		lv_obj_clear_state(btn[LSAP_CTRL_STOP_BTN], LV_STATE_DISABLED);
-		lv_obj_clear_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(btn[LSAP_CTRL_STOP_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		break;
 	case LSAP_STATUS_PAUSE:
 		btn = app->playback_ctrl[app->enabled_menu];
-		lv_obj_clear_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
+		lv_obj_remove_state(btn[LSAP_CTRL_PLAY_BTN], LV_STATE_DISABLED);
 		lv_obj_add_state(btn[LSAP_CTRL_PAUSE_BTN], LV_STATE_DISABLED);
 		break;
 	default:
@@ -290,42 +290,42 @@ static int32_t create_buttons(lsap_sample_app_t *app, lv_obj_t *obj,
 	lv_style_t *style_ptr = &app->disabled_style;
 
 	/* Play button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
         app->playback_ctrl[menu][LSAP_CTRL_PLAY_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_play, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_play, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 260, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Stop button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
         app->playback_ctrl[menu][LSAP_CTRL_STOP_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_stop, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_stop, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 350, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
 	lv_obj_add_style(imgbtn, style_ptr, LV_PART_MAIN | LV_STATE_DISABLED);
 
 	/* Pause button */
-	imgbtn = lv_imgbtn_create(obj);
+	imgbtn = lv_imagebutton_create(obj);
 	if (imgbtn == NULL) {
-		fprintf(stderr, "ERROR!! lv_imgbtn_create() failed.\n");
+		fprintf(stderr, "ERROR!! lv_imagebutton_create() failed.\n");
 		return -1;
 	}
         app->playback_ctrl[menu][LSAP_CTRL_PAUSE_BTN] = imgbtn;
 
-	lv_imgbtn_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_pause, NULL);
+	lv_imagebutton_set_src(imgbtn, LV_IMGBTN_STATE_RELEASED, NULL, &LSAP_btn_pause, NULL);
 	lv_obj_set_size(imgbtn, 80, 80);
 	lv_obj_align(imgbtn, LV_ALIGN_TOP_LEFT, 440, 0);
 	lv_obj_add_event_cb(imgbtn, button_clicked_cb, LV_EVENT_CLICKED, app);
@@ -358,8 +358,8 @@ static int32_t create_playback_menu(lsap_sample_app_t *app, lv_obj_t *screen)
 
 	/* Set up a style for disabled buttons */
 	lv_style_init(style_ptr);
-	lv_style_set_img_recolor_opa(style_ptr, LV_OPA_50);
-	lv_style_set_img_recolor(style_ptr, lv_color_white());
+	lv_style_set_image_recolor_opa(style_ptr, LV_OPA_50);
+	lv_style_set_image_recolor(style_ptr, lv_color_white());
 
 	for (i = 0; i < LSAP_MENU_NUM; i++) {
 		menu = lv_obj_create(screen);
@@ -378,7 +378,7 @@ static int32_t create_playback_menu(lsap_sample_app_t *app, lv_obj_t *screen)
 		lv_obj_set_style_bg_color(menu,
 				lv_color_hex(LSAP_MENU_DISABLED_COLOR), 0);
 
-		lv_img_set_src(txtimg, img_src[i]);
+		lv_image_set_src(txtimg, img_src[i]);
 		lv_obj_align(txtimg, LV_ALIGN_TOP_LEFT,
 				text_pos[i].x, text_pos[i].y);
 
@@ -401,7 +401,7 @@ static int32_t create_audio_file_playback_screen(lsap_sample_app_t *app)
 	lv_obj_t *img;
 	int32_t ret;
 
-	screen = lv_scr_act();
+	screen = lv_screen_active();
 	lv_obj_set_style_bg_color(screen, lv_color_hex(LSAP_BG_COLOR), 0);
 
 	/* Create playback menu */
@@ -421,7 +421,7 @@ static int32_t create_audio_file_playback_screen(lsap_sample_app_t *app)
  *
  * Basic objects for each screen are created, and data structures are allocated.
  */
-int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
+int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
 							const char **audio)
 {
 	int32_t ret;
@@ -431,8 +431,8 @@ int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_disp_t *disp,
 		return -1;
 	}
 
-	app_obj->width = (lv_coord_t)width;
-	app_obj->height = (lv_coord_t)height;
+	app_obj->width = (int32_t)width;
+	app_obj->height = (int32_t)height;
 	app_obj->disp = disp;
 	app_obj->audio_file = audio;
 
@@ -458,7 +458,7 @@ void lsap_sample_app_quit(void)
 	if (!app->quit_flag)	/* Quit player */
 		lsap_quit_playback();
 
-	lv_obj_del(app->screen);
+	lv_obj_delete(app->screen);
 
 	/* Release memory for GUI screen */
 	free(app);
