@@ -8,5 +8,25 @@
     "exe_cmd": "/usr/bin/lvgl-home-panel-demo",
     "icon_image": "L:/usr/share/demo-launcher/images/LVGL-Logo.png",
     "description": "LVGL Home panel demo"
+  },
+  {
+    "exe_cmd": "/usr/share/chromium_demo/chromium-app.sh",
+    "icon_image": "L:/usr/share/demo-launcher/images/Chromium_Logo.png",
+    "description": "Chromium Home panel demo"
+  },
+  {
+    "exe_cmd": "/usr/share/demo-launcher/flutter_material3_demo.sh",
+    "icon_image": "",
+    "description": "Flutter material3 demo"
+  },
+  {
+    "exe_cmd": "/usr/share/demo-launcher/flutter_animation_demo.sh",
+    "icon_image": "",
+    "description": "Flutter animation demo"
+  },
+  {
+    "exe_cmd": "/usr/share/demo-launcher/flutter_deeplink_store_demo.sh",
+    "icon_image": "",
+    "description": "Flutter shopping demo"
   }
 ]
