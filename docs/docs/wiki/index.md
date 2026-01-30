@@ -18,6 +18,10 @@ This page contains information and tips related to the RZ/G HMI SDK.
 
 * [How to Develop LVGL HMI Applications Using EEZ Studio](./lvgl_develop-hmi-using-eez-studio.md)
 
+## Flutter
+
+* [How to Develop Flutter HMI Applications Using FlutterViz](./flutter_develop-hmi-using-flutterviz.md)
+
 ## Chromium
 
 <font color="red">*Coming Soon!! *</font>

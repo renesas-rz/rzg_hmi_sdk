@@ -11,7 +11,6 @@ Please prepare the following required equipment.
 
 * Target board (Module Board & Common Carrier Board)  
 * USB Cable (to connect the board and PC via serial)  
-* *Parallel to HDMI Conversion Board (to convert the FFC/FPC connector to a micro HDMI connector, only for RZ/G2UL)
 
 **For Creating SD Cards with the Prebuilt Image**  
 
@@ -24,7 +23,7 @@ Please prepare the following required equipment.
 * HDMI Display & HDMI Cable (to display the demo applications)
 * USB Hub (to connect multiple USB devices)
 * USB Keyboard & Mouse (to operate the demo applications)
-* *USB Camera (for video input, for RZ/G2L and RZ/G2LC)
+* USB Camera (for video input)
 * Audio Speaker (for audio output)
 
    

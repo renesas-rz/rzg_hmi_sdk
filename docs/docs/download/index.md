@@ -31,10 +31,6 @@ HMI SDK provides the following packages:
 The packages are designed for specific board models, while the source code is universal and can be used across all boards.
 
 
-{% include "./_components/rz-g2l-evk.md" %}
-
-{% include "./_components/rz-g2lc-evk.md" %}
-
-{% include "./_components/rz-g2ul-evk.md" %}
+{% include "./_components/rz-g3e-evk.md" %}
 
 [Back to Home >](../index.md){ .md-button .md-button--primary .btn-right } [Back to Getting Started >](../getting_started/#step-1-obtain-an-rzg-evk){ .md-button .btn-right #back_to_getting_started_btn }

@@ -6,7 +6,7 @@ title: Overview
 
 ![](images/hmi-sdk.svg){ align=right width=320 }
 
-The HMI SDK provides a [Yocto](https://www.yoctoproject.org/){: target="_blank" }-based Linux environment with development tools, system libraries, graphics and multimedia support, and HMI frameworks such as HTML5 or LVGL, making it easy to create and run HMI applications.
+The HMI SDK provides a [Yocto](https://www.yoctoproject.org/){: target="_blank" }-based Linux environment with development tools, system libraries, graphics and multimedia support, and HMI frameworks such as HTML5, LVGL, or Flutter, making it easy to create and run HMI applications.
 
 The HMI SDK is specifically designed for the supported RZ/G EVKs and includes fixed Linux components. The source is also provided for further development and customization.
 <br>

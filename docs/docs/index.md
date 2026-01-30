@@ -23,6 +23,7 @@ It includes all the software required to build HMI applications quickly and effi
 <ul style="margin-left: 3em;">
   <li>LVGL – A lightweight, open-source graphics library for embedded systems.</li>  
   <li>Chromium – A browser-based framework with GPU acceleration for application development.</li>
+  <li>Flutter – Rich UI and UX like mobile apps and web apps.</li>
 </ul>
 
 

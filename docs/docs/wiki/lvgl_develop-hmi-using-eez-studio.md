@@ -11,7 +11,7 @@ For detailed information about EEZ Studio, see [EEZ Studio documentation](https:
 ### In the case of Windows PC
 
 1. Get the EEZ Studio installer 'EEZ-Studio-Setup-x.xx.x.exe' from the [GitHub page](https://github.com/eez-open/studio/releases).
-  ![eezinstall3-windows-image](images/eezstudio_installation_windows-1.png)
+  ![eezinstall3-windows-image](images/eezstudio/eezstudio_installation_windows-1.png)
 
 2. Double-click the downloaded installer and agree to the software license agreement to start installation.
 
@@ -19,13 +19,13 @@ For detailed information about EEZ Studio, see [EEZ Studio documentation](https:
 
 1. Get the EEZ Studio installer 'eezstudio_x.xx.x_amd64.deb' from the [GitHub page](https://github.com/eez-open/studio/releases).
 If you cannot find the installer in the list, click 'Show all xx assets' at the bottom of the list to show all items.
-  ![eezinstall4-image](images/eezstudio_installation_linux-1.png)
+  ![eezinstall4-image](images/eezstudio/eezstudio_installation_linux-1.png)
 
 2. Double-click the downloaded installer and click the Install button.
-  ![eezinstall5-image](images/eezstudio_installation_linux-2.png)
+  ![eezinstall5-image](images/eezstudio/eezstudio_installation_linux-2.png)
 
 3. Enter the login password and click Authenticate to start the installation.
-  ![eezinstall6-image](images/eezstudio_installation_linux-3.png)
+  ![eezinstall6-image](images/eezstudio/eezstudio_installation_linux-3.png)
 
 ## Development of GUI
 
@@ -43,23 +43,23 @@ And it supports generating source code.
 #### Creating a project
 
 1. Start EEZ Studio, select "File" on the left tab and choose "New Project".
-  ![newproject-image](images/eezstudio_create-project-1.png)
+  ![newproject-image](images/eezstudio/eezstudio_create-project-1.png)
 
 2. Select "LVGL" and enter an arbitrary project name in PROJECT SETTINGS and press Create Project.
-  ![createproject-image](images/eezstudio_create-project-2.png)
+  ![createproject-image](images/eezstudio/eezstudio_create-project-2.png)
 
 #### Creating GUI
 
 1. Adding widgets
 Drag and drop the necessary widgets (e.g. Arc) from the Components Palettes.
-  ![UI-components-image](images/eezstudio_create-gui-1.png)
-  ![UI-widgets-image](images/eezstudio_create-gui-2.png)
+  ![UI-components-image](images/eezstudio/eezstudio_create-gui-1.png)
+  ![UI-widgets-image](images/eezstudio/eezstudio_create-gui-2.png)
 
 2. Change the size and display of widgets
 You can resize the widgets (e.g. Arc) by expanding the blue frame.
-  ![UI-widgetsresize-image](images/eezstudio_create-gui-3.png)
+  ![UI-widgetsresize-image](images/eezstudio/eezstudio_create-gui-3.png)
 You can also change the size from POSITION AND SIZE in widgets (e.g. Arc).
-  ![UI-widgetsposition-image](images/eezstudio_create-gui-4.png)
+  ![UI-widgetsposition-image](images/eezstudio/eezstudio_create-gui-4.png)
 	- Left - Move widgets left and right.
 	- Top - Move widgets up and down.
 	- Width - Set the width of widgets.
@@ -67,7 +67,7 @@ You can also change the size from POSITION AND SIZE in widgets (e.g. Arc).
 	<br>
 SPECIFIC in WIDGETS (e.g. Arc) to change the way it is displayed.
 SPECIFIC has different items that can be changed depending on the widgets displayed.
-  ![UI-widgetsposition-image](images/eezstudio_create-gui-5.png)
+  ![UI-widgetsposition-image](images/eezstudio/eezstudio_create-gui-5.png)
 	- Range min - Minimum value of range
 	- Range max - Maximum value of range
 	- Value - Length of the blue line (depends on the application.)
@@ -79,26 +79,26 @@ NORMAL appears at the fixed position of the blue line, SYMMETRICAL at the symmet
 
 3. Adding image files
 Click on bitmaps on the right and drag and drop image files from Explorer into the red box.
-  ![UI-widgetsposition-image](images/eezstudio_create-gui-6.png)
+  ![UI-widgetsposition-image](images/eezstudio/eezstudio_create-gui-6.png)
 
 4. Apply image to widgets (image).
 Drag and drop the necessary widgets (image) from the Components Palettes.
-  ![UI-components-image](images/eezstudio_create-gui-1.png)
-  ![UI-widgets-image](images/eezstudio_create-gui-7.png)
+  ![UI-components-image](images/eezstudio/eezstudio_create-gui-1.png)
+  ![UI-widgets-image](images/eezstudio/eezstudio_create-gui-7.png)
 Add the image files added in Add Image Files.
-  ![UI-gallery-image](images/eezstudio_create-gui-8.png)
+  ![UI-gallery-image](images/eezstudio/eezstudio_create-gui-8.png)
 
 5. Apply image to widgets (imagebutton).
 Drag and drop the necessary widgets (imagebutton) from the Components Palettes.
-  ![UI-components-image](images/eezstudio_create-gui-1.png)
-  ![UI-imagebutton-image](images/eezstudio_create-gui-9.png)
+  ![UI-components-image](images/eezstudio/eezstudio_create-gui-1.png)
+  ![UI-imagebutton-image](images/eezstudio/eezstudio_create-gui-9.png)
 Add the image files added in Add Image Files.
-  ![UI-imagebutton-image](images/eezstudio_create-gui-10.png)
+  ![UI-imagebutton-image](images/eezstudio/eezstudio_create-gui-10.png)
 
 #### Generating C source code
 
 1. Open the created UI project in EEZ Studio
-  ![U1-sample-image](images/eezstudio_generate-code-1.png)
+  ![U1-sample-image](images/eezstudio/eezstudio_generate-code-1.png)
 
 2. Generate source code by following the steps below.
 
@@ -107,24 +107,24 @@ Add the image files added in Add Image Files.
 	- 2.2. Check the settings.
 
 	- 2.3. Build and generate source code
-	![UI-build-image](images/eezstudio_generate-code-2.png)
+	![UI-build-image](images/eezstudio/eezstudio_generate-code-2.png)
 
 3. Source code is generated.
 Source files are generated in the source folder in the project within eez-project.
-  ![code-generate-image](images/eezstudio_generate-code-3.png)
+  ![code-generate-image](images/eezstudio/eezstudio_generate-code-3.png)
 
 #### Implementation of events
 
 1. Follow the steps below to set up events using the UI in EEZ Studio.
 
 	1. Press "+" for "event handlers" in the properties of the object for which you want to set events.
-	![event-setting-image1](images/eezstudio_implement-event-1.png)
+	![event-setting-image1](images/eezstudio/eezstudio_implement-event-1.png)
 
 	2. Select "New Action" and set the event name.
-	![event-setting-image2](images/eezstudio_implement-event-2.png)
+	![event-setting-image2](images/eezstudio/eezstudio_implement-event-2.png)
 
 	3. Go to "User Actions", select the event created in the previous step, and copy the generated event callback template to screen.c.
-	![event-setting-image3](images/eezstudio_implement-event-3.png)
+	![event-setting-image3](images/eezstudio/eezstudio_implement-event-3.png)
 
 2. Implement the generated event callback in C language.
 In this example, color of the button is changed in the event callback function.
@@ -194,7 +194,7 @@ chmod +x <executable file name>
 ```
 {: .hash }
 
-  ![bord-image](images/eezstudio_check-operation-1.png)
+  ![bord-image](images/eezstudio/eezstudio_check-operation-1.png)
 
 ## Appendix
 

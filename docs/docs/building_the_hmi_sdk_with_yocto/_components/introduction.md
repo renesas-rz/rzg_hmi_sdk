@@ -10,13 +10,9 @@ To build Yocto Linux, the following equipment should be prepared.
     | Equipment | Details                                              |
     +===========+======================================================+
     | Linux PC  | Approximately the following free space is required.  |
-    |           | - **150 GB for RZ/G2L EVK**                          |
-    |           | - **150 GB for RZ/G2LC EVK**                         |
-    |           | - **85 GB for RZ/G2UL EVK**                          |
+    |           | - **450 GB for RZ/G3E EVK**                          |
     |           +------+-----------------------------------------------+
     |           | OS   | **Ubuntu 22.04 LTS, 64-bit version**          |
     |           |      |                                               |
     +-----------+------+-----------------------------------------------+
 
-!!! warning "Notice"
-    Several updated OSS components, released to address security vulnerabilities and enhance driver performance, are now available on Renesas' GitHub. Please refer to [How to Update Linux Packages in the HMI SDK](../wiki/common_update-linux-package/) for instructions on how to replace them.

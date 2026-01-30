@@ -10,7 +10,7 @@
 
     ```bash
     sudo apt-get update
-    sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev libssl-dev bmap-tools
+    sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev libssl-dev bmap-tools file git libacl1 liblz4-tool locales python3-git python3-jinja2 python3-subunit zstd
 
     ```
     {: .dollar }
@@ -32,33 +32,13 @@
 
     Please set the following environment variables.
 
-    === "RZ/G2L"
+    === "RZ/G3E"
 
         ```bash
         export WORK=<A directory path for building>
-        export PLATFORM=rzg2l
-        export BOARD=smarc-rzg2l
+        export PLATFORM=rzg3e
+        export BOARD=smarc-rzg3e
         export SDK_PKG_DIR=<A directory path for HMI SDK Yocto Build packages>
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-
-        ```bash
-        export WORK=<A directory path for building>
-        export PLATFORM=rzg2l
-        export BOARD=smarc-rzg2lc
-        export SDK_PKG_DIR=<A directory path for HMI SDK Yocto Build Packages>
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-
-        ```bash
-        export WORK=<A directory path for building>
-        export PLATFORM=rzg2l
-        export BOARD=smarc-rzg2ul
-        export SDK_PKG_DIR=<Directory path for the HMI SDK Yocto Build Package>
         ```
         {: .dollar }
 
@@ -86,7 +66,7 @@
 
     ```bash
     cd ${WORK}
-    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components 1
+    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.tar.gz --strip-components 1
     ```
     {: .dollar }
 
@@ -96,7 +76,7 @@
 
     ```bash
     cd ${WORK}
-    TEMPLATECONF=${PWD}/meta-renesas/meta-${PLATFORM}/docs/template/conf/ source poky/oe-init-build-env build
+    TEMPLATECONF=${PWD}/meta-renesas/meta-rz-distro/conf/templates/rz-conf/ source poky/oe-init-build-env build
     ```
     {: .dollar }
 
@@ -104,53 +84,38 @@
 
     Add necessary Yocto `#!bash meta-layers` using the following commands.
 
-    === "RZ/G2L"
+    === "RZ/G3E"
 
         ```bash
         cd ${WORK}/build
         bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
         bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
         bitbake-layers add-layer ../meta-clang
+        bitbake-layers add-layer ../meta-lts-mixins
         bitbake-layers add-layer ../meta-browser/meta-chromium
         bitbake-layers add-layer ../meta-openembedded/meta-networking
         bitbake-layers add-layer ../meta-browser-hwdecode
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter-demo
+        bitbake-layers add-layer ../meta-flutter
+        bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
         bitbake-layers add-layer ../meta-rz-demos
         ```
         {: .dollar }
 
-    === "RZ/G2LC"
-
-        ```bash
-        cd ${WORK}/build
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
-        bitbake-layers add-layer ../meta-clang
-        bitbake-layers add-layer ../meta-browser/meta-chromium
-        bitbake-layers add-layer ../meta-openembedded/meta-networking
-        bitbake-layers add-layer ../meta-browser-hwdecode
-        bitbake-layers add-layer ../meta-rz-demos
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-
-        ```bash
-        cd ${WORK}/build
-        bitbake-layers add-layer ../meta-rz-demos
-        ```
-        {: .dollar }
 
 7.  Set up the environment for an offline build.
 
     !!! warning "Notice"
         This step configures the environment for offline building when you choose to download the **Source Code** manually.
 
-        If you prefer to obtain the source code via the network while building the HMI SDK with Yocto, you can skip this <span style="color: var(--renesas-primary-color-fg-blue")>*Step 2-7*</span> and continue directly with <span style="color: var(--renesas-primary-color-fg-blue")>*Step 2-8*</span>.
+        If you prefer to obtain the source code via the network while building the HMI SDK with Yocto, you can skip this <span style="color: var(--renesas-secondary-color-fg-blue-teal")>*Step 2-7*</span> and continue directly with <span style="color: var(--renesas-secondary-color-fg-blue-teal")>*Step 2-8*</span>.
 
     Change the environment variable `#!bash BB_NO_NETWORK` in `#!bash local.conf` from `#!bash 0`  to `#!bash 1` using the `#!bash sed` command.
 
     ```bash
     cd ${WORK}/build
-    sed -i "s|\(BB_NO_NETWORK =.*\)\"0\"|\1\"1\"|" "conf/local.conf"
+    sed -i '$aBB_NO_NETWORK = "1"' "conf/local.conf"
     ```
     {: .dollar }
 
@@ -160,7 +125,7 @@
     cd ${SDK_PKG_DIR}
     unzip RTK0EF0195F*SJ_linux-src.zip
     cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-    7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
+    7z x oss-souce-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
     mv downloads/ ${WORK}/build/
     ```
     {: .dollar }
@@ -169,31 +134,11 @@
 
     Add `#!bash IMAGE_INSTALL_append` and other settings to `#!bash local.conf` using the command shown below.
 
-    === "RZ/G2L"
+    === "RZ/G3E"
 
         ```bash
         cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL_append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
-        sed -i '$aWHITELIST_GPL-3.0 += \" glmark2 \"' "conf/local.conf"
-        sed -i '$aPREFERRED_VERSION_nodejs-native = \"14.%\"' "conf/local.conf"
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-
-        ```bash
-        cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL_append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
-        sed -i '$aWHITELIST_GPL-3.0 += \" glmark2 \"' "conf/local.conf"
-        sed -i '$aPREFERRED_VERSION_nodejs-native = \"14.%\"' "conf/local.conf"
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-
-        ```bash
-        cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL_append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
         ```
         {: .dollar }
 
@@ -201,7 +146,7 @@
 
     Run the `#!bash bitbake` command to build the images.
 
-    === "RZ/G2L"
+    === "RZ/G3E"
 
         ```bash
         cd ${WORK}/build
@@ -209,121 +154,20 @@
         ```
         {: .dollar }
 
-        After completing the build process above, change the eMMC setting from `#!bash 1` to `#!bash 0`.
-
-        ```bash
-        cd ${WORK}/build/tmp/work-shared/${BOARD}/kernel-source
-        vi arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-            (change EMMC setting)
-                before) #define EMMC	1
-                after)  #define EMMC	0
-        ```
-        {: .dollar }
-
-        After making the change above, perform the additional build process as follows.
-
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake linux-renesas -C compile
-        MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-        !!! success "Tip"
-            The SDK build may fail depending on the build environment. If this happens, try running the build again after some time, or rebuild it from scratch using the commands below.  
-            ```bash
-            cd ${WORK}/build
-            MACHINE=${BOARD} bitbake core-image-weston -c cleanall
-            MACHINE=${BOARD} bitbake core-image-weston
-            ```
-            {: .dollar }
-
-        
-    === "RZ/G2LC"
-
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-        After the above build process, change the setting of SW_SD0_DEV_SEL from `#!bash 1` to `#!bash 0`.
-        ```bash
-        cd ${WORK}/build/tmp/work-shared/${BOARD}/kernel-source
-        vi arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-            (change SW_SD0_DEV_SEL setting)
-                before) #define SW_SD0_DEV_SEL 1
-                after)  #define SW_SD0_DEV_SEL 0
-        ```
-        {: .dollar }
-
-        After the change above, perform the additional build process as follows.
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake linux-renesas -C compile
-        MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-        !!! success "Tip"
-            The SDK build may fail depending on the build environment. If this happens, try running the build again after some time, or rebuild it from scratch using the commands below.  
-            ```bash
-            cd ${WORK}/build
-            MACHINE=${BOARD} bitbake core-image-weston -c cleanall
-            MACHINE=${BOARD} bitbake core-image-weston
-            ```
-            {: .dollar }
-
-        
-    === "RZ/G2UL"
-
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-bsp
-        ```
-        {: .dollar }
-
-        !!! success "Tip"
-            The SDK build may fail depending on the build environment. If this happens, try running the build again after some time, or rebuild it from scratch using the commands below.  
-            ```bash
-            cd ${WORK}/build
-            MACHINE=${BOARD} bitbake core-image-bsp -c cleanall
-            MACHINE=${BOARD} bitbake core-image-bsp
-            ```
-            {: .dollar }
-        
     !!! success "Tip"
         The build may take several hours, depending on the PC specifications.  
     
     This completes the build of the Linux environment.  
-<br>    
-
 
 10. Create the SDK toolchain.
 
     If you want to further deploy sample or your customized applications, building the `toolchain` is also required. Create the SDK toolchain using the following command.
 
-    === "RZ/G2L"
+    === "RZ/G3E"
 
         ```bash
         cd ${WORK}/build
         MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-bsp -c populate_sdk
         ```
         {: .dollar }
 

@@ -7,6 +7,8 @@ For more information about the applications, see [Overview](overview/index.md).
 
 LVGL is a free and open-source graphics library that provides everything needed to create an embedded GUI with easy-to-use graphical elements, beautiful visual effects, and a low memory footprint. It is hardware-independent, works with any microcontroller or display, and does not require a GPU, making it ideal for resource-constrained environments.
 
+![](hmi_frameworks/images/LVGL-Logo-colored@3x.png){ align=right width=220 style=max-width:35%; }
+
 <br>
 A GUI built with LVGL offers several advantages:
 
@@ -25,5 +27,15 @@ A browser-based GUI on Chromium (HTML5 solutions) offers several advantages:
 * Cross-platform compatibility
 * Lower development costs
 
+### [Flutter](https://flutter.dev/)
 
+Flutter is a well-known open-source UI software used to build cross-platform apps for mobile, web, and desktop.
+In recent years, its use has expanded beyond mobile to include embedded systems.
+
+<br>
+Flutter-based UI applications offer several advantages:
+
+* Rich UI and user experience comparable to mobile apps
+* Cross-platform compatibility
+* Cloud integration and OTA support using extensive libraries
 
