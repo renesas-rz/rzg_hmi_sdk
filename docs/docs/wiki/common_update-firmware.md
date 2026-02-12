@@ -1,5 +1,12 @@
 # How to Update Firmware (Flash Writer and Bootloaders)
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
+
+    Last updated: ***December 23, 2025***
+
 When you use QSPI boot mode or eMMC boot mode, you should update firmware (bootloaders).
 This page describes how to write flash writer and bootloaders.
 To write flash writer and bootloaders, you need to connect your PC to the EVK with a USB serial cable.

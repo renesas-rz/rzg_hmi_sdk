@@ -1,5 +1,12 @@
 # How to Develop LVGL HMI Applications Using EEZ Studio
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L and RZ/G2LC EVK***
+
+    Last updated: ***January 30, 2026***
+
 [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) is a free and cross-platform tool that can be used for development of LVGL GUIs.
 It is an open-source tool licensed under [GPL v3](https://github.com/eez-open/studio/blob/master/LICENSE.TXT).
 

@@ -1,5 +1,11 @@
 # How to Change the Display Resolution
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L and RZ/G2LC EVK***
+
+    Last updated: ***December 23, 2025***
 
 This page describes how to change display resolution for weston (window manager).
 

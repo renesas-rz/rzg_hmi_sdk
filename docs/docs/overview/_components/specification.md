@@ -18,7 +18,7 @@ For detailed component information, please refer to the table below:
     | Components   | Version                          | Details |
     |-------------|----------------------------------|---------|
     | Linux Kernel | 6.1.107-cip28                   | SLTS (Super Long Term Support) kernel |
-    | Yocto       | 3.1.31 (dunfell)                 | Distribution for embedded Linux |
+    | Yocto       | 5.0.9 (scarthgap)                | Distribution for embedded Linux |
     | GCC         | 13.3.0                           | Compiler |
     | glibc       | 2.39                             | |
     | busybox     | 1.36.1                           | |

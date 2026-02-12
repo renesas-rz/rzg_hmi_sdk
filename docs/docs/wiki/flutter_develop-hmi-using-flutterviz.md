@@ -1,5 +1,12 @@
 # How to Develop Flutter HMI Applications Using FlutterViz
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+
+    Last updated: ***January 30, 2026***
+
 [FlutterViz](https://flutterviz.com/) is easy to use interface with Flutter Drag and Drop UI builder to quickly kick-start your project. This open-source project aims to empower developers by providing a free and extensible visual Flutter UI builder.
 
 This guide describes how to use FlutterViz, a web-based visual UI builder, to develop Flutter HMI applications. For more information about FlutterViz, see the [FlutterViz GitHub repository](https://github.com/iqonic-design/flutter_viz).

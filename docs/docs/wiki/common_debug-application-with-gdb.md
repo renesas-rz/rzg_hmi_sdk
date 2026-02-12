@@ -1,5 +1,12 @@
 # How to Debug an Application with GDB
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v2.3.0.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
+
+    Last updated: ***December 23, 2025***
+
 This guide describes the use of GDB to debug programs created in C on the EVK.
 For more detailed information about GDB, refer to [Debugging with GDB](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html).
 

@@ -1,5 +1,12 @@
 # How to Boot from a microSD Card in QSPI Boot Mode
 
+!!! abstract "Page Information"
+    The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
+
+    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
+
+    Last updated: ***December 23, 2025***
+
 This page describes how to boot Linux of the HMI SDK from a microSD card in QSPI boot mode.
 
 Please note that you need to update bootloaders in Flash ROM on the EVK to use the QSPI boot mode. 
