@@ -5,19 +5,20 @@ This section explains how to run the HMI demo applications and provides detailed
 The HMI SDK Demo Launcher starts automatically when the EVK boots. Currently, it includes the following prebuilt demo applications.
 If you want to customize them, their source code can be downloaded from the GitHub links listed in the table below.
 
+
 !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-    +--------------+----------------------------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    | Type         | Demo Applications                      | Target Device             | Source Code URL                                                                                                                    |
-    +==============+========================================+===========================+====================================================================================================================================+
-    | LVGL         | LVGL Benchmark Demo                    | RZ/G3E                    | [Link to GitHub](https://github.com/renesas-rz/rz_benchmark_demo){: target=_blank }                                                |
-    |              +----------------------------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    |              | LVGL Home Panel Demo                   | RZ/G3E                    | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }       |
-    +--------------+----------------------------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    | Chromium     | Chromium Home Panel Demo               | RZ/G3E                    | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }        |
-    +--------------+----------------------------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    | Flutter      | Flutter Samples                        | RZ/G3E                    | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                             |
-    +--------------+----------------------------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+    +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+    | Type         | Demo Applications          | Target Device                         | Source Code URL                                                                                                               |
+    +==============+============================+=======================================+===============================================================================================================================+
+    | LVGL         | LVGL Benchmark Demo        | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL      | [Link to GitHub](https://github.com/renesas-rz/rz_benchmark_demo){: target=_blank }                                           |
+    |              +----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+    |              | LVGL Home Panel Demo       | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL      | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }  |
+    +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+    | Chromium     | Chromium Home Panel Demo   | RZ/G3E, RZ/G2L, RZ/G2LC               | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }   |
+    +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+    | Flutter      | Flutter Samples            | RZ/G3E, RZ/G2L, RZ/G2LC               | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                        |
+    +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 Please follow the steps below to run the demo applications.
 
@@ -29,13 +30,14 @@ Please follow the steps below to run the demo applications.
         *  Please refer to the [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for the location of the microSD card slot.
         *  Press and hold the power button (red button, POWER SW) for 1 second to turn on the EVK board, and for 2 seconds to turn it off.
 
-3.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted.<br> 
+3.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted.
 
     Right after boot, you will see the launch window as shown below.
 
     ![](images/demo/demo_launching.png){: width="40%"} 
 
-    After a few seconds, the HMI SDK Demo Launcher will appear.<br>
+    After a few seconds, the HMI SDK Demo Launcher will appear.
+
     Click the corresponding button to try each demo application we provide.
 
     ![](images/demo/demo_launcher.png){: width="40%"}
@@ -46,21 +48,27 @@ Please follow the steps below to run the demo applications.
         *  restart your EVK board by press reset button (blue button, SW10) or<br> 
         *  run the following command in your board terminal to relaunch it: 
         ```bash 
-        /usr/share/demo-launcher/start_demo.sh 
+        demo-launcher
         ```
         {: .hash }
         
-        Note that this is temporary behavior, and we will improve it in future releases.
+        Note that the Demo Launcher does not support maximizing/minimizing window.
 
     !!! success "Tip"
-        If you want to use the audio output function, open a terminal, and log in as *root*. 
-        This will enable audio output and set default audio volume. <br>
-        This behavior will be improved in a future release. <br>
-        For detailed information about logging in the system, see section "5.2 Power on the board and Startup Linux" of "RZ/G3E-EVKIT Linux Start-up Guide" included in [RZ/G3E Board Support Package V1.0.0](https://www.renesas.com/en/software-tool/rzg3e-board-support-package).
+        If you would like to use the audio output function, open a terminal and log in as the **root** user. This will enable audio output and set the default audio volume.
+
+        For detailed instructions on how to log in to the system, refer to Section <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**5.1 Power on the board and Startup Linux**</span> in the <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**RZ/G2L, RZ/G2LC and RZ/G2UL-EVKIT Linux Start-up Guide**</span>, which is included in [RZ MPU Verified Linux Package v4.0.1](https://www.renesas.com/en/software-tool/rz-mpu-verified-linux-package-61-cip).
 
     <br>
 
-    *  ***LVGL Demo Applications***
+
+    You can then try the following types of demo applications:  
+    - [LVGL](#lvgl-demo-applications)  
+    - [Chromium](#chromium-demo-applications)  
+    - [Flutter](#flutter-demo-applications)  
+
+
+    #### LVGL Demo Applications
 
     === "LVGL Benchmark Demo"
 
@@ -89,9 +97,8 @@ Please follow the steps below to run the demo applications.
 
         ![](images/demo/demo_lvgl_homepanel_homeautomation.png){: width="40%"}
     
-    <br>
 
-    *  ***Chromium Demo Applications***
+    #### Chromium Demo Applications
 
     === "Chromium Home Panel Demo"
 
@@ -120,25 +127,29 @@ Please follow the steps below to run the demo applications.
         ![](images/demo/demo_chromium_livecam.png){: width="40%"}
 
         !!! success "Tip"
-            When you click UI parts repeatedly, the demo may crash.
-            If you encounter this issue many times, change the "VBUS_SEL" rotary switch on the RZ/G3E EVK Carrier Board (RZ SMARC Series Carrier Board II) to the 40W setting (VBUS_SEL = 4).
-            For detailed information about the switch settings, see section "2.3.1 VBUS_SEL – Main Power" of ["RZ SMARC Series Carrier Board II User's Manual"](https://www.renesas.com/en/document/mah/rz-smarc-series-carrier-board-ii-users-manual-hardware).
+            If you repeatedly click the UI elements, the demo application may crash.
 
-    <br>
+            If this issue occurs frequently, change the "**VBUS_SEL**" rotary switch on the RZ/G3E EVK Carrier Board (RZ SMARC Series Carrier Board II) to the **40W setting (VBUS_SEL = 4)**.
 
-    *  ***Flutter Demo Applications***
+            For detailed information about the switch configuration, refer to Section <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**2.3.1 VBUS_SEL – Main Power**</span> in the [RZ SMARC Series Carrier Board II User's Manual](https://www.renesas.com/en/document/mah/rz-smarc-series-carrier-board-ii-users-manual-hardware).
 
-    === "Flutter samples"
+
+    #### Flutter Demo Applications
+
+    === "Flutter Samples"
 
         You can try three types of Flutter sample applications to see what features are provided.
         These samples are open-source software distributed on [GitHub](https://github.com/flutter/samples).
 
-        *Material 3 demo*
+        ***Material 3 Demo***
+
         ![](images/demo/demo_flutter_material3.png){: width="40%"}
 
-        *Animation demo*
+        ***Animation Demo***
+
         ![](images/demo/demo_flutter_animation.png){: width="40%"}
 
-        *Shopping demo*
+        ***Shopping Demo***
+
         ![](images/demo/demo_flutter_shopping.png){: width="40%"}
 

@@ -14,19 +14,23 @@
     |Included with RZ/G EVK +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
     |                       | USB Cable (for serial communication) | *Port*: Connect to micro USB Type-B (2.0) port on the board                                                               |
     |                       |                                      |                                                                                                                           |
+    |                       +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+    |                       | *Parallel to HDMI Conversion Board   | *Only for RZ/G2UL                                                                                                         |
+    |                       |                                      |                                                                                                                           | 
+    |                       |                                      | Used to convert an FFC/FPC connector to a micro HDMI connector.                                                           |
     +-----------------------+--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
     | USB Power Delivery (PD) AC Adapter &                         | *Port*: Connect to the USB Type-C port on the board                                                                       |
     | USB Type-C PD Cable                                          |                                                                                                                           |
     +--------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
     | PC                                                           | *Storage*: a maximum of 450GB of free space on HDD/SSD                                                                    |
-    |                                                              | *Memory*: 8GB or more RAM                                                                                                 | 
+    |                                                              | *Memory*: 8GB or more RAM                                                                                                 |
     |                                                              | *CPU*: 4-core or more CPU                                                                                                 |
     |                                                              |                                                                                                                           |
     |                                                              | ***OS***:                                                                                                                 |
     |                                                              |    **Linux: Ubuntu 22.04 LTS, 64-bit version**                                                                            |
     |                                                              |    **Windows: Windows 11**                                                                                                |
     +--------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
-    | Micro SD Card & Reader                                       | *Type*: SDHC                                                                                                              |  
+    | Micro SD Card & Reader                                       | *Type*: SDHC                                                                                                              | 
     |                                                              | *Speed Class*: UHI-Class 10                                                                                               |
     |                                                              | ***Capacity*: Minimum 4GB, recommended 8GB**                                                                              |
     |                                                              |                                                                                                                           |
@@ -77,10 +81,22 @@ Please set up the necessary equipment referring to the EVK peripheral diagram be
 
     ![](images/hardware-requirements_rzg3e.png){: width="80%"}
 
+=== "RZ/G2L"
+
+    ![](images/hardware-requirements_rzg2l.png){: width="80%"}
+
+=== "RZ/G2LC"
+
+    ![](images/hardware-requirements_rzg2lc.png){: width="80%"}
+
+=== "RZ/G2UL"
+
+    ![](images/hardware-requirements_rzg2ul.png){: width="70%"}
+
 !!! success "Tip"
-    *  For *eSD boot mode*, insert the microSD card into the **microSD0** on the module board; for *QSPI boot mode*, insert the microSD card into the **microSD1** on the common carrier board.
-    *  If you use a touch-panel HDMI display, in addition to the HDMI cable, a USB cable connected to **USB** is required to enable touch functionality.
-    *  For Ethernet connection, RZ/G3E support **Ethernet 0 and Ethernet 1 **.
+    *  For *eSD boot mode*, insert the microSD card into the slot on the **module board**; for *QSPI boot mode*, insert the microSD card into the slot on the **common carrier board**.
+    *  If you use a touch-panel HDMI display, in addition to the HDMI cable, a USB cable connected to **USB (host)** is required to enable touch functionality.
+    *  For Ethernet connection, most RZ/G EVKs support **Ethernet 0 and Ethernet 1**, while RZ/G2LC supports only **Ethernet 0 (CN9)**.
 
 
 ### EVK DIP Switch Setup
@@ -101,25 +117,100 @@ Please set up the necessary equipment referring to the EVK peripheral diagram be
             |:--------------:|:--------------:|:------------:|:--------------:|
             | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
-*  ***QSPI Boot Mode***
+=== "RZ/G2L"
 
-=== "RZ/G3E"
+    Set DIP switch SW1 and SW11 as follows.
 
-    Set DIP switch SW_MODE as follows.
-
-    * SW_MODE (on Common Carrier Board II)
+    * SW1 (on Module Board)
 
         !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
-            ![](images/smarc-carrier-board-II-SW_MODE_QSPI.png){ align=left .switch-icon }
+            ![](images/smarc-rzg2l-board-SW1.png){ align=left .switch-icon }
 
-            |   SW_MODE[1]   |   SW_MODE[2]   |  SW_MODE[3]  |   SW_MODE[4]   |
+            |      SW1-1     |      SW1-2     |
+            |:--------------:|:--------------:|
+            | ON {: .green } | ON {: .green } |
+
+    * SW11 (on Common Carrier Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
+
+            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
             |:--------------:|:--------------:|:------------:|:--------------:|
-            | OFF {: .red }  | OFF {: .red }  | OFF {: .red} | ON {: .green } |
+            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
-    !!! warning "Notice"
-        Firmware (bootloader) updates are required for QSPI boot modes. Please follow the steps provided in [How to Update Firmware (Flash Writer and Bootloaders)](../wiki/common_update-firmware/).
-    !!! note
-        Please refer to [How to Boot from a microSD Card in QSPI Boot Mode](../wiki/common_qspi-boot-mode/) for details.
+=== "RZ/G2LC"
+
+    Set DIP switch SW1 and SW11 as follows.
+
+    * SW1 (on Module Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-rzg2lc-board-SW1.png){ align=left .switch-icon }
+
+            |      SW1-1     |      SW1-2     |       SW1-3     |     SW1-4     |      SW1-5      |      SW1-6     |
+            |:--------------:|:--------------:|:---------------:|:-------------:|:---------------:|:--------------:|
+            | ON {: .green } | ON {: .green } | ON* {: .green } | OFF* {: .red} | ON* {: .green } | Not used       |
+
+            *These switches are not related to the settings required for this boot mode.
+
+    * SW11 (on Common Carrier Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
+
+            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
+
+=== "RZ/G2UL"
+
+    Set DIP switch SW1 and SW11 as follows.
+
+    * SW1 (on Module Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-rzg2ul-board-SW1.png){ align=left .switch-icon }
+
+            |      SW1-1     |      SW1-2     |      SW1-3      |
+            |:--------------:|:--------------:|:---------------:|
+            | ON {: .green } | ON {: .green } | ON* {: .green } |
+
+            *This switch is not related to the settings required for this boot mode.
+
+    * SW11 (on Common Carrier Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
+
+            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
+
+
+*  ***QSPI Boot Mode***
+
+For all RZ/G EVKs, set DIP switch SW_MODE as follows.
+
+* SW_MODE (on Common Carrier Board II)
+
+    !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+        ![](images/smarc-carrier-board-II-SW_MODE_QSPI.png){ align=left .switch-icon }
+
+        |   SW_MODE[1]   |   SW_MODE[2]   |  SW_MODE[3]  |   SW_MODE[4]   |
+        |:--------------:|:--------------:|:------------:|:--------------:|
+        | OFF {: .red }  | OFF {: .red }  | OFF {: .red} | ON {: .green } |
+
+!!! warning "Notice"
+    Firmware (bootloader) updates are required for QSPI boot modes. Please follow the steps provided in [How to Update Firmware (Flash Writer and Bootloaders)](../wiki/common_update-firmware/).
+!!! note
+    Please refer to [How to Boot from a microSD Card in QSPI Boot Mode](../wiki/common_qspi-boot-mode/) for details.
 
     

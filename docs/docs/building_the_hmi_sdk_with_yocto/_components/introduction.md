@@ -11,6 +11,9 @@ To build Yocto Linux, the following equipment should be prepared.
     +===========+======================================================+
     | Linux PC  | Approximately the following free space is required.  |
     |           | - **450 GB for RZ/G3E EVK**                          |
+    |           | - **400 GB for RZ/G2L EVK**                          |
+    |           | - **400 GB for RZ/G2LC EVK**                         |
+    |           | - **150 GB for RZ/G2UL EVK**                         |
     |           +------+-----------------------------------------------+
     |           | OS   | **Ubuntu 22.04 LTS, 64-bit version**          |
     |           |      |                                               |

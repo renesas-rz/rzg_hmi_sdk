@@ -10,8 +10,7 @@
 
     ```bash
     sudo apt-get update
-    sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev libssl-dev bmap-tools file git libacl1 liblz4-tool locales python3-git python3-jinja2 python3-subunit zstd
-
+    sudo apt install build-essential chrpath cpio debianutils diffstat file gawk gcc git iputils-ping libacl1 liblz4-tool locales python3 python3-git python3-jinja2 python3-pexpect python3-pip python3-subunit socat texinfo unzip wget xz-utils zstd p7zip-full bmap-tools
     ```
     {: .dollar }
 
@@ -26,19 +25,45 @@
     {: .dollar }
 
     !!! note
-        For more information, refer to [Yocto Project Quick Build](https://docs.yoctoproject.org/3.1.26/brief-yoctoprojectqs/brief-yoctoprojectqs.html){: target=_blank }.
+        For more information, refer to [Yocto Project Quick Build](https://docs.yoctoproject.org/5.0.9/brief-yoctoprojectqs/index.html){: target=_blank }.
 
 3.  Set environment variables.
 
     Please set the following environment variables.
 
     === "RZ/G3E"
-
         ```bash
         export WORK=<A directory path for building>
         export PLATFORM=rzg3e
         export BOARD=smarc-rzg3e
-        export SDK_PKG_DIR=<A directory path for HMI SDK Yocto Build packages>
+        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        export WORK=<A directory path for building>
+        export PLATFORM=rzg2l
+        export BOARD=smarc-rzg2l
+        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        export WORK=<A directory path for building>
+        export PLATFORM=rzg2lc
+        export BOARD=smarc-rzg2lc
+        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        export WORK=<A directory path for building>
+        export PLATFORM=rzg2ul
+        export BOARD=smarc-rzg2ul
+        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
         ```
         {: .dollar }
 
@@ -64,11 +89,33 @@
 
     Extract the Yocto recipe package.
 
-    ```bash
-    cd ${WORK}
-    tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.tar.gz --strip-components 1
-    ```
-    {: .dollar }
+    === "RZ/G3E"
+        ```bash
+        cd ${WORK}
+        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.tar.gz --strip-components=1
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}
+        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}
+        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${WORK}
+        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
+        ```
+        {: .dollar }
 
 5.  Initialize the build environment.
 
@@ -85,7 +132,6 @@
     Add necessary Yocto `#!bash meta-layers` using the following commands.
 
     === "RZ/G3E"
-
         ```bash
         cd ${WORK}/build
         bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
@@ -103,6 +149,45 @@
         ```
         {: .dollar }
 
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}/build
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
+        bitbake-layers add-layer ../meta-clang
+        bitbake-layers add-layer ../meta-lts-mixins
+        bitbake-layers add-layer ../meta-browser/meta-chromium
+        bitbake-layers add-layer ../meta-openembedded/meta-networking
+        bitbake-layers add-layer ../meta-browser-hwdecode
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
+        bitbake-layers add-layer ../meta-flutter
+        bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
+        bitbake-layers add-layer ../meta-rz-demos
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        cd ${WORK}/build
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
+        bitbake-layers add-layer ../meta-clang
+        bitbake-layers add-layer ../meta-lts-mixins
+        bitbake-layers add-layer ../meta-browser/meta-chromium
+        bitbake-layers add-layer ../meta-openembedded/meta-networking
+        bitbake-layers add-layer ../meta-browser-hwdecode
+        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
+        bitbake-layers add-layer ../meta-flutter
+        bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
+        bitbake-layers add-layer ../meta-rz-demos
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${WORK}/build
+        bitbake-layers add-layer ../meta-rz-demos
+        ```
+        {: .dollar }
 
 7.  Set up the environment for an offline build.
 
@@ -121,24 +206,75 @@
 
     Decompress the downloaded **Source Code** and set it up in the build environment.
 
-    ```bash
-    cd ${SDK_PKG_DIR}
-    unzip RTK0EF0195F*SJ_linux-src.zip
-    cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-    7z x oss-souce-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
-    mv downloads/ ${WORK}/build/
-    ```
-    {: .dollar }
+    === "RZ/G3E"
+        ```bash
+        cd ${SDK_PKG_DIR}
+        unzip RTK0EF0195F*SJ_linux-src.zip
+        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
+        7z x oss-souce-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
+        mv downloads/ ${WORK}/build/
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${SDK_PKG_DIR}
+        unzip RTK0EF0195F*SJ_linux-src.zip
+        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
+        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
+        mv downloads/ ${WORK}/build/
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        cd ${SDK_PKG_DIR}
+        unzip RTK0EF0195F*SJ_linux-src.zip
+        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
+        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
+        mv downloads/ ${WORK}/build/
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${SDK_PKG_DIR}
+        unzip RTK0EF0195F*SJ_linux-src.zip
+        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
+        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
+        mv downloads/ ${WORK}/build/
+        ```
+        {: .dollar }
 
 8.  Modify the configurations for the build environment.
 
     Add `#!bash IMAGE_INSTALL_append` and other settings to `#!bash local.conf` using the command shown below.
 
     === "RZ/G3E"
-
         ```bash
         cd ${WORK}/build
         sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}/build
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        cd ${WORK}/build
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${WORK}/build
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
         ```
         {: .dollar }
 
@@ -147,10 +283,30 @@
     Run the `#!bash bitbake` command to build the images.
 
     === "RZ/G3E"
-
         ```bash
         cd ${WORK}/build
         MACHINE=${BOARD} bitbake core-image-weston
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-weston
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-weston
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-minimal
         ```
         {: .dollar }
 
@@ -164,10 +320,30 @@
     If you want to further deploy sample or your customized applications, building the `toolchain` is also required. Create the SDK toolchain using the following command.
 
     === "RZ/G3E"
-
         ```bash
         cd ${WORK}/build
         MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
+        ```
+        {: .dollar }
+
+    === "RZ/G2L"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
+        ```
+        {: .dollar }
+
+    === "RZ/G2LC"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
+        ```
+        {: .dollar }
+
+    === "RZ/G2UL"
+        ```bash
+        cd ${WORK}/build
+        MACHINE=${BOARD} bitbake core-image-minimal -c populate_sdk
         ```
         {: .dollar }
 

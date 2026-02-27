@@ -3,9 +3,10 @@
 !!! abstract "Page Information"
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
-    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L and RZ/G2LC EVK***
+    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L and RZ/G2LC EVK***
 
-    Last updated: ***December 23, 2025***
+    Last updated: ***Februrary 27, 2026***
 
 This page describes how to change display resolution for weston (window manager).
 
@@ -58,7 +59,7 @@ mode=1920x1080@60
 To apply the change, you need to restart weston.
 Execute the following command in the terminal for Linux running on the EVK.
 ```bash
-systemctl restart weston@root
+systemctl restart weston
 ```
 {: .hash }
 
@@ -74,7 +75,7 @@ To get a list of display resolutions, execute 'weston-info' or 'modetest'.
 
 Execute 'weston-info' in the terminal for Linux running on the EVK as follows.
 ```bash
-weston-info
+wayland-info
 ```
 {: .hash }
 
