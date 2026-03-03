@@ -505,8 +505,9 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
 1.  Insert your SD card into the Linux PC and mount it.
 
     !!! warning "Notice"
-        Make sure to turn off your EVK board before ejecting the SD card.<BR>
-        Press and hold the power button for 2 seconds to turn it off.
+        Make sure to turn off your EVK board before ejecting the SD card.  
+        
+        To power off the board, execute the `shutdown -h now` command in the terminal. Once the screen turns black, press and hold the power button (red button) for approximately 2 seconds to complete the shutdown process.
 
 2.  Copy the executable binary files and resource files to your SD card.
     

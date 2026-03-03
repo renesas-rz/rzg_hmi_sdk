@@ -4,12 +4,27 @@
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
     - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L and RZ/G2LC EVK***
 
-    Last updated: ***January 30, 2026***
+    Last updated: ***March 03, 2026***
 
-[FlutterViz](https://flutterviz.com/) is easy to use interface with Flutter Drag and Drop UI builder to quickly kick-start your project. This open-source project aims to empower developers by providing a free and extensible visual Flutter UI builder.
+[FlutterViz](https://flutterviz.com/) is easy to use interface with Flutter Drag and Drop UI builder to quickly kick-start your project. This open-source project aims to empower developers by providing a free and extensible visual Flutter UI builder. For more information about FlutterViz, see the [FlutterViz GitHub repository](https://github.com/iqonic-design/flutter_viz).  
 
-This guide describes how to use FlutterViz, a web-based visual UI builder, to develop Flutter HMI applications. For more information about FlutterViz, see the [FlutterViz GitHub repository](https://github.com/iqonic-design/flutter_viz).
+This guide describes how to use FlutterViz, a web-based visual UI builder, to develop Flutter HMI applications. You will complete the following steps:  
+
+[Step 1: Create a Flutter Application Using FlutterViz](../flutter_develop-hmi-using-flutterviz/#step-1-create-flutter-applications-using-flutterviz)  
+[Step 2: Prepare the Flutter Sample Application Package](../flutter_develop-hmi-using-flutterviz/#step-2-prepare-the-flutter-sample-application-package)  
+[Step 3: Update the Flutter Sample Application Package](../flutter_develop-hmi-using-flutterviz/#step-3-update-the-flutter-sample-application-package)   
+[Step 4: Build the Flutter Sample Application](../flutter_develop-hmi-using-flutterviz/#step-4-build-the-flutter-sample-application)  
+[Step 5: Deploy the Flutter Sample Application](../flutter_develop-hmi-using-flutterviz/#step-5-deploy-the-flutter-sample-application)  
+[Step 6: Run the Flutter Sample Application](../flutter_develop-hmi-using-flutterviz/#step-6-run-the-flutter-sample-application)  
+
+!!! success
+    [Step 1](../flutter_develop-hmi-using-flutterviz/#step-1-create-flutter-applications-using-flutterviz) demonstrates how to use FlutterViz’s drag-and-drop features to design the UI of your application.  
+    [Step 3](../flutter_develop-hmi-using-flutterviz/#step-3-update-the-flutter-sample-application-package) explains how to update the Flutter sample application package. Please note that this step requires a basic understanding of the Dart programming language.  
+
+    If you prefer, you can download the ready-to-use Flutter sample application package by [**clicking here**](../packages/fluttersampleapp_source.zip) and proceed directly to [Step 4](../flutter_develop-hmi-using-flutterviz/#step-4-build-the-flutter-sample-application).  
+
 
 ## Step 1: Create Flutter Applications Using FlutterViz
 
@@ -32,410 +47,205 @@ Once you receive the code, click *Login*, then select *Click here to Sign Up* to
 Enter your username, email address, password, and the invitation code you received, then click *Sign Up*.  
 ![](images/flutter/FlutterViz_06.png){: width="60%"}     
 
+
 ### 1-2. Create a new project
 
 After creating a new account, select *Create New Project*.    
 ![](images/flutter/FlutterViz_08.png){: width="60%"}  
 
-Select the template to use. This guide uses the *News* template.   
-![](images/flutter/FlutterViz_09.png){: width="60%"}  
-
-Enter your project name, then click *Tap to use templates*.  
-![](images/flutter/FlutterViz_10.png){: width="60%"}  
+Select the template to use. This guide uses the *Blank App* template.   
+Enter your project name, then click *Create New* to continue.    
+![](images/flutter/FlutterViz_09.png){: width="60%"}    
 
 
 ### 1-3. Create screens
 
-#### Image File Selection Screen
+In this sample application, 3 screens will be created:  
 
-1. Deleting and Adding Objects  
+- [SelectScreen](#selectscreen)  
+- [JPGScreen](#jpgscreen)  
+- [GIFScreen](#gifscreen)  
 
-    - Deleting
+<br>
+  
+#### SelectScreen
 
-        Press the ![](images/flutter/FlutterViz_77.png){: width="2%"} button on the right and click *RegisterScreen*.  
-        ![](images/flutter/FlutterViz_11.png){: width="60%"}  
+1. Create a new screen and choose a template to use. 
 
-        Delete everything shown in the red boxes. Select each item and right-click *Delete widget*. Keep the *Column* object.   
-        ![](images/flutter/FlutterViz_12.png){: width="60%"}  
+    Click *+ New Screen* in the top-right corner to create a new screen.  
+    ![](images/flutter/FlutterViz_10.png){: width="60%"}  
 
+    Enter a name for your project, as "SelectScreen".  
+    Then, go to the Welcome section and choose *WelcomeScreen#2* as the template to use.  
+    ![](images/flutter/FlutterViz_11.png){: width="40%"}  
 
 
-    - GIF and JPEG Button  
-        Drag and drop two *Text Buttons* from *Base Widget* onto the text display area where “Have an account?” is located, and then delete that text.   
-        ![](images/flutter/FlutterViz_16.png){: width="60%"}    
+2. Delete and add widgets.  
 
+    After you successfully create SelectScreen, the screen will appear as shown below.  
+    ![](images/flutter/FlutterViz_12.png){: width="60%"}  
 
+    In the left-side panel, select the third option, *Tree View*. You will see the widgets listed as shown below.   
+    ![](images/flutter/FlutterViz_13.png){: width="60%"}  
 
-    - GIF and JPEG Display Area    
-        Drag and drop the *Container* from the *Layout Widget* below the two buttons.    
-        ![](images/flutter/FlutterViz_17.png){: width="60%"}  
+    Right-click a widget to display the available options, as shown below (left).  
 
+    Use these options to add or delete widgets as needed (right). For this example:  
+    - Delete the *Row* and *Image* widgets.  
+    - Add a *Stack* widget and a *Text Button* widget.  
+    - Make sure the *Column* and the newly added *Text Button* are wrapped inside the *Stack* widget.  
+    ![](images/flutter/FlutterViz_14.png){: width="60%"}    
 
 
-    - "X" Button  
-        Drag and drop the *Text Button* from the *Base Widget* below the container.  
-        ![](images/flutter/FlutterViz_18.png){: width="60%"}  
-        
-        
-    Select the *Column* object and uncheck the *Scrollable* option.  
-    ![](images/flutter/FlutterViz_19.png){: width="60%"}  
+3. Modify the properties of each widget.  
 
+    Modify the widgets starting from the top of the Tree View.  
 
+    Click each widget to display its properties in the right-side panel.  
+    Only change the settings shown below, and keep all other properties at their default values.  
 
-    <br>
+    - Stack  
+        Change the alignment to "Center".  
+        ![](images/flutter/FlutterViz_15.png){: width="25%"}  
 
-2. Resizing Objects
+    - "X" Text Button  
+        The newly added *Text button* wrapped inside the *Stack*.  
+        Change the following settings.  
+        ![](images/flutter/FlutterViz_16.png){: width="50%"}  
 
-    - Operation Guide Text 
+    - Column  
+        Change the following settings.  
+        ![](images/flutter/FlutterViz_17.png){: width="25%"}  
 
-        Click the *Create new* text, then check options from the right-side panel.  
-        ![](images/flutter/FlutterViz_24.png){: width="60%"}  
+    - Title Text  
+        The first Text widget.  
+        Change the Text content to "Flutter Sample Application".  
+        ![](images/flutter/FlutterViz_18.png){: width="25%"}   
 
-        Change the text from "Create New" to "Flutter Sample Application" in the *Text* feild.  
-        ![](images/flutter/FlutterViz_26.png){: width="60%"}
+    - Subtitle Text  
+        The second Text widget.  
+        Change the Text content to "Select the button below to view images in different formats.".  
+        ![](images/flutter/FlutterViz_19.png){: width="25%"}  
 
-        Set the Font size to 24 in the *Font Weight & Size* option.  
-        ![](images/flutter/FlutterViz_25.png){: width="60%"}  
+    - "JPG" Text Button     
+        The first Text Button wrapped inside the Column.  
+        Change the Text content to "JPG".  
+        ![](images/flutter/FlutterViz_20.png){: width="25%"}   
 
-        Click the *account* text, then check options from the right-side panel.     
-        ![](images/flutter/FlutterViz_27.png){: width="60%"}  
+    - "GIF" Text Button  
+        The second Text Button wrapped inside the Column.  
+        Change the Text content to "GIF".Set the button font style to match the first Text Button.  
+        ![](images/flutter/FlutterViz_21.png){: width="50%"}  
 
-        Change the text from "account" to "Choose a button to display an image"in the *Text* feild.  
-        ![](images/flutter/FlutterViz_28.png){: width="60%"}  
+    After completing all the modifications, your *SelectScreen* will look like this:  
+    ![](images/flutter/FlutterViz_22.png){: width="60%"}  
 
-        Set the Font size to 24 in the *Font Weight & Size* option.    
-        ![](images/flutter/FlutterViz_29.png){: width="60%"}  
+<br>
 
+#### JPGScreen
 
+1. Create a new screen and choose a template to use. 
 
-    - "X" Button
+    Click *+ New Screen* in the top-right corner to create a new screen.  
+    ![](images/flutter/FlutterViz_10.png){: width="60%"}  
 
-        Right-click the bottom *Text button* and press Move Up (^ key) to bring it to the topmost position among the visible objects. Then check options from the right-side panel.   
-        ![](images/flutter/FlutterViz_30.png){: width="60%"}  
+    Enter a name for your project, as "JPGScreen".  
+    Then, go to the *Detail* section and choose *DetailScreen#2* as the template to use.  
+    ![](images/flutter/FlutterViz_23.png){: width="40%"}  
 
-        Set the *Fill Color* to #fff90505.  
-        ![](images/flutter/FlutterViz_31.png){: width="60%"}  
 
-        Enter "X" in the *Text* feild.  
-        ![](images/flutter/FlutterViz_32.png){: width="60%"}  
+2. Delete widgets.  
 
-        Set the *Font Color* in *Font Properties* to #ffffffff.  
-        ![](images/flutter/FlutterViz_33.png){: width="60%"}  
+    After you successfully create SelectScreen, the screen will appear as shown below.  
+    ![](images/flutter/FlutterViz_24.png){: width="60%"}  
 
-        Set Height to 40 and MinWidth to 40 in the *Height & MinWidth* section.  
-        ![](images/flutter/FlutterViz_34.png){: width="60%"}  
+    In the left-side panel, select the third option, *Tree View*. You will see the widgets listed as shown below.   
+    ![](images/flutter/FlutterViz_25.png){: width="60%"}  
 
+    Right-click a widget to display the available options, as shown below (left).  
 
+    Use these options to delete widgets as needed. For this example:  
+    - Delete all other widgets and keep only the ones highlighted in the red box (right).   
+    ![](images/flutter/FlutterViz_26.png){: width="60%"}   
 
-    - JPEG Button
+    After deleting the widgets, your *JPGScreen* will look like this:  
+    ![](images/flutter/FlutterViz_27.png){: width="60%"}  
 
-        Click the left *Text button*, then check options from the right-side panel.    
-        ![](images/flutter/FlutterViz_35.png){: width="60%"}  
 
-        Enter "JPEG" in the *Text* field.  
-        ![](images/flutter/FlutterViz_36.png){: width="60%"}  
+3. Modify the properties of each widget.  
 
-        Set the *Font Color* in *FontProperties* to #ffffffff.  
-        ![](images/flutter/FlutterViz_37.png){: width="60%"}  
+    Modify the widgets starting from the top of the Tree View.  
 
-        Set the MinWidth to 125 and Height to 70 in the *Height & MinWidth* section.    
-        ![](images/flutter/FlutterViz_38.png){: width="60%"}  
+    Click each widget to display its properties in the right-side panel.  
+    Only change the settings shown below, and keep all other properties at their default values.  
 
+    - Stack  
+        Change the alignment to "Center".  
+        ![](images/flutter/FlutterViz_15.png){: width="25%"}  
 
+    - Column  
+        Change the following settings.  
+        ![](images/flutter/FlutterViz_17.png){: width="25%"}  
 
-    - GIF Button
+    - Image  
+        Change the following settings.   
+        ![](images/flutter/FlutterViz_28.png){: width="25%"}   
 
-        Click the right *Text button*, then check options from the right-side panel.    
-        ![](images/flutter/FlutterViz_39.png){: width="60%"}  
+    - Row  
+        Change the following settings.   
+        ![](images/flutter/FlutterViz_29.png){: width="25%"}   
 
-        Enter "GIF" in the *Text* field.  
-        ![](images/flutter/FlutterViz_40.png){: width="60%"}  
+    - "JPG" Text  
+        Change the following settings.   
+        ![](images/flutter/FlutterViz_30.png){: width="25%"}   
 
-        Set the *Font Color* in *FontProperties* to #f4ffffff.  
-        ![](images/flutter/FlutterViz_41.png){: width="60%"}  
+    - "Back to Home" Text Button  
+        Change the Text content to "Back to Home".    
+        ![](images/flutter/FlutterViz_31.png){: width="50%"}  
 
-        Set the MinWidth to 125 and Height to 70 in the *Height & MinWidth* section.    
-        ![](images/flutter/FlutterViz_42.png){: width="60%"}  
+    After completing all the modifications, your *JPGScreen* will look like this:  
+    ![](images/flutter/FlutterViz_32.png){: width="60%"}  
 
+<br>
 
+#### GIFScreen  
 
-    - GIF and JPEG Display Area  
+For the GIFScreen, repeat the exact same process used for the [JPGScreen](#jpgscreen) or copy the screen from FlutterViz, but replace "JPG" with "GIF" wherever applicable.  
 
-        Click the *Container*, then check options from the right-side panel.  
-        ![](images/flutter/FlutterViz_43.png){: width="60%"}  
+After completing all the modifications, your *JGIFScreen* will look like this:  
+![](images/flutter/FlutterViz_33.png){: width="60%"}  
 
-        Set the *Fill Color* to #1ffffffff.  
-        ![](images/flutter/FlutterViz_44.png){: width="60%"}  
 
-        Set Width to 300 and Height to 100 in the *Height & Width* section.  
-        ![](images/flutter/FlutterViz_45.png){: width="60%"}  
 
-
-
-    <br>
-
-3. Changing Object Positions
-
-    - Operation Guide Text  
-
-        Click the "Choose a button to display an image" text, then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to -0.32 and *Vertical Alignment* to -0.73 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_57.png){: width="60%"}  
-
-        Click the "Flutter Sample Application" text, then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to -0.33 and *Vertical Alignment* to 0.77 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_58.png){: width="60%"}  
-
-
-
-    - JPEG Button  
-
-        Click the "JPEG" text button (left one), then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to 0.08 and *Vertical Alignment* to 0.03 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_60.png){: width="60%"}  
-
-
-
-    - GIF Button  
-
-        Click the "GIF" text button (right one), then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to 0.08 and *Vertical Alignment* to 0.03 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_62.png){: width="60%"}
-
-
-
-    - GIF and JPEG Display Area  
-
-        Click the container, then check options from the right-side panel.  
-        Set Width to 400 and Height to 150 in the *Height & Width* section.  
-        ![](images/flutter/FlutterViz_64.png){: width="60%"}  
-    
-
-    - "X" Button  
-
-        Click the "X" text button, then check options from the right-side panel.
-        Set *Horizontal Alignment* to 1.00 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_66.png){: width="60%"}    
-
-
-
-<br><br>
-
-#### Image File Display Screen
-
-1. Deleting and Adding Objects  
-
-    - Deleting
-        Press the ![](images/flutter/FlutterViz_77.png){: width="2%"} button on the right and click *LoginScreen*.  
-        ![](images/flutter/FlutterViz_13.png){: width="60%"}  
-
-        Delete everything shown in the red boxes. Select each item and right-click *Delete widget*. Only keep the "Don't Have an account?" text and the *Column* object.   
-        ![](images/flutter/FlutterViz_14.png){: width="60%"}  
-
-
-
-    - "X" Button  
-        Drag and drop the *Text Button* from the *Base Widget* onto the text display area where “Don't Have an account?” is located, and then delete that text.  
-        ![](images/flutter/FlutterViz_20.png){: width="60%"}  
-
-
-
-    - Back Button  
-        Drag and drop the *Text Buttons* from *Base Widget* below the newly added “X” button.   
-        ![](images/flutter/FlutterViz_21.png){: width="60%"}  
-
-
-
-    - Image Display  
-        Drag and drop the *Image* from *Base Widget* below the newly added Back button.  
-        ![](images/flutter/FlutterViz_22.png){: width="60%"}  
-
-    
-        
-    Select the *Column* object and uncheck the *Scrollable* option.  
-    ![](images/flutter/FlutterViz_23.png){: width="60%"}  
-
-    <br>
-
-2. Resizing Objects
-
-    - "X" Button
-
-        Click the top text button, then check options from the right-side panel.  
-        Set MinWidth to 40 and Height to 40 in the *Height & MinWidth* section.  
-        ![](images/flutter/FlutterViz_47.png){: width="60%"}  
-
-        Set the *Fill Color* to #fffb0303.  
-        ![](images/flutter/FlutterViz_48.png){: width="60%"}  
-
-        Enter "X" in the *Text* feild.  
-        ![](images/flutter/FlutterViz_49.png){: width="60%"}  
-
-        Set the *Font Color* in *FontProperties* to #ffffffff.  
-        ![](images/flutter/FlutterViz_50.png){: width="60%"}  
-
-
-
-    - Image Display  
-
-        Click the Image, then check options from the right-side panel.  
-        Set Width to 200 and Height to 200 in the *Height & Width* section.  
-        ![](images/flutter/FlutterViz_52.png){: width="60%"}  
-
-        Right-click the Image and press Move Up (^ key) to bring it below the "X" button.     
-        ![](images/flutter/FlutterViz_54.png){: width="60%"}  
-
-
-
-    - Back Button  
-
-        Click the bottom text button, then check options from the right-side panel.  
-        Enter "Back" in the *Text* feild, and set MinWidth to 140 and Height to 40 in the *Height & MinWidth* section.   
-        ![](images/flutter/FlutterViz_55.png){: width="60%"}   
-
-        Set the *Font Color* in *FontProperties* to #ffffffff.  
-        ![](images/flutter/FlutterViz_56.png){: width="60%"}  
-
-
-
-    <br>
-
-3. Changing Object Positions
-
-    - "X" Button  
-
-        Click the "X" text button, then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to 1.00 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_67.png){: width="60%"}   
-
-
-
-    - Image Display  
-
-        Click the Image, then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to -0.02 and *Vertical Alignment* to -0.32 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_69.png){: width="60%"}  
-
-
-
-    - Back Button 
-
-        Click the Back button, then check options from the right-side panel.  
-        Enable *Expanded* in *Expanded & Flex* section, then set *Horizontal Alignment* to 1.00 and *Vertical Alignment* to 0.4 in *Alignment* section.  
-        ![](images/flutter/FlutterViz_71.png){: width="60%"}  
-
-
-
-### 1-4. Export the source file
+### 1-4. Export the source files
 
 #### Image File Selection Screen
 
-Select *RegisterScreen* using the ![](images/flutter/FlutterViz_77.png){: width="2%"} button on the right, then click the ![](images/flutter/FlutterViz_76.png){: width="2%"} to view the source code.  
-![](images/flutter/FlutterViz_72.png){: width="60%"}  
+Select each screen using the ![](images/flutter/FlutterViz_77.png){: width="2%"} button on the right, then click the ![](images/flutter/FlutterViz_76.png){: width="2%"} to view the source code.  
+![](images/flutter/FlutterViz_34.png){: width="25%"}  
 
-Click the *Download code* button to download the source file for the Image File Selection Screen as *RegisterScreen.dart*.   
-![](images/flutter/FlutterViz_73.png){: width="60%"}  
+Click the *Download code* button to download the source file for each Screen. The files will be saved as *SelectScreen.dart*, *JPGScreen.dart*, and *GIFScreen.dart*, respectively.     
+![](images/flutter/FlutterViz_35.png){: width="60%"}  
 
-<br><br>
-
-#### Image File Display Screen
-
-Select *RegisterScreen* using the ![](images/flutter/FlutterViz_77.png){: width="2%"} button on the right, then click the ![](images/flutter/FlutterViz_76.png){: width="2%"} to view the source code.  
-![](images/flutter/FlutterViz_74.png){: width="60%"}  
-
-Click the *Download code* button to download the source file for the Image File Display Screen as *LoginScreen.dart*.    
-![](images/flutter/FlutterViz_75.png){: width="60%"}  
+<br>
 
 
-
-## Step 2: Create the Flutter Sample Application
-
-### 2-1. Apply the downloaded screen source files to the sample application
-
-Rename the Image File Selection Screen source file created in [Step 1](../flutter_develop-hmi-using-flutterviz/#step-1-create-flutter-applications-using-flutterviz) from *`RegisterScreen.dart`* to *`imagefileselection.dart`*.  
-
-Rename the Image File Display Screen source file created in [Step 1](../flutter_develop-hmi-using-flutterviz/#step-1-create-flutter-applications-using-flutterviz) from *`LoginScreen.dart`* to *`imagefiledisplay.dart`*.  
-
-[Click here](../packages/Flutter-Sample-App-Package.zip) to download `Flutter-Sample-App-Package.zip`, extract it, and and copy the *`imagefileselection.dart`* and *`imagefiledisplay.dart`* files into
-`Flutter-Sample-App-Package/fluttersampleapp/lib/`.  
-
-
-
-### 2-2. Apply the image to be displayed in the sample application
-
-[Click here](../packages/Display_Image_File.zip) to download `Display_Image_File.zip`, and extract it.
-
-Open the extracted *Flutter-Sample-App-Package*. Right-click inside
-`Flutter-Sample-App-Package/fluttersampleapp/`, select *New > Folder*, and name the folder ***images***.
-
-Copy *`Cat.jpg`* and *`Moon.gif`* from the *IMAGE_FILE folder* into the newly created *images folder*.
-
-
-
-### 2-3. Apply the font to the sample application
-
-[Download FiraCode](https://github.com/tonsky/FiraCode) font, which will be used in this guide, by clicking Download & Install in README.  
-
-Extract the downloaded *Fira_Code_v6.2.zip*.
-
-Open *Flutter-Sample-App-Package*. Right-click inside `Flutter-Sample-App-Package/fluttersampleapp/`, select *New > Folder*, and name the folder ***fonts***.
-
-Copy the following files from the *ttf folder* in *Fira_Code_v6.2* to the *fonts* folder:  
-
-    FiraCode-Bold.ttf  
-    FiraCode-Light.ttf  
-    FiraCode-Medium.ttf  
-    FiraCode-Regular.ttf  
-    FiraCode-SemiBold.ttf  
-
-
-### 2-4. Apply the patch file to the sample application
-
-Move the *fluttersampleapp* folder from *Flutter-Sample-App-Package* to your **Linux PC** using `SCP` or a similar file transfer tool.
-
-Apply the patch file 0001-flutterviz-add.patch. This patch updates `main.dart` and adds navigation logic for the generated screens and buttons.
+## Step 2: Prepare the Flutter Sample Application Package
 
 !!! success "Tip"
-    - Replace `<path-to>` with the path on your own setting.
+    A Linux PC is required from this step.
 
-```bash
-cd <path-to>/fluttersampleapp
-```
-{ .dollar }
-
-```bash
-patch -p1 < 0001-flutterviz-add.patch
-```
-{ .dollar }
-
-!!! success "Tip"
-    If the patch application fails, you can directly use the files provided in `fluttersampleapp_source` to replace the original files. The related files are:  
-    - `fluttersampleapp/lib/main.dart`    
-    - `fluttersampleapp/lib/imagefileselection.dart`  
-    - `fluttersampleapp/lib/imagefiledisplay.dart`  
-    - `fluttersampleapp/pubspec.yaml`  
-
-    [Click here](../packages/fluttersampleapp_source.zip) to download `fluttersampleapp_source.zip`.  
-
-
-## Step 3: Build the Flutter Sample Application  
+### 2-1. Configure the Flutter development environment   
 
 1. Enable the cross-compilation Environment.  
 
-    Before building the Flutter sample application, ensure that the cross-compilation toolchain and cross compiler are enabled.  
-
-    Refer to the <span style="color: var(--renesas-primary-color-fg-blue">*first 2 steps*</span> in [Step 1: Build Sample Applications](../../hmi_applications/#step-1-build-sample-applications).
-
-2. Verify the installation of Flutter. 
+    Before building the Flutter sample application, ensure that the **cross-compilation toolchain** and **cross compiler** are enabled.  
 
     !!! success "Tip"
-        Unless otherwise specified, **all following steps are performed in the `fluttersampleapp/` directory**.  
-        When using commands such as `cd <path-to>/fluttersampleapp/`, replace `<path-to>` with the actual path on your system.
+        Refer to the <span style="color: var(--renesas-primary-color-fg-blue">*first 2 steps*</span> in [Step 1: Build Sample Applications](../../hmi_applications/#step-1-build-sample-applications).  
 
-    ```bash
-    cd <path-to>/fluttersampleapp
-    ```
-    { .dollar }
+
+2. Verify the installation of Flutter. 
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/flutter doctor
@@ -452,7 +262,6 @@ patch -p1 < 0001-flutterviz-add.patch
         { .dollar }
 
 
-
     If the setup is correct, you should see output similar to the following, with the first two items checked:
 
     ```bash
@@ -462,7 +271,7 @@ patch -p1 < 0001-flutterviz-add.patch
     [-] Connected device (1 available)
     [-] Network resources
     ```  
-    This confirms that Flutter and the Linux toolchain are properly installed.
+    This confirms that Flutter and the Linux toolchain are properly installed.  
 
 3. Disable analytics and CLI animations (recommended).
 
@@ -492,7 +301,138 @@ patch -p1 < 0001-flutterviz-add.patch
     Setting "cli-animations" value to "false".
     ```
 
-4. Upgrade and resolve Flutter packages.
+
+### 2-2. Create a new Flutter application  
+
+To create the new flutter sample application package:
+
+```bash
+flutter create fluttersampleapp
+```
+{ .dollar } 
+
+Resulting structure:
+
+```bash
+fluttersampleapp/
+├─ android/
+├─ ios/
+├─ linux/
+├─ macos/
+├─ windows/
+├─ web/
+├─ lib/
+│  └─ main.dart
+├─ test/
+├─ pubspec.yaml
+├─ pubspec.lock
+├─ analysis_options.yaml
+└─ README.md
+```
+
+`main.dart` and `pubspec.yaml` are created by default.
+
+!!! success "Tip"
+    Unless otherwise specified, **all following steps are performed in the `fluttersampleapp/` directory**.  
+    When using commands such as `cd <path-to>/fluttersampleapp/`, replace `<path-to>` with the actual path on your system.  
+
+
+
+## Step 3: Update the Flutter Sample Application Package
+
+### 3-1. Apply the display image to sample application  
+
+1. Create a new `images` directory inside `fluttersampleapp`:
+
+    ```bash
+    cd <path-to>/fluttersampleapp
+    ```
+    { .dollar }
+
+    ```bash
+    mkdir images
+    ```
+    { .dollar }
+
+2. Download and copy the display image to the `images` directory you created.  
+
+    [**Click here**](../packages/Display_Image_File.zip) to download `Display_Image_File.zip`, and extract it.  
+
+    Use `scp` to copy *`Cat.jpg`* and *`Moon.gif`* from the *Display_Image_File* folder into `<path-to>/fluttersampleapp/images`.  
+
+
+### 3-2. Apply the font to the sample application  
+
+1. Create a new `fonts` directory inside `fluttersampleapp`:
+
+    ```bash
+    mkdir fonts
+    ```
+    { .dollar }
+
+2. Download and copy the font files to the `fonts` directory you created.  
+
+    [Download FiraCode font](https://github.com/tonsky/FiraCode) by clicking Download & Install in README.  
+
+    Extract the downloaded *Fira_Code_v6.2.zip*.
+
+    Use `scp` to copy the following files from the *ttf folder* in *Fira_Code_v6.2* into `<path-to>/fluttersampleapp/fonts`:   
+
+        FiraCode-Bold.ttf  
+        FiraCode-Light.ttf  
+        FiraCode-Medium.ttf  
+        FiraCode-Regular.ttf  
+        FiraCode-SemiBold.ttf  
+
+### 3-3. Modify the `pubspec.yaml` File  
+
+The `pubspec.yaml` file is the main configuration file of a Flutter project. It defines the application name, version, dependencies (packages), and asset settings such as images and fonts.
+
+Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` file.  
+[**Click here**](../packages/pubspec_modified.yaml) to download the modified `pubspec.yaml` file, and update your existing file accordingly.    
+
+### 3-4. Apply the downloaded screen source files to the sample application  
+
+1. Modify the `main.dart` File  
+
+    `main.dart` is the entry point of a Flutter application.   
+
+    We keep main.dart simple so it only initializes the app and loads the first screen. All UI design and application logic should be placed in separate screen Dart files.
+
+    [**Click here**](../packages/main_modified.dart) to download the modified `main.dart` file, and update your existing file accordingly.  
+
+
+2. Update the UI design anfd the navigation logic in the screen dart files.
+
+    Use `scp` to copy the screen source files created in [Step 1](../../flutter_develop-hmi-using-flutterviz/#step-1-create-flutter-applications-using-flutterviz) into `<path-to>/fluttersampleapp/lib/`.  
+
+
+    There are two main parts that need to be modified:  
+
+    - Navigation Logic
+
+    `Navigator.push()` to go to JPG and GIF screen  
+    `Navigator.pop()` to return  
+    `SystemNavigator.pop()` to exit application  
+
+    - Wide Screen UI Adjustment  
+
+    Increased font size to 40  
+    Increased button size to 400 × 150  
+    Centralized all sizes in a new `style.dart`  
+
+
+    [**Click here**](../packages/screen_dart_files_modified.zip) to download the modified screen dart files, and update your existing file accordingly.   
+
+
+
+## Step 4: Build the Flutter Sample Application  
+
+!!! success
+    Please make sure you have completed [Step 2-1  Configure the Flutter development environment](../flutter_develop-hmi-using-flutterviz/#2-1-configure-the-flutter-development-environment) before starting the following steps.
+
+
+1. Upgrade and resolve Flutter packages.
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/flutter pub upgrade
@@ -521,7 +461,7 @@ patch -p1 < 0001-flutterviz-add.patch
     Got dependencies!
     ```
 
-5. Clean the Flutter build environment.
+2. Clean the Flutter build environment.
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/flutter clean -v
@@ -536,7 +476,7 @@ patch -p1 < 0001-flutterviz-add.patch
     [        ] exiting with code 0
     ```
 
-6. Build the Flutter assets (fonts, images, and other bundles).
+3. Build the Flutter assets (fonts, images, and other bundles).
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/flutter build bundle -v
@@ -555,7 +495,7 @@ patch -p1 < 0001-flutterviz-add.patch
     [ ] exiting with code 0
     ```
 
-7. Build the Flutter sample application (AOT).
+4. Build the Flutter sample application (AOT).
 
     Use the command below to locate your build hash`<Hash>`:
 
@@ -571,13 +511,13 @@ patch -p1 < 0001-flutterviz-add.patch
 
     You will see result similar to:  
     ```bash
-    66092f978b4aea03fd69d87bb15a2643
+    bab3a9eb030968554b57b1276c135ddb
     ```
 
     Run the following command to build the Flutter sample application:
 
     !!! success "Tip"  
-        Replace `<Hash>` with your build hash (for example, `66092f978b4aea03fd69d87bb15a2643`).
+        Replace `bab3a9eb030968554b57b1276c135ddb` with your own build hash.
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/cache/dart-sdk/bin/dartaotruntime \
@@ -592,12 +532,12 @@ patch -p1 < 0001-flutterviz-add.patch
     --tfa \
     --target-os linux \
     --packages .dart_tool/package_config.json \
-    --output-dill .dart_tool/flutter_build/<Hash>/app.dill \
-    --depfile .dart_tool/flutter_build/<Hash>/kernel_snapshot_program.d \
+    --output-dill .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill \
+    --depfile .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/kernel_snapshot_program.d \
     --source file://$PWD/.dart_tool/flutter_build/dart_plugin_registrant.dart \
     --source package:flutter/src/dart_plugin_registrant.dart \
     -Dflutter.dart_plugin_registrant=file://$PWD/.dart_tool/flutter_build/dart_plugin_registrant.dart \
-    --native-assets .dart_tool/flutter_build/<Hash>/native_assets.yaml \
+    --native-assets .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/native_assets.yaml \
     --verbosity=error \
     package:fluttersampleapp/main.dart
     ```
@@ -606,18 +546,17 @@ patch -p1 < 0001-flutterviz-add.patch
     Once the build completes successfully, the Flutter build configuration is applied, and the following file is generated:
 
     ```bash
-    .dart_tool/flutter_build/<Hash>/app.dill 0
-    ```
-    { .dollar }
+    .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill 0
+    ```  
 
-8. Update kernel nlob timestamp.
+5. Update kernel nlob timestamp.
 
     ```bash
     touch build/flutter_assets/kernel_blob.bin
     ```
     { .dollar }
 
-9. Generate AOT shared library (libapp.so).
+6. Generate AOT shared library (libapp.so).
 
     Download `engine_sdk.tar.bz2` from the [Renesas Wiki-Flutter-Deliverables](https://renesas-wiki.atlassian.net/wiki/spaces/REN/pages/77103109/Flutter#Deliverables).    
     Decompress `engine_sdk.tar.bz2`, then unzip `engine_sdk_release.zip` inside it. This will generate the `sdk` directory.  
@@ -626,7 +565,7 @@ patch -p1 < 0001-flutterviz-add.patch
 
     !!! success "Tip"
         - Replace `<path-to>` with your local download path.  
-        - Replace `<Hash>` with your build hash (for example, `66092f978b4aea03fd69d87bb15a2643`).      
+        - Replace `bab3a9eb030968554b57b1276c135ddb` with your own build hash.      
 
     ```bash
     <path-to>/sdk/clang_x64/gen_snapshot \
@@ -634,13 +573,18 @@ patch -p1 < 0001-flutterviz-add.patch
     --snapshot_kind=app-aot-elf \
     --elf=libapp.so \
     --strip \
-    .dart_tool/flutter_build/<Hash>/app.dill
+    .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill
 
     ```
     { .dollar }
 
+    You will see messages similar to:  
 
-10. Verify the output architecture.
+    ```bash
+    Warning: Generating ELF library without DWARF debugging information.
+    ```  
+
+7. Verify the output architecture.
 
     Confirm that the generated library targets ARM (aarch64):
 
@@ -672,11 +616,11 @@ patch -p1 < 0001-flutterviz-add.patch
         ```
         { .dollar }
 
-        - Resume the procedure from <span style="color: var(--renesas-primary-color-fg-blue">*6. Build the Flutter assets*</span> to <span style="color: var(--renesas-primary-color-fg-blue">*10. Verify the output architecture*</span>.
+        - Resume the [Step 4: Build the Flutter Sample Application](../flutter_develop-hmi-using-flutterviz/#step-4-build-the-flutter-sample-application) till <span style="color: var(--renesas-primary-color-fg-blue">*7. Verify the output architecture*</span>.
 
         
 
-11. Prepare the release directory structure
+8. Prepare the release directory structure
 
     Move to the Flutter sample app directory:  
 
@@ -697,7 +641,7 @@ patch -p1 < 0001-flutterviz-add.patch
     ```
     { .dollar }
 
-12. Copy the flutter sample application files 
+9. Copy the flutter sample application files 
 
     Next, copy the Flutter sample application files into the directories you created. 
 
@@ -734,7 +678,7 @@ patch -p1 < 0001-flutterviz-add.patch
     ```
     { .dollar }
 
-    After completing the setup, the directory structure under `<path-to>/my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/` should look like the following:  
+    After completing the setup, the directory structure under `fluttersampleapp/my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/` should look like the following:  
 
     ```bash
     .
@@ -759,15 +703,15 @@ patch -p1 < 0001-flutterviz-add.patch
 
 
     
-
-
-## Step 4. Deploy the Flutter Sample Application
+## Step 5. Deploy the Flutter Sample Application
 
 1.  Insert your SD card into the Linux PC and mount it.
 
     !!! warning "Notice"
         Make sure to turn off your EVK board before ejecting the SD card.  
-        Press and hold the power button for 2 seconds to turn it off.
+        
+        To power off the board, execute the `shutdown -h now` command in the terminal. Once the screen turns black, press and hold the power button (red button) for approximately 2 seconds to complete the shutdown process.
+        
 
 2.  Copy the executable binary files and resource files to your SD card.
     
@@ -781,7 +725,12 @@ patch -p1 < 0001-flutterviz-add.patch
     Copy the Flutter sample application files:
 
     ```bash
-    cp -r <path-to>/fluttersampleapp/my_release/usr/share/flutter/flutter-samples-app/* <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
+    cd <path-to>/fluttersampleapp
+    ```
+    { .dollar }
+
+    ```bash
+    sudo cp -r my_release/usr/share/flutter/flutter-samples-app/3.27.1 <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
     ```
     { .dollar }
 
@@ -790,22 +739,22 @@ patch -p1 < 0001-flutterviz-add.patch
         - If it does not exist, create it using:  
 
         ```bash
-        mkdir -p <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
+        sudo mkdir -p <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
         ```
         { .dollar }
 
 Please refer to [Step 2: Deploy Sample Applications](../../hmi_applications/#step-2-deploy-sample-applications) if you want to deploy over ethernet (using SCP).
 
 
-## Step 5. Run the Flutter Sample Application
+## Step 6. Run the Flutter Sample Application
 
 1.  Prepare the necessary equipment and configure the EVK DIP switches by following the instructions in [Hardware Setup](../../hmi_applications/#hardware-setup).
 
-2.  Insert the bootable microSD card created in [Step 4](../#step-4-deploy-the-flutter-sample-application) into the microSD card slot, and then power on the EVK board.
+2.  Insert the bootable microSD card created in [Step 4](../flutter_develop-hmi-using-flutterviz/#step-4-deploy-the-flutter-sample-application) into the microSD card slot, and then power on the EVK board.
 
     !!! success "Tip"
         *  Please refer to the [EVK Peripheral Setup](../../hmi_applications/#evk-peripheral-setup) to locate the microSD card slot based on your selected boot mode.
-        *  Press and hold the power button (red button, SW9) for 1 second to turn on the EVK board, and for 2 seconds to turn it off.
+        *  Press and hold the power button (red button) for 1 second to turn on the EVK board.
 
 3. Use the following command on your EVK board to run the Flutter sample application.
 
@@ -822,15 +771,15 @@ flutter-client -f -b /usr/share/flutter/my-flutter-samples-app/3.27.1/release/
 
 The launched sample application is shown below.  
 Image File Selection Screen  
-![](images/flutter/Image_File_Selection.png){: width="60%"}  
+![](images/flutter/Selection.png){: width="60%"}  
 
 Click the JPEG button, you will get:
-Image File Display Screen-JPEG display
-![](images/flutter/Image_File_Display_JPEG.png){: width="60%"}  
+Image File Display Screen-JPG display
+![](images/flutter/JPG_Display.png){: width="60%"}  
 
 Click the GIF button, you will get:
 Image File Display Screen-GIF display
-![](images/flutter/Image_File_Display_GIF.png){: width="60%"}  
+![](images/flutter/GIF_Display.png){: width="60%"}  
 
 <br>
 

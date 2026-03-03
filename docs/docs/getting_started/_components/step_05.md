@@ -110,7 +110,7 @@ Follow the steps below to use them.
 
     !!! success "Tip"
         *  Please refer to the [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for the location of the microSD card slot.
-        *  Press and hold the power button (red button) for 1 second to turn on the EVK board, and for 2 seconds to turn it off.
+        *  Press and hold the power button (red button) for 1 second to turn on the EVK board.
 
 4.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted. 
 
@@ -127,6 +127,9 @@ Follow the steps below to use them.
     !!! success "Tip"
         Please note that the buttons displayed on the Demo Launcher vary depending on the device.
         For information on the demo applications supported on each device, refer to [HMI Application Contents](http://10.166.29.5:8000/rzg_hmi_sdk/overview/#hmi-application-contents).
+
+    !!! success "Tip"
+        To power off the board, execute the `shutdown -h now` command in the terminal. Once the screen turns black, press and hold the power button (red button) for approximately 2 seconds to complete the shutdown process.
 
 This concludes the Getting Started guide.  
 

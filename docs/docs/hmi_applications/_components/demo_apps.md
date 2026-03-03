@@ -28,7 +28,7 @@ Please follow the steps below to run the demo applications.
 
     !!! success "Tip"
         *  Please refer to the [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for the location of the microSD card slot.
-        *  Press and hold the power button (red button, POWER SW) for 1 second to turn on the EVK board, and for 2 seconds to turn it off.
+        *  Press and hold the power button (red button) for 1 second to turn on the EVK board.
 
 3.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted.
 
@@ -45,7 +45,7 @@ Please follow the steps below to run the demo applications.
 
     !!! success "Tip"
         If you want to exit a demo application and return to the HMI SDK Demo Launcher, you can either<br> 
-        *  restart your EVK board by press reset button (blue button, SW10) or<br> 
+        *  restart your EVK board by press reset button (blue button) or   
         *  run the following command in your board terminal to relaunch it: 
         ```bash 
         demo-launcher
@@ -66,7 +66,7 @@ Please follow the steps below to run the demo applications.
     - [LVGL](#lvgl-demo-applications)  
     - [Chromium](#chromium-demo-applications)  
     - [Flutter](#flutter-demo-applications)  
-
+ <br>
 
     #### LVGL Demo Applications
 
@@ -153,3 +153,5 @@ Please follow the steps below to run the demo applications.
 
         ![](images/demo/demo_flutter_shopping.png){: width="40%"}
 
+!!! success "Tip"
+    To power off the board, execute the `shutdown -h now` command in the terminal. Once the screen turns black, press and hold the power button (red button) for approximately 2 seconds to complete the shutdown process.
