@@ -3,9 +3,10 @@
 !!! abstract "Page Information"
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
-    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
+    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
 
-    Last updated: ***December 23, 2025***
+    Last updated: ***March 26, 2026***
 
 This page describes how to boot Linux of the HMI SDK from a microSD card in QSPI boot mode.
 
@@ -16,34 +17,59 @@ For information about how to update bootloaders, see [How to Update Firmware (Fl
 
 ## 1. Create a bootable microSD card
 
-Get a microSD card ready. For information about requirements for the microSD card, see [Necessary Equipment](hmi_applications/#necessary-equipment).
+Get a microSD card ready. For information about requirements for the microSD card, see [Necessary Equipment](../../hmi_applications/#necessary-equipment).
 And for information about how to create a bootable microSD card, see [Step 4: Create SD Cards with the Prebuilt Image](../../getting_started/#step-4-create-sd-cards-with-the-prebuilt-image).
 
 
 ## 2. Set boot mode to QSPI boot mode
 
-To use QSPI boot mode, set the SW11 as follows.
+=== "RZ/G3E"
 
-!!! content-wrapper no-indent table-no-sort table-no-hover ""
-	![](images/smarc-carrier-board-SW11_QSPI.png){ align=left .switch-icon }
+    To use QSPI boot mode, turn off the power of EVK, then set DIP switch SW_MODE as follows.
 
-	|     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-	|:--------------:|:--------------:|:------------:|:--------------:|
-	| OFF {: .red }  | OFF {: .red }  | OFF {: .red} | ON {: .green } |
+    * SW_MODE (on Common Carrier Board II)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+            ![](images/smarc-carrier-board-II-SW_MODE_QSPI.png){ align=left .switch-icon }
+
+            |   SW_MODE[1]   |   SW_MODE[2]   |  SW_MODE[3]  |   SW_MODE[4]   |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | OFF {: .red }  | OFF {: .red }  | OFF {: .red} | ON {: .green } |
+
+=== "RZ/G2L, RZ/G2LC, RZ/G2UL"
+
+    To use QSPI boot mode, turn off the power of EVK, then set the SW11 as follows.
+
+    * SW11 (on Common Carrier Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+            ![](images/smarc-carrier-board-SW11_QSPI.png){ align=left .switch-icon }
+
+            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | OFF {: .red }  | OFF {: .red }  | OFF {: .red} | ON {: .green } |
 
 
 ## 3. Set bootable microSD card
 
-Insert the bootable microSD card into the card slot on RZ SMARC Carrier Board.
+=== "RZ/G3E"
 
-![](images/microSD-card_with_smarc-carrier-board.png)
+    Insert the bootable microSD card into the card slot on RZ SMARC Carrier Board II.
 
-!!! note
+    ![](images/microSD-card_with_smarc-carrier-board-II.png)
+
+=== "RZ/G2L, RZ/G2LC, RZ/G2UL"
+
+    Insert the bootable microSD card into the card slot on RZ SMARC Carrier Board.
+
+    ![](images/microSD-card_with_smarc-carrier-board.png)
+
+!!! warning "Notice"
 	Please note that the card slot is different from a card slot used for eSD boot.
 
 ## 4. Boot Linux on the board
 
-Press and hold power button (SW9) for 1 second to turn on the EVK.
+Press and hold POWER button for 1 second to turn on the EVK.
 You will see the following messages in the console.
 
 ```
@@ -92,7 +118,7 @@ root@smarc-rzg2l:~#
 
 You can login as root without password.
 
-!!! note
+!!! success "Tip"
 	The messages in the console depend on the EVK and software that you are using.
 
 If you are faced with an error in the boot process, it may be caused by u-boot configuration.
@@ -100,21 +126,21 @@ See [Configure U-boot](../../wiki/common_qspi-boot-mode/#configure-u-boot).
 
 ## 5. Shutdown 
 
-To shut down the system, run _shutdown_ command as follows.
+To shut down the system, run `#!bash shutdown` command as follows.
 
 ```bash
 shutdown -h now
 ```
 {.hash}
 
-After you executing the _shutdown_ command, it shuts down the system immediately.
+After you executing the `#!bash shutdown` command, it shuts down the system immediately.
 And when it completes, you will see the following message.
 
 ```
 reboot: Power down
 ```
 
-Then, press and hold power button (SW9) for 2 seconds to turn off the EVK.
+Then, press and hold POWER button for 2 seconds to turn off the EVK.
 
 
 ## Appendix
@@ -150,13 +176,13 @@ env default -a
 ```
 {.diamond}
 
-Save the configuration by _saveenv_ command.
+Save the configuration by `#!bash saveenv` command.
 
 ```bash
 saveenv
 ```
 {.diamond}
 
-To start Linux on the EVK, press reset switch (SW10).
+To start Linux on the EVK, press RESET switch.
 
 

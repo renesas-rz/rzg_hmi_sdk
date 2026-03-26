@@ -1,6 +1,18 @@
 # FAQ
 
-If you have any questions about the HMI SDK, please do not hesitate to raise an issue at our Repository [Issues](https://github.com/renesas-rz/rzg_hmi_sdk/issues){: target="_blank" }.
+If you have any questions about the HMI SDK, please choose one of the following support channels depending on your needs:
+
+1. [GitHub Issues](https://github.com/renesas-rz/rzg_hmi_sdk/issues){: target="_blank" }: For technical questions, bug reports, or feature requests related to the HMI SDK.
+
+    !!! note
+        A GitHub account is required to create an issue.
+
+2. [Renesas Website](https://en-support.renesas.com/dashboard){: target="_blank" }: For general inquiries or official support requests.
+
+    !!! note
+        A MyRenesas account is required to submit an inquiry.
+
+---
 
 If your questions are common in RZ/G and/or RZ MPU Linux, you may have answers on the following websites.
 

@@ -3,14 +3,15 @@
 !!! abstract "Page Information"
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
-    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
+    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
 
-    Last updated: ***December 23, 2025***
+    Last updated: ***March 26, 2026***
 
 When you use QSPI boot mode or eMMC boot mode, you should update firmware (bootloaders).
 This page describes how to write flash writer and bootloaders.
 To write flash writer and bootloaders, you need to connect your PC to the EVK with a USB serial cable.
-See ["Setup EVK's peripheral"](../../getting_started/#1-setup-evks-peripheral).
+See [EVK Peripheral Setup](../../hmi_applications/#evk-peripheral-setup).
 And The following tools are used in this instructions. Please install them to your PC in advance.
 
 === "Windows PC"
@@ -23,19 +24,44 @@ And The following tools are used in this instructions. Please install them to yo
 
 	[minicom](https://help.ubuntu.com/community/Minicom)
 
-For information about how to use QSPI boot, see [Boot Linux from microSD card](../common_boot-linux-from-sd/).
-And for information about how to use eMMC boot, refer to [RZ/G2L, RZ/G2LC and RZ/G2UL-EVKIT Linux Start-up Guide](https://www.renesas.com/ja/document/gde/smarc-evk-rzg2l-rzg2lc-rzg2ul-linux-start-guide-rev105?r=1467991).
+For information about how to use QSPI boot, see [How to Boot from a microSD Card in QSPI Boot Mode](../common_qspi-boot-mode/#how-to-boot-from-a-microsd-card-in-qspi-boot-mode).
+And for information about how to use eMMC boot, refer to the following documents:
+
+* [RZ/G2L, RZ/G2LC and RZ/G2UL-EVKIT Linux Start-up Guide](https://www.renesas.com/en/document/gde/smarc-evk-rzg2l-rzg2lc-rzg2ul-linux-start-guide-rev101-0)
+* [RZ/G3E-EVKIT Linux Start-up Guide](https://www.renesas.com/en/document/swo/rzg3e-board-support-package-v100-rtk0ef0045z0040azj-v100zip)
+
+!!! success "Tip"
+    The console output examples provided in this document are for reference only and may vary depending on the device and software version used.
+
 
 ## 1. Set boot mode to SCIF download mode
 
-Turn off the power of EVK, then set the SW11 as follows.
+=== "RZ/G3E"
 
-!!! content-wrapper no-indent table-no-sort table-no-hover ""
-	![](images/smarc-carrier-board-SW11_SCIF.png){ align=left .switch-icon }
+    Turn off the power of EVK, then set DIP switch SW_MODE as follows.
 
-	|     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |   
-	|:--------------:|:--------------:|:------------:|:--------------:|
-	| OFF {: .red }  | ON {: .green } | OFF {: .red} | ON {: .green } | 
+    * SW_MODE (on Common Carrier Board II)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+            ![](images/smarc-carrier-board-II-SW_MODE_SCIF.png){ align=left .switch-icon }
+
+            |   SW_MODE[1]   |   SW_MODE[2]   |  SW_MODE[3]  |   SW_MODE[4]   |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | OFF {: .red }  | ON {: .green } | OFF {: .red} | ON {: .green } |
+
+=== "RZ/G2L, RZ/G2LC, RZ/G2UL"
+
+    Turn off the power of EVK, then set the SW11 as follows.
+
+    * SW11 (on Common Carrier Board)
+
+        !!! content-wrapper no-indent table-no-sort table-no-hover ""
+            ![](images/smarc-carrier-board-SW11_SCIF.png){ align=left .switch-icon }
+
+            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
+            |:--------------:|:--------------:|:------------:|:--------------:|
+            | OFF {: .red }  | ON {: .green } | OFF {: .red} | ON {: .green } |
 
 
 ## 2. Configure terminal software
@@ -55,6 +81,20 @@ See [file contents](../..//overview/#file-contents).
 
 Unzip the pre-built binaries package to pick up flash write and bootloaders as follows:
 
+=== "RZ/G3E"
+
+	```bash
+	unzip pre-built-binary_rzg3e_hmi-sdk_v*.zip
+	```
+	{: .dollar }
+
+	* Flash writer
+		* `Flash_Writer_SCIF_RZG3E_EVK_LPDDR4X.mot`
+
+	* Bootloaders
+		* `bl2_bp_spi-smarc-rzg3e.srec`
+		* `fip-smarc-rzg3e.srec`
+
 === "RZ/G2L"
 
 	```bash
@@ -63,11 +103,11 @@ Unzip the pre-built binaries package to pick up flash write and bootloaders as f
 	{: .dollar }
 
 	* Flash writer
-		* Flash_Writer_SCIF_RZG2L_SMARC_PMIC_DDR4_2GB_1PCS.mot
+		* `Flash_Writer_SCIF_RZG2L_SMARC_PMIC_DDR4_2GB_1PCS.mot`
 
 	* Bootloaders
-		* bl2_bp-smarc-rzg2l_pmic.srec
-		* fip-smarc-rzg2l_pmic.srec
+		* `bl2_bp_spi-smarc-rzg2l_pmic.srec`
+		* `fip-smarc-rzg2l_pmic.srec`
 
 === "RZ/G2LC"
 
@@ -77,11 +117,11 @@ Unzip the pre-built binaries package to pick up flash write and bootloaders as f
 	{: .dollar }
 
 	* Flash writer
-		* Flash_Writer_SCIF_RZG2LC_SMARC_DDR4_1GB_1PCS.mot
+		* `Flash_Writer_SCIF_RZG2LC_SMARC_DDR4_1GB_1PCS.mot`
 
 	* Bootloaders
-		* bl2_bp-smarc-rzg2lc.srec
-		* fip-smarc-rzg2lc.srec
+		* `bl2_bp_spi-smarc-rzg2lc.srec`
+		* `fip-smarc-rzg2lc.srec`
 
 === "RZ/G2UL"
 
@@ -91,15 +131,15 @@ Unzip the pre-built binaries package to pick up flash write and bootloaders as f
 	{: .dollar }
 
 	* Flash writer
-		* Flash_Writer_SCIF_RZG2UL_SMARC_DDR4_1GB_1PCS.mot
+		* `Flash_Writer_SCIF_RZG2UL_SMARC_DDR4_1GB_1PCS.mot`
 
 	* Bootloaders
-		* bl2_bp-smarc-rzg2ul.srec
-		* fip-smarc-rzg2ul.srec
+		* `bl2_bp_spi-smarc-rzg2ul.srec`
+		* `fip-smarc-rzg2ul.srec`
 
 ## 4. Download flash writer to RAM
 
-Turn on the power of the EVK by pressing SW9. The messages below are shown on the terminal.
+Turn on the power of the EVK by pressing POWER button. The messages below are shown on the terminal.
 
 ```
  SCIF Download mode
@@ -135,17 +175,17 @@ Flash writer for RZ/G2 Series V1.06 Aug.10,2022
 
 ### 5-1. Change baud rate of serial port
 
-Before writing the loader files, change the flash writer transfer rate from default (115200bps) to high speed (921600bps) with "SUP" command.
+Before writing the loader files, change the flash writer transfer rate from default (115200bps) to high speed (921600bps) with `#!bash SUP` command.
 ```bash
 SUP
 ```
 {: .diamond}
 
-After the "SUP" command, change the serial communication protocol speed from 115200bps to 921600bps on the terminal software.
+After the `#!bash SUP` command, change the serial communication protocol speed from 115200bps to 921600bps on the terminal software.
 
 ### 5-2. Write bl2 file
 
-Execute "XLS2" command to write boot loader binary files. 
+Execute `#!bash XLS2` command to write boot loader binary files.
 ```bash
 XLS2
 ```
@@ -154,8 +194,15 @@ XLS2
 This command receives binary data from the serial port and writes the data to a specified address of the Flash ROM with information where the data should be loaded on the address of the main memory. 
 Set the following addresses respectively.
 
-* Address to load to RAM: H'11E00
-* Address to save to ROM: H'00000
+=== "RZ/G3E"
+
+    * Address to load to RAM: H'8003600
+    * Address to save to ROM: H'00000
+
+=== "RZ/G2L, RZ/G2LC, RZ/G2UL"
+
+    * Address to load to RAM: H'11E00
+    * Address to save to ROM: H'00000
 
 For example:
 ```
@@ -174,7 +221,7 @@ Work RAM(H'50000000-H'53FFFFFF) Clear....
 please send ! ('.' & CR stop load)
 ```
 
-Send the data of "bl2_bp-smarc-rzg2*.srec" from terminal software in the same way as the flash writer after the message "please send !" is shown. 
+Send the data of `bl2_bp_spi-smarc-*.srec` from terminal software in the same way as the flash writer after the message "please send !" is shown.
 For the actual file name of bl2 file, see [3. Prepare flash writer and bootloaders](#3-prepare-flash-writer-and-bootloaders).
 
 In the case that the following message is shown, enter 'y'.
@@ -196,7 +243,7 @@ SAVE SPI-FLASH.......
 
 ### 5-3. Write fip file
 
-Execute "XLS2" command to write fip file. 
+Execute `#!bash XLS2` command to write fip file.
 ```bash
 XLS2
 ```
@@ -204,8 +251,15 @@ XLS2
 
 Set the following addresses respectively for the fip file.
 
-* Address to load to RAM: H'00000
-* Address to save to ROM: H'1D200
+=== "RZ/G3E"
+
+    * Address to load to RAM: H'00000
+    * Address to save to ROM: H'60000
+
+=== "RZ/G2L, RZ/G2LC, RZ/G2UL"
+
+    * Address to load to RAM: H'00000
+    * Address to save to ROM: H'20000
 
 For example:
 ```
@@ -224,7 +278,7 @@ Work RAM(H'50000000-H'53FFFFFF) Clear....
 please send ! ('.' & CR stop load)
 ```
 
-Send the data of "fip-smarc-rzg2*.srec" from terminal software in the same way as the flash writer after the message "please send !" is shown. 
+Send the data of `fip-smarc-*.srec` from terminal software in the same way as the flash writer after the message "please send !" is shown. 
 For the actual file name of fip file, see [3. Prepare flash writer and bootloaders](#3-prepare-flash-writer-and-bootloaders).
 
 In the case that the following message is shown, enter 'y'.
@@ -247,5 +301,5 @@ SAVE SPI-FLASH.......
 ### 5-4. Restore baud rate of serial port
 
 After writing two loader files is completed, restore the serial communication protocol speed to 115200bps on the terminal software.
-Then, turn off the power of the board by pressing the SW9.
+Then, turn off the power of the board by pressing POWER button.
 

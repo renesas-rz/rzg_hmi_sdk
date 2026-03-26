@@ -1,6 +1,19 @@
 BIN = EEZ_sample
-CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/lvgl -I${SDKTARGETSYSROOT}/usr/include/lvgl/lv_drivers -DLV_CONF_INCLUDE_SIMPLE
-LDFLAGS += -llvgl -llv_drivers -lwayland-client
+CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/lvgl -DLV_CONF_INCLUDE_SIMPLE
+LDFLAGS += -llvgl
+
+ifeq ($(MACHINE),smarc-rzg2l)
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
+ifeq ($(MACHINE),smarc-rzg2lc)
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
+ifeq ($(MACHINE),smarc-rzg3e)
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
 SRC_DIR := ./ui
 MAIN := $(SRC_DIR)/main.c
 SRCS := $(shell find $(SRC_DIR) -name '*.c' ! -name 'main.c')

@@ -3,9 +3,10 @@
 !!! abstract "Page Information"
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
-    - ***HMI SDK v2.3.1.0 (Yocto 3.1.31 (dunfell), kernel 5.10) using RZ/G2L and RZ/G2LC EVK***
+    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
+    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L, RZ/G2LC, and RZ/G2UL EVK***
 
-    Last updated: ***January 30, 2026***
+    Last updated: ***March 26, 2026***
 
 [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) is a free and cross-platform tool that can be used for development of LVGL GUIs.
 It is an open-source tool licensed under [GPL v3](https://github.com/eez-open/studio/blob/master/LICENSE.TXT).
@@ -52,7 +53,7 @@ And it supports generating source code.
 1. Start EEZ Studio, select "File" on the left tab and choose "New Project".
   ![newproject-image](images/eezstudio/eezstudio_create-project-1.png)
 
-2. Select "LVGL" and enter an arbitrary project name in PROJECT SETTINGS and press Create Project.
+2. Select "LVGL", enter an arbitrary project name, select LVGL version '9.x', then press "Create Project".
   ![createproject-image](images/eezstudio/eezstudio_create-project-2.png)
 
 #### Creating GUI
@@ -127,7 +128,7 @@ Source files are generated in the source folder in the project within eez-projec
 	1. Press "+" for "event handlers" in the properties of the object for which you want to set events.
 	![event-setting-image1](images/eezstudio/eezstudio_implement-event-1.png)
 
-	2. Select "New Action" and set the event name.
+	2. Select "New Action" and set the event name, then generate source code as described in the previouse section.
 	![event-setting-image2](images/eezstudio/eezstudio_implement-event-2.png)
 
 	3. Go to "User Actions", select the event created in the previous step, and copy the generated event callback template to screen.c.
@@ -138,9 +139,11 @@ In this example, color of the button is changed in the event callback function.
 
 ```
 void action_push(lv_event_t *e) {
-	lv_obj_t btn = lv_event_get_target(e);
-
-	lv_obj_set_style_bg_color(btn, lv_color_hex(0xfff6e01d), LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_t *btn = lv_event_get_target(e);
+        lv_color_t color = lv_obj_get_style_bg_color(btn, LV_PART_MAIN);
+        uint32_t c = lv_color_to_int(color);
+        c ^= (uint32_t)0xFFFFFFFFu;
+        lv_obj_set_style_bg_color(btn, lv_color_hex(c), LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 ```
 
@@ -174,11 +177,11 @@ To install and enable the compiler, see [Step 1: Build Sample Applications](../.
 
 #### Building GUI application
 
-1. Add "main.c" to the generated “src/ui folder.
-An example of main.c is shown in [Appendix](#appendix).
+1. Add `main.c` to the generated `src/ui` folder.
+An example of `main.c` is shown in [Appendix](#appendix).
 
-2. Create a Makefile in the generated "src/ui folder" and execute make command.
-An example of MakeFile is shown in [Appendix](#appendix).
+2. Create `Makefile` in the generated `src` folder and execute make command.
+An example of `MakeFile` is shown in [Appendix](#appendix).
 
 ### 3. Deploy and run LVGL GUI applications
 
@@ -211,6 +214,26 @@ chmod +x <executable file name>
 --8<-- "./docs/wiki/_codes/main.c"
 ```
 
+!!! success "Tip"
+	When using the above `main.c` for RZ/G2UL, a `mouse_cursor` image is required for the mouse pointer.
+	This image is defined in [mouse_cursor.c](https://raw.githubusercontent.com/renesas-rz/rzg_hmi_sdk/main/sample_app/lvgl/lvgl_sample_img_disp/src/mouse_cursor.c){ target=_blank }.
+	Download the file, and store it in `src/ui` folder.
+
 ```bash title="Makefile"
 --8<-- "./docs/wiki/_codes/Makefile"
 ```
+
+!!! success "Tip"
+	When building your application using this Makefile, set the machine name to one of the following values as shown below.
+
+	* for RZ/G3E EVK: `smarc-rzg3e` 
+	* for RZ/G2L EVK: `smarc-rzg2l` 
+	* for RZ/G2LC EVK: `smarc-rzg2lc` 
+
+	```bash
+	MACHINE=<machine name> make
+	```
+	{ .dollar }
+
+	Execute `make` without setting the machine name when you use RZ/G2UL EVK.
+

@@ -703,5 +703,6 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
 
         To exit, simply close the window or press Ctrl+C in the EVK board terminal.
 
-
+!!! success "Tip"
+    When developing your own HMI applications, you may also refer to the procedures described in the [Wiki](../wiki/).
 
