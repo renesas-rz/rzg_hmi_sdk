@@ -4,12 +4,15 @@
   by
     Mousey
   and may be subject to copyright.
+
+  And was modified by Renesas (2025)
 -#}
 
 <div id="google_translate_element"></div>
-<script type="text/javascript">
+<script id="__translate" type="text/javascript">
   var userLang = navigator.language || navigator.userLanguage || navigator.languages;
-  if (userLang.substr(0,2) != "en"){
+  var loadEngine = true;
+  if (userLang.substr(0,2) != "en") {
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
@@ -18,7 +21,16 @@
     }
   }
   else {
-    document.getElementById("google_translate_element").style.display="none";
+    document.getElementById("google_translate_element").style.display = "none";
+    loadEngine = false;
+  }
+
+  /* init Google Translate Element only when translation required */
+  if (loadEngine) {
+    const __this = document.getElementById('__translate');
+    var js = document.createElement("script");
+    js.type = "text/javascript";
+    js.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    __this.parentNode.insertBefore(js, __this.nextSibling);
   }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
