@@ -24,5 +24,5 @@ This page contains information and tips related to the RZ/G HMI SDK.
 
 ## Chromium
 
-<font color="red">*Coming Soon!! *</font>
+* [How to Develop Chromium HMI Applications Using Plasmic](./chromium_develop-hmi-using-plasmic.md)
 
