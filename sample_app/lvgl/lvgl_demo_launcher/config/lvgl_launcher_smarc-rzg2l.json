@@ -11,7 +11,7 @@
   },
   {
     "exe_cmd": "/usr/share/chromium_demo/chromium-app.sh",
-    "icon_image": "L:/usr/share/demo-launcher/images/Chromium_Logo.png",
+    "icon_image": "",
     "description": "Chromium Home panel demo"
   },
   {
