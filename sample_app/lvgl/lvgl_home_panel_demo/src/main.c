@@ -16,6 +16,7 @@
 #include	<pthread.h>
 
 #include  "include/Home_Panel_Demo.h"
+#include  "include/common.h"
 #include 	"../lvgl/src/misc/lv_fs_private.h"
 
 #ifdef	RUNS_ON_WAYLAND
@@ -32,13 +33,6 @@ lv_obj_t* anim_btn2;
 lv_obj_t* before_obj;
 lv_obj_t* after_obj;
 lv_obj_t* obj_space;
-lv_obj_t* background;
-lv_obj_t* header_background;
-lv_obj_t* header_logo;
-int32_t logo_ratio = 0;
-
-int background_width;
-int background_height;
 
 #ifndef RUNS_ON_WAYLAND
 
@@ -71,16 +65,21 @@ int main(int argc, char *argv[])
 	struct pollfd pfd;
 	uint32_t time_till_next;
 	int sleep;
-#endif		
+#endif
 	int32_t window_width = 1920;
 	int32_t window_height = 1080;
-	int32_t ret = 0;
+
+	if (RESOLUTION_TYPE_HD == get_resolution_type())
+	{
+	    window_width = 1280;
+	    window_height = 720;
+	}
 
 	/*LVGL init*/
 	lv_init();
-    lv_fs_init();
-    lv_fs_stdio_init();
-    lv_lodepng_init();
+	lv_fs_init();
+	lv_fs_stdio_init();
+	lv_lodepng_init();
 	lv_tjpgd_init();
 
 #ifdef RUNS_ON_WAYLAND
@@ -112,8 +111,8 @@ int main(int argc, char *argv[])
 	lv_linux_fbdev_set_file(disp, device);
 #endif
 
-	background_width = lv_display_get_horizontal_resolution(disp);
-	background_height = lv_display_get_vertical_resolution(disp);
+	set_background_width(lv_display_get_horizontal_resolution(disp));
+	set_background_height(lv_display_get_vertical_resolution(disp));
 
 	create_menu();
 	create_Dashboard();

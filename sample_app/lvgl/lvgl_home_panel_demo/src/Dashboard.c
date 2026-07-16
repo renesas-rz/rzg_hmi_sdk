@@ -1,4 +1,5 @@
 #include  "include/Home_Panel_Demo.h"
+#include  "include/common.h"
 
 typedef struct {
 	char* name;
@@ -84,28 +85,13 @@ LV_IMG_DECLARE(Weather_btn_icon);
 void create_Dashboard(void)
 {
     /* Create_Dashboard_background */
-    lv_obj_t *Dashboard_background = lv_obj_create(Dashboard);
-    lv_obj_set_size(Dashboard_background, background_width, background_height);
-    lv_obj_align(Dashboard_background, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_obj_set_style_pad_all(Dashboard_background, 0, 0);
-    lv_obj_set_style_border_width(Dashboard_background, 0, 0);
-    lv_obj_set_style_outline_width(Dashboard_background, 0, 0);
-
-    header_background = lv_obj_create(Dashboard_background);
-    lv_obj_set_size(header_background, background_width, 79);
-    lv_obj_set_style_bg_color(header_background, lv_color_hex(0xE3E1FF), 0);
-
-    header_logo = lv_image_create(header_background);
-    lv_image_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
-    lv_obj_update_layout(header_logo);
-    logo_ratio = img_ratio_calc(header_logo, 237, 30);
-    lv_image_set_scale(header_logo, logo_ratio);
-    lv_obj_center(header_logo);
+    lv_obj_t *Dashboard_background = create_page_background(Dashboard);
+    add_header(Dashboard_background);
 
     /* Create_Image_Gallery_btn */
     Image_Gallery_btn = lv_button_create(Dashboard_background);
-    lv_obj_set_size(Image_Gallery_btn, 437, 463);
-    lv_obj_set_pos(Image_Gallery_btn, 712, 180);
+    lv_obj_set_size(Image_Gallery_btn, adjust_to_res(437), adjust_to_res(463));
+    lv_obj_set_pos(Image_Gallery_btn, adjust_to_res(712), adjust_to_res(180));
     lv_obj_set_style_bg_color(Image_Gallery_btn, lv_color_hex(0x8F92F6), 0);
     lv_obj_set_style_pad_all(Image_Gallery_btn, 0, 0);
     lv_obj_set_style_border_width(Image_Gallery_btn, 0, 0);
@@ -114,16 +100,21 @@ void create_Dashboard(void)
     lv_obj_align(Image_Gallery_btn_text, LV_ALIGN_BOTTOM_MID, 0, 0);
     lv_label_set_text(Image_Gallery_btn_text, "Image Gallery");
     lv_obj_set_style_bg_color(Image_Gallery_btn_text, lv_color_hex(0xDDDDDD), 0);
+    lv_obj_set_style_text_font(Image_Gallery_btn_text, get_lv_font(FONT_SIZE_L), 0);
     lv_obj_add_event_cb(Image_Gallery_btn, Image_Gallery_btn_cb, LV_EVENT_CLICKED, NULL);
 
     lv_obj_t* Image_Gallery_btn_icon = lv_image_create(Image_Gallery_btn);
     lv_obj_center(Image_Gallery_btn_icon);
     lv_image_set_src(Image_Gallery_btn_icon, &Image_btn_icon);
+    int32_t img_w = Image_btn_icon.header.w;
+    int32_t img_h = Image_btn_icon.header.h;
+    lv_obj_set_size(Image_Gallery_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Image_Gallery_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     /*Home_Automation_btn */
     lv_obj_t* Home_Automation_btn = lv_button_create(Dashboard_background);
-    lv_obj_set_size(Home_Automation_btn, 438, 463);
-    lv_obj_set_pos(Home_Automation_btn, 1166, 180);
+    lv_obj_set_size(Home_Automation_btn, adjust_to_res(438), adjust_to_res(463));
+    lv_obj_set_pos(Home_Automation_btn, adjust_to_res(1166), adjust_to_res(180));
     lv_obj_set_style_bg_color(Home_Automation_btn, lv_color_hex(0x8F92F6), 0);
     lv_obj_set_style_pad_all(Home_Automation_btn, 0, 0);
     lv_obj_set_style_border_width(Home_Automation_btn, 0, 0);
@@ -133,16 +124,23 @@ void create_Dashboard(void)
     lv_obj_align(Home_Automation_btn_text, LV_ALIGN_BOTTOM_MID, 0, 0);
     lv_label_set_text(Home_Automation_btn_text, "Home Automation");
     lv_obj_set_style_bg_color(Home_Automation_btn_text, lv_color_hex(0xDDDDDD), 0);
+    lv_obj_set_style_text_font(Home_Automation_btn_text, get_lv_font(FONT_SIZE_L), 0);
     lv_obj_add_event_cb(Home_Automation_btn, Home_Automation_btn_cb, LV_EVENT_CLICKED, NULL);
 
     lv_obj_t* Home_Automation_btn_icon = lv_image_create(Home_Automation_btn);
     lv_image_set_src(Home_Automation_btn_icon, &Home_btn_icon);
+
+    img_w = Home_btn_icon.header.w;
+    img_h = Home_btn_icon.header.h;
+
     lv_obj_center(Home_Automation_btn_icon);
+    lv_obj_set_size(Home_Automation_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Home_Automation_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     /* Weather_History_btn */
     lv_obj_t* Weather_History_btn = lv_button_create(Dashboard_background);
-    lv_obj_set_size(Weather_History_btn, 551, 319);
-    lv_obj_set_pos(Weather_History_btn, 712, 660);
+    lv_obj_set_size(Weather_History_btn, adjust_to_res(551), adjust_to_res(319));
+    lv_obj_set_pos(Weather_History_btn, adjust_to_res(712), adjust_to_res(660));
     lv_obj_set_style_bg_color(Weather_History_btn, lv_color_hex(0xE9ECEF), 0);
     lv_obj_set_style_pad_all(Weather_History_btn, 0, 0);
     lv_obj_set_style_border_width(Weather_History_btn, 0, 0);
@@ -152,12 +150,16 @@ void create_Dashboard(void)
     lv_obj_t* Weather_History_btn_icon = lv_image_create(Weather_History_btn);
     lv_obj_center(Weather_History_btn_icon);
     lv_image_set_src(Weather_History_btn_icon, &Weather_btn_icon);
+    img_w = Weather_btn_icon.header.w;
+    img_h = Weather_btn_icon.header.h;
+    lv_obj_set_size(Weather_History_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Weather_History_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
 #ifdef	RUNS_ON_WAYLAND
     /* music_palyer */
     music_player = lv_obj_create(Dashboard_background);
-    lv_obj_set_size(music_player, 438, 799);
-    lv_obj_set_pos(music_player, 257, 180);
+    lv_obj_set_size(music_player, adjust_to_res(438), adjust_to_res(799));
+    lv_obj_set_pos(music_player, adjust_to_res(257), adjust_to_res(180));
     lv_obj_set_style_bg_color(music_player, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(music_player, 0, 0);
     lv_obj_set_style_border_width(music_player, 0, 0);
@@ -165,27 +167,37 @@ void create_Dashboard(void)
     
 
     music_num_text = lv_label_create(music_player);
-    lv_obj_align(music_num_text, LV_ALIGN_CENTER, 0, -296);
+    lv_obj_align(music_num_text, LV_ALIGN_CENTER, 0, adjust_to_res(-296));
     lv_obj_set_style_bg_color(music_num_text, lv_color_hex(0x213547), 0);
+    lv_obj_set_style_text_font(music_num_text, get_lv_font(FONT_SIZE_L), 0);
     lv_label_set_text(music_num_text, "Playing 1 of 3");
 
     music_image = lv_image_create(music_player);
-    lv_obj_align(music_image, LV_ALIGN_CENTER, 0, -180);
+    lv_obj_align(music_image, LV_ALIGN_CENTER, 0, adjust_to_res(-180));
     lv_obj_update_layout(music_image);
     lv_image_set_src(music_image, music_list[0].img);
+    lv_image_header_t header;
+    if (LV_RESULT_OK == lv_image_decoder_get_info(music_list[0].img, &header)) {
+      img_w = header.w;
+      img_h = header.h;
+    }
+    lv_obj_set_size(music_image, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(music_image, LV_IMAGE_ALIGN_STRETCH);
 
     music_name = lv_label_create(music_player);
     lv_obj_align(music_name, LV_ALIGN_CENTER, 0, -40);
     lv_obj_set_style_bg_color(music_name, lv_color_hex(0x213547), 0);
+    lv_obj_set_style_text_font(music_name, get_lv_font(FONT_SIZE_L), 0);
     lv_label_set_text(music_name, music_list[0].name);
 
     music_artist = lv_label_create(music_player);
     lv_obj_center(music_artist);
     lv_obj_set_style_bg_color(music_artist, lv_color_hex(0x213547), 0);
+    lv_obj_set_style_text_font(music_artist, get_lv_font(FONT_SIZE_L), 0);
     lv_label_set_text(music_artist, music_list[0].artist);
 
     loop_btn = lv_button_create(music_player);
-    lv_obj_set_pos(loop_btn, 68, 596);
+    lv_obj_set_pos(loop_btn, adjust_to_res(68), adjust_to_res(596));
     lv_obj_set_style_bg_color(loop_btn, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(loop_btn, 0, 0);
     lv_obj_set_style_border_width(loop_btn, 0, 0);
@@ -194,9 +206,13 @@ void create_Dashboard(void)
 
     loop_btn_icon = lv_image_create(loop_btn);
     lv_image_set_src(loop_btn_icon, &music_btn_loop_off_icon);
+    img_w = music_btn_loop_off_icon.header.w;
+    img_h = music_btn_loop_off_icon.header.h;
+    lv_obj_set_size(loop_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(loop_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     prev_btn = lv_button_create(music_player);
-    lv_obj_set_pos(prev_btn, 134, 596);
+    lv_obj_set_pos(prev_btn, adjust_to_res(134), adjust_to_res(596));
     lv_obj_set_style_bg_color(prev_btn, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(prev_btn, 0, 0);
     lv_obj_set_style_border_width(prev_btn, 0, 0);
@@ -206,9 +222,13 @@ void create_Dashboard(void)
 
     prev_btn_icon = lv_image_create(prev_btn);
     lv_image_set_src(prev_btn_icon, &music_btn_prev_icon);
+    img_w = music_btn_prev_icon.header.w;
+    img_h = music_btn_prev_icon.header.h;
+    lv_obj_set_size(prev_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(prev_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     music_state_btn = lv_button_create(music_player);
-    lv_obj_set_pos(music_state_btn,192, 596);
+    lv_obj_set_pos(music_state_btn, adjust_to_res(192), adjust_to_res(596));
     lv_obj_set_style_bg_color(music_state_btn, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(music_state_btn, 0, 0);
     lv_obj_set_style_border_width(music_state_btn, 0, 0);
@@ -217,9 +237,13 @@ void create_Dashboard(void)
 
     music_state_btn_icon = lv_image_create(music_state_btn);
     lv_image_set_src(music_state_btn_icon, &music_btn_play_icon);
+    img_w = music_btn_play_icon.header.w;
+    img_h = music_btn_play_icon.header.h;
+    lv_obj_set_size(music_state_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(music_state_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     next_btn = lv_button_create(music_player);
-    lv_obj_set_pos(next_btn, 250, 596);
+    lv_obj_set_pos(next_btn, adjust_to_res(250), adjust_to_res(596));
     lv_obj_set_style_bg_color(next_btn, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(next_btn, 0, 0);
     lv_obj_set_style_border_width(next_btn, 0, 0);
@@ -228,9 +252,13 @@ void create_Dashboard(void)
 
     next_btn_icon = lv_image_create(next_btn);
     lv_image_set_src(next_btn_icon, &music_btn_next_icon);
+    img_w = music_btn_next_icon.header.w;
+    img_h = music_btn_next_icon.header.h;
+    lv_obj_set_size(next_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(next_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     replay_btn = lv_button_create(music_player);
-    lv_obj_set_pos(replay_btn, 316, 596);
+    lv_obj_set_pos(replay_btn, adjust_to_res(316), adjust_to_res(596));
     lv_obj_set_style_bg_color(replay_btn, lv_color_hex(0xCED4DA), 0);
     lv_obj_set_style_pad_all(replay_btn, 0, 0);
     lv_obj_set_style_border_width(replay_btn, 0, 0);
@@ -239,39 +267,65 @@ void create_Dashboard(void)
 
     replay_btn_icon = lv_image_create(replay_btn);
     lv_image_set_src(replay_btn_icon, &music_btn_replay_icon);
+    img_w = music_btn_replay_icon.header.w;
+    img_h = music_btn_replay_icon.header.h;
+    lv_obj_set_size(replay_btn_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(replay_btn_icon, LV_IMAGE_ALIGN_STRETCH);
 
     time_slider = lv_slider_create(music_player);
-    lv_obj_set_width(time_slider, 231);
-    lv_obj_set_height(time_slider, 6);
-    lv_obj_set_pos(time_slider, 103, 476);
+    lv_obj_set_width(time_slider, adjust_to_res(231));
+    lv_obj_set_height(time_slider, adjust_to_res(6));
+    lv_obj_set_pos(time_slider, adjust_to_res(103), adjust_to_res(476));
     lv_obj_add_event_cb(time_slider, music_seek_cb, LV_EVENT_VALUE_CHANGED, NULL);
 
     time_text = lv_label_create(music_player);
-    lv_obj_set_pos(time_text, 28, 472);
+    {
+        int pos_x = adjust_to_res(28);
+	if (RESOLUTION_TYPE_HD == get_resolution_type())
+	    pos_x = pos_x - 5;
+        lv_obj_set_pos(time_text, pos_x, adjust_to_res(472));
+    }
+    lv_obj_set_style_text_font(time_text, get_lv_font(FONT_SIZE_S), 0);
     lv_label_set_text(time_text, "00:00:00");
 
     end_time_text = lv_label_create(music_player);
-    lv_obj_set_pos(end_time_text, 349, 472);
+    lv_obj_set_pos(end_time_text, adjust_to_res(349), adjust_to_res(472));
+    lv_obj_set_style_text_font(end_time_text, get_lv_font(FONT_SIZE_S), 0);
     lv_label_set_text(end_time_text, "00:00:00");
 
     volume_icon = lv_image_create(music_player);
-    lv_obj_set_pos(volume_icon, 31, 522);
+    {
+        int pos_x = adjust_to_res(31);
+	if (RESOLUTION_TYPE_HD == get_resolution_type())
+	    pos_x = pos_x - 3;
+	lv_obj_set_pos(volume_icon, pos_x, adjust_to_res(522));
+    }
     lv_image_set_src(volume_icon, &music_volume_icon);
+    img_w = music_volume_icon.header.w;
+    img_h = music_volume_icon.header.h;
+    lv_image_set_inner_align(volume_icon, LV_IMAGE_ALIGN_STRETCH);
 
     volume_slider = lv_slider_create(music_player);
-    lv_obj_set_width(volume_slider, 295);
-    lv_obj_set_height(volume_slider, 6);
-    lv_obj_set_pos(volume_slider, 71, 533);
+    lv_obj_set_width(volume_slider, adjust_to_res(295));
+    lv_obj_set_height(volume_slider, adjust_to_res(6));
+    lv_obj_set_pos(volume_slider, adjust_to_res(71), adjust_to_res(533));
     lv_slider_set_range(volume_slider, 0, 10);
     lv_slider_set_value(volume_slider, 10, 0);
     lv_obj_add_event_cb(volume_slider, music_volume_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
 
     volume_value_label =lv_label_create(music_player);
-    lv_obj_set_pos(volume_value_label, 376, 529);
+    {
+        int pos_x = adjust_to_res(376);
+	if (RESOLUTION_TYPE_HD == get_resolution_type())
+	    pos_x = pos_x + 3;
+        lv_obj_set_pos(volume_value_label, pos_x, adjust_to_res(529));
+    }
+    lv_obj_set_style_text_font(volume_value_label, get_lv_font(FONT_SIZE_M), 0);
     lv_label_set_text(volume_value_label, "100");
 
     music_num = 0;
     music_setup(music_list[music_num].path);
+
 #endif
 }
 

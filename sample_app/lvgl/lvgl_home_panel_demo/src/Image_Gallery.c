@@ -1,4 +1,5 @@
 #include  "include/Home_Panel_Demo.h"
+#include  "include/common.h"
 
 lv_obj_t* Image;
 lv_obj_t* after_Image;
@@ -9,21 +10,8 @@ static void animation_event_handler(lv_event_t* e);
 
 void create_Image_Gallery(void)
 {
-    lv_obj_t* Image_Gallery_background = lv_obj_create(Image_Gallery);
-    lv_obj_set_style_pad_all(Image_Gallery_background, 0, 0);
-    lv_obj_set_style_border_width(Image_Gallery_background, 0, 0);
-    lv_obj_set_style_outline_width(Image_Gallery_background, 0, 0);
-    lv_obj_align(Image_Gallery_background, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_obj_set_size(Image_Gallery_background, background_width, background_height);
-
-    header_background = lv_obj_create(Image_Gallery_background);
-    lv_obj_set_style_bg_color(header_background, lv_color_hex(0xE3E1FF), 0);
-    lv_obj_set_size(header_background, background_width, 79);
-
-    header_logo = lv_image_create(header_background);
-    lv_image_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
-    lv_image_set_scale(header_logo, logo_ratio);
-    lv_obj_center(header_logo);
+    lv_obj_t *Image_Gallery_background = create_page_background(Image_Gallery);
+    add_header(Image_Gallery_background);
 
     char Image_btn_cnt = 0;
     int32_t img_ratio = 0;
@@ -32,21 +20,21 @@ void create_Image_Gallery(void)
     lv_style_set_radius(&image_btn_style, 0);
 
     Image = lv_image_create(Image_Gallery_background);
-    lv_obj_set_pos(Image, 564, 344);
-    lv_obj_set_size(Image, 959, 539);
+    lv_obj_set_pos(Image, adjust_to_res(564), adjust_to_res(344));
+    lv_obj_set_size(Image, adjust_to_res(959), adjust_to_res(539));
     lv_image_set_src(Image, "L:/usr/share/lvgl-home-panel-demo/images/photo_0.jpg");
 
     after_Image = lv_image_create(Image_Gallery_background);
-    lv_obj_set_pos(after_Image, 564, 344);
-    lv_obj_set_size(after_Image, 959, 539);
+    lv_obj_set_pos(after_Image, adjust_to_res(564), adjust_to_res(344));
+    lv_obj_set_size(after_Image, adjust_to_res(959), adjust_to_res(539));
 
     for (Image_btn_cnt = 0; Image_btn_cnt < 4; Image_btn_cnt++)
     {
         select_Image_btn[Image_btn_cnt] = lv_button_create(Image_Gallery_background);
         select_Image[Image_btn_cnt] = lv_image_create(select_Image_btn[Image_btn_cnt]);
-        lv_obj_set_pos(select_Image_btn[Image_btn_cnt], 338, (344 + ((119+20) * Image_btn_cnt)));
+        lv_obj_set_pos(select_Image_btn[Image_btn_cnt], adjust_to_res(338), adjust_to_res((344 + ((119+20) * Image_btn_cnt))));
         
-        lv_obj_set_size(select_Image_btn[Image_btn_cnt], 209, 119);
+        lv_obj_set_size(select_Image_btn[Image_btn_cnt], adjust_to_res(209), adjust_to_res(119));
         lv_obj_set_style_pad_all(select_Image_btn[Image_btn_cnt], 0, 0);
         lv_obj_set_style_border_width(select_Image_btn[Image_btn_cnt], 0, 0);
         lv_obj_set_style_outline_width(select_Image_btn[Image_btn_cnt], 0, 0);
@@ -62,8 +50,8 @@ void create_Image_Gallery(void)
     {
         lv_obj_set_pos(select_Image[Image_btn_cnt], 0, 0);
         lv_obj_update_layout(select_Image[Image_btn_cnt]);
-        img_ratio = img_ratio_calc(select_Image[Image_btn_cnt], 209, 119);
-        lv_obj_set_size(select_Image[Image_btn_cnt], 209, 119);
+        img_ratio = img_ratio_calc(select_Image[Image_btn_cnt], adjust_to_res(209), adjust_to_res(119));
+        lv_obj_set_size(select_Image[Image_btn_cnt], adjust_to_res(209), adjust_to_res(119));
         lv_image_set_scale(select_Image[Image_btn_cnt],img_ratio);
         lv_obj_set_style_pad_all(select_Image[Image_btn_cnt], 0, 0);
         lv_obj_set_style_border_width(select_Image[Image_btn_cnt], 0, 0);

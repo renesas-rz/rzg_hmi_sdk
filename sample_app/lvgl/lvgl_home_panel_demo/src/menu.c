@@ -1,4 +1,7 @@
-#include  "include/Home_Panel_Demo.h"
+#include "include/Home_Panel_Demo.h"
+#include "include/common.h"
+#include <stdbool.h>
+#include <unistd.h>
 
 lv_obj_t* Image_Gallery;
 lv_obj_t* Image_Gallery_section;
@@ -15,10 +18,12 @@ lv_obj_t* Weather_History_cont;
 lv_obj_t* tab;
 
 lv_obj_t* menu;
-bool sidebar_state = 1;
+
+bool sidebar_show = false;
 
 static void back_event_handler(lv_event_t* e);
-int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height);
+void update_menu_display(bool is_show);
+void add_close_btn_to_menu();
 
 #ifdef	RUNS_ON_WAYLAND
     static void music_stop_cb(lv_event_t * e);
@@ -32,6 +37,8 @@ LV_IMG_DECLARE(Weather_History_icon);
 
 void create_menu()
 {
+    int32_t img_w = 0;
+    int32_t img_h = 0;
     menu = lv_menu_create(lv_screen_active());
 
     lv_menu_set_mode_root_back_button(menu, LV_MENU_ROOT_BACK_BUTTON_ENABLED);
@@ -49,8 +56,11 @@ void create_menu()
     lv_menu_set_sidebar_page(menu, sidebar);
     lv_obj_set_align(menu, LV_ALIGN_TOP_RIGHT);
     lv_obj_set_align(sidebar, LV_ALIGN_TOP_RIGHT);
+    lv_obj_remove_flag(sidebar, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_set_style_bg_color(menu, lv_color_hex(0x2F419A), 0);
     lv_obj_move_background(menu);
+
+    add_close_btn_to_menu(lv_menu_get_sidebar_header(menu));
 
     /* style */
     static lv_style_t tag_text_style;
@@ -63,22 +73,29 @@ void create_menu()
 
     /* set sidebar */
     tab = lv_obj_get_parent(sidebar);
-    lv_obj_set_width(tab, 57);
+    update_menu_display(sidebar_show);
     lv_obj_send_event(lv_obj_get_child(lv_obj_get_child(lv_menu_get_cur_sidebar_page(menu), 0), 0), LV_EVENT_CLICKED, NULL);
 
     /* create sub page for item Dashboard */
     Dashboard = lv_menu_page_create(menu, NULL);
+    lv_obj_remove_flag(Dashboard, LV_OBJ_FLAG_SCROLLABLE);
 
     /* create sidebar element for Dashboard */
     Dashboard_section = lv_menu_section_create(sidebar);
     Dashboard_cont = lv_menu_cont_create(Dashboard_section);
     lv_obj_set_style_bg_color(Dashboard_section, lv_color_hex(0x2F419A), 0);
+    lv_obj_set_height(Dashboard_cont, adjust_to_res(57));
 
     lv_obj_t* Dashboard_tag_icon = lv_image_create(Dashboard_cont);
     lv_image_set_src(Dashboard_tag_icon, &Dashboard_icon);
+    img_w = Dashboard_icon.header.w;
+    img_h = Dashboard_icon.header.h;
+    lv_obj_set_size(Dashboard_tag_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Dashboard_tag_icon, LV_IMAGE_ALIGN_STRETCH);
 
     lv_obj_t* Dashboard_tag_text = lv_label_create(Dashboard_cont);
     lv_label_set_text(Dashboard_tag_text, "Dashboard");
+    lv_obj_set_style_text_font(Dashboard_tag_text, get_lv_font(FONT_SIZE_M), 0);
     lv_obj_add_style(Dashboard_tag_text, &tag_text_style, 0);
 
     lv_menu_set_load_page_event(menu, Dashboard_cont, Dashboard);
@@ -86,33 +103,47 @@ void create_menu()
 
     /* Image_Gallery_menu */
     Image_Gallery = lv_menu_page_create(menu, NULL);
+    lv_obj_remove_flag(Image_Gallery, LV_OBJ_FLAG_SCROLLABLE);
 
     /* create sidebar element for Image_Gallery */
     Image_Gallery_section = lv_menu_section_create(sidebar);
     Image_Gallery_cont = lv_menu_cont_create(Image_Gallery_section);
     lv_obj_set_style_bg_color(Image_Gallery_section, lv_color_hex(0x2F419A), 0);
+    lv_obj_set_height(Image_Gallery_cont, adjust_to_res(57));
 
     lv_obj_t* Image_Gallery_tag_icon = lv_image_create(Image_Gallery_cont);
     lv_image_set_src(Image_Gallery_tag_icon, &Image_Gallery_icon);
+    img_w = Image_Gallery_icon.header.w;
+    img_h = Image_Gallery_icon.header.h;
+    lv_obj_set_size(Image_Gallery_tag_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Image_Gallery_tag_icon, LV_IMAGE_ALIGN_STRETCH);
 
     lv_obj_t* Image_Gallery_tag_text = lv_label_create(Image_Gallery_cont);
     lv_obj_set_x(Image_Gallery_tag_text, 60);
+    lv_obj_set_style_text_font(Image_Gallery_tag_text, get_lv_font(FONT_SIZE_M), 0);
     lv_label_set_text(Image_Gallery_tag_text, "Image Gallery");
     lv_obj_add_style(Image_Gallery_tag_text, &tag_text_style, 0);
     lv_menu_set_load_page_event(menu, Image_Gallery_cont, Image_Gallery);
 
     /* Home_Automation_menu */
     Home_Automation = lv_menu_page_create(menu, NULL);
+    lv_obj_remove_flag(Home_Automation, LV_OBJ_FLAG_SCROLLABLE);
 
     /* create sidebar element for Home_Automation */
     Home_Automation_section = lv_menu_section_create(sidebar);
     Home_Automation_cont = lv_menu_cont_create(Home_Automation_section);
     lv_obj_set_style_bg_color(Home_Automation_section, lv_color_hex(0x2F419A), 0);
+    lv_obj_set_height(Home_Automation_cont, adjust_to_res(57));
 
     lv_obj_t* Home_Automation_tag_icon = lv_image_create(Home_Automation_cont);
     lv_image_set_src(Home_Automation_tag_icon, &Home_Automation_icon);
+    img_w = Home_Automation_icon.header.w;
+    img_h = Home_Automation_icon.header.h;
+    lv_obj_set_size(Home_Automation_tag_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Home_Automation_tag_icon, LV_IMAGE_ALIGN_STRETCH);
 
     lv_obj_t* Home_Automation_tag_text = lv_label_create(Home_Automation_cont);
+    lv_obj_set_style_text_font(Home_Automation_tag_text, get_lv_font(FONT_SIZE_M), 0);
     lv_label_set_text(Home_Automation_tag_text, "Home Automation");
     lv_obj_add_style(Home_Automation_tag_text, &tag_text_style, 0);
 
@@ -120,17 +151,24 @@ void create_menu()
 
     /* Weather_History_menu */
     Weather_History = lv_menu_page_create(menu, NULL);
+    lv_obj_remove_flag(Weather_History, LV_OBJ_FLAG_SCROLLABLE);
 
     /* create sidebar element for Weather_History */
     Weather_History_section = lv_menu_section_create(sidebar);
     Weather_History_cont = lv_menu_cont_create(Weather_History_section);
 
     lv_obj_set_style_bg_color(Weather_History_section, lv_color_hex(0x2F419A), 0);
+    lv_obj_set_height(Weather_History_cont, adjust_to_res(57));
 
     lv_obj_t* Weather_History_tag_icon = lv_image_create(Weather_History_cont);
     lv_image_set_src(Weather_History_tag_icon, &Weather_History_icon);
+    img_w = Weather_History_icon.header.w;
+    img_h = Weather_History_icon.header.h;
+    lv_obj_set_size(Weather_History_tag_icon, adjust_to_res(img_w), adjust_to_res(img_h));
+    lv_image_set_inner_align(Weather_History_tag_icon, LV_IMAGE_ALIGN_STRETCH);
 
     lv_obj_t* Weather_History_tag_text = lv_label_create(Weather_History_cont);
+    lv_obj_set_style_text_font(Weather_History_tag_text, get_lv_font(FONT_SIZE_M), 0);
     lv_label_set_text(Weather_History_tag_text, "Weather History");
     lv_obj_add_style(Weather_History_tag_text, &tag_text_style, 0);
 
@@ -144,8 +182,8 @@ void create_menu()
 
     lv_obj_update_layout(ver_obj);
     int y = lv_obj_get_y(ver_obj);
-    int space_y = background_height - y - 50;
-    lv_obj_set_size(ver_obj, 320, space_y);
+    int space_y = get_background_height() - y - 50;
+    lv_obj_set_size(ver_obj, adjust_to_res(320), space_y);
     lv_obj_align(ver_obj, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
     lv_obj_add_style(ver_obj, &ver_obj_style, 0);
     lv_obj_set_style_pad_all(ver_obj, 0, 0);
@@ -154,12 +192,11 @@ void create_menu()
     lv_obj_set_style_bg_color(ver_obj, lv_color_hex(0x2F419A), 0);
 
     lv_obj_t* Version_text = lv_label_create(ver_obj);
+    lv_obj_set_style_text_font(Version_text, get_lv_font(FONT_SIZE_M), 0);
     lv_label_set_text(Version_text, "Ver.2.00");
     lv_obj_add_style(Version_text, &tag_text_style, 0);
     lv_obj_update_layout(ver_obj);
     lv_obj_align(Version_text, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
-
-    img_ratio_calc(lv_screen_active(), 1280,720);
 
 #ifdef	RUNS_ON_WAYLAND
     lv_obj_add_event_cb(Dashboard_cont, music_stop_cb, LV_EVENT_CLICKED, NULL);
@@ -169,40 +206,29 @@ void create_menu()
 #endif
 }
 
-static void back_event_handler(lv_event_t* e)
+void update_menu_display(bool is_show)
 {
-    /* sidebar_Open */
-    if (sidebar_state == 0)
+    if (!is_show)
     {
-        lv_obj_set_width(tab, 57);
-        sidebar_state = 1;
-    }
-    /* sidebar_Close */
-    else if (sidebar_state == 1)
-    {
-        lv_obj_set_width(tab, 320);
-        sidebar_state = 0;
-    }
-}
-
-int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height)
-{
-    int32_t ratio;
-    int32_t img_width;
-    int32_t img_height;
-    int32_t img_obj_width = lv_obj_get_width(img);
-    int32_t img_obj_height = lv_obj_get_height(img);
-
-    if(img_obj_width > img_obj_height)
-    {
-        ratio = 256.0 * (double)scr_width/(double)img_obj_width;
+        int menu_width;
+	if (RESOLUTION_TYPE_HD == get_resolution_type())
+	    menu_width = 43;
+	else
+	    menu_width = adjust_to_res(57);
+	lv_obj_set_width(tab, menu_width);
     }
     else
     {
-        ratio = 256.0 * (double)scr_height/(double)img_obj_height;
+        lv_obj_set_width(tab, adjust_to_res(320));
     }
-    return ratio;
 }
+
+static void back_event_handler(lv_event_t* e)
+{
+    update_menu_display(!sidebar_show);
+    sidebar_show = !sidebar_show;
+}
+
 
 #ifdef	RUNS_ON_WAYLAND
     static void music_stop_cb(lv_event_t * e)
@@ -213,3 +239,37 @@ int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height)
         lv_label_set_text(time_text, "00:00:00");
     }
 #endif
+
+void close_btn_event_cb(lv_event_t* e)
+{
+    _exit(0);
+}
+
+void add_close_btn_to_menu()
+{
+    lv_obj_t* menu_header = lv_menu_get_sidebar_header(menu);
+    lv_obj_t* menu_back_btn = lv_menu_get_sidebar_header_back_button(menu);
+
+    lv_obj_update_layout(menu_header);
+    lv_obj_update_layout(menu_back_btn);
+
+    lv_obj_t* close_btn_background = lv_obj_create(menu_header);
+    lv_obj_set_style_bg_color(close_btn_background, lv_color_hex(0x2F419A), 0);
+    lv_obj_set_style_pad_all(close_btn_background, 0, 0);
+    lv_obj_set_style_border_width(close_btn_background, 0, 0);
+    lv_obj_set_style_outline_width(close_btn_background, 0, 0);
+    lv_obj_set_width(close_btn_background, LV_PCT(100));
+    lv_obj_set_flex_grow(close_btn_background, 1);
+    lv_obj_set_height(close_btn_background, lv_obj_get_height(menu_back_btn));
+
+    lv_obj_t* close_btn = lv_button_create(close_btn_background);
+    lv_obj_set_height(close_btn, lv_obj_get_height(menu_back_btn));
+    lv_obj_set_style_radius(close_btn, 0, 0);
+    lv_obj_set_align(close_btn, LV_ALIGN_TOP_RIGHT);
+    lv_obj_add_event_cb(close_btn, close_btn_event_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_set_style_bg_color(close_btn, lv_color_hex(0xC42B1C), 0);
+
+    lv_obj_t* close_btn_label = lv_label_create(close_btn);
+    lv_label_set_text(close_btn_label, "X");
+    lv_obj_center(close_btn_label);
+}

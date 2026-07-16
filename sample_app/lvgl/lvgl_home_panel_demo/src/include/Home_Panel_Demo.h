@@ -31,11 +31,6 @@
 #endif
 
 /* Menu */
-extern int background_width;
-extern int background_height;
-extern lv_obj_t* header_background;
-extern lv_obj_t* header_logo;
-extern int32_t logo_ratio;
 extern lv_obj_t* Dashboard;
 extern lv_obj_t* Image_Gallery;
 extern lv_obj_t* Image_Gallery_cont;
@@ -43,7 +38,6 @@ extern lv_obj_t* Home_Automation;
 extern lv_obj_t* Home_Automation_cont;
 extern lv_obj_t* Weather_History;
 extern lv_obj_t* Weather_History_cont;
-extern int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height);
 
 /* Chart */
 extern lv_chart_series_t* ser;

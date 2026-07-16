@@ -1,6 +1,8 @@
 #include  "include/Home_Panel_Demo.h"
+#include  "include/common.h"
 
 lv_obj_t* Weather_History_btn;
+lv_obj_t* chart_background;
 lv_obj_t* Weather_History_chart;
 lv_chart_series_t* ser;
 uint32_t pcnt;
@@ -53,30 +55,17 @@ static const int32_t ecg_sample[] = {
 
 void create_Weather_History(void)
 {
-    lv_obj_t* Weather_History_background = lv_obj_create(Weather_History);
-    lv_obj_set_style_pad_all(Weather_History_background, 0, 0);
-    lv_obj_set_style_border_width(Weather_History_background, 0, 0);
-    lv_obj_set_style_outline_width(Weather_History_background, 0, 0);
-    lv_obj_align(Weather_History_background, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_obj_set_size(Weather_History_background, background_width, background_height);
+    lv_obj_t *Weather_History_background = create_page_background(Weather_History);
+    add_header(Weather_History_background);
 
-    header_background = lv_obj_create(Weather_History_background);
-    lv_obj_set_style_bg_color(header_background, lv_color_hex(0xE3E1FF), 0);
-    lv_obj_set_size(header_background, background_width, 79);
-
-    header_logo = lv_image_create(header_background);
-    lv_image_set_src(header_logo, "L:/usr/share/lvgl-home-panel-demo/images/renesas_logomark_blue.png");
-    lv_image_set_scale(header_logo, logo_ratio);
-    lv_obj_center(header_logo);
-
-    lv_obj_t* chart_background = lv_obj_create(Weather_History_background);
+    chart_background = lv_obj_create(Weather_History_background);
     Weather_History_chart = lv_chart_create(chart_background);
-    lv_obj_set_size(chart_background, 1761, 490);
-    lv_obj_align(chart_background, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_size(chart_background, adjust_to_res(1761), adjust_to_res(490));
+    lv_obj_align(chart_background, LV_ALIGN_CENTER, adjust_to_res(0), adjust_to_res(0));
     lv_obj_set_style_pad_all(chart_background, 0, 0);
     lv_obj_set_style_border_width(chart_background, 0, 0);
     lv_obj_set_style_outline_width(chart_background, 0, 0);
-    lv_obj_set_size(Weather_History_chart, 1761, 490);
+    lv_obj_set_size(Weather_History_chart, adjust_to_res(1761), adjust_to_res(490));
     lv_obj_set_scroll_snap_x(Weather_History_chart, LV_SCROLL_SNAP_CENTER);
     lv_chart_set_range(Weather_History_chart, LV_CHART_AXIS_PRIMARY_Y, -1000, 1000);
     lv_obj_add_flag(Weather_History_chart, LV_OBJ_FLAG_SCROLLABLE);
@@ -95,12 +84,28 @@ void create_Weather_History(void)
     lv_obj_add_flag(slider, LV_OBJ_FLAG_SCROLLABLE);
     lv_slider_set_range(slider, LV_SCALE_NONE, LV_SCALE_NONE * 10);
     lv_obj_add_event_cb(slider, slider_all_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
-    lv_obj_align_to(slider, Weather_History_chart, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
+    lv_obj_align_to(slider, Weather_History_chart, LV_ALIGN_OUT_BOTTOM_MID, adjust_to_res(0), adjust_to_res(60));
 }
+
 static void slider_all_event_cb(lv_event_t* e)
 {
     lv_obj_t* obj = lv_event_get_target(e);
     int32_t v = lv_slider_get_value(obj);
     int32_t zoom_value = v / 256;
-    lv_obj_set_size(Weather_History_chart, 1761 * zoom_value, 490 * zoom_value);
+
+    int32_t old_width = lv_obj_get_width(Weather_History_chart);
+    int32_t old_height = lv_obj_get_height(Weather_History_chart);
+
+    int32_t scroll_x = lv_obj_get_scroll_x(chart_background);
+    int32_t scroll_y = lv_obj_get_scroll_y(chart_background);
+
+    // update chart size
+    int32_t new_width = adjust_to_res(1761 * zoom_value);
+    int32_t new_height = adjust_to_res(490 * zoom_value);
+    lv_obj_set_size(Weather_History_chart, new_width, new_height);
+
+    // update chart display pos
+    int32_t new_scroll_x = (scroll_x * new_width) / old_width;
+    int32_t new_scroll_y = (scroll_y * new_height) / old_height;
+    lv_obj_scroll_to(chart_background, new_scroll_x, new_scroll_y, LV_ANIM_OFF);
 }
