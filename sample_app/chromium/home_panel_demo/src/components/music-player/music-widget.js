@@ -180,9 +180,6 @@ export class MusicWidget extends LitElement {
    */
   seekTo() {
     const seekto = this.track.duration * (this._seekSlider.value / 100);
-    this.track.pause();
-    this.track.load();
-    this.track.play();
     this.track.currentTime = seekto;
   }
 
@@ -293,7 +290,7 @@ export class MusicWidget extends LitElement {
             max="100"
             value="0"
             class="seek-slider"
-            @change=${this.seekTo}
+            @input=${this.seekTo}
           />
           <div class="total-duration">${this._totalDuration}</div>
         </div>
@@ -323,7 +320,7 @@ export class MusicWidget extends LitElement {
             max="100"
             value=${this._currentVolume}
             class="volume-slider"
-            @change=${this.setVolume}
+            @input=${this.setVolume}
           />
           <div class="volume-value">${Math.ceil(this.track.volume * 100)}</div>
         </div>
@@ -394,15 +391,6 @@ export class MusicWidget extends LitElement {
               />
             </svg>
           </div>
-        </div>
-        <div class="wave ${classMap(playedClasses)}">
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
-          <span class="stroke"></span>
         </div>
       </div>
     `;
@@ -540,58 +528,6 @@ export class MusicWidget extends LitElement {
     .volume-value {
       width: 36px;
       padding: 10px;
-    }
-    .wave {
-      height: 70px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .wave .stroke {
-      background-color: #4286f4;
-      height: 5%;
-      width: 10px;
-      border-radius: 50px;
-      margin: 0px 5px;
-    }
-    .loader .stroke {
-      background-color: #f1f1f1;
-      height: 100%;
-      width: 10px;
-      border-radius: 50px;
-      margin: 0px 5px;
-      animation: animate 1.4s infinite linear;
-    }
-    @keyframes animate {
-      50% {
-        height: 20%;
-        background-color: #4286f4;
-      }
-      100% {
-        height: 100%;
-      }
-    }
-    .stroke:nth-child(1) {
-      animation-delay: 0s;
-    }
-    .stroke:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-    .stroke:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    .stroke:nth-child(4) {
-      animation-delay: 0.9s;
-    }
-    .stroke:nth-child(5) {
-      animation-delay: 0.6s;
-    }
-    .stroke:nth-child(6) {
-      animation-delay: 0.3s;
-    }
-    .stroke:nth-child(7) {
-      animation-delay: 0s;
     }
 
     @media screen and (max-height: 800px) {

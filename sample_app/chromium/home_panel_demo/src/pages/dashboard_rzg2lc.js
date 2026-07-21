@@ -15,9 +15,7 @@ export class DashboardPage extends LitElement {
         <icon-widget
           class="image-gallery"
           title="Image Gallery"
-          href=${import.meta.env.VITE_RZG2LC !== "true"
-            ? "/webgl-gallery"
-            : "/image-gallery"}
+          href="/image-gallery"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <style type="text/css">
@@ -100,40 +98,6 @@ export class DashboardPage extends LitElement {
               </g>
             </g>
             <g id="Layer_2"></g>
-          </svg>
-        </icon-widget>
-        <icon-widget
-          class="video-player"
-          title="Video Player"
-          href=${import.meta.env.VITE_MACHINE == "rzg3e"
-              ? "/video-player-h.265"
-              : "/video-player"}
-        >
-          <svg
-            width="48px"
-            height="48px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="24" height="24" fill="none" />
-            <path
-              d="M20 11.5H3V20.5C3 21.0523 3.44772 21.5 4 21.5H20C20.5523 21.5 21 21.0523 21 20.5V12.5C21 11.9477 20.5523 11.5 20 11.5Z"
-              stroke="#000000"
-              stroke-linejoin="round"
-              fill="black"
-            />
-            <path
-              d="M1.59998 7.40002L17.5747 1.58568C18.0937 1.39679 18.6676 1.66438 18.8565 2.18335L19.5405 4.06274C19.7294 4.58172 19.4618 5.15556 18.9428 5.34445L2.96806 11.1588L1.59998 7.40002Z"
-              stroke="#000000"
-              stroke-linejoin="round"
-              fill="white"
-            />
-            <path d="M15.6954 2.26973L15.1841 6.71254" stroke="#000000" />
-            <path d="M11.9366 3.6378L11.4253 8.08061" stroke="#000000" />
-            <path d="M8.17785 5.00589L7.66654 9.4487" stroke="#000000" />
-            <path d="M4.41906 6.37397L3.90775 10.8168" stroke="#000000" />
-            <path d="M4.41906 6.37397L3.90775 10.8168" stroke="#000000" />
           </svg>
         </icon-widget>
         <icon-widget
@@ -301,14 +265,14 @@ export class DashboardPage extends LitElement {
       height: 100%;
 		}
     icon-widget {
-      --widget-font-size: 1.3rem;
+      --widget-font-size: 2.5rem;
       --widget-background-color:#8f92f6;
       --widget-hover-background-color: #666bf3;
       --widget-border: none;
-      --widget-padding: 2.5rem;
+      --widget-padding: 2.0rem;
     }
     icon-widget svg{
-      width: 140px;
+      width: 280px;
       height: 280px;
     }
     icon-widget.camera svg{
@@ -329,24 +293,21 @@ export class DashboardPage extends LitElement {
       transition: all 500ms ease;
     }
     .music-player {
-      grid-column: 2 / span 3;
+      grid-column: 1 / span 4;
       grid-row: 1 / span 2;      
     }
     .image-gallery {
-      grid-column: 5 / span 2;
-    }
-    .video-player {
-      grid-column: 7 / span 2;
+      grid-column: 5 / span 4;
     }
     .home-automation {
-      grid-column: 9 / span 2;
+      grid-column: 9 / span 4;
     }
     .weather-info {
-      grid-column: 5 / span 4;
+      grid-column: 5 / span 5;
       grid-row: 2;
     } 
     .camera {
-      grid-column: 9 / span 2;
+      grid-column: 10 / span 3;
       grid-row: 2;
     }
 

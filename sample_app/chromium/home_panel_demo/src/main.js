@@ -21,6 +21,7 @@ const routes = [
         component: "dashboard-page",
         action: async () => {
           await import("./components/music-player/music-widget");
+          await import("./components/video-player/video-player");
           await import("./components/widgets/widget-container");
           await import("./components/widgets/icon-widget");
           await import("./components/widgets/weather-widget");
@@ -68,6 +69,14 @@ const routes = [
           await import("./pages/gl-image-gallery");
         },
       },
+      {
+        path: "video-player",
+        component: "videos-player-page",
+        action: async () => {
+          await import("./components/video-player/video-player");
+          await import("./pages/videos-player");
+        },
+      },
     ],
   },
 ];
@@ -89,7 +98,7 @@ const routesG2LC = [
           await import("./components/widgets/widget-container");
           await import("./components/widgets/icon-widget");
           await import("./components/widgets/weather-widget");
-          await import("./pages/dashboard");
+          await import("./pages/dashboard_rzg2lc");
         },
       },
       {
@@ -136,9 +145,85 @@ const routesG2LC = [
     ],
   },
 ];
+
+const routesG3E = [
+  {
+    path: "/",
+    component: "app-layout",
+    action: async () => {
+      await import("./components/sidebar/list-items");
+      await import("./components/sidebar/sidebar");
+    },
+    children: [
+      {
+        path: "/",
+        component: "dashboard-page",
+        action: async () => {
+          await import("./components/music-player/music-widget");
+          await import("./components/video-player/video-player");
+          await import("./components/widgets/widget-container");
+          await import("./components/widgets/icon-widget");
+          await import("./components/widgets/weather-widget");
+          await import("./pages/dashboard");
+        },
+      },
+      {
+        path: "chart",
+        component: "wheather-info-page",
+        action: async () => {
+          await import("./components/chart/temperature-chart");
+          await import("./pages/weather-info");
+        },
+      },
+      {
+        path: "home-automation",
+        component: "home-automation-page",
+        action: async () => {
+          await import("./components/buttons/toggle-button");
+          await import("./components/slider/round-slider");
+          await import("./components/slider/slider");
+          await import("./components/widgets/widget-container");
+          await import("./components/widgets/date-widget");
+          await import("./components/widgets/aircon-widget");
+          await import("./components/widgets/progress-widget");
+          await import("./components/widgets/device-widget");
+          await import("./components/widgets/graph-widget/graph-widget");
+          await import("./pages/home-automation");
+        },
+      },
+      {
+        path: "camera",
+        component: "live-camera-page",
+        action: async () => {
+          await import("./components/select-box/select-box");
+          await import("./components/video-camera/video-camera");
+          await import("./pages/live-camera");
+        },
+      },
+      {
+        path: "webgl-gallery",
+        component: "gl-image-gallery-page",
+        action: async () => {
+          await import("./components/image-slider/gl-image-slider");
+          await import("./pages/gl-image-gallery");
+        },
+      },
+      {
+        path: "video-player-h.265",
+        component: "videos-player-h.265-page",
+        action: async () => {
+          await import("./components/video-player_h.265/video-player_h.265");
+          await import("./pages/videos-player_h.265");
+        },
+      },
+    ],
+  },
+];
+
 // Configure the application routes
-if (import.meta.env.VITE_RZG2LC !== "true") router.setRoutes(routes);
-else router.setRoutes(routesG2LC);
+if (import.meta.env.VITE_MACHINE == "rzg2l") router.setRoutes(routes);
+else if (import.meta.env.VITE_MACHINE == "rzg2lc") router.setRoutes(routesG2LC);
+else if (import.meta.env.VITE_MACHINE == "rzg3e") router.setRoutes(routesG3E);
 
 // Define a layout component for the whole application
 export class AppLayout extends LitElement {

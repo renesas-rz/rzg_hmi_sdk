@@ -1,6 +1,6 @@
 import { svg } from "lit";
 
-export const items = [
+export const items_rzg2lc = [
   {
     title: "Dashboard",
     href: "/",
@@ -13,7 +13,7 @@ export const items = [
   },
   {
     title: "Image Gallery",
-    href: "/webgl-gallery",
+    href: "/image-gallery",
     disabled: false,
     svg: svg`
           <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#5f6368">
@@ -51,20 +51,6 @@ export const items = [
           </svg>
           `,
   },
-  {
-    title: "Video Player",
-    href:
-      import.meta.env.VITE_MACHINE == "rzg3e"
-        ? "/video-player-h.265"
-        : "/video-player",
-    disabled: false,
-    svg: svg`
-          <svg width="48px" height="48px" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-               <path d="M20 11.5H3V20.5C3 21.0523 3.44772 21.5 4 21.5H20C20.5523 21.5 21 21.0523 21 20.5V12.5C21 11.9477 20.5523 11.5 20 11.5Z"/>
-              <path d="M1.59998 7.40002L17.5747 1.58568C18.0937 1.39679 18.6676 1.66438 18.8565 2.18335L19.5405 4.06274C19.7294 4.58172 19.4618 5.15556 18.9428 5.34445L2.96806 11.1588L1.59998 7.40002Z" />
-          </svg>
-          `,
-  },
 ];
 
-export default items;
+export default items_rzg2lc;

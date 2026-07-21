@@ -2,6 +2,7 @@ import { LitElement, css, html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
 
 import items from "./items";
+import items_rzg2lc from "./items_rzg2lc";
 
 export class Sidebar extends LitElement {
   // Define reactive properties
@@ -60,7 +61,9 @@ export class Sidebar extends LitElement {
         </button>
         <nav id="sidebar" class=${classMap(navClasses)}>
           <ul>
-            <list-items .items=${items} .location=${this.location}></list-items>
+            <list-items .items=${import.meta.env.VITE_MACHINE == "rzg2lc"
+                ? items_rzg2lc
+                : items} .location=${this.location}></list-items>
           </ul>
           <div class="version">
             <span>Ver.${__APP_VERSION__}</span>

@@ -4,7 +4,7 @@ export class VideoCamera extends LitElement {
   constructor() {
     super();
     // internal properties
-    this._filters = ["Grayscale", "Blur", "Invert", "Sepia"];
+    this._filters = ["none", "Grayscale", "Blur", "Invert", "Sepia"];
   }
 
   // query the video element in the internal DOM using getter pattern
@@ -56,6 +56,11 @@ export class VideoCamera extends LitElement {
       width: 1280px;
       height: 720px;
       object-fit: cover;
+    }
+
+    .none {
+      -webkit-filter: none;
+      filter: none;
     }
 
     .blur {
