@@ -326,7 +326,6 @@ export class DashboardPage extends LitElement {
       grid-template-rows: 1fr 40%;      
       gap: 16px;
       height: 80%;
-      transition: all 500ms ease;
     }
     .music-player {
       grid-column: 2 / span 3;

@@ -26,7 +26,8 @@ export class ProgressWidget extends LitElement {
     this.max = 100;
     this.unit = "%";
     this.duration = 80;
-    this.resizeObserver = null;
+    this.interval = undefined;
+    this.resizeObserver = undefined;
     // set the default internal states
     this._cx = 80;
     this._cy = 80;
@@ -39,23 +40,16 @@ export class ProgressWidget extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    // Animate the progress value
-    this.interval = setInterval(() => {
-      if (this._counter === this.value) {
-        clearInterval;
-      } else {
-        this._counter += Math.ceil(this.max / 100);
-      }
-    }, this.duration);
+    this.startCounter();
   }
 
   // Invoked when the custom element is removed from the document's DOM.
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Always clear the interval
-    // whenever the element is removed from the document's DOM
-    clearInterval(this.interval);
+    this.stopCounter();
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = undefined;
   }
 
   // Invoked when the custom element is initially rendered
@@ -65,13 +59,13 @@ export class ProgressWidget extends LitElement {
     const svgAnimateEl = this.shadowRoot.querySelector("svg animate");
 
     // Setup the resizeObserver
-    const resizeObserver = new ResizeObserver((entries) => {
+    this.resizeObserver = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.contentBoxSize) {
           const contentBoxSize = entry.contentBoxSize[0];
           // start the SVG animation whenever the change in size of
           // the container is observed
-          svgAnimateEl.beginElement();
+          svgAnimateEl?.beginElement();
 
           // resize the progress bar whenever the change in size of
           // the container is obeserved
@@ -91,7 +85,26 @@ export class ProgressWidget extends LitElement {
     });
 
     // observe the size of the container
-    resizeObserver.observe(container);
+    this.resizeObserver.observe(container);
+  }
+
+  startCounter() {
+    if (this.interval || this._counter >= this.value) {
+      return;
+    }
+
+    this.interval = setInterval(() => {
+      const step = Math.ceil(this.max / 100);
+      this._counter = Math.min(this.value, this._counter + step);
+      if (this._counter >= this.value) {
+        this.stopCounter();
+      }
+    }, this.duration);
+  }
+
+  stopCounter() {
+    clearInterval(this.interval);
+    this.interval = undefined;
   }
 
   render() {

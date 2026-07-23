@@ -129,10 +129,8 @@ export class Sidebar extends LitElement {
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 300ms ease;
     }
     .toggle-btn svg {
-      transition: rotate 500ms ease-in-out;
       fill: #e6e6ef;
     }
     .toggle-btn:hover {

@@ -175,7 +175,6 @@ export class HomeAutomationPage extends LitElement {
       gap: 16px;
       height: 85%;
       padding: 10px;
-      transition: all 500ms ease;
     }
     .shadow {
       filter: drop-shadow(0px 0px 3px rgba(255, 212, 59, 1));

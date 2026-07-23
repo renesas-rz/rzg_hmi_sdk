@@ -54,10 +54,14 @@ export class MusicWidget extends LitElement {
   // Invoked when the custom element is removed from the document's DOM.
   disconnectedCallback() {
     super.disconnectedCallback();
-    // stop the audio
-    this.track.pause();
-    // remove the audio element
-    this.track.remove();
+    this.stopUpdateTimer();
+    if (this.track) {
+      this.track.pause();
+      this.track.removeAttribute("src");
+      this.track.load();
+      this.track.remove();
+      this.track = undefined;
+    }
   }
 
   // query the div.track-art element in the internal DOM using getter pattern
@@ -85,7 +89,7 @@ export class MusicWidget extends LitElement {
    * @param {number} trackIndex the track index in the array
    */
   loadTrack(trackIndex) {
-    clearInterval(this.timer);
+    this.stopUpdateTimer();
     this.reset();
 
     this.track.src = trackList[trackIndex].path;
@@ -95,8 +99,18 @@ export class MusicWidget extends LitElement {
     this._trackArtist = trackList[trackIndex].artist;
 
     this.track.load();
+  }
 
-    this.timer = setInterval(this.setUpdate, 1000);
+  startUpdateTimer() {
+    if (!this.timer) {
+      this.setUpdate();
+      this.timer = setInterval(this.setUpdate, 1000);
+    }
+  }
+
+  stopUpdateTimer() {
+    clearInterval(this.timer);
+    this.timer = undefined;
   }
 
   /**
@@ -135,8 +149,15 @@ export class MusicWidget extends LitElement {
    * Play the track
    */
   playTrack() {
-    this.track.play();
+    const playResult = this.track.play();
     this._isPlaying = true;
+    this.startUpdateTimer();
+    if (playResult && typeof playResult.catch === "function") {
+      playResult.catch(() => {
+        this._isPlaying = false;
+        this.stopUpdateTimer();
+      });
+    }
   }
 
   /**
@@ -145,6 +166,7 @@ export class MusicWidget extends LitElement {
   pauseTrack() {
     this.track.pause();
     this._isPlaying = false;
+    this.stopUpdateTimer();
   }
 
   /**
@@ -157,8 +179,9 @@ export class MusicWidget extends LitElement {
       this._trackIndex = 0;
     }
 
+    const shouldResume = this._isPlaying;
     this.loadTrack(this._trackIndex);
-    this._isPlaying && this.playTrack();
+    shouldResume && this.playTrack();
   }
 
   /**
@@ -171,8 +194,9 @@ export class MusicWidget extends LitElement {
       this._trackIndex = trackList.length - 1;
     }
 
+    const shouldResume = this._isPlaying;
     this.loadTrack(this._trackIndex);
-    this._isPlaying && this.playTrack();
+    shouldResume && this.playTrack();
   }
 
   /**
@@ -181,6 +205,7 @@ export class MusicWidget extends LitElement {
   seekTo() {
     const seekto = this.track.duration * (this._seekSlider.value / 100);
     this.track.currentTime = seekto;
+    this.setUpdate();
   }
 
   /**
@@ -217,48 +242,62 @@ export class MusicWidget extends LitElement {
     this._isMuted = !this._isMuted;
   }
 
+  formatTime(value) {
+    let minutes = Math.floor(value / 60);
+    let seconds = Math.floor(value - minutes * 60);
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return minutes + ":" + seconds;
+  }
+
   /**
    * Update the audio playback time
    */
   setUpdate() {
-    let seekPosition = 0;
-    if (!isNaN(this.track.duration)) {
-      seekPosition = this.track.currentTime * (100 / this.track.duration);
-      this._seekSlider.value = seekPosition;
+    if (isNaN(this.track.duration)) {
+      return;
+    }
 
-      let currentMinutes = Math.floor(this.track.currentTime / 60);
-      let currentSeconds = Math.floor(
-        this.track.currentTime - currentMinutes * 60
-      );
-      let durationMinutes = Math.floor(this.track.duration / 60);
-      let durationSeconds = Math.floor(
-        this.track.duration - durationMinutes * 60
-      );
+    this._seekSlider.value =
+      this.track.currentTime * (100 / this.track.duration);
 
-      if (currentSeconds < 10) {
-        currentSeconds = "0" + currentSeconds;
-      }
-      if (durationSeconds < 10) {
-        durationSeconds = "0" + durationSeconds;
-      }
-      if (currentMinutes < 10) {
-        currentMinutes = "0" + currentMinutes;
-      }
-      if (durationMinutes < 10) {
-        durationMinutes = "0" + durationMinutes;
-      }
+    const currentTime = this.formatTime(this.track.currentTime);
+    const totalDuration = this.formatTime(this.track.duration);
+    if (this._currentTime !== currentTime) {
+      this._currentTime = currentTime;
+    }
+    if (this._totalDuration !== totalDuration) {
+      this._totalDuration = totalDuration;
+    }
 
-      this._currentTime = currentMinutes + ":" + currentSeconds;
-      this._totalDuration = durationMinutes + ":" + durationSeconds;
-
-      if (this._currentTime >= this._totalDuration) {
-        if (this._isLoop) {
-          this._isPlaying = true;
-          this.nextTrack();
-        } else {
-          this._isPlaying = false;
-        }
+    if (this.track.ended || this.track.currentTime >= this.track.duration) {
+      if (this._isLoop) {
+        this._isPlaying = true;
+        this.nextTrack();
+      } else {
+        this._isPlaying = false;
+        this.stopUpdateTimer();
       }
+    }
+  }
+
+  setButtonHover(event) {
+    const icon = event.currentTarget.querySelector("svg");
+    if (icon) {
+      icon.style.fill = event.currentTarget.classList.contains("loop-active")
+        ? "#2f419a"
+        : "#2a2929";
+    }
+  }
+
+  clearButtonHover(event) {
+    const icon = event.currentTarget.querySelector("svg");
+    if (icon) {
+      icon.style.fill = "";
     }
   }
 
@@ -328,6 +367,8 @@ export class MusicWidget extends LitElement {
           <div
             class="loop-track ${classMap(loopActiveClasses)}"
             @click=${this.loopTrack}
+            @pointerenter=${this.setButtonHover}
+            @pointerleave=${this.clearButtonHover}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +382,12 @@ export class MusicWidget extends LitElement {
               />
             </svg>
           </div>
-          <div class="prev-track" @click=${this.prevTrack}>
+          <div
+            class="prev-track"
+            @click=${this.prevTrack}
+            @pointerenter=${this.setButtonHover}
+            @pointerleave=${this.clearButtonHover}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -352,7 +398,12 @@ export class MusicWidget extends LitElement {
               <path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z" />
             </svg>
           </div>
-          <div class="playpause-track" @click=${this.playPauseTrack}>
+          <div
+            class="playpause-track"
+            @click=${this.playPauseTrack}
+            @pointerenter=${this.setButtonHover}
+            @pointerleave=${this.clearButtonHover}
+          >
             ${this._isPlaying
               ? svg`
                 <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#5f6368">
@@ -365,7 +416,12 @@ export class MusicWidget extends LitElement {
                 </svg>
               `}
           </div>
-          <div class="next-track" @click=${this.nextTrack}>
+          <div
+            class="next-track"
+            @click=${this.nextTrack}
+            @pointerenter=${this.setButtonHover}
+            @pointerleave=${this.clearButtonHover}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -378,7 +434,12 @@ export class MusicWidget extends LitElement {
               />
             </svg>
           </div>
-          <div class="repeat-track" @click=${this.repeatTrack}>
+          <div
+            class="repeat-track"
+            @click=${this.repeatTrack}
+            @pointerenter=${this.setButtonHover}
+            @pointerleave=${this.clearButtonHover}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -447,17 +508,10 @@ export class MusicWidget extends LitElement {
       align-items: center;
     }
     .buttons svg {
-      transition: fill 500ms;
       cursor: pointer;
-    }
-    .buttons svg:hover {
-      fill: #2a2929;
     }
     .loop-active svg {
       fill: #3774ff;
-    }
-    .loop-active svg:hover {
-      fill: #2f419a;
     }
     .repeat-track,
     .loop-track,

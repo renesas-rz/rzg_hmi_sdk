@@ -6,6 +6,13 @@ import { powerData2 } from "./data-2";
 export class GraphWidget extends LitElement {
   constructor() {
     super();
+    this.chart = undefined;
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.chart?.destroy();
+    this.chart = undefined;
   }
 
   // query the canvas element in the internal DOM using getter pattern
@@ -15,7 +22,7 @@ export class GraphWidget extends LitElement {
 
   // Invoked when the custom element is initially rendered
   firstUpdated() {
-    this.powerChart(powerData1, powerData2);
+    this.chart = this.powerChart(powerData1, powerData2);
   }
 
   /**
@@ -49,6 +56,8 @@ export class GraphWidget extends LitElement {
       },
       options: {
         maintainAspectRatio: false,
+        events: [],
+        animation: false,
         scales: {
           y: {
             min: 500,

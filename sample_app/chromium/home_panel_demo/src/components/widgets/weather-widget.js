@@ -17,28 +17,43 @@ export class WeatherWidget extends LitElement {
   render() {
     return html`
       <a href=${this.href}>
-        <div class="container">
-          <slot></slot>
-          <div class="info">
-            <div class="location">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -960 960 960"
-                fill="#5961c0"
-                class="location-icon"
-              >
-                <path
-                  d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
-                />
-              </svg>
-              <span class="location-text">Osaka</span>
+        <div
+          class="container"
+          @pointerenter=${this.setHover}
+          @pointerleave=${this.clearHover}
+        >
+          <div class="hover-overlay"></div>
+          <div class="content">
+            <slot></slot>
+            <div class="info">
+              <div class="location">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="#5961c0"
+                  class="location-icon"
+                >
+                  <path
+                    d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
+                  />
+                </svg>
+                <span class="location-text">Osaka</span>
+              </div>
+              <span class="location-temp">28°C</span>
+              <span class="location-desc">Outdoor Temperature</span>
             </div>
-            <span class="location-temp">28°C</span>
-            <span class="location-desc">Outdoor Temperature</span>
           </div>
         </div>
       </a>
     `;
+  }
+
+  setHover(event) {
+    event.currentTarget.querySelector(".hover-overlay").style.opacity = "1";
+  }
+
+  clearHover(event) {
+    event.currentTarget.querySelector(".hover-overlay").style.opacity = "";
   }
 
   static styles = css`
@@ -59,10 +74,27 @@ export class WeatherWidget extends LitElement {
       align-items: center;
       flex-direction: row;
       padding: var(--widget-padding, 2rem 2.5rem);
-      transition: all 300ms ease;
+      position: relative;
+      overflow: hidden;
     }
-    .container:hover {
+    .hover-overlay {
+      position: absolute;
+      inset: 0;
       background: var(--widget-hover-background-color, #dbdbdb);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      will-change: opacity;
+    }
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 1;
     }
     .info {
       text-align: right;
