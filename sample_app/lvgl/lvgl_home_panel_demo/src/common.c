@@ -8,6 +8,7 @@
 #define SMARC_RZG2LC    "smarc-rzg2lc"
 #define SMARC_RZG2UL    "smarc-rzg2ul"
 #define SMARC_RZG3E     "smarc-rzg3e"
+#define SMARC_RZG3L     "smarc-rzg3l"
 
 int background_width = 1920;
 int background_height = 1080;
@@ -33,6 +34,9 @@ MachineName get_machine_name(void) {
     }
     else if (strcmp(hostname, SMARC_RZG3E) == 0) {
         return MACHINE_NAME_RZG3E;
+    }
+    else if (strcmp(hostname, SMARC_RZG3L) == 0) {
+        return MACHINE_NAME_RZG3L;
     }
     else {
         return MACHINE_NAME_RZG2L;

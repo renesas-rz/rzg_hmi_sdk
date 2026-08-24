@@ -31,6 +31,11 @@ ifeq ($(MACHINE),smarc-rzg3e)
  LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
 endif
 
+ifeq ($(MACHINE),smarc-rzg3l)
+ CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/gstreamer-1.0
+ LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
 prefix ?= /usr
 bindir ?= $(prefix)/bin
 

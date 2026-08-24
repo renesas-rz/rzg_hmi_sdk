@@ -11,7 +11,8 @@ typedef enum {
     MACHINE_NAME_RZG2L,
     MACHINE_NAME_RZG2LC,
     MACHINE_NAME_RZG2UL,
-    MACHINE_NAME_RZG3E
+    MACHINE_NAME_RZG3E,
+    MACHINE_NAME_RZG3L
 } MachineName;
 
 typedef enum {
@@ -43,4 +44,4 @@ int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height);
 void add_header(lv_obj_t *obj);
 lv_obj_t* create_page_background(lv_obj_t *obj);
 
-#endif  /* HOME_PANEL_DEMO_H */
+#endif  /* COMMON_H */
