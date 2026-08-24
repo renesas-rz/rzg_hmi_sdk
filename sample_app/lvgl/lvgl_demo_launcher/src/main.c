@@ -35,10 +35,7 @@
 #endif	/* RUNS_ON_WAYLAND */
 
 #include	"include/launcher_screen.h"
-
-#define MAX_JSON_ARR 8
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#include	"include/read_conf.h"
 
 #ifndef RUNS_ON_WAYLAND
 
@@ -76,8 +73,7 @@ int main(int argc, char *argv[])
 	int32_t window_height = WINDOW_HEIGHT;
 	int32_t ret = 0;
 
-	config btn_conf[MAX_JSON_ARR];
-	int btn_cnt = 0; 
+	ui_framework_info_st ui_framework_info[MAX_APPS];
 
 	/*LVGL init*/
 	lv_init();
@@ -113,14 +109,10 @@ int main(int argc, char *argv[])
 #endif
 
 	/*read json file */
-	read_conf( &btn_cnt, btn_conf);
+	read_conf(ui_framework_info);
 	
 	/* make_screen */
-	ret = launcher_screen(window_width, window_height, btn_cnt, btn_conf);
-	if (ret < 0) {
-		printf("ERROR!! launcher_screen() failed.\n");
-		goto APP_EXIT;
-	}
+	launcher_screen(window_width, window_height, ui_framework_info);
 
 	while(1) {
 #ifdef RUNS_ON_WAYLAND		
@@ -157,56 +149,6 @@ APP_EXIT:
 #endif
 	return 0;
 }
-
-void read_conf(int *btn_cnt, config *btn_conf)
-{
-	
-	int ary_cnt;
-	int disc_str_cnt;
-	const gchar *disc;
-	JsonParser *parser;
-   	JsonNode *root;
-   	JsonObject *root_obj;
-   	JsonArray *root_ary;
-   	GError *error = NULL;
-	int i = 0;
-
-   	parser = json_parser_new();
-
-   	if(!json_parser_load_from_file (parser, "/usr/share/demo-launcher/demo-launcher.json", &error))
-   	{
-   		g_print("can't load config_file");
-   	}
-   	root = json_parser_get_root (parser);
-   	root_ary = json_node_get_array(root);
-
-   	/*  read file */
-   	ary_cnt = json_array_get_length(root_ary);
-	
-	if(ary_cnt > MAX_JSON_ARR){
-		ary_cnt = MAX_JSON_ARR;
-	}
-   	for(i = 0;i < ary_cnt;i++)
-   	{
-   		root_obj = json_array_get_object_element(root_ary,i);
-   		btn_conf[i].exe_cmd = json_object_get_string_member(root_obj, "exe_cmd");
-   		disc = json_object_get_string_member(root_obj, "description");
-   		
-   		disc_str_cnt = strlen(disc);
-   		if(disc_str_cnt > (DISC_STR_MAX - 1))
-   		{
-   		  	strncpy(btn_conf[i].discription,disc,DISC_STR_MAX);
-   		  	btn_conf[i].discription[DISC_STR_MAX] = '\0';
-   		}
-   		else
-   		{
-   			strcpy(btn_conf[i].discription,disc);
-   		}
-   		
-   		btn_conf[i].icon_image = json_object_get_string_member(root_obj, "icon_image");
-   	}
-	*btn_cnt = i;
-   }
 
 /**
  * Set in lv_conf.h as `LV_TICK_CUSTOM_SYS_TIME_EXPR`
