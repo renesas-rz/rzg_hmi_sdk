@@ -9,13 +9,6 @@ export default ({ mode }) => {
 
   const env = loadEnv(mode, process.cwd());
 
-  var version;
-
-  if (env.VITE_MACHINE == "rzg2l" || env.VITE_MACHINE == "rzg2lc" || env.VITE_MACHINE == "rzg3l") {
-    version = "2.01";
-  } else {
-    version = "2.00";
-  }
   return defineConfig({
     root: "./",
     build: {
@@ -33,7 +26,7 @@ export default ({ mode }) => {
 
       // Set the application version/
       // the package version is defined in the package.json
-      __APP_VERSION__: JSON.stringify(version),
+      __APP_VERSION__: JSON.stringify("3.00"),
     },
   });
 };
