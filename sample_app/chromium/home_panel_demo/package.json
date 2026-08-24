@@ -7,9 +7,11 @@
     "dev": "vite --mode=default",
     "dev:RZG2LC": "vite --mode=rzg2lc",
     "dev:RZG3E": "vite --mode=rzg3e",
+    "dev:RZG3L": "vite --mode=rzg3l",
     "build": "vite build --mode=default",
     "build:RZG2LC": "vite build --mode=rzg2lc",
     "build:RZG3E": "vite build --mode=rzg3e",
+    "build:RZG3L": "vite build --mode=rzg3l",
     "preview": "vite preview"
   },
   "dependencies": {

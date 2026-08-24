@@ -11,7 +11,7 @@ export default ({ mode }) => {
 
   var version;
 
-  if (env.VITE_MACHINE == "rzg2l" || env.VITE_MACHINE == "rzg2lc") {
+  if (env.VITE_MACHINE == "rzg2l" || env.VITE_MACHINE == "rzg2lc" || env.VITE_MACHINE == "rzg3l") {
     version = "2.01";
   } else {
     version = "2.00";
