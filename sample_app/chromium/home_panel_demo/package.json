@@ -25,11 +25,11 @@
     "luxon": "^3.5.0"
   },
   "devDependencies": {
-    "vite": "^6.4.2",
+    "vite": "^6.4.3",
     "vite-plugin-node-polyfills": "^0.25.0"
   },
   "overrides": {
-    "qs": "6.14.2",
+    "qs": "6.15.2",
     "elliptic": "6.6.1",
     "picomatch": "4.0.4"
   }
