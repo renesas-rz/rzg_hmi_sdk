@@ -33,7 +33,7 @@ endif
 
 ifeq ($(MACHINE),smarc-rzg3l)
  CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/gstreamer-1.0
- LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lgstreamer-1.0 -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 prefix ?= /usr

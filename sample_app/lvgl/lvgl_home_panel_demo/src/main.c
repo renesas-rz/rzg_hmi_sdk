@@ -17,7 +17,6 @@
 
 #include  "include/Home_Panel_Demo.h"
 #include  "include/common.h"
-#include 	"../lvgl/src/misc/lv_fs_private.h"
 
 #ifdef	RUNS_ON_WAYLAND
   #include	"lvgl/src/drivers/wayland/lv_wayland.h"
@@ -77,7 +76,6 @@ int main(int argc, char *argv[])
 
 	/*LVGL init*/
 	lv_init();
-	lv_fs_init();
 	lv_fs_stdio_init();
 	lv_lodepng_init();
 	lv_tjpgd_init();
@@ -90,7 +88,12 @@ int main(int argc, char *argv[])
 		printf("ERROR!! lv_wayland_window_create\n");
 		goto APP_EXIT;
 	}
-    lv_wayland_window_set_fullscreen(disp,true);
+	lv_wayland_window_set_fullscreen(disp,true);
+	// Wait for Wayland to apply fullscreen mode changes asynchronously.
+	for(int i = 0; i < 3; i++) {
+		lv_timer_handler();
+		usleep(20000);
+	}
 
 	pfd.fd = lv_wayland_get_fd();
 	pfd.events = POLLIN;
