@@ -5,19 +5,19 @@ CFLAGS += -I${SDKTARGETSYSROOT}/usr/include/lvgl -DLV_CONF_INCLUDE_SIMPLE
 LDFLAGS += -llvgl
 
 ifeq ($(MACHINE),smarc-rzg2l)
- LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 ifeq ($(MACHINE),smarc-rzg2lc)
- LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 ifeq ($(MACHINE),smarc-rzg3e)
- LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 ifeq ($(MACHINE),smarc-rzg3l)
- LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 prefix ?= /usr
