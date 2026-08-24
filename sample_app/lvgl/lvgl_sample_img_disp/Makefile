@@ -16,6 +16,10 @@ ifeq ($(MACHINE),smarc-rzg3e)
  LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
 endif
 
+ifeq ($(MACHINE),smarc-rzg3l)
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+endif
+
 prefix ?= /usr
 bindir ?= $(prefix)/bin
 
