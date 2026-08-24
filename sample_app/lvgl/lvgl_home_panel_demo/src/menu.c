@@ -193,7 +193,7 @@ void create_menu()
 
     lv_obj_t* Version_text = lv_label_create(ver_obj);
     lv_obj_set_style_text_font(Version_text, get_lv_font(FONT_SIZE_M), 0);
-    lv_label_set_text(Version_text, "Ver.2.00");
+    lv_label_set_text(Version_text, "Ver.3.00");
     lv_obj_add_style(Version_text, &tag_text_style, 0);
     lv_obj_update_layout(ver_obj);
     lv_obj_align(Version_text, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
