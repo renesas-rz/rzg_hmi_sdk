@@ -260,6 +260,60 @@ static int32_t create_buttons(lsvp_sample_app_t *app, lv_obj_t *obj)
 	return 0;
 }
 
+/** Quit button callback
+ *
+ * This function is called when quit button is clicked.
+ *
+ */
+static void quit_button_clicked_cb(lv_event_t *e)
+{
+	lsvp_sample_app_t *app;
+	int32_t ret;
+	bool *end;
+
+	app = (lsvp_sample_app_t *)lv_event_get_user_data(e);
+
+	pthread_mutex_lock(&mutex_app_data);
+
+	if (app->status != LSVP_STATUS_STOP)
+		ret = lsvp_stop_playback();
+
+	end = app->end;
+	*end = true;
+
+	pthread_mutex_unlock(&mutex_app_data);
+}
+
+/** Create a quit button
+ *
+ */
+static int32_t create_quit_button(lsvp_sample_app_t *app, lv_obj_t *screen)
+{
+	lv_obj_t *btn;
+	lv_obj_t *label;
+
+	btn = lv_button_create(screen);
+	if (btn == NULL) {
+		fprintf(stderr, "ERROR!! lv_button_create() failed.\n");
+		return -1;
+	}
+
+	lv_obj_add_event_cb(btn, quit_button_clicked_cb, LV_EVENT_CLICKED, app);
+	lv_obj_set_size(btn, 32, 32);
+	lv_obj_align(btn, LV_ALIGN_TOP_RIGHT, -6, 6);
+
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "X");
+	lv_obj_center(label);
+
+	lv_obj_set_style_bg_color(btn, lv_color_hex((uint32_t)0xFF8888u),
+					LV_PART_MAIN | LV_STATE_DEFAULT);
+	lv_obj_set_style_text_color(btn, lv_color_hex((uint32_t)0xFFFFFFu),
+					LV_PART_MAIN | LV_STATE_DEFAULT);
+
+	return 0;
+}
+
 /** Create video file play back screen
  *
  */
@@ -286,6 +340,11 @@ static int32_t create_video_file_playback_screen(lsvp_sample_app_t *app)
 	if (ret)
 		return -1;
 
+	/* Create a quit button */
+	ret = create_quit_button(app, screen);
+	if (ret)
+		return -1;
+
 	app->screen = screen;
 	app->status = LSVP_STATUS_STOP;
 	change_button_state(app);
@@ -298,7 +357,7 @@ static int32_t create_video_file_playback_screen(lsvp_sample_app_t *app)
  * Basic objects for each screen are created, and data structures are allocated.
  */
 int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
-													char *input, int32_t audio)
+					char *input, int32_t audio, bool *end)
 {
 	int32_t ret;
 
@@ -312,6 +371,7 @@ int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
 	app_obj->disp = disp;
 	app_obj->input = input;
 	app_obj->audio = audio;
+	app_obj->end = end;
 
 	/* create video file playback screen */
 	ret = create_video_file_playback_screen(app_obj);

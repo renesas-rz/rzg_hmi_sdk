@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
 	lv_display_t *disp;
 	char *input = NULL;
 	int32_t audio = 0;
+	bool end = false;
 
 	check_options(argc, argv, &input, &audio);
 	if (input == NULL) {
@@ -141,14 +142,14 @@ int main(int argc, char *argv[])
 	pfd.fd = lv_wayland_get_fd();
 	pfd.events = POLLIN;
 
-	ret = lsvp_sample_app_setup(width, height, disp, input, audio);
+	ret = lsvp_sample_app_setup(width, height, disp, input, audio, &end);
 	if (ret < 0) {
 		printf("ERROR!! lb_demo_gui() failed.\n");
 		lv_wayland_window_close(disp);
 		return 1;
 	}
 
-	while(1) {
+	while(!end) {
 		/* Handle any Wayland/LVGL timers/events */
 		time_till_next = lv_wayland_timer_handler();
 

@@ -61,10 +61,11 @@ typedef struct {
 
 	lsvp_status_t status;
 	int32_t quit_flag;
+	bool *end;
 } lsvp_sample_app_t;
 
 int32_t lsvp_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
-						char *input, int32_t audio);
+					char *input, int32_t audio, bool *end);
 void lsvp_sample_app_quit(void);
 void lsvp_complete_playing(void);
 void lsvp_quit_with_error(void);
