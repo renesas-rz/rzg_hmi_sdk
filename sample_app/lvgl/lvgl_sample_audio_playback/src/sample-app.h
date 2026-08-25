@@ -71,10 +71,11 @@ typedef struct {
 	lsap_menu_t enabled_menu;
 	lsap_status_t status;
 	int32_t quit_flag;
+	bool *end;
 } lsap_sample_app_t;
 
 int32_t lsap_sample_app_setup(int32_t width, int32_t height, lv_display_t *disp,
-							const char **audio);
+						const char **audio, bool *end);
 void lsap_sample_app_quit(void);
 void lsap_complete_playing(void);
 void lsap_quit_with_error(void);

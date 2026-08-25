@@ -109,6 +109,7 @@ int main(int argc, char *argv[])
 	int32_t height = LSAP_WINDOW_HEIGHT;
 	int32_t ret;
 	lv_display_t *disp;
+	bool end = false;
 
 	check_options(argc, argv);
 
@@ -134,14 +135,14 @@ int main(int argc, char *argv[])
 	pfd.fd = lv_wayland_get_fd();
 	pfd.events = POLLIN;
 
-	ret = lsap_sample_app_setup(width, height, disp, audio_file);
+	ret = lsap_sample_app_setup(width, height, disp, audio_file, &end);
 	if (ret < 0) {
 		printf("ERROR!! lb_demo_gui() failed.\n");
 		lv_wayland_window_close(disp);
 		return 1;
 	}
 
-	while(1) {
+	while(!end) {
 		/* Handle any Wayland/LVGL timers/events */
 		time_till_next = lv_wayland_timer_handler();
 
