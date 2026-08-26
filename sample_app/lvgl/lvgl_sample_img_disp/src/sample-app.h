@@ -72,7 +72,6 @@ typedef struct {
 	void *disp;
 	int32_t width;
 	int32_t height;
-	int32_t mode;
 
 	lv_obj_t *imgsel_scr;
 	lv_obj_t *imgdsp_scr;
@@ -84,8 +83,7 @@ typedef struct {
 
 extern bool end;
 
-int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp,
-								int32_t mode);
+int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp);
 void lsid_sample_app_quit(void);
 
 

@@ -144,6 +144,8 @@ int main(int argc, char *argv[])
 	if (mode)
 		lv_wayland_window_set_fullscreen(disp, true);
 
+	lv_timer_handler();
+
 	pfd.fd = lv_wayland_get_fd();
 	pfd.events = POLLIN;
 
@@ -164,9 +166,8 @@ int main(int argc, char *argv[])
 	lv_indev_set_cursor(pointer, cursor_obj);
 	lv_indev_set_display(pointer, disp);
 	lv_linux_fbdev_set_file(disp, device);
-	mode = 1;
 #endif
-	ret = lsid_sample_app_setup(width, height, (void *)disp, mode);
+	ret = lsid_sample_app_setup(width, height, (void *)disp);
 	if (ret < 0) {
 		printf("ERROR!! lb_demo_gui() failed.\n");
 		goto APP_EXIT;

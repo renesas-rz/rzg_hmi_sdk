@@ -60,8 +60,6 @@ static void quit_button_clicked_cb(lv_event_t *e)
 
 /** Create a quit button
  *
- * The button is used when fullscreen mode is enabled.
- *
  */
 static int32_t create_quit_button(lsid_sample_app_t *app, lv_obj_t *obj)
 {
@@ -118,9 +116,7 @@ static void img_button_clicked_cb(lv_event_t *e)
 
 	set_image(app, &imgset->img_file);
 
-	/* quit button is valid only when fullscreen mode is enabled */
-	if (app->mode)
-		lv_obj_move_foreground(app->quit_btn);
+	lv_obj_move_foreground(app->quit_btn);
 	lv_obj_move_foreground(app->back_btn);
 
 	/* Screen transition */
@@ -232,9 +228,8 @@ static int32_t create_image_file_selection_screen(lsid_sample_app_t *app)
 	if (ret)
 		return -1;
 
-	/* Create a quit button when fullscreen mode is enabled */
-	if (app->mode)
-		ret = create_quit_button(app, screen);
+	/* Create a quit button */
+	ret = create_quit_button(app, screen);
 
 	app->imgsel_scr = screen;
 
@@ -301,9 +296,8 @@ static int32_t create_image_file_display_screen(lsid_sample_app_t *app)
 	if (ret)
 		return -1;
 
-	/* Create a quit button when fullscreen mode is enabled */
-	if (app->mode)
-		ret = create_quit_button(app, screen);
+	/* Create a quit button */
+	ret = create_quit_button(app, screen);
 
 	return ret;
 }
@@ -312,7 +306,7 @@ static int32_t create_image_file_display_screen(lsid_sample_app_t *app)
  *
  * Basic objects for each screen are created, and data structures are allocated.
  */
-int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp, int32_t mode)
+int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp)
 {
 	int32_t ret;
 
@@ -324,7 +318,6 @@ int32_t lsid_sample_app_setup(int32_t width, int32_t height, void *disp, int32_t
 	app_obj->width = (int32_t)width;
 	app_obj->height = (int32_t)height;
 	app_obj->disp = disp;
-	app_obj->mode = mode;
 
 	/* create image file selectio screen */
 	ret = create_image_file_selection_screen(app_obj);
