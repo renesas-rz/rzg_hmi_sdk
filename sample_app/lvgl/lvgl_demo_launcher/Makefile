@@ -17,7 +17,7 @@ ifeq ($(MACHINE),smarc-rzg3e)
 endif
 
 ifeq ($(MACHINE),smarc-rzg3l)
- LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor
+ LDFLAGS += -lwayland-client -lxkbcommon -lwayland-cursor -lwayland-egl
 endif
 
 GLIB_CFLAGS :=${shell pkg-config --cflags glib-2.0}

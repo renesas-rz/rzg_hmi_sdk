@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
 
 	/*LVGL init*/
 	lv_init();
+	lv_fs_stdio_init();
+	lv_lodepng_init();
 
 #ifdef RUNS_ON_WAYLAND
 

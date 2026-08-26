@@ -8,6 +8,14 @@
 #include        "lvgl/lvgl.h"
 #include	<json-glib/json-glib.h>
 
+#if	LV_USE_LINUX_FBDEV && LV_USE_EVDEV
+  #undef	RUNS_ON_WAYLAND
+#elif	LV_USE_WAYLAND
+  #define	RUNS_ON_WAYLAND
+#else
+  #error	LVGL drivers configration error.
+#endif
+
 #define DISC_STR_MAX (28)
 
 typedef struct

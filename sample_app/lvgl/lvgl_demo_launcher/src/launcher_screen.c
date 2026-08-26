@@ -11,23 +11,20 @@
 
 #include	"../lvgl/lvgl.h"
 #include	"../lvgl/src/misc/lv_fs.h"
-#include 	"../lvgl/src/misc/lv_fs_private.h"
 #include	"../lvgl/src/libs/fsdrv/lv_fsdrv.h"
 
 int32_t lb_demo_gui(int32_t width, int32_t height, lv_disp_t *disp, char *cfg_path);
 static void btn_event_cb(lv_event_t* event);
 static int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_height);
 
+#ifdef RUNS_ON_WAYLAND
+       void close_btn_event_cb(lv_event_t* event);
+#endif
+
 int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_conf)
 {
        int btn_num = 0;
        int32_t img_ratio;
-
-       /* init */
-       lv_fs_init();
-       lv_fs_stdio_init();
-       lv_init();
-       lv_lodepng_init();
 
 #ifndef RUNS_ON_WAYLAND
        /*back_ground*/
@@ -59,6 +56,8 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
        lv_obj_t *title_text = lv_label_create(lv_screen_active()) ;
        lv_obj_t *guide_text = lv_label_create(lv_screen_active()) ;
        lv_obj_t *logo_image = lv_image_create(lv_screen_active());
+       lv_obj_t *close_btn = lv_btn_create(lv_screen_active());
+       lv_obj_t *close_label = lv_label_create(close_btn);
 #endif
        static lv_style_t btn_style;
        lv_style_init(&btn_style);
@@ -93,12 +92,23 @@ int32_t launcher_screen(int32_t width, int32_t height, int btn_cnt, config *btn_
 
               /* icon_img */
               lv_obj_t* icon_img = lv_image_create(btn_conf[btn_num].btn);
-              lv_image_set_src(icon_img,btn_conf[btn_num].icon_image);
-              lv_obj_set_align(icon_img,LV_ALIGN_LEFT_MID);
-              lv_obj_update_layout(icon_img);
-              img_ratio = img_ratio_calc(icon_img,100, 100);
-              lv_obj_set_size(icon_img, 100, 100);
-              lv_image_set_scale(icon_img,img_ratio);
+              if (strlen(btn_conf[btn_num].icon_image) > 0)
+              {
+                     lv_image_set_src(icon_img,btn_conf[btn_num].icon_image);
+                     lv_obj_set_align(icon_img,LV_ALIGN_LEFT_MID);
+                     lv_obj_update_layout(icon_img);
+                     img_ratio = img_ratio_calc(icon_img,100, 100);
+                     lv_obj_set_size(icon_img, 100, 100);
+                     lv_image_set_scale(icon_img,img_ratio);
+              }
+
+              /*close_btn*/
+              lv_label_set_text(close_label, "X");
+              lv_obj_align(close_btn, LV_ALIGN_TOP_RIGHT, -20, 18);
+              lv_obj_set_style_radius(close_btn, 0, 0);
+              lv_obj_set_style_bg_color(close_btn, lv_color_hex(0xFFFFFF), LV_PART_MAIN);
+              lv_obj_add_style(close_btn, &btn_disc_style, 0);
+              lv_obj_add_event_cb(close_btn, close_btn_event_cb, LV_EVENT_CLICKED, NULL);
        }
        /*Title_text*/
        lv_label_set_text(title_text,"HMI SDK Demo Launcher");
@@ -155,3 +165,10 @@ static int32_t img_ratio_calc(lv_obj_t* img,int32_t scr_width, int32_t scr_heigh
        }
        return ratio;
 }
+
+#ifdef RUNS_ON_WAYLAND
+       void close_btn_event_cb(lv_event_t* event)
+       {
+              _exit(0);
+       }
+#endif
