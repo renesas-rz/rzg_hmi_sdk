@@ -1,6 +1,16 @@
 ## Step 4: Create SD Cards with the Prebuilt Image
 
 After downloading the HMI SDK Package, locate the image file.
+=== "RZ/G3L"
+    !!! content-wrapper no-indent table-no-sort table-no-hover ""
+
+        +---------------+-------------------------------------------------------+-----------------------------------------------+
+        | Target Board  | Image File                                            | Location                                      |
+        +===============+=======================================================+===============================================+
+        | RZ/G3L        | *core-image-weston-smarc-rzg3l.rootfs.wic.gz*         | *image-file_rzg3l_hmi-sdk_v3.5.0.0.zip*       |
+        |               |                                                       | *image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip*  |
+        +---------------+-------------------------------------------------------+-----------------------------------------------+
+<!--    
 === "RZ/G3E"
     !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
@@ -36,35 +46,31 @@ After downloading the HMI SDK Package, locate the image file.
         +===============+=======================================================+===============================================+
         | RZ/G2UL       | *core-image-minimal-smarc-rzg2ul.rootfs.wic.gz*       | *image-file_rzg2ul_hmi-sdk_v3.4.1.0.zip*      |
         +---------------+-------------------------------------------------------+-----------------------------------------------+
+-->
 
 #### Option 1. For Windows PC
 
 1.  Download or copy the HMI SDK package to your PC.
 2.  Unzip the package and extract the image file.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
 
-        *i.* Right-click the downloaded package `RTK0EF0195F03400SJ_rzg3e.zip` → Extract All...<br>
-        *ii.* Open the folder and right-click `image-file_rzg3e_hmi-sdk_v3.4.0.0.zip` → Extract All...<br> 
-        *iii.* Inside, you will find the image file: `core-image-weston-smarc-rzg3e.rootfs.wic.gz`
+        *i.* Right-click the downloaded package `RTK0EF0195F03500SJ_rzg3l.zip` → Extract All...  
+        *ii.* Open the folder and right-click `image-file_rzg3l_hmi-sdk_v3.5.0.0.zip` or `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip` → Extract All...
 
-    === "RZ/G2L"
+        !!! success "Tip"
+            RZ/G3L supports three display interfaces: MIPI-DSI, Digital Parallel Interface, and Low-Voltage Differential Signaling (LVDS).
+            The HMI SDK package provides SD card images for two of these display interfaces.
 
-        *i.* Right-click the downloaded package `RTK0EF0195F03410SJ_rzg2l.zip` → Extract All...<br>
-        *ii.* Open the folder and right-click `image-file_rzg2l_hmi-sdk_v3.4.1.0.zip` → Extract All...<br> 
-        *iii.* Inside, you will find the image file: `core-image-weston-smarc-rzg2l.rootfs.wic.gz`
+            In addition, the RZ/G3L-EVK requires the appropriate display connector sub-board for the selected display interface.
+            For information about the EVK, refer to the "Display Interfaces" section in the [RZ/G3L SMARC Module Board Manual](https://www.renesas.com/document/mat/rzg3l-smarc-module-board-evaluation-board-manual){: target=_blank }.
 
-    === "RZ/G2LC"
+        Select one of the following:
 
-        *i.* Right-click the downloaded package `RTK0EF0195F03410SJ_rzg2lc.zip` → Extract All...<br>
-        *ii.* Open the folder and right-click `image-file_rzg2lc_hmi-sdk_v3.4.1.0.zip` → Extract All...<br> 
-        *iii.* Inside, you will find the image file: `core-image-weston-smarc-rzg2lc.rootfs.wic.gz`
+        * SD card image for eSD boot with MIPI-DSI display support: `image-file_rzg3l_hmi-sdk_v3.5.0.0.zip`
+        * SD card image for eSD boot with LVDS display support: `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip`
 
-    === "RZ/G2UL"
-
-        *i.* Right-click the downloaded package `RTK0EF0195F03410SJ_rzg2ul.zip` → Extract All...<br>
-        *ii.* Open the folder and right-click `image-file_rzg2ul_hmi-sdk_v3.4.1.0.zip` → Extract All...<br> 
-        *iii.* Inside, you will find the image file: `core-image-minimal-smarc-rzg2ul.rootfs.wic.gz`
+        *iii.* Inside, you will find the image file: `core-image-weston-smarc-rzg3l.rootfs.wic.gz`
 
 3.  Flash the image file to your micro SD card using one of the following tools:
     *   [Win32 Disk Imager](https://sourceforge.net/projects/win32diskimager/){: target=_blank }
@@ -107,26 +113,49 @@ After downloading the HMI SDK Package, locate the image file.
     !!! success "Tip"
         If you are using the GUI of Linux Ubuntu, please refer to the similar steps described in the [Option 1. For Windows PC -2](../getting_started/#option-1-for-windows-pc).
         
-    === "RZ/G3E"
+    === "RZ/G3L"
 
         *i.* Unzip the HMI SDK package.
 
         Navigate to the directory where the HMI SDK package was installed.
         ```bash
-        unzip RTK0EF0195F03400SJ_rzg3e.zip
-        cd RTK0EF0195F03400SJ_rzg3e/
+        unzip RTK0EF0195F03500SJ_rzg3l.zip
+        cd RTK0EF0195F03500SJ_rzg3l/
         ```
         {: .dollar }
 
         *ii.* Unzip the image file folder.
 
+        !!! success "Tip"
+            RZ/G3L supports three display interfaces: MIPI-DSI, Digital Parallel Interface, and Low-Voltage Differential Signaling (LVDS).
+            The HMI SDK package provides SD card images for two of these display interfaces.
+
+            In addition, the RZ/G3L-EVK requires the appropriate display connector sub-board for the selected display interface.
+            For information about the EVK, refer to the "Display Interfaces" section in the [RZ/G3L SMARC Module Board Manual](https://www.renesas.com/document/mat/rzg3l-smarc-module-board-evaluation-board-manual){: target=_blank }.
+
+        Select one of the following:
+
+        * SD card image for eSD boot with MIPI-DSI display support: image-file_rzg3l_hmi-sdk_v3.5.0.0.zip
+        * SD card image for eSD boot with LVDS display support: image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip
+
+        Then, unzip the selected file and change to the extracted directory.
+
+        For MIPI-DSI:
         ```bash
-        unzip image-file_rzg3e_hmi-sdk_v3.4.0.0.zip
-        cd image-file_rzg3e_hmi-sdk_v3.4.0.0/
+        unzip image-file_rzg3l_hmi-sdk_v3.5.0.0.zip
+        cd image-file_rzg3l_hmi-sdk_v3.5.0.0/
         ```
         {: .dollar }
 
-        *iii.* Locate the target image file `#!bash core-image-weston-smarc-rzg3e.rootfs.wic.gz`.
+        For LVDS:
+        ```bash
+        unzip image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip
+        cd image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0/
+        ```
+        {: .dollar }
+
+
+        *iii.* Locate the target image file `#!bash core-image-weston-smarc-rzg3l.rootfs.wic.gz`.
 
         ```bash
         ls
@@ -134,122 +163,14 @@ After downloading the HMI SDK Package, locate the image file.
         {: .dollar }
 
         ```bash
-        core-image-weston-smarc-rzg3e.rootfs.wic.gz
-        core-image-weston-smarc-rzg3e.rootfs.wic.bmap
-        core-image-weston-smarc-rzg3e.rootfs.manifest
+        core-image-weston-smarc-rzg3l.rootfs.wic.gz
+        core-image-weston-smarc-rzg3l.rootfs.wic.bmap
+        core-image-weston-smarc-rzg3l.rootfs.manifest
         ```
     
         !!! warning "Notice"
-            *  No need to decompress `core-image-weston-smarc-rzg3e.rootfs.wic.gz` manually.
-            *  Ensure that the image file `core-image-weston-smarc-rzg3e.rootfs.wic.gz` is located in the **same directory** as `core-image-weston-smarc-rzg3e.rootfs.wic.bmap` to flash the image to the SD card successfully.
-        
-    === "RZ/G2L"
-
-        *i.* Unzip the HMI SDK package.
-
-        Navigate to the directory where the HMI SDK package was installed.
-        ```bash
-        unzip RTK0EF0195F03410SJ_rzg2l.zip
-        cd RTK0EF0195F03410SJ_rzg2l/
-        ```
-        {: .dollar }
-
-        *ii.* Unzip the image file folder.
-
-        ```bash
-        unzip image-file_rzg2l_hmi-sdk_v3.4.1.0.zip
-        cd image-file_rzg2l_hmi-sdk_v3.4.1.0/
-        ```
-        {: .dollar }
-
-        *iii.* Locate the target image file `#!bash core-image-weston-smarc-rzg2l.rootfs.wic.gz`.
-
-        ```bash
-        ls
-        ```
-        {: .dollar }
-
-        ```bash
-        core-image-weston-smarc-rzg2l.rootfs.wic.gz
-        core-image-weston-smarc-rzg2l.rootfs.wic.bmap
-        core-image-weston-smarc-rzg2l.rootfs.wic.manifest
-        ```
-    
-        !!! warning "Notice"
-            *  No need to decompress `core-image-weston-smarc-rzg2l.rootfs.wic.gz` manually.
-            *  Ensure that the image file `core-image-weston-smarc-rzg2l.rootfs.wic.gz` is located in the **same directory** as `core-image-weston-smarc-rzg2l.rootfs.wic.bmap` to flash the image to the SD card successfully.
-
-    === "RZ/G2LC"
-
-        *i.* Unzip the HMI SDK package.
-
-        Navigate to the directory where the HMI SDK package was installed.
-        ```bash
-        unzip RTK0EF0195F03410SJ_rzg2lc.zip
-        cd RTK0EF0195F03410SJ_rzg2lc/
-        ```
-        {: .dollar }
-
-        *ii.* Unzip the image file folder.
-
-        ```bash
-        unzip image-file_rzg2lc_hmi-sdk_v3.4.1.0.zip
-        cd image-file_rzg2lc_hmi-sdk_v3.4.1.0/
-        ```
-        {: .dollar }
-
-        *iii.* Locate the target image file `#!bash core-image-weston-smarc-rzg2lc.rootfs.wic.gz`.
-
-        ```bash
-        ls
-        ```
-        {: .dollar }
-
-        ```bash
-        core-image-weston-smarc-rzg2lc.rootfs.wic.gz
-        core-image-weston-smarc-rzg2lc.rootfs.wic.bmap
-        core-image-weston-smarc-rzg2lc.rootfs.wic.manifest
-        ```
-    
-        !!! warning "Notice"
-            *  No need to decompress `core-image-weston-smarc-rzg2lc.rootfs.wic.gz` manually.
-            *  Ensure that the image file `core-image-weston-smarc-rzg2lc.rootfs.wic.gz` is located in the **same directory** as `core-image-weston-smarc-rzg2lc.rootfs.wic.bmap` to flash the image to the SD card successfully.
-
-    === "RZ/G2UL"
-
-        *i.* Unzip the HMI SDK package.
-
-        Navigate to the directory where the HMI SDK package was installed.
-        ```bash
-        unzip RTK0EF0195F03410SJ_rzg2ul.zip
-        cd RTK0EF0195F03410SJ_rzg2ul/
-        ```
-        {: .dollar }
-
-        *ii.* Unzip the image file folder.
-
-        ```bash
-        unzip image-file_rzg2ul_hmi-sdk_v3.4.1.0.zip
-        cd image-file_rzg2ul_hmi-sdk_v3.4.1.0/
-        ```
-        {: .dollar }
-
-        *iii.* Locate the target image file `#!bash core-image-minimal-smarc-rzg2ul.rootfs.wic.gz`.
-
-        ```bash
-        ls
-        ```
-        {: .dollar }
-
-        ```bash
-        core-image-minimal-smarc-rzg2ul.rootfs.wic.gz
-        core-image-minimal-smarc-rzg2ul.rootfs.wic.bmap
-        core-image-minimal-smarc-rzg2ul.rootfs.wic.manifest
-        ```
-    
-        !!! warning "Notice"
-            *  No need to decompress `core-image-minimal-smarc-rzg2ul.rootfs.wic.gz` manually.
-            *  Ensure that the image file `core-image-minimal-smarc-rzg2ul.rootfs.wic.gz` is located in the **same directory** as `core-image-minimal-smarc-rzg2ul.rootfs.wic.bmap` to flash the image to the SD card successfully.
+            *  No need to decompress `core-image-weston-smarc-rzg3l.rootfs.wic.gz` manually.
+            *  Ensure that the image file `core-image-weston-smarc-rzg3l.rootfs.wic.gz` is located in the **same directory** as `core-image-weston-smarc-rzg3l.rootfs.wic.bmap` to flash the image to the SD card successfully.
 
 4. Insert the micro SD card into your Linux PC and identify its device name and mount points.
 
@@ -320,6 +241,18 @@ After downloading the HMI SDK Package, locate the image file.
     !!! danger "Caution"
         The operation below **will erase** the contents of your SD card.        
     
+    === "RZ/G3L"
+        ```bash
+        sudo bmaptool copy core-image-weston-smarc-rzg3l.rootfs.wic.gz <device name>
+        ```
+        {: .dollar }
+    
+        In this example:
+        ```bash
+        sudo bmaptool copy core-image-weston-smarc-rzg3l.rootfs.wic.gz /dev/sda
+        ```
+        {: .dollar }
+<!--
     === "RZ/G3E"
         ```bash
         sudo bmaptool copy core-image-weston-smarc-rzg3e.rootfs.wic.gz <device name>
@@ -367,4 +300,4 @@ After downloading the HMI SDK Package, locate the image file.
         sudo bmaptool copy core-image-minimal-smarc-rzg2ul.rootfs.wic.gz /dev/sda
         ```
         {: .dollar }
-
+-->

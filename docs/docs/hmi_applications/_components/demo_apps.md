@@ -10,14 +10,12 @@ If you want to customize them, their source code can be downloaded from the GitH
 
     +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
     | Type         | Demo Applications          | Target Device                         | Source Code URL                                                                                                               |
-    +==============+============================+=======================================+===============================================================================================================================+
-    | LVGL         | LVGL Benchmark Demo        | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL      | [Link to GitHub](https://github.com/renesas-rz/rz_benchmark_demo){: target=_blank }                                           |
-    |              +----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
-    |              | LVGL Home Panel Demo       | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL      | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }  |
+    +==============+============================+=======================================+===============================================================================================================================+      
+    | LVGL         | LVGL Home Panel Demo       | RZ/G3L                                | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }  |
     +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
-    | Chromium     | Chromium Home Panel Demo   | RZ/G3E, RZ/G2L, RZ/G2LC               | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }   |
+    | Chromium     | Chromium Home Panel Demo   | RZ/G3L                                | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }   |
     +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
-    | Flutter      | Flutter Samples            | RZ/G3E, RZ/G2L, RZ/G2LC               | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                        |
+    | Flutter      | Flutter Samples            | RZ/G3L                                | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                        |
     +--------------+----------------------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 Please follow the steps below to run the demo applications.
@@ -41,7 +39,6 @@ Please follow the steps below to run the demo applications.
     Click the corresponding button to try each demo application we provide.
 
     ![](images/demo/demo_launcher.png){: width="40%"}
-    ![](images/demo/demo_launcher_2.png){: width="40%"}
 
     !!! success "Tip"
         If you want to exit a demo application and return to the HMI SDK Demo Launcher, you can either<br> 
@@ -54,10 +51,6 @@ Please follow the steps below to run the demo applications.
         
         Note that the Demo Launcher does not support maximizing/minimizing window.
 
-    !!! success "Tip"
-        If you would like to use the audio output function, open a terminal and log in as the **root** user. This will enable audio output and set the default audio volume.
-
-        For detailed instructions on how to log in to the system, refer to Section <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**5.1 Power on the board and Startup Linux**</span> in the <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**RZ/G2L, RZ/G2LC and RZ/G2UL-EVKIT Linux Start-up Guide**</span>, which is included in [RZ MPU Verified Linux Package v4.0.1](https://www.renesas.com/en/software-tool/rz-mpu-verified-linux-package-61-cip).
 
     <br>
 
@@ -69,17 +62,7 @@ Please follow the steps below to run the demo applications.
  <br>
 
     #### LVGL Demo Applications
-
-    === "LVGL Benchmark Demo"
-
-        This demo application is implemented using LVGL, and it includes the following tools for performance testing.
-
-        ![](images/demo/demo_lvgl_benchmark.png){: width="40%"}
-
-        Please click each tool and follow the detailed instructions to try them.<br>
-        After you finish trying the tools, click the Quit button at the top-right corner to exit.
-
-        ![](images/demo/demo_lvgl_benchmark_quit.png){: width="40%"}
+    ![](images/demo/demo_launcher_lvgl.png){: width="40%"}  
 
     
     === "LVGL Home Panel Demo"
@@ -97,17 +80,14 @@ Please follow the steps below to run the demo applications.
 
         ![](images/demo/demo_lvgl_homepanel_homeautomation.png){: width="40%"}
     
+    <br>
 
     #### Chromium Demo Applications
+    ![](images/demo/demo_launcher_chromium.png){: width="40%"}  
 
     === "Chromium Home Panel Demo"
 
         This demo application is implemented using Chromium, and it presents an HTML5 single-page home panel interface.
-
-        When you start this demo, you may see the following window.
-        In that case, click *'Don't sign in'* button.
-
-        ![](images/demo/chromium_sign-in.png){: width="40%"}
 
         Click the buttons or use the sidebar to explore the available functions.
 
@@ -126,15 +106,11 @@ Please follow the steps below to run the demo applications.
 
         ![](images/demo/demo_chromium_livecam.png){: width="40%"}
 
-        !!! success "Tip"
-            If you repeatedly click the UI elements, the demo application may crash.
-
-            If this issue occurs frequently, change the "**VBUS_SEL**" rotary switch on the RZ/G3E EVK Carrier Board (RZ SMARC Series Carrier Board II) to the **40W setting (VBUS_SEL = 4)**.
-
-            For detailed information about the switch configuration, refer to Section <span style="color: var(--renesas-secondary-color-fg-blue-teal);">**2.3.1 VBUS_SEL – Main Power**</span> in the [RZ SMARC Series Carrier Board II User's Manual](https://www.renesas.com/en/document/mah/rz-smarc-series-carrier-board-ii-users-manual-hardware).
+    <br>  
 
 
     #### Flutter Demo Applications
+    ![](images/demo/demo_launcher_flutter.png){: width="40%"}    
 
     === "Flutter Samples"
 

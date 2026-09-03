@@ -33,7 +33,7 @@ If your questions are common in RZ/G and/or RZ MPU Linux, you may have answers o
 ### Q. What is the difference between VLP and HMI SDK?
 
 Please see the figure below.
-![](images/vlp-and-hmi-sdk.png)
+![](images/vlp-and-hmi-sdk2.png)
 The left diagram in the figure shows the development method without the HMI SDK. Users need to download and integrate necessary software packages such as VLP (Verified Linux Package), graphics library, codec library, and HMI framework or libraries.
 The right diagram in the figure shows the development method with the HMI SDK. The HMI SDK is provided as an 'all-in-one package'. Users do **NOT** need to look for appropriate software and worry about how to integrate all modules.
 
@@ -51,11 +51,6 @@ The version number of the HMI SDK consists of four numbers.
 
 This rule was effective from December 27, 2024.
 
-### Q. Does the Chromium included in HMI SDK v2.3.0.0 support hardware decoding?
-
-The Chromium included in HMI SDK v2.3.0.0 does not support hardware-accelerated video playback using HW codecs. 
-However, Chromium in HMI SDK v2.3.1.0 is now offering hardware-accelerated video playback.
-Graphics rendering in Chromium utilizes hardware acceleration. 
 
 ### Q. In the Chromium Home Panel Demo, the seek bar in the video player doesn't seem to be working.
 

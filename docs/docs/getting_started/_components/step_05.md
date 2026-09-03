@@ -2,7 +2,6 @@
 
 The HMI SDK supports the following demo applications. Follow the steps below to use them.
 
-* LVGL Benchmark Demo
 * LVGL Home Panel Demo
 * Chromium Home Panel Demo
 * Flutter Samples
@@ -14,7 +13,7 @@ Follow the steps below to use them.
 
 2.  Set up the DIP switch for ***eSD boot mode***.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
 
         Set up DIP switch SW_MODE as follows.
 
@@ -29,100 +28,18 @@ Follow the steps below to use them.
                 | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
 
-    === "RZ/G2L"
-
-        Set up DIP switch SW1 and SW11 as follows.
-
-        * SW1
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-rzg2l-board-SW1.png){ align=left .switch-icon }
-
-                |      SW1-1     |      SW1-2     |
-                |:--------------:|:--------------:|
-                | ON {: .green } | ON {: .green } |
-
-        * SW11
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-                |:--------------:|:--------------:|:------------:|:--------------:|
-                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-    === "RZ/G2LC"
-
-        Set up DIP switch SW1 and SW11 as follows.
-
-        * SW1
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-rzg2lc-board-SW1.png){ align=left .switch-icon }
-
-                |      SW1-1     |      SW1-2     |       SW1-3     |     SW1-4     |      SW1-5      |      SW1-6     |
-                |:--------------:|:--------------:|:---------------:|:-------------:|:---------------:|:--------------:|
-                | ON {: .green } | ON {: .green } | ON* {: .green } | OFF* {: .red} | ON* {: .green } | Not used       |
-
-                *These switches are not related to the settings required for this boot mode.
-
-        * SW11
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-                |:--------------:|:--------------:|:------------:|:--------------:|
-                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-    === "RZ/G2UL"
-
-        Set up DIP switch SW1 and SW11 as follows.
-
-        * SW1
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-rzg2ul-board-SW1.png){ align=left .switch-icon }
-
-                |      SW1-1     |      SW1-2     |      SW1-3      |
-                |:--------------:|:--------------:|:---------------:|
-                | ON {: .green } | ON {: .green } | ON* {: .green } |
-
-                *This switch is not related to the settings required for this boot mode.
-
-        * SW11
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-                |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-                |:--------------:|:--------------:|:------------:|:--------------:|
-                | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-
 3.  Insert the bootable microSD card created in [Step 4](../getting_started/#step-4-create-sd-cards-with-the-prebuilt-image) into the microSD card slot for eSD boot mode, and then power on the EVK board.
 
     !!! success "Tip"
         *  Please refer to the [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for the location of the microSD card slot.
         *  Press and hold the power button (red button) for 1 second to turn on the EVK board.
 
-4.  The HMI SDK Demo Launcher launches **automatically** once the device is fully booted. 
+4.  The HMI SDK Demo Launcher starts **automatically** after the system has fully booted.
 
-    Right after boot, you will see the launch window as shown below.
-
-    ![](../hmi_applications/images/demo/demo_launching.png){: width="40%"} 
-
-    After a few seconds, the HMI SDK Demo Launcher will appear.<br>
-    Click the corresponding button to try each demo application we provide.
+    After approximately 30 seconds, the HMI SDK Demo Launcher appears.  
+    Click the corresponding button to launch and try each demo application provided by the HMI SDK.
 
     ![](../hmi_applications/images/demo/demo_launcher.png){: width="40%"}
-    ![](../hmi_applications/images/demo/demo_launcher_2.png){: width="40%"}
 
     !!! success "Tip"
         Please note that the buttons displayed on the Demo Launcher vary depending on the device.

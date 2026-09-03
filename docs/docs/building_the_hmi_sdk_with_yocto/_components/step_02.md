@@ -31,38 +31,11 @@
 
     Please set the following environment variables.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         ```bash
         export WORK=<A directory path for building>
-        export PLATFORM=rzg3e
-        export BOARD=smarc-rzg3e
-        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        export WORK=<A directory path for building>
-        export PLATFORM=rzg2l
-        export BOARD=smarc-rzg2l
-        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        export WORK=<A directory path for building>
-        export PLATFORM=rzg2lc
-        export BOARD=smarc-rzg2lc
-        export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        export WORK=<A directory path for building>
-        export PLATFORM=rzg2ul
-        export BOARD=smarc-rzg2ul
+        export PLATFORM=rzg3l
+        export BOARD=smarc-rzg3l
         export SDK_PKG_DIR=<A directory path for the HMI SDK Yocto Build Package>
         ```
         {: .dollar }
@@ -89,31 +62,12 @@
 
     Extract the Yocto recipe package.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         ```bash
         cd ${WORK}
-        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.tar.gz --strip-components=1
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}
-        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}
-        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        cd ${WORK}
-        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg2_hmi-sdk_v*.tar.gz --strip-components=1
+        unzip ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.zip
+        mv yocto_recipe_${PLATFORM}_hmi-sdk_v*/* ./
+        rm -rf yocto_recipe_${PLATFORM}_hmi-sdk_v*
         ```
         {: .dollar }
 
@@ -123,7 +77,7 @@
 
     ```bash
     cd ${WORK}
-    TEMPLATECONF=${PWD}/meta-renesas/meta-rz-distro/conf/templates/rz-conf/ source poky/oe-init-build-env build
+    TEMPLATECONF=${PWD}/meta-renesas/meta-rz-distro/conf/templates/vlp-v5-conf/ source poky/oe-init-build-env build
     ```
     {: .dollar }
 
@@ -131,7 +85,7 @@
 
     Add necessary Yocto `#!bash meta-layers` using the following commands.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         ```bash
         cd ${WORK}/build
         bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
@@ -139,52 +93,9 @@
         bitbake-layers add-layer ../meta-clang
         bitbake-layers add-layer ../meta-lts-mixins
         bitbake-layers add-layer ../meta-browser/meta-chromium
-        bitbake-layers add-layer ../meta-openembedded/meta-networking
-        bitbake-layers add-layer ../meta-browser-hwdecode
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter-demo
+        bitbake-layers add-layer ../meta-rz-browser
         bitbake-layers add-layer ../meta-flutter
         bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
-        bitbake-layers add-layer ../meta-rz-demos
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}/build
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
-        bitbake-layers add-layer ../meta-clang
-        bitbake-layers add-layer ../meta-lts-mixins
-        bitbake-layers add-layer ../meta-browser/meta-chromium
-        bitbake-layers add-layer ../meta-openembedded/meta-networking
-        bitbake-layers add-layer ../meta-browser-hwdecode
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
-        bitbake-layers add-layer ../meta-flutter
-        bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
-        bitbake-layers add-layer ../meta-rz-demos
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        cd ${WORK}/build
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
-        bitbake-layers add-layer ../meta-clang
-        bitbake-layers add-layer ../meta-lts-mixins
-        bitbake-layers add-layer ../meta-browser/meta-chromium
-        bitbake-layers add-layer ../meta-openembedded/meta-networking
-        bitbake-layers add-layer ../meta-browser-hwdecode
-        bitbake-layers add-layer ../meta-rz-features/meta-rz-flutter
-        bitbake-layers add-layer ../meta-flutter
-        bitbake-layers add-layer ../meta-flutter/meta-flutter-apps
-        bitbake-layers add-layer ../meta-rz-demos
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        cd ${WORK}/build
         bitbake-layers add-layer ../meta-rz-demos
         ```
         {: .dollar }
@@ -206,42 +117,12 @@
 
     Decompress the downloaded **Source Code** and set it up in the build environment.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         ```bash
         cd ${SDK_PKG_DIR}
         unzip RTK0EF0195F*SJ_linux-src.zip
         cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-        7z x oss-souce-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
-        mv downloads/ ${WORK}/build/
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${SDK_PKG_DIR}
-        unzip RTK0EF0195F*SJ_linux-src.zip
-        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
-        mv downloads/ ${WORK}/build/
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        cd ${SDK_PKG_DIR}
-        unzip RTK0EF0195F*SJ_linux-src.zip
-        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
-        mv downloads/ ${WORK}/build/
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        cd ${SDK_PKG_DIR}
-        unzip RTK0EF0195F*SJ_linux-src.zip
-        cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-        7z x oss-souce-code-pkg_rzg2_hmi-sdk_v*.7z
+        7z x oss-source-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
         mv downloads/ ${WORK}/build/
         ```
         {: .dollar }
@@ -250,31 +131,12 @@
 
     Add `#!bash IMAGE_INSTALL_append` and other settings to `#!bash local.conf` using the command shown below.
 
-    === "RZ/G3E"
-        ```bash
-        cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        cd ${WORK}/build
-        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-chromium-demo packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
+    === "RZ/G3L"
         ```bash
         cd ${WORK}/build
         sed -i '$aIMAGE_INSTALL:append = \" packagegroup-lvgl-demo packagegroup-benchmark-tools packagegroup-rzg-hmi-sdk-demo \"' "conf/local.conf"
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-rz-browser packagegroup-rz-browser-cjk-fonts \"' "conf/local.conf"
+        sed -i '$aIMAGE_INSTALL:append = \" packagegroup-flutter-demo packagegroup-flutter-sdk-toolchain \"' "conf/local.conf"
         ```
         {: .dollar }
 
@@ -282,31 +144,18 @@
 
     Run the `#!bash bitbake` command to build the images.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
+        !!! success "Tip"
+            RZ/G3L supports three display interfaces: MIPI-DSI, Digital Parallel Interface, and Low-Voltage Differential Signaling (LVDS).
+            The MIPI DSI interface is enabled by default in the HMI SDK.
+            To use a different display interface, you must modify the device tree. For details, refer to [Display Configuration](https://renesas-rz.github.io/rz_linux_bsp_plus/RZG/appendix/#display-configuration){: target=_blank }.
+
+            In addition, the RZ/G3L-EVK requires the appropriate display connector sub-board for the selected display interface.
+            For information about the EVK, refer to the "Display Interfaces" section in the [RZ/G3L SMARC Module Board Manual](https://www.renesas.com/document/mat/rzg3l-smarc-module-board-evaluation-board-manual){: target=_blank }.
+
         ```bash
         cd ${WORK}/build
         MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-minimal
         ```
         {: .dollar }
 
@@ -319,31 +168,10 @@
 
     If you want to further deploy sample or your customized applications, building the `toolchain` is also required. Create the SDK toolchain using the following command.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         ```bash
         cd ${WORK}/build
         MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
-        ```
-        {: .dollar }
-
-    === "RZ/G2L"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
-        ```
-        {: .dollar }
-
-    === "RZ/G2LC"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-weston -c populate_sdk
-        ```
-        {: .dollar }
-
-    === "RZ/G2UL"
-        ```bash
-        cd ${WORK}/build
-        MACHINE=${BOARD} bitbake core-image-minimal -c populate_sdk
         ```
         {: .dollar }
 
@@ -356,10 +184,9 @@ This concludes the Building the HMI SDK with Yocto guide.
 
 To flash the image to the SD card using bmaptool, refer to [Step 4: Create SD Cards with the Prebuilt Image](../getting_started/#step-4-create-sd-cards-with-the-prebuilt-image).
 
-
-
 To boot your device using the prepared SD card, refer to [EVK DIP Switch Setup](../hmi_applications/#evk-dip-switch-setup) for your boot mode setup.
-<br><br>
-For detailed information about each demo application, see [Demo Applications](../hmi_applications/#demo-applications).<br>
-For further development of sample applications, see [Sample Applications](../hmi_applications/#sample-applications).<br>
-For additional customizations, see [Wiki](../wiki/).
+
+For detailed information about each demo application, see [Demo Applications](../hmi_applications/#demo-applications).  
+For further development of sample applications, see [Sample Applications](../hmi_applications/#sample-applications).  
+For additional customizations, see [Wiki](../wiki/).  
+

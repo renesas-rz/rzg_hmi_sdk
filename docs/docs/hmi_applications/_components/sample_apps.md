@@ -10,11 +10,11 @@ Their source code can be downloaded from the GitHub links listed in the table be
     +--------------+--------------------------------------------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
     | Type         | Sample Applications                        | Target Device                         | Source Code URL                                                                                                                       |
     +==============+============================================+=======================================+=======================================================================================================================================+
-    |              | LVGL Sample Program for Image Display      | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL      | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_img_disp){: target=_blank }          |
+    |              | LVGL Sample Program for Image Display      | RZ/G3L                                | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_img_disp){: target=_blank }          |
     |              +--------------------------------------------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-    | LVGL         | LVGL Sample Program for Audio Playback     | RZ/G3E, RZ/G2L, RZ/G2LC               | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_audio_playback){: target=_blank }    |
+    | LVGL         | LVGL Sample Program for Audio Playback     | RZ/G3L                                | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_audio_playback){: target=_blank }    |
     |              +--------------------------------------------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-    |              | LVGL Sample Program for Video Playback     | RZ/G3E, RZ/G2L                        | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_video_playback){: target=_blank }    |
+    |              | LVGL Sample Program for Video Playback     | RZ/G3L                                | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_video_playback){: target=_blank }    |
     +--------------+--------------------------------------------+---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 The executable binaries are also available in the `bin` directory of each sample application, so you can run the samples without building them yourself.
@@ -32,49 +32,14 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
         
         If you download the HMI SDK Package and follow the [Getting Started](../getting_started/) setup instructions, you will find the toolchain installer script included in the package. Follow the steps below to install the toolchain for your board. <br>
 
-        === "RZ/G3E"
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+---------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board| Toolchain Installer Script                                                      | Location                                         |
-                +============+=================================================================================+==================================================+
-                | RZ/G3E     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3e-toolchain-5.0.8.sh* |*toolchain-installer_rzg3e_hmi-sdk_v3.4.0.0.zip*  |
-                +------------+---------------------------------------------------------------------------------+--------------------------------------------------+
-
-            Unzip the package, and extract the installer.
-
-            Navigate to the directory where the HMI SDK Package was extracted.
-
-            ```bash
-            cd RTK0EF0195F03400SJ_rzg3e/
-            unzip toolchain-installer_rzg3e_hmi-sdk_v3.4.0.0.zip
-            ```
-            { .dollar }
-
-            Then, install the toolchain.
-
-            ```bash
-            cd toolchain-installer_rzg3e_hmi-sdk_v3.4.0.0/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3e-toolchain-5.0.8.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/poky/5.0.8`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
-
-
-        === "RZ/G2L"
+        === "RZ/G3L"
 
             !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                        |Location                                          |
+                |Target Board| Toolchain Installer Script                                                       | Location                                         |
                 +============+==================================================================================+==================================================+
-                | RZ/G2L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2l-toolchain-5.0.11.sh* |*toolchain-installer_rzg2l_hmi-sdk_v3.4.1.0.zip*  |
+                | RZ/G3L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh* |*toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0.zip*  |
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
 
             Unzip the package, and extract the installer.
@@ -82,93 +47,26 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
             Navigate to the directory where the HMI SDK Package was extracted.
 
             ```bash
-            cd RTK0EF0195F03410SJ_rzg2l/
-            unzip toolchain-installer_rzg2l_hmi-sdk_v3.4.1.0.zip
+            cd RTK0EF0195F03500SJ_rzg3l/
+            unzip toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0.zip
             ```
             { .dollar }
 
             Then, install the toolchain.
 
             ```bash
-            cd toolchain-installer_rzg2l_hmi-sdk_v3.4.1.0/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2l-toolchain-5.0.11.sh
+            cd toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0/
+            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh
             ```
             { .dollar }
 
             !!! success "Tip"
                 Please set the directory for installing the toolchain.
 
-                The default `<path-to-toolchain>` is `#!bash /opt/poky/5.0.11`, which is used in the instructions below.
+                The default `<path-to-toolchain>` is `#!bash /opt/poky/5.0.14`, which is used in the instructions below.
                 If you set the target directory manually, please remember to update the path accordingly in the next step.
 
-        === "RZ/G2LC"
 
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+-----------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                         |Location                                          |
-                +============+===================================================================================+==================================================+
-                | RZ/G2LC    |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2lc-toolchain-5.0.11.sh* |*toolchain-installer_rzg2lc_hmi-sdk_v3.4.1.0.zip* |
-                +------------+-----------------------------------------------------------------------------------+--------------------------------------------------+
-
-            
-            Unzip the package, and extract the installer.
-
-            Navigate to the directory where the HMI SDK Package was extracted.
-
-            ```bash
-            cd RTK0EF0195F03410SJ_rzg2lc/
-            unzip toolchain-installer_rzg2lc_hmi-sdk_v3.4.1.0.zip
-            ```
-            { .dollar }
-
-            Then, install the toolchain.
-
-            ```bash
-            cd toolchain-installer_rzg2lc_hmi-sdk_v3.4.1.0/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2lc-toolchain-5.0.11.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/poky/5.0.11`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
-
-        === "RZ/G2UL"
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+------------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                          |Location                                          |
-                +============+====================================================================================+==================================================+
-                | RZ/G2UL    |*rz-vlp-glibc-x86_64-core-image-minimal-cortexa55-smarc-rzg2ul-toolchain-5.0.11.sh* |*toolchain-installer_rzg2ul_hmi-sdk_v3.4.1.0.zip* |
-                +------------+------------------------------------------------------------------------------------+--------------------------------------------------+
-
-            Unzip the package, and extract the installer.
-
-            Navigate to the directory where the HMI SDK Package was extracted.
-
-            ```bash
-            cd RTK0EF0195F03410SJ_rzg2ul/
-            unzip toolchain-installer_rzg2ul_hmi-sdk_v3.4.1.0.zip
-            ```
-            { .dollar }
-
-            Then, install the toolchain as follows:
-
-            ```bash
-            cd toolchain-installer_rzg2ul_hmi-sdk_v3.4.1.0/
-            sudo sh rz-vlp-glibc-x86_64-core-image-minimal-cortexa55-smarc-rzg2ul-toolchain-5.0.11.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/poky/5.0.11`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
         
 
     *  When Using the **HMI SDK Yocto Build Package**
@@ -178,102 +76,30 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
         !!! success "Tip"
             `#!bash ${WORK}` refers to the directory you set in <span style="color: var(--renesas-primary-color-fg-blue);">*Step 2-3. Set environment variables*</span> in [Building the HMI SDK with Yocto](../building_the_hmi_sdk_with_yocto/#step-2-build-hmi-sdk-with-yocto).
 
-        === "RZ/G3E"
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+---------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board| Toolchain Installer Script                                                      | Location                                         |
-                +============+=================================================================================+==================================================+
-                | RZ/G3E     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3e-toolchain-5.0.8.sh* | *${WORK}/build/tmp/deploy/sdk/*                  |
-                +------------+---------------------------------------------------------------------------------+--------------------------------------------------+
-
-            Install the toolchain.
-
-            ```bash
-            cd ${WORK}/build/tmp/deploy/sdk/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3e-toolchain-5.0.8.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/rz-vlp/5.0.8`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
-
-        === "RZ/G2L"
+        === "RZ/G3L"
 
             !!! content-wrapper no-indent table-no-sort table-no-hover ""
 
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                        |Location                                          |
+                |Target Board| Toolchain Installer Script                                                       | Location                                         |
                 +============+==================================================================================+==================================================+
-                | RZ/G2L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2l-toolchain-5.0.11.sh* |*${WORK}/build/tmp/deploy/sdk/*                   |
+                | RZ/G3L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh* | *${WORK}/build/tmp/deploy/sdk/*                  |
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
 
             Install the toolchain.
 
             ```bash
             cd ${WORK}/build/tmp/deploy/sdk/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2l-toolchain-5.0.11.sh
+            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh
             ```
             { .dollar }
 
             !!! success "Tip"
                 Please set the directory for installing the toolchain.
 
-                The default `<path-to-toolchain>` is `#!bash /opt/rz-vlp/5.0.11`, which is used in the instructions below.
+                The default `<path-to-toolchain>` is `#!bash /opt/rz-vlp/5.0.14`, which is used in the instructions below.
                 If you set the target directory manually, please remember to update the path accordingly in the next step.
 
-        === "RZ/G2LC"
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+-----------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                         |Location                                          |
-                +============+===================================================================================+==================================================+
-                | RZ/G2LC    |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2lc-toolchain-5.0.11.sh* |*${WORK}/build/tmp/deploy/sdk/*                   |
-                +------------+-----------------------------------------------------------------------------------+--------------------------------------------------+
-
-            Install the toolchain.
-
-            ```bash
-            cd ${WORK}/build/tmp/deploy/sdk/
-            sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg2lc-toolchain-5.0.11.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/rz-vlp/5.0.11`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
-
-
-        === "RZ/G2UL"
-
-            !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-                +------------+------------------------------------------------------------------------------------+--------------------------------------------------+
-                |Target Board|Toolchain Installer Script                                                          |Location                                          |
-                +============+====================================================================================+==================================================+
-                | RZ/G2UL    |*rz-vlp-glibc-x86_64-core-image-minimal-cortexa55-smarc-rzg2ul-toolchain-5.0.11.sh* |*${WORK}/build/tmp/deploy/sdk/*                   |
-                +------------+------------------------------------------------------------------------------------+--------------------------------------------------+
-            
-            Install the toolchain.
-
-            ```bash
-            cd ${WORK}/build/tmp/deploy/sdk/
-            sudo sh rz-vlp-glibc-x86_64-core-image-minimal-cortexa55-smarc-rzg2ul-toolchain-5.0.11.sh
-            ```
-            { .dollar }
-
-            !!! success "Tip"
-                Please set the directory for installing the toolchain.
-
-                The default `<path-to-toolchain>` is `#!bash /opt/rz-vlp/5.0.11`, which is used in the instructions below.
-                If you set the target directory manually, please remember to update the path accordingly in the next step.
 
 
 2. Enable cross compiler.
@@ -285,15 +111,10 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
 
     By default,
     ```bash
-    source /opt/rz-vlp/5.0.8/environment-setup-cortexa55-poky-linux 
+    source /opt/rz-vlp/5.0.14/environment-setup-cortexa55-poky-linux 
     ```
     { .dollar }
 
-    or
-    ```bash
-    source /opt/rz-vlp/5.0.11/environment-setup-cortexa55-poky-linux 
-    ```
-    { .dollar }
 
 3. Get the sample application source code.
 
@@ -324,33 +145,13 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
 
 5.  Build sample applications.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
 
         ```bash
-        MACHINE=smarc-rzg3e make
+        MACHINE=smarc-rzg3l make
         ```
         { .dollar }
 
-    === "RZ/G2L"  
-
-        ```bash
-        MACHINE=smarc-rzg2l make
-        ```
-        { .dollar }
-    
-    === "RZ/G2LC"    
-
-        ```bash
-        MACHINE=smarc-rzg2lc make
-        ```
-        { .dollar }    
-    
-    === "RZ/G2UL"   
-
-        ```bash
-        MACHINE=smarc-rzg2ul make
-        ```
-        { .dollar }
     
     The executable binaries for the sample applications are built as follows:<br>
     `#!bash rzg_hmi_sdk/sample_app/<sample-application-directory>/<sample-application-binary>`.
@@ -358,7 +159,7 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
     !!! success "Tip"
         The executable binaries file name (`#!bash <sample-application-binary>`) is the same as its directory name.
 
-        For example, for `#!bash lvgl_sample_img_disp`, the path to the built executable is:
+        For example, for `#!bash lvgl_sample_img_disp`, the path to the built executable is:  
         ```bash
         <path-to>/rzg_hmi_sdk/sample_app/lvgl/lvgl_sample_img_disp/lvgl_sample_img_disp
         ```
@@ -380,18 +181,9 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
     !!! note
         Refer to [EVK Peripheral Setup](../hmi_applications/#evk-peripheral-setup) for details.
 
-    === "RZ/G3E"
+    === "RZ/G3L"
         Ethernet 0 and Ethernet 1 are available; either port can be used.
 
-    === "RZ/G2L"
-        *RJ45 ports* Ethernet 0 (CN9) and Ethernet 1 (CN8) are available; either port can be used.
-
-    === "RZ/G2LC"
-        RJ45 ports is Ethernet 0 (CN9).
-
-
-    === "RZ/G2UL"
-        *RJ45 ports* Ethernet 0 (CN9) and Ethernet 1 (CN8) are available; either port can be used.
 
     Press and hold the power button (red button) for 1 second to turn on the EVK board.    
 
@@ -405,16 +197,16 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
     {: .hash }
 
     !!! success "Tip"
-        For example, if the RZ/G3E board is connected to the local network through the Ethernet 0 port:
+        For example, if the RZ/G3L board is connected to the local network through the Ethernet 0 port:
 
         ```console
-        root@smarc-rzg3e:~# ip a | grep end
+        root@smarc-rzg3l:~# ip a | grep end
         5: end0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
             inet 192.168.20.99/24 brd 192.168.20.255 scope global end0
         6: end1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
         ```
 
-        RZ/G3E board's IP address is `#!console 192.168.20.99` (at `#!console end0`).
+        RZ/G3L board's IP address is `#!console 192.168.20.99` (at `#!console end0`).
 
 3.  Copy the executable binary files and resource files to your EVK board (external SD card storage).
 

@@ -1,0 +1,475 @@
+﻿#,OSS Component,Lincense
+1,acl,LGPL-2.1-or-later & GPL-2.0-or-later
+2,adwaita-icon-theme,LGPL-3.0-only | CC-BY-SA-3.0
+3,alsa-lib,LGPL-2.1-only & GPL-2.0-or-later
+4,alsa-plugins,LGPL-2.1-only & GPL-2.0-or-later
+5,alsa-state,MIT & GPL-2.0-or-later
+6,alsa-topology-conf,BSD-3-Clause
+7,alsa-ucm-conf,BSD-3-Clause
+8,alsa-utils,GPL-2.0-only
+9,asciidoc,GPL-2.0-only
+10,at-spi2-core,LGPL-2.1-or-later
+11,attr,LGPL-2.1-or-later & GPL-2.0-or-later
+12,audio-init,MIT
+13,autoconf,GPL-3.0-or-later
+14,autoconf-archive,GPL-3.0-with-autoconf-exception
+15,automake,GPL-2.0-only
+16,avahi,GPL-2.0-or-later & LGPL-2.1-or-later
+17,babeltrace,MIT & GPL-2.0-only & LGPL-2.1-only
+18,babeltrace2,MIT & GPL-2.0-only & LGPL-2.1-only & BSD-2-Clause
+19,base-files,GPL-2.0-only
+20,base-passwd,GPL-2.0-only
+21,bash,GPL-3.0-or-later
+22,bash-completion,GPL-2.0-only
+23,bayer2raw,GPL-2.0-only
+24,bc,GPL-3.0-or-later
+25,bigbuckbunny-sample,CC-BY-3.0
+26,binutils,GPL-3.0-only
+27,binutils-cross-aarch64,GPL-3.0-only
+28,bison,GPL-3.0-only
+29,blktool,GPL-2.0-or-later
+30,blktrace,GPL-2.0-only
+31,bluez5,GPL-2.0-or-later & LGPL-2.1-or-later
+32,bmaptool,GPL-2.0-only
+33,bonnie++,GPL-2.0-only
+34,boost,BSL-1.0 & MIT & Python-2.0
+35,boost-build,BSL-1.0
+36,bptool,BSD-3-Clause
+37,brotli,MIT
+38,btrfs-tools,GPL-2.0-only & LGPL-2.1-or-later
+39,busybox,GPL-2.0-only & bzip2-1.0.4
+40,bzip2,bzip2-1.0.6 & GPL-3.0-or-later & Apache-2.0 & MS-PL & BSD-3-Clause & Zlib
+41,ca-certificates,GPL-2.0-or-later & MPL-2.0
+42,cairo,(MPL-1.1 | LGPL-2.1-only) & GPL-3.0-or-later
+43,cantarell-fonts,OFL-1.1 & Apache-2.0
+44,can-utils,GPL-2.0-only & BSD-3-Clause
+45,c-ares,MIT
+46,cargo,MIT | Apache-2.0
+47,cargo-c,MIT
+48,cdrtools,GPL-2.0-only & CDDL-1.0 & LGPL-2.1-or-later
+49,chromium-ozone-wayland,BSD-3-Clause & LGPL-2.0-or-later & LGPL-2.1-or-later
+50,chromiumpolicy,MIT
+51,chrpath,GPL-2.0-only
+52,ckermit,BSD-3-Clause
+53,clang,Apache-2.0-with-LLVM-exception
+54,clang-cross-aarch64,Apache-2.0-with-LLVM-exception
+55,cmake,BSD-3-Clause & BSD-1-Clause & MIT & BSD-2-Clause & curl
+56,codecinfo,CLOSED
+57,codec-user-module,CLOSED
+58,compiler-rt,Apache-2.0-with-LLVM-exception
+59,concurrencykit,BSD-2-Clause & Apache-2.0
+60,connman,GPL-2.0-only
+61,connman-conf,GPL-2.0-only
+62,coremark,Apache-2.0
+63,coreutils,GPL-3.0-or-later
+64,createrepo-c,GPL-2.0-only
+65,cross-localedef,LGPL-2.1-only
+66,curl,curl
+67,cwautomacros,GPL-2.0-only
+68,dbus,AFL-2.1 | GPL-2.0-or-later
+69,debianutils,GPL-2.0-only & SMAIL_GPL
+70,debugedit,GPL-2.0-only & GPL-3.0-only & LGPL-2.1-only
+71,demo-launcher,MIT & OFL-1.1
+72,depmodwrapper-cross,MIT
+73,depot-tools,GPLv3
+74,desktop-file-utils,GPL-2.0-or-later
+75,diffutils,GPL-3.0-or-later
+76,dnf,GPL-2.0-only
+77,docbook-xml-dtd4,OASIS
+78,docbook-xsl-stylesheets,XSL
+79,dosfstools,GPL-3.0-only
+80,dropbear,MIT & BSD-3-Clause & BSD-2-Clause & PD
+81,dtc,GPL-2.0-only | BSD-2-Clause
+82,dwarfsrcfiles,GPL-2.0-or-later
+83,e2fsprogs,GPL-2.0-only & LGPL-2.0-only & BSD-3-Clause & MIT
+84,elfutils,( GPL-2.0-or-later | LGPL-3.0-or-later ) & GPL-3.0-or-later
+85,ell,LGPL-2.1-only
+86,erofs-utils,GPL-2.0-or-later
+87,ethtool,GPL-2.0-or-later
+88,expat,MIT
+89,faac,LGPL-2.0-or-later
+90,faad2,GPL-2.0-only
+91,file,BSD-2-Clause
+92,findutils,GPL-3.0-or-later
+93,fio,GPL-2.0-only
+94,firmware-pack,BSD-3-Clause
+95,flac,GFDL-1.2 & GPL-2.0-or-later & LGPL-2.1-or-later & BSD-3-Clause
+96,flash-writer,BSD-3-Clause
+97,flex,BSD-3-Clause & LGPL-2.0-or-later
+98,flutter-engine,BSD-3-Clause
+99,flutter-pi,MIT
+100,flutter-samples-animations,BSD-3-Clause
+101,flutter-samples-deeplink-store-example,BSD-3-Clause
+102,flutter-samples-material-3-demo,BSD-3-Clause
+103,flutter-sdk,BSD-3-Clause
+104,flutter-wayland-client,BSD-3-Clause
+105,fontconfig,MIT & MIT & PD
+106,freetype,(FTL | GPL-2.0-or-later) & MIT
+107,fribidi,LGPL-2.1-or-later
+108,gawk,GPL-3.0-only
+109,gcc,GPL-3.0-with-GCC-exception & GPL-3.0-only
+110,gcc-cross-aarch64,GPL-3.0-with-GCC-exception & GPL-3.0-only
+111,gcc-runtime,GPL-3.0-with-GCC-exception
+112,gdbm,GPL-3.0-only
+113,gdk-pixbuf,LGPL-2.1-or-later
+114,gettext,GPL-3.0-or-later & LGPL-2.1-or-later & MIT
+115,gettext-minimal,FSF-Unlimited
+116,git,GPL-2.0-only & GPL-2.0-or-later & BSD-3-Clause & MIT & BSL-1.0 & LGPL-2.1-or-later
+117,glib-2.0,LGPL-2.1-or-later & BSD-3-Clause & PD
+118,glibc,GPL-2.0-only & LGPL-2.1-or-later
+119,glibc-locale,GPL-2.0-only & LGPL-2.1-or-later
+120,glib-networking,LGPL-2.1-or-later
+121,glmark2,GPL-3.0-or-later & SGI-1
+122,gmp,GPL-2.0-or-later | LGPL-3.0-or-later
+123,gn,BSD-3-Clause & LGPL-2.0-or-later & LGPL-2.1-or-later
+124,gnome-desktop-testing,LGPL-2.0-or-later
+125,gnu-config,GPL-3.0-with-autoconf-exception
+126,gnupg,GPL-3.0-only & LGPL-3.0-only
+127,gnutls,GPL-3.0-or-later & LGPL-2.1-or-later
+128,go-binary,BSD-3-Clause
+129,gobject-introspection,LGPL-2.0-or-later & GPL-2.0-or-later & MIT
+130,go-cross-cortexa55,BSD-3-Clause
+131,go-helloworld,BSD-3-Clause
+132,go-runtime,BSD-3-Clause
+133,gperf,GPL-3.0-or-later
+134,gpgme,GPL-2.0-or-later & LGPL-2.1-or-later & GPL-3.0-or-later
+135,gptfdisk,GPL-2.0-only
+136,grep,GPL-3.0-only
+137,groff,GPL-3.0-only
+138,gstreamer1.0,LGPL-2.1-or-later
+139,gstreamer1.0-meta-base,MIT
+140,gstreamer1.0-omx,LGPL-2.1-or-later
+141,gstreamer1.0-plugins-bad,LGPL-2.1-or-later & GPL-2.0-or-later
+142,gstreamer1.0-plugins-base,LGPL-2.1-or-later
+143,gstreamer1.0-plugins-good,LGPL-2.1-or-later
+144,gstreamer1.0-plugins-ugly,LGPL-2.1-or-later & GPL-2.0-or-later
+145,gstreamer1.0-plugin-vspmfilter,LGPL-2.0-only
+146,gstreamer1.0-rtsp-server,LGPL-2.1-or-later
+147,gtk+3,LGPL-2.0-only & LGPL-2.0-or-later & LGPL-2.1-or-later
+148,gtk-doc,GPL-2.0-only
+149,harfbuzz,MIT
+150,hdparm,BSD-2-Clause & GPL-2.0-only & hdparm
+151,hicolor-icon-theme,GPL-2.0-only
+152,home-panel-demo,MIT & OFL-1.1
+153,i2c-tools,GPL-2.0-or-later
+154,icu,ICU
+155,iperf3,BSD-3-Clause
+156,iproute2,GPL-2.0-or-later
+157,iptables,GPL-2.0-or-later
+158,iso-codes,LGPL-2.1-only
+159,iw,ISC
+160,json-c,MIT
+161,json-glib,LGPL-2.1-only
+162,kbd,GPL-2.0-or-later & LGPL-2.0-or-later & GPL-3.0-or-later
+163,kernel-module-mali,GPL-2.0-only
+164,kernel-module-mmngr,GPL-2.0-only & MIT
+165,kernel-module-mmngrbuf,GPL-2.0-only & MIT
+166,kernel-module-uvcs-drv,GPL-2.0-only & MIT
+167,kernel-module-vspm,GPL-2.0-only & MIT
+168,kernel-module-vspmif,GPL-2.0-only & MIT
+169,kern-tools,GPL-2.0-only & MIT
+170,kexec-tools,GPL-2.0-only
+171,kmod,GPL-2.0-or-later & LGPL-2.1-or-later
+172,lame,LGPL-2.0-or-later
+173,ldconfig,GPL-2.0-or-later
+174,liba52,GPL-2.0-or-later
+175,libaio,LGPL-2.1-or-later
+176,libarchive,BSD-2-Clause
+177,libassuan,GPL-3.0-or-later & LGPL-2.1-or-later
+178,libatomic-ops,GPL-2.0-only & MIT
+179,libbsd,BSD-3-Clause & BSD-4-Clause & ISC & PD
+180,libcap,BSD-3-Clause | GPL-2.0-only
+181,libcap-ng,GPL-2.0-or-later & LGPL-2.1-or-later
+182,libcheck,LGPL-2.1-or-later
+183,libcomps,GPL-2.0-only
+184,libcxx,Apache-2.0-with-LLVM-exception
+185,libdaemon,LGPL-2.1-or-later
+186,libdnf,LGPL-2.1-or-later
+187,libdrm,MIT
+188,libedit,BSD-3-Clause
+189,libepoxy,MIT
+190,liberation-fonts,OFL-1.1
+191,libevdev,MIT
+192,libffi,MIT
+193,libgcc,GPL-3.0-with-GCC-exception & GPL-3.0-only
+194,libgcc-initial,GPL-3.0-with-GCC-exception
+195,libgcrypt,GPL-2.0-or-later & LGPL-2.1-or-later
+196,libgpg-error,GPL-2.0-or-later & LGPL-2.1-or-later
+197,libgudev,LGPL-2.1-only
+198,libical,LGPL-2.1-only | MPL-2.0
+199,libidn2,(GPL-2.0-or-later | LGPL-3.0-only) & GPL-3.0-or-later & Unicode-DFS-2016
+200,libinput,MIT
+201,libjpeg-turbo,IJG & BSD-3-Clause & Zlib
+202,libksba,GPL-3.0-or-later & (GPL-2.0-or-later | LGPL-3.0-or-later)
+203,libmd,BSD-3-Clause & BSD-2-Clause
+204,libmicrohttpd,LGPL-2.1-or-later
+205,libmnl,LGPL-2.1-or-later
+206,libmodulemd,MIT
+207,libmpc,LGPL-3.0-only
+208,libnewt,LGPL-2.0-only
+209,libnl,LGPL-2.1-only
+210,libnsl2,LGPL-2.1-only
+211,libnss-mdns,LGPL-2.1-or-later
+212,libogg,BSD-3-Clause
+213,libomxil,LGPL-2.1-or-later
+214,libpam,GPL-2.0-or-later | BSD-3-Clause
+215,libpcap,BSD-3-Clause
+216,libpciaccess,MIT & MIT
+217,libpcre,BSD-3-Clause
+218,libpcre2,BSD-3-Clause
+219,libpng,Libpng
+220,libpsl,MIT
+221,libpthread-stubs,MIT
+222,librepo,LGPL-2.1-only
+223,librsvg,LGPL-2.1-or-later
+224,libsamplerate0,BSD-2-Clause
+225,libseccomp,LGPL-2.1-only
+226,libsndfile1,LGPL-2.1-only
+227,libsocketcan,LGPL-2.1-only
+228,libsolv,BSD-3-Clause
+229,libsoup,LGPL-2.0-only
+230,libssh2,BSD-3-Clause
+231,libstd-rs,(MIT | Apache-2.0) & Unicode-3.0
+232,libtasn1,GPL-3.0-or-later & LGPL-2.1-or-later
+233,libtheora,BSD-3-Clause
+234,libtirpc,BSD-3-Clause
+235,libtool,GPL-2.0-only & LGPL-2.1-only
+236,libtool-cross,GPL-2.0-only & LGPL-2.1-only
+237,libtraceevent,GPL-2.0-or-later & LGPL-2.1-or-later
+238,libunistring,LGPL-3.0-or-later | GPL-2.0-or-later
+239,libunwind,MIT
+240,liburcu,LGPL-2.1-or-later & MIT
+241,libusb1,LGPL-2.1-or-later
+242,libuv,MIT
+243,libvorbis,BSD-3-Clause
+244,libwebp,BSD-3-Clause
+245,libx11,MIT & BSD-1-Clause & HPND & HPND-sell-variant & ISC
+246,libx11-compose-data,MIT & BSD-1-Clause & HPND & HPND-sell-variant & ISC
+247,libxau,MIT
+248,libxcb,MIT
+249,libxcomposite,MIT
+250,libxcrypt,LGPL-2.1-only
+251,libxcursor,MIT
+252,libxdamage,MIT
+253,libxdmcp,MIT
+254,libxext,MIT
+255,libxfixes,MIT
+256,libxft,MIT
+257,libxi,MIT & MIT
+258,libxkbcommon,MIT & MIT
+259,libxml2,MIT
+260,libxml-parser-perl,Artistic-2.0
+261,libxrandr,MIT
+262,libxrender,MIT
+263,libxslt,MIT
+264,libxtst,MIT
+265,libyaml,MIT
+266,linux-libc-headers,GPL-2.0-only
+267,linux-renesas,GPL-2.0-only
+268,lrzsz,GPL-2.0-or-later
+269,lttng-modules,LGPL-2.1-only & GPL-2.0-only & MIT
+270,lttng-tools,GPL-2.0-only & LGPL-2.1-only
+271,lttng-ust,LGPL-2.1-or-later & MIT & GPL-2.0-only
+272,lua,MIT
+273,luajit,MIT
+274,lvgl,MIT
+275,lvgl-home-panel-demo,MIT
+276,lz4,BSD-2-Clause | GPL-2.0-only
+277,lzlib,BSD-2-Clause
+278,lzo,GPL-2.0-or-later
+279,lzop,GPL-2.0-or-later
+280,m4,GPL-3.0-only
+281,make,GPL-3.0-only
+282,makedepend,MIT
+283,makedevs,GPL-2.0-only
+284,make-mod-scripts,GPL-2.0-only
+285,memtester,GPL-2.0-only
+286,mesa,MIT
+287,meson,Apache-2.0
+288,minicom,GPL-2.0-or-later
+289,mmngrbuf-user-module,MIT
+290,mmngr-user-module,MIT
+291,mobile-broadband-provider-info,PD
+292,mpeg2dec,GPL-2.0-or-later
+293,mpfr,LGPL-3.0-or-later
+294,mpg123,LGPL-2.1-only
+295,mtdev,MIT
+296,mtd-utils,GPL-2.0-or-later
+297,mtools,GPL-3.0-only
+298,nasm,BSD-2-Clause
+299,ncurses,MIT
+300,neard,GPL-2.0-only
+301,netbase,GPL-2.0-only
+302,nettle,LGPL-3.0-or-later | GPL-2.0-or-later
+303,nghttp2,MIT
+304,ninja,Apache-2.0
+305,nodejs,MIT & ISC & BSD-2-Clause & BSD-3-Clause & Artistic-2.0 & Apache-2.0
+306,npth,LGPL-2.0-or-later
+307,nspr,GPL-2.0-only | MPL-2.0 | LGPL-2.1-only
+308,nss,(MPL-2.0 & MIT) | (MPL-2.0 & GPL-2.0-or-later & MIT) | (MPL-2.0 & LGPL-2.1-or-later & MIT)
+309,numactl,GPL-2.0-only & LGPL-2.1-only
+310,ofono,GPL-2.0-only
+311,openssh,BSD-2-Clause & BSD-3-Clause & ISC & MIT
+312,openssl,Apache-2.0
+313,opkg-utils,GPL-2.0-or-later
+314,orc,BSD-2-Clause & BSD-3-Clause
+315,os-release,MIT
+316,packagegroup-base,MIT
+317,packagegroup-benchmark-tools,MIT
+318,packagegroup-core-boot,MIT
+319,packagegroup-core-ssh-dropbear,MIT
+320,packagegroup-core-tools-profile,MIT
+321,packagegroup-core-tools-testapps,MIT
+322,packagegroup-core-weston,MIT
+323,packagegroup-flutter-demo,MIT
+324,packagegroup-flutter-sdk-toolchain,MIT
+325,packagegroup-gstreamer1.0-plugins,MIT
+326,packagegroup-lvgl-demo,MIT
+327,packagegroup-multimedia-kernel,GPL-2.0-only & MIT
+328,packagegroup-multimedia-libs,GPL-2.0-only & MIT
+329,packagegroup-rz-browser,MIT
+330,packagegroup-rz-browser-cjk-fonts,MIT
+331,packagegroup-rzg-hmi-sdk-demo,MIT
+332,packagegroup-rz-vlp-tools,MIT
+333,pango,LGPL-2.0-or-later
+334,parted,GPL-3.0-or-later
+335,patch,GPL-3.0-only
+336,patchelf,GPL-3.0-only
+337,pbzip2,bzip2-1.0.6
+338,pciutils,GPL-2.0-or-later
+339,perf,GPL-2.0-only
+340,perl,Artistic-1.0 | GPL-1.0-or-later
+341,perlcross,Artistic-1.0 | GPL-1.0-or-later
+342,pigz,Zlib & Apache-2.0
+343,pinentry,GPL-2.0-only
+344,pixman,MIT & PD
+345,pkgconfig,GPL-2.0-or-later
+346,popt,MIT
+347,powertop,GPL-2.0-only
+348,ppp,BSD-3-Clause & BSD-3-Clause-Attribution & GPL-2.0-or-later & LGPL-2.0-or-later & PD & RSA-MD
+349,procps,GPL-2.0-or-later & LGPL-2.0-or-later
+350,pseudo,LGPL-2.1-only
+351,psmisc,GPL-2.0-only
+352,ptest-runner,GPL-2.0-or-later
+353,pulseaudio,LGPL-2.1-or-later & MIT & BSD-3-Clause
+354,python3,PSF-2.0
+355,python3-build,MIT
+356,python3-calver,Apache-2.0
+357,python3-dbus,MIT
+358,python3-dbusmock,GPL-3.0-only
+359,python3-docutils,PSF-2.0 & BSD-2-Clause & GPL-3.0-only
+360,python3-editables,MIT
+361,python3-flit-core,BSD-3-Clause
+362,python3-hatchling,MIT
+363,python3-importlib-metadata,Apache-2.0
+364,python3-installer,MIT
+365,python3-jinja2,BSD-3-Clause
+366,python3-kconfiglib,ISC
+367,python3-mako,MIT
+368,python3-markupsafe,BSD-3-Clause
+369,python3-more-itertools,MIT
+370,python3-packaging,Apache-2.0 | BSD-2-Clause
+371,python3-pathlib2,MIT
+372,python3-pathspec,MPL-2.0
+373,python3-pcpp,BSD-3-Clause
+374,python3-pip,MIT & Apache-2.0 & MPL-2.0 & LGPL-2.1-only & BSD-3-Clause & PSF-2.0 & BSD-2-Clause
+375,python3-pluggy,MIT
+376,python3-py,MIT
+377,python3-pycairo,LGPL-2.1-only & MPL-1.1
+378,python3-pygments,BSD-2-Clause
+379,python3-pygobject,LGPL-2.1-only
+380,python3-pyparsing,MIT
+381,python3-pyproject-hooks,MIT
+382,python3-setuptools,MIT
+383,python3-setuptools-scm,MIT
+384,python3-six,MIT
+385,python3-toml,MIT
+386,python3-tomli,MIT
+387,python3-trove-classifiers,Apache-2.0
+388,python3-typing-extensions,PSF-2.0
+389,python3-wheel,MIT
+390,python3-zipp,MIT
+391,qemu,GPL-2.0-only & LGPL-2.1-only
+392,qemuwrapper-cross,MIT
+393,quilt,GPL-2.0-only
+394,quota,GPL-2.0-or-later & LGPL-2.1-or-later
+395,re2c,PD
+396,readline,GPL-3.0-or-later
+397,rpcbind,BSD-3-Clause
+398,rpm,GPL-2.0-only
+399,rsync,GPL-3.0-or-later
+400,run-postinsts,MIT
+401,rust,(MIT | Apache-2.0) & Unicode-3.0
+402,rust-llvm,Apache-2.0-with-LLVM-exception
+403,sbc,GPL-2.0-or-later & LGPL-2.1-or-later
+404,seatd,MIT
+405,sed,GPL-3.0-or-later
+406,setserial,GPL-2.0-only
+407,shadow,BSD-3-Clause
+408,shadow-securetty,MIT
+409,shadow-sysroot,BSD-3-Clause | Artistic-1.0
+410,shared-mime-info,GPL-2.0-only
+411,slang,GPL-2.0-only
+412,socat,GPL-2.0-with-OpenSSL-exception
+413,source-han-sans-cn-fonts,OFL-1.1
+414,source-han-sans-jp-fonts,OFL-1.1
+415,source-han-sans-kr-fonts,OFL-1.1
+416,source-han-sans-tw-fonts,OFL-1.1
+417,speex,BSD-3-Clause
+418,speexdsp,BSD-3-Clause
+419,sqlite3,PD
+420,squashfs-tools,GPL-2.0-only
+421,stress-ng,GPL-2.0-only
+422,swig,BSD-3-Clause & GPL-3.0-only
+423,sysbench,GPL-2.0-only
+424,syslinux,GPL-2.0-or-later
+425,systemd,GPL-2.0-only & LGPL-2.1-or-later
+426,systemd-compat-units,MIT
+427,systemd-conf,MIT
+428,systemd-serialgetty,GPL-2.0-or-later
+429,systemd-systemctl,MIT
+430,systemtap,GPL-2.0-only
+431,taglib,LGPL-2.1-only | MPL-1.1
+432,tar,GPL-3.0-only
+433,tcf-agent,EPL-1.0 | EDL-1.0
+434,tcp-wrappers,BSD-1-Clause
+435,texinfo-dummy,MIT
+436,tomlc99,MIT
+437,trusted-firmware-a,BSD-3-Clause & MIT
+438,tzcode,PD & BSD-3-Clause
+439,tzdata,PD & BSD-3-Clause
+440,u-boot,GPL-2.0-or-later
+441,unifdef,BSD-2-Clause
+442,unzip,Info-ZIP
+443,update-rc.d,GPL-2.0-or-later
+444,usbutils,GPL-2.0-or-later & (GPL-2.0-only | GPL-3.0-only)
+445,utfcpp,BSL-1.0 & BSD-3-Clause
+446,util-linux,GPL-1.0-or-later & GPL-2.0-or-later & LGPL-2.1-or-later & BSD-2-Clause & BSD-3-Clause & BSD-4-Clause & MIT
+447,util-linux-libuuid,BSD-3-Clause
+448,util-macros,MIT & MIT
+449,v4l2-init,MIT
+450,v4l-gst,LGPL-2.1-or-later
+451,v4l-utils,GPL-2.0-only & LGPL-2.1-only
+452,vala,LGPL-2.1-only
+453,volatile-binds,MIT
+454,vspmif-user-module,MIT
+455,watchdog,GPL-2.0-or-later
+456,watchdog-config,MIT
+457,wayland,MIT
+458,wayland-protocols,MIT
+459,wayland-utils,MIT
+460,weston,MIT
+461,weston-init,MIT
+462,which,GPL-3.0-or-later
+463,wireless-regdb,ISC
+464,wpa-supplicant,BSD-3-Clause
+465,xcb-proto,MIT
+466,xkeyboard-config,MIT & MIT
+467,xmlto,GPL-2.0-only
+468,xorgproto,MIT
+469,xtrans,MIT
+470,xz,GPL-2.0-or-later & GPL-3.0-with-autoconf-exception & LGPL-2.1-or-later & PD
+471,yavta,GPL-2.0-only
+472,zip,Info-ZIP
+473,zlib,Zlib
+474,zstd,BSD-3-Clause | GPL-2.0-only

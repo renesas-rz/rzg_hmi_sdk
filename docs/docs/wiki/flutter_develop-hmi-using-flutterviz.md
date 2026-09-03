@@ -3,10 +3,9 @@
 !!! abstract "Page Information"
     The information provided on this page has been verified using the following SDK versions and evaluation kits (EVKs):
 
-    - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
-    - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L and RZ/G2LC EVK***
+    - ***HMI SDk v3.5.0.0 (Yocto 5.0.14 (scarthgap), kernal 6.12) using RZ/G3L***
 
-    Last updated: ***March 03, 2026***
+    Last updated: ***Sep 03, 2026***
 
 [FlutterViz](https://flutterviz.com/) is easy to use interface with Flutter Drag and Drop UI builder to quickly kick-start your project. This open-source project aims to empower developers by providing a free and extensible visual Flutter UI builder. For more information about FlutterViz, see the [FlutterViz GitHub repository](https://github.com/iqonic-design/flutter_viz).  
 
@@ -265,7 +264,7 @@ Click the *Download code* button to download the source file for each Screen. Th
     If the setup is correct, you should see output similar to the following, with the first two items checked:
 
     ```bash
-    [v] Flutter (Channel stable, 3.27.1, on Ubuntu 22.04.5 LTS 6.8.0-50-generic, locale en_US.UTF-8)
+    [v] Flutter (Channel stable, 3.38.3, on Ubuntu 22.04.5 LTS 6.8.0-50-generic, locale en_US.UTF-8)
     [v] Linux toolchain - develop for Linux desktop
     [-] VS Code (version 1.96.2)
     [-] Connected device (1 available)
@@ -511,18 +510,16 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
 
     You will see result similar to:  
     ```bash
-    bab3a9eb030968554b57b1276c135ddb
+    ee40f54a8f868463ce73b930a4f1ee0f
     ```
 
     Run the following command to build the Flutter sample application:
 
     !!! success "Tip"  
-        Replace `bab3a9eb030968554b57b1276c135ddb` with your own build hash.
+        Replace `ee40f54a8f868463ce73b930a4f1ee0f` with your own build hash.
 
     ```bash
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/cache/dart-sdk/bin/dartaotruntime \
-    --disable-analytics \
-    --disable-dart-dev \
     $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot \
     --sdk-root $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/cache/artifacts/engine/common/flutter_patched_sdk_product/ \
     --target=flutter \
@@ -532,12 +529,11 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     --tfa \
     --target-os linux \
     --packages .dart_tool/package_config.json \
-    --output-dill .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill \
-    --depfile .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/kernel_snapshot_program.d \
+    --output-dill .dart_tool/flutter_build/ee40f54a8f868463ce73b930a4f1ee0f/app.dill \
+    --depfile .dart_tool/flutter_build/ee40f54a8f868463ce73b930a4f1ee0f/kernel_snapshot_program.d \
     --source file://$PWD/.dart_tool/flutter_build/dart_plugin_registrant.dart \
     --source package:flutter/src/dart_plugin_registrant.dart \
     -Dflutter.dart_plugin_registrant=file://$PWD/.dart_tool/flutter_build/dart_plugin_registrant.dart \
-    --native-assets .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/native_assets.yaml \
     --verbosity=error \
     package:fluttersampleapp/main.dart
     ```
@@ -546,7 +542,7 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     Once the build completes successfully, the Flutter build configuration is applied, and the following file is generated:
 
     ```bash
-    .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill 0
+    .dart_tool/flutter_build/ee40f54a8f868463ce73b930a4f1ee0f/app.dill 0
     ```  
 
 5. Update kernel nlob timestamp.
@@ -558,23 +554,16 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
 
 6. Generate AOT shared library (libapp.so).
 
-    Download `engine_sdk.tar.bz2` from the [Renesas Wiki-Flutter-Deliverables](https://renesas-wiki.atlassian.net/wiki/spaces/REN/pages/77103109/Flutter#Deliverables).    
-    Decompress `engine_sdk.tar.bz2`, then unzip `engine_sdk_release.zip` inside it. This will generate the `sdk` directory.  
-<br>
-    Use `gen_snapshot` from extracted `sdk` to generate the AOT shared library:
-
-    !!! success "Tip"
-        - Replace `<path-to>` with your local download path.  
-        - Replace `bab3a9eb030968554b57b1276c135ddb` with your own build hash.      
+    !!! success "Tip"  
+        - Replace `ee40f54a8f868463ce73b930a4f1ee0f` with your own build hash.      
 
     ```bash
-    <path-to>/sdk/clang_x64/gen_snapshot \
+    $OECORE_NATIVE_SYSROOT/usr/share/flutter/sdk/bin/cache/artifacts/engine/linux-arm64-release/gen_snapshot \
     --deterministic \
     --snapshot_kind=app-aot-elf \
     --elf=libapp.so \
     --strip \
-    .dart_tool/flutter_build/bab3a9eb030968554b57b1276c135ddb/app.dill
-
+    .dart_tool/flutter_build/ee40f54a8f868463ce73b930a4f1ee0f/app.dill
     ```
     { .dollar }
 
@@ -632,12 +621,12 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     Create the required release directories:
 
     ```bash
-    install -d my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/data/flutter_assets
+    install -d my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/data/flutter_assets
     ```
     { .dollar }
 
     ```bash
-    install -d my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/lib
+    install -d my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/lib
     ```
     { .dollar }
 
@@ -653,32 +642,32 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     Copy the Flutter asset files:
 
     ```bash
-    cp -r build/flutter_assets/* my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/data/flutter_assets
+    cp -r build/flutter_assets/* my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/data/flutter_assets
     ```
     { .dollar }
 
     Copy the generated application library:
 
     ```bash
-    cp libapp.so my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/lib
+    cp libapp.so my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/lib
     ```
     { .dollar }
 
     Create a symbolic link to the ICU data file:
 
     ```bash
-    ln -sfr my_release/usr/share/flutter/3.27.1/release/data/icudtl.dat my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/data/icudtl.dat
+    ln -sfr my_release/usr/share/flutter/3.38.3/release/data/icudtl.dat my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/data/icudtl.dat
     ```
     { .dollar }
 
     Create a symbolic link to the Flutter engine library:
 
     ```bash
-    ln -sfr my_release/usr/share/flutter/3.27.1/release/lib/libflutter_engine.so my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/lib/libflutter_engine.so
+    ln -sfr my_release/usr/share/flutter/3.38.3/release/lib/libflutter_engine.so my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/lib/libflutter_engine.so
     ```
     { .dollar }
 
-    After completing the setup, the directory structure under `fluttersampleapp/my_release/usr/share/flutter/flutter-samples-app/3.27.1/release/` should look like the following:  
+    After completing the setup, the directory structure under `fluttersampleapp/my_release/usr/share/flutter/flutter-samples-app/3.38.3/release/` should look like the following:  
 
     ```bash
     .
@@ -695,10 +684,10 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     │   │   ├── packages
     │   │   ├── shaders
     │   │   └── vm_snapshot_data
-    │   └── icudtl.dat -> ../../../../3.27.1/release/data/icudtl.dat
+    │   └── icudtl.dat -> ../../../../3.38.3/release/data/icudtl.dat
     └── lib
         ├── libapp.so
-        └── libflutter_engine.so -> ../../../../3.27.1/release/lib/libflutter_engine.so
+        └── libflutter_engine.so -> ../../../../3.38.3/release/lib/libflutter_engine.so
     ```
 
 
@@ -730,7 +719,7 @@ Here, modify the dependencies, assets, and fonts sections of the `pubspec.yaml` 
     { .dollar }
 
     ```bash
-    sudo cp -r my_release/usr/share/flutter/flutter-samples-app/3.27.1 <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
+    sudo cp -r my_release/usr/share/flutter/flutter-samples-app/3.38.3 <sdcard-mount-point>/usr/share/flutter/my-flutter-samples-app/
     ```
     { .dollar }
 
@@ -759,13 +748,13 @@ Please refer to [Step 2: Deploy Sample Applications](../../hmi_applications/#ste
 3. Use the following command on your EVK board to run the Flutter sample application.
 
 ```bash
-export LD_PRELOAD=/usr/share/flutter/my-flutter-samples-app/3.27.1/release/lib/libflutter_engine.so
+export LD_PRELOAD=/usr/share/flutter/my-flutter-samples-app/3.38.3/release/lib/libflutter_engine.so
 ```
 {: .hash }  
 
 
 ```bash
-flutter-client -f -b /usr/share/flutter/my-flutter-samples-app/3.27.1/release/
+flutter-client -f -b /usr/share/flutter/my-flutter-samples-app/3.38.3/release/
 ```
 {: .hash }
 

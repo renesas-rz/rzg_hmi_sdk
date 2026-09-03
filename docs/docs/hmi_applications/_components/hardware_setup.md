@@ -14,10 +14,6 @@
     |Included with RZ/G EVK +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
     |                       | USB Cable (for serial communication) | *Port*: Connect to micro USB Type-B (2.0) port on the board                                                               |
     |                       |                                      |                                                                                                                           |
-    |                       +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
-    |                       | *Parallel to HDMI Conversion Board   | *Only for RZ/G2UL                                                                                                         |
-    |                       |                                      |                                                                                                                           | 
-    |                       |                                      | Used to convert an FFC/FPC connector to a micro HDMI connector.                                                           |
     +-----------------------+--------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
     | USB Power Delivery (PD) AC Adapter &                         | *Port*: Connect to the USB Type-C port on the board                                                                       |
     | USB Type-C PD Cable                                          |                                                                                                                           |
@@ -77,21 +73,10 @@
 
 Please set up the necessary equipment referring to the EVK peripheral diagram below.
 
-=== "RZ/G3E"
+=== "RZ/G3L"
 
-    ![](images/hardware-requirements_rzg3e.png){: width="80%"}
+    ![](images/hardware-requirements_rzg3l.png){: width="80%"}
 
-=== "RZ/G2L"
-
-    ![](images/hardware-requirements_rzg2l.png){: width="80%"}
-
-=== "RZ/G2LC"
-
-    ![](images/hardware-requirements_rzg2lc.png){: width="80%"}
-
-=== "RZ/G2UL"
-
-    ![](images/hardware-requirements_rzg2ul.png){: width="70%"}
 
 !!! success "Tip"
     *  For *eSD boot mode*, insert the microSD card into the slot on the **module board**; for *QSPI boot mode*, insert the microSD card into the slot on the **common carrier board**.
@@ -103,7 +88,7 @@ Please set up the necessary equipment referring to the EVK peripheral diagram be
 
 *  ***eSD Boot Mode***
 
-=== "RZ/G3E"
+=== "RZ/G3L"
 
     Set DIP switch SW_MODE as follows.
 
@@ -117,81 +102,6 @@ Please set up the necessary equipment referring to the EVK peripheral diagram be
             |:--------------:|:--------------:|:------------:|:--------------:|
             | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
-=== "RZ/G2L"
-
-    Set DIP switch SW1 and SW11 as follows.
-
-    * SW1 (on Module Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-rzg2l-board-SW1.png){ align=left .switch-icon }
-
-            |      SW1-1     |      SW1-2     |
-            |:--------------:|:--------------:|
-            | ON {: .green } | ON {: .green } |
-
-    * SW11 (on Common Carrier Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-=== "RZ/G2LC"
-
-    Set DIP switch SW1 and SW11 as follows.
-
-    * SW1 (on Module Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-rzg2lc-board-SW1.png){ align=left .switch-icon }
-
-            |      SW1-1     |      SW1-2     |       SW1-3     |     SW1-4     |      SW1-5      |      SW1-6     |
-            |:--------------:|:--------------:|:---------------:|:-------------:|:---------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | ON* {: .green } | OFF* {: .red} | ON* {: .green } | Not used       |
-
-            *These switches are not related to the settings required for this boot mode.
-
-    * SW11 (on Common Carrier Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
-
-=== "RZ/G2UL"
-
-    Set DIP switch SW1 and SW11 as follows.
-
-    * SW1 (on Module Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-rzg2ul-board-SW1.png){ align=left .switch-icon }
-
-            |      SW1-1     |      SW1-2     |      SW1-3      |
-            |:--------------:|:--------------:|:---------------:|
-            | ON {: .green } | ON {: .green } | ON* {: .green } |
-
-            *This switch is not related to the settings required for this boot mode.
-
-    * SW11 (on Common Carrier Board)
-
-        !!! content-wrapper no-indent table-no-sort table-no-hover ""
-
-            ![](images/smarc-carrier-board-SW11.png){ align=left .switch-icon }
-
-            |     SW11-1     |     SW11-2     |    SW11-3    |     SW11-4     |
-            |:--------------:|:--------------:|:------------:|:--------------:|
-            | ON {: .green } | ON {: .green } | OFF {: .red} | ON {: .green } |
 
 
 *  ***QSPI Boot Mode***

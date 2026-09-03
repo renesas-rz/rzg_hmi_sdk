@@ -5,8 +5,9 @@
 
     - ***HMI SDK v3.4.0.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G3E EVK***
     - ***HMI SDK v3.4.1.0 (Yocto 5.0.9 (scarthgap), kernel 6.1) using RZ/G2L and RZ/G2LC EVK***
+    - ***HMI SDk v3.5.0.0 (Yocto 5.0.14 (scarthgap), kernal 6.12) using RZ/G3L***
 
-    Last updated: ***Februrary 27, 2026***
+    Last updated: ***Sep 03, 2026***
 
 This page describes how to change display resolution for weston (window manager).
 

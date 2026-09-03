@@ -35,34 +35,30 @@ The contents of the packages are as follows:
     +---------------------------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     | Packages                                                      | Content File                                              | Details                                                                                               |
     +===============================================================+===========================================================+=======================================================================================================+
-    |**HMI SDK Package**                                            | *image-file\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*         | Bootable SD card images in WIC format                                                                 |
-    | *-eSD Boot Image & Toolchain Installer*                       +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |                                                               | *licenses\_rzg2\_hmi-sdk\_<`version`\>.zip*               | License files for open-source software used in HMI SDK                                                |
-    | *(RTK0EF0195F03410SJ\_<`dev`\>)*                              +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |                                                               | *r01an8251ej0100-rzg-hmi-sdk.pdf*                         | Release notes with RZ/G HMI SDK information                                                           |
+    |**HMI SDK Package**                                            | *image-file\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*         | Bootable SD card images in WIC format for eSD boot with MIPI-DSI display support                      |
+    | *- eSD Boot Image & Toolchain Installer*                      +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    |                                                               | *image-file\_<`dev`\>\_hmi-sdk\_lvds\_<`version`\>.zip*   | Bootable SD card images in WIC format for eSD boot with LVDS display support                          |
+    | *(RTK0EF0195F03500SJ\_<`dev`\>)*                              +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    |                                                               | *licenses\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*           | License files for open-source software used in HMI SDK                                                |
     |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                           |
     |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *toolchain-installer\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*| Cross-toolchain installer for building sample applications                                            |
     +---------------------------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |**HMI SDK Yocto Build Package**                                | *licenses\_rzg2\_hmi-sdk_<`version`\>.zip*                | License files for open-source components used in HMI SDK                                              |
-    | *-Yocto Recipes & Pre-built Binary for QSPI Boot*             +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    |**HMI SDK Yocto Build Package**                                | *licenses\_<`dev`\>\_hmi-sdk_<`version`\>.zip*            | License files for open-source components used in HMI SDK                                              |
+    | *- Yocto Recipes & Pre-built Binary for QSPI Boot*            +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *pre-built-binary\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*   | Pre-built binaries (bootloader, Linux kernel, root filesystem, flash writer) for SPI boot mode        |
-    | *(RTK0EF0195F03410SJ\_<`dev`\>\_yocto-and-pre-built-image)*   +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |                                                               | *r01an8251ej0100-rzg-hmi-sdk.pdf*                         | Release notes with RZ/G HMI SDK information                                                           |
-    |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    | *(RTK0EF0195F03500SJ\_<`dev`\>\_yocto-and-pre-built-image)*   +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                           |
     |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |                                                               | *yocto_recipe\_rzg2\_hmi-sdk\_<`version`\>.tar.gz*        | Yocto meta layers for building HMI SDK                                                                |
+    |                                                               | *yocto_recipe\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*       | Yocto meta layers for building HMI SDK                                                                |
     +---------------------------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     !!! success "Tip"   
-        <`dev`\> in the table represents a device name of one of the following devices: <br>
+        <`dev`\> in the table represents a device name of one of the following devices: 
 
-        * *rzg2l* <br>
-        * *rzg2lc* <br>
-        * *rzg2ul* <br>
+        * *rzg3l* 
 
-        <`version`\> in the table represents a version name. Replace it with *v3.4.1.0*.<br>
+        <`version`\> in the table represents a version name. Replace it with *v3.5.0.0*.  
         The angle brackets `<` and `>` should not be included when you enter the text.
 
 
@@ -73,12 +69,10 @@ The contents of the source code are as follows:
     +---------------------------------------------------------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
     | Supplements                                                   | Content File                                              | Details                                                                                       |
     +===============================================================+===========================================================+===============================================================================================+
-    |**Source Code**                                                | *licenses\_rzg2\_hmi-sdk\_<`version`\>.zip*               | License files for open-source components used in HMI SDK                                      |
-    | *-Supplementary for HMI SDK Yocto Build Package*              +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
-    |                                                               | *oss-souce-code-pkg\_rzg2\_hmi-sdk\_<`version`\>.7z*      | Source code package of open-source components for building HMI SDK                            |
-    | *(RTK0EF0195F03410SJ\_linux-src)*                             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
-    |                                                               | *r01an8251ej0100-rzg-hmi-sdk.pdf*                         | Release notes with RZ/G HMI SDK information                                                   |
-    |                                                               +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+    |**Source Code**                                                | *licenses\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*           | License files for open-source components used in HMI SDK                                      |
+    | *- Supplementary for HMI SDK Yocto Build Package*             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+    |                                                               | *oss-source-code-pkg\_<`dev`\>\_hmi-sdk\_<`version`\>.7z* | Source code package of open-source components for building HMI SDK                            |
+    | *(RTK0EF0195F03500SJ\_linux-src)*                             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                   |
     +---------------------------------------------------------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
 
@@ -99,13 +93,11 @@ Follow the instructions under [Demo Applications](../hmi_applications/#demo-appl
     +--------------+----------------------------------------+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
     | Type         | Demo Applications                      | Target Device                     | Source Code URL                                                                                                                    |
     +==============+========================================+===================================+====================================================================================================================================+
-    | LVGL         | LVGL Benchmark Demo                    | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL  | [Link to GitHub](https://github.com/renesas-rz/rz_benchmark_demo){: target=_blank }                                                |
-    |              +----------------------------------------+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    |              | LVGL Home Panel Demo                   | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL  | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }       |
+    | LVGL         | LVGL Home Panel Demo                   | RZ/G3L                            | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_home_panel_demo){: target=_blank }       |
     +--------------+----------------------------------------+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    | Chromium     | Chromium Home Panel Demo               | RZ/G3E, RZ/G2L, RZ/G2LC           | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }        |
+    | Chromium     | Chromium Home Panel Demo               | RZ/G3L                            | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/chromium/home_panel_demo){: target=_blank }        |
     +--------------+----------------------------------------+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-    | Flutter      | Flutter Samples                        | RZ/G3E, RZ/G2L, RZ/G2LC           | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                             |
+    | Flutter      | Flutter Samples                        | RZ/G3L                            | [Link to GitHub](https://github.com/flutter/samples){: target=_blank }                                                             |
     +--------------+----------------------------------------+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -118,10 +110,10 @@ The sample applications are not pre-built and require additional building and de
     +--------------+------------------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
     | Type         | Sample Applications                      | Target Device                           | Source Code URL                                                                                                                     |
     +==============+==========================================+=========================================+=====================================================================================================================================+
-    |              |  LVGL Sample Program for Image Display   | RZ/G3E, RZ/G2L, RZ/G2LC, RZ/G2UL        | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_img_disp){: target=_blank }        |
+    |              |  LVGL Sample Program for Image Display   | RZ/G3L                                  | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_img_disp){: target=_blank }        |
     |              +------------------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
-    | LVGL         |  LVGL Sample Program for Audio Playback  | RZ/G3E, RZ/G2L, RZ/G2LC                 | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_audio_playback){: target=_blank }  |
+    | LVGL         |  LVGL Sample Program for Audio Playback  | RZ/G3L                                  | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_audio_playback){: target=_blank }  |
     |              +------------------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
-    |              |  LVGL Sample Program for Video Playback  | RZ/G3E, RZ/G2L                          | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_video_playback){: target=_blank }  |
+    |              |  LVGL Sample Program for Video Playback  | RZ/G3L                                  | [Link to GitHub](https://github.com/renesas-rz/rzg_hmi_sdk/tree/main/sample_app/lvgl/lvgl_sample_video_playback){: target=_blank }  |
     +--------------+------------------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 

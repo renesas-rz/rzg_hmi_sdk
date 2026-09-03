@@ -1,1 +1,1 @@
-**Announcement!** RZ/G HMI SDK v3.4.1.0 is available.
+**Announcement!** RZ/G HMI SDK v3.5.0.0 is available.
