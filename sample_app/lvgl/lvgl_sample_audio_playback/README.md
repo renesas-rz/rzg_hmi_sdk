@@ -33,3 +33,10 @@ Then, run the sample program as follows.
 
 This program is distributed under MIT license. And all sample audio files are licensed [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/legalcode).
 
+## Known Issues
+
+### v2.01
+
+* When this program is run on the RZ/G HMI SDK v3.5.0.0 with LVGL v9.5, the following issue is known:
+    * A segmentation fault occurs when the program is terminated by clicking the **Quit** button.
+

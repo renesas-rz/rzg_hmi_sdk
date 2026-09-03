@@ -54,3 +54,11 @@ If you see nothing, check the next file (event1, event2, ...) in the same way as
 
 This program is distributed under MIT license. And all sample image files are public domain.
 
+## Known Issues
+
+### v2.01
+
+* When this program is run on the RZ/G HMI SDK v3.5.0.0 with LVGL v9.5, the following issues are known:
+    * A segmentation fault occurs when the program is terminated by clicking the **Quit** button.
+    * GIF images cannot be displayed.
+
