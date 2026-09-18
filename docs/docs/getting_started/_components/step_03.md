@@ -4,7 +4,7 @@ Please download from the **HMI SDK Package** using the button below.
 
 === "RZ/G3L"
 
-    [:octicons-download-16: HMI SDK Package for RZ/G3L<br><span class="btn-subtext">*- eSD Boot Image & Toolchain Installer</span>*](https://www.renesas.com/document/sws/rzg-hmi-software-development-kit-version-3500-rzg3l){ .md-button .btn-round target=_blank }
+    [:octicons-download-16: HMI SDK Package for RZ/G3L<br><span class="btn-subtext">*- eSD Boot Image & Toolchain Installer</span>*](https://www.renesas.com/document/sws/rzg-hmi-software-development-kit-version-3501-rzg3l){ .md-button .btn-round target=_blank }
 <!--
 === "RZ/G3E"
 

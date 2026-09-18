@@ -39,7 +39,7 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
                 |Target Board| Toolchain Installer Script                                                       | Location                                         |
                 +============+==================================================================================+==================================================+
-                | RZ/G3L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh* |*toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0.zip*  |
+                | RZ/G3L     |*rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh* |*toolchain-installer_rzg3l_hmi-sdk_v3.5.0.1.zip*  |
                 +------------+----------------------------------------------------------------------------------+--------------------------------------------------+
 
             Unzip the package, and extract the installer.
@@ -48,14 +48,14 @@ If you choose to use the binaries, simply download them, skip Step 1, and start 
 
             ```bash
             cd RTK0EF0195F03500SJ_rzg3l/
-            unzip toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0.zip
+            unzip toolchain-installer_rzg3l_hmi-sdk_v3.5.0.1.zip
             ```
             { .dollar }
 
             Then, install the toolchain.
 
             ```bash
-            cd toolchain-installer_rzg3l_hmi-sdk_v3.5.0.0/
+            cd toolchain-installer_rzg3l_hmi-sdk_v3.5.0.1/
             sudo sh rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzg3l-toolchain-5.0.14.sh
             ```
             { .dollar }

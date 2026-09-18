@@ -7,8 +7,8 @@ After downloading the HMI SDK Package, locate the image file.
         +---------------+-------------------------------------------------------+-----------------------------------------------+
         | Target Board  | Image File                                            | Location                                      |
         +===============+=======================================================+===============================================+
-        | RZ/G3L        | *core-image-weston-smarc-rzg3l.rootfs.wic.gz*         | *image-file_rzg3l_hmi-sdk_v3.5.0.0.zip*       |
-        |               |                                                       | *image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip*  |
+        | RZ/G3L        | *core-image-weston-smarc-rzg3l.rootfs.wic.gz*         | *image-file_rzg3l_hmi-sdk_v3.5.0.1.zip*       |
+        |               |                                                       | *image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1.zip*  |
         +---------------+-------------------------------------------------------+-----------------------------------------------+
 <!--    
 === "RZ/G3E"
@@ -55,8 +55,8 @@ After downloading the HMI SDK Package, locate the image file.
 
     === "RZ/G3L"
 
-        *i.* Right-click the downloaded package `RTK0EF0195F03500SJ_rzg3l.zip` → Extract All...  
-        *ii.* Open the folder and right-click `image-file_rzg3l_hmi-sdk_v3.5.0.0.zip` or `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip` → Extract All...
+        *i.* Right-click the downloaded package `RTK0EF0195F03501SJ_rzg3l.zip` → Extract All...  
+        *ii.* Open the folder and right-click `image-file_rzg3l_hmi-sdk_v3.5.0.1.zip` or `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1.zip` → Extract All...
 
         !!! success "Tip"
             RZ/G3L supports three display interfaces: MIPI-DSI, Digital Parallel Interface, and Low-Voltage Differential Signaling (LVDS).
@@ -67,8 +67,8 @@ After downloading the HMI SDK Package, locate the image file.
 
         Select one of the following:
 
-        * SD card image for eSD boot with MIPI-DSI display support: `image-file_rzg3l_hmi-sdk_v3.5.0.0.zip`
-        * SD card image for eSD boot with LVDS display support: `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip`
+        * SD card image for eSD boot with MIPI-DSI display support: `image-file_rzg3l_hmi-sdk_v3.5.0.1.zip`
+        * SD card image for eSD boot with LVDS display support: `image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1.zip`
 
         *iii.* Inside, you will find the image file: `core-image-weston-smarc-rzg3l.rootfs.wic.gz`
 
@@ -119,8 +119,8 @@ After downloading the HMI SDK Package, locate the image file.
 
         Navigate to the directory where the HMI SDK package was installed.
         ```bash
-        unzip RTK0EF0195F03500SJ_rzg3l.zip
-        cd RTK0EF0195F03500SJ_rzg3l/
+        unzip RTK0EF0195F03501SJ_rzg3l.zip
+        cd RTK0EF0195F03501SJ_rzg3l/
         ```
         {: .dollar }
 
@@ -135,22 +135,22 @@ After downloading the HMI SDK Package, locate the image file.
 
         Select one of the following:
 
-        * SD card image for eSD boot with MIPI-DSI display support: image-file_rzg3l_hmi-sdk_v3.5.0.0.zip
-        * SD card image for eSD boot with LVDS display support: image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip
+        * SD card image for eSD boot with MIPI-DSI display support: image-file_rzg3l_hmi-sdk_v3.5.0.1.zip
+        * SD card image for eSD boot with LVDS display support: image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1.zip
 
         Then, unzip the selected file and change to the extracted directory.
 
         For MIPI-DSI:
         ```bash
-        unzip image-file_rzg3l_hmi-sdk_v3.5.0.0.zip
-        cd image-file_rzg3l_hmi-sdk_v3.5.0.0/
+        unzip image-file_rzg3l_hmi-sdk_v3.5.0.1.zip
+        cd image-file_rzg3l_hmi-sdk_v3.5.0.1/
         ```
         {: .dollar }
 
         For LVDS:
         ```bash
-        unzip image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0.zip
-        cd image-file_rzg3l_hmi-sdk_lvds_v3.5.0.0/
+        unzip image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1.zip
+        cd image-file_rzg3l_hmi-sdk_lvds_v3.5.0.1/
         ```
         {: .dollar }
 

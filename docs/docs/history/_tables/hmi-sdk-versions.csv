@@ -1,4 +1,4 @@
 HMI SDK Version,Target Board,Yocto,Linux kernel,LVGL,Flutter,Chromium
-HMI SDK v3.5.0.0,RZ/G3L EVK,5.0 (scarthgap),6.12,9.5,3.38,132
+HMI SDK v3.5.0.1,RZ/G3L EVK,5.0 (scarthgap),6.12,9.5,3.38,132
 HMI SDK v3.4.1.0,"RZ/G2L, RZ/G2LC, RZ/G2UL EVK",5.0 (scarthgap),6.1,9.2,3.27,132
 HMI SDK v3.4.0.0,RZ/G3E EVK,5.0 (scarthgap),6.1,9.2,3.27,132

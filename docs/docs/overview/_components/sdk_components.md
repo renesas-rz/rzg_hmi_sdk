@@ -38,7 +38,7 @@ The contents of the packages are as follows:
     |**HMI SDK Package**                                            | *image-file\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*         | Bootable SD card images in WIC format for eSD boot with MIPI-DSI display support                      |
     | *- eSD Boot Image & Toolchain Installer*                      +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *image-file\_<`dev`\>\_hmi-sdk\_lvds\_<`version`\>.zip*   | Bootable SD card images in WIC format for eSD boot with LVDS display support                          |
-    | *(RTK0EF0195F03500SJ\_<`dev`\>)*                              +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    | *(RTK0EF0195F03501SJ\_<`dev`\>)*                              +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *licenses\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*           | License files for open-source software used in HMI SDK                                                |
     |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                           |
@@ -48,17 +48,17 @@ The contents of the packages are as follows:
     |**HMI SDK Yocto Build Package**                                | *licenses\_<`dev`\>\_hmi-sdk_<`version`\>.zip*            | License files for open-source components used in HMI SDK                                              |
     | *- Yocto Recipes & Pre-built Binary for QSPI Boot*            +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *pre-built-binary\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*   | Pre-built binaries (bootloader, Linux kernel, root filesystem, flash writer) for SPI boot mode        |
-    | *(RTK0EF0195F03500SJ\_<`dev`\>\_yocto-and-pre-built-image)*   +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+    | *(RTK0EF0195F03501SJ\_<`dev`\>\_yocto-and-pre-built-image)*   +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                           |
     |                                                               +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-    |                                                               | *yocto_recipe\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*       | Yocto meta layers for building HMI SDK                                                                |
+    |                                                               | *yocto_recipe\_<`dev`\>\_hmi-sdk\_<`version`\>.tar.gz*    | Yocto meta layers for building HMI SDK                                                                |
     +---------------------------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
     !!! success "Tip"   
         <`dev`\> in the table represents a device name of one of the following devices: 
 
         * *rzg3l* 
 
-        <`version`\> in the table represents a version name. Replace it with *v3.5.0.0*.  
+        <`version`\> in the table represents a version name. Replace it with *v3.5.0.1*.  
         The angle brackets `<` and `>` should not be included when you enter the text.
 
 
@@ -71,8 +71,8 @@ The contents of the source code are as follows:
     +===============================================================+===========================================================+===============================================================================================+
     |**Source Code**                                                | *licenses\_<`dev`\>\_hmi-sdk\_<`version`\>.zip*           | License files for open-source components used in HMI SDK                                      |
     | *- Supplementary for HMI SDK Yocto Build Package*             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
-    |                                                               | *oss-source-code-pkg\_<`dev`\>\_hmi-sdk\_<`version`\>.7z* | Source code package of open-source components for building HMI SDK                            |
-    | *(RTK0EF0195F03500SJ\_linux-src)*                             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+    |                                                               | *oss-souce-code-pkg\_<`dev`\>\_hmi-sdk\_<`version`\>.7z*  | Source code package of open-source components for building HMI SDK                            |
+    | *(RTK0EF0195F03501SJ\_linux-src)*                             +-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
     |                                                               | *README.txt*                                              | README with package details                                                                   |
     +---------------------------------------------------------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------+
 

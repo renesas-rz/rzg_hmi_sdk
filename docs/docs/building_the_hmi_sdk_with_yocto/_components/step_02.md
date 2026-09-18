@@ -65,9 +65,7 @@
     === "RZ/G3L"
         ```bash
         cd ${WORK}
-        unzip ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_${PLATFORM}_hmi-sdk_v*.zip
-        mv yocto_recipe_${PLATFORM}_hmi-sdk_v*/* ./
-        rm -rf yocto_recipe_${PLATFORM}_hmi-sdk_v*
+        tar xf ${SDK_PKG_DIR}/RTK0EF0195F*SJ_${PLATFORM}_yocto-and-pre-built-image/yocto_recipe_rzg3l_hmi-sdk_v*.tar.gz --strip-components=1
         ```
         {: .dollar }
 
@@ -122,7 +120,7 @@
         cd ${SDK_PKG_DIR}
         unzip RTK0EF0195F*SJ_linux-src.zip
         cd ${SDK_PKG_DIR}/RTK0EF0195F*SJ_linux-src/
-        7z x oss-source-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
+        7z x oss-souce-code-pkg_${PLATFORM}_hmi-sdk_v*.7z
         mv downloads/ ${WORK}/build/
         ```
         {: .dollar }

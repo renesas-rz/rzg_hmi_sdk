@@ -3,7 +3,7 @@
 Please download the **HMI SDK Yocto Build Package** using the button below. 
 
 === "RZ/G3L"
-    [:octicons-download-16: HMI SDK Yocto Build Package for RZ/G3L <br><span class="btn-subtext">*- Yocto Recipes & Pre-built Binary for QSPI Boot*</span>](https://www.renesas.com/document/sws/rzg-hmi-sdk-version-3500-yocto-recipe-and-binaries-rzg3l){ .md-button .btn-round target=_blank }
+    [:octicons-download-16: HMI SDK Yocto Build Package for RZ/G3L <br><span class="btn-subtext">*- Yocto Recipes & Pre-built Binary for QSPI Boot*</span>](https://www.renesas.com/document/sws/rzg-hmi-sdk-version-3501-yocto-recipe-and-binaries-rzg3l){ .md-button .btn-round target=_blank }
 
 <!--
 === "RZ/G3E"
@@ -22,7 +22,7 @@ Please download the **HMI SDK Yocto Build Package** using the button below.
 During the build process, the source code of HMI SDK modules will be downloaded over a network connection. Alternatively, you can also manually download the same source code used to create the HMI SDK binaries and use it offline. Download the HMI SDK **Source Code** using the button below.
 
 === "RZ/G3L"
-    [:material-file-code: Source Code<br><span class="btn-subtext">for RZ/G3L devices</span>](https://www.renesas.com/document/sws/rzg-hmi-sdk-version-3500-source-code){ .md-button .btn-round target=_blank }
+    [:material-file-code: Source Code<br><span class="btn-subtext">for RZ/G3L devices</span>](https://www.renesas.com/document/sws/rzg-hmi-sdk-version-3501-source-code){ .md-button .btn-round target=_blank }
 
 <!--
 === "RZ/G3E"
