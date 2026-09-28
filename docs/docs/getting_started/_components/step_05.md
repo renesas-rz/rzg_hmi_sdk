@@ -43,7 +43,7 @@ Follow the steps below to use them.
 
     !!! success "Tip"
         Please note that the buttons displayed on the Demo Launcher vary depending on the device.
-        For information on the demo applications supported on each device, refer to [HMI Application Contents](http://10.166.29.5:8000/rzg_hmi_sdk/overview/#hmi-application-contents).
+        For information on the demo applications supported on each device, refer to [HMI Application Contents](../overview/#hmi-application-contents).
 
     !!! success "Tip"
         To power off the board, execute the `shutdown -h now` command in the terminal. Once the screen turns black, press and hold the power button (red button) for approximately 2 seconds to complete the shutdown process.
