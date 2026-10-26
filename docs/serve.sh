@@ -8,4 +8,4 @@ port=8000
 
 address=$ip:$port
 
-mkdocs serve -a $address
+properdocs serve -a $address

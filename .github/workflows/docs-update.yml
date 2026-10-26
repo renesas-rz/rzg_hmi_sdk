@@ -30,10 +30,10 @@ jobs:
 
       - uses: actions/cache@v4
         with:
-          key: mkdocs-material-${{ env.cache_id }}
+          key: mkdocs-materialx-${{ env.cache_id }}
           path: .cache
           restore-keys: |
-            mkdocs-material-
+            mkdocs-materialx-
 
       - name: Setup Environments
         run: |

@@ -52,6 +52,7 @@ theme:
         new_tab: false
         mobile_text_link: true
     no_title: true
+  topbar_style: primary
   palette:
     primary: custom
 
@@ -87,6 +88,7 @@ extra:
 extra_css:
   - assets/stylesheets/extra.css
   - assets/stylesheets/card.css
+  - assets/stylesheets/extra-materialx.css
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
@@ -133,7 +135,7 @@ plugins:
         - overview/_*/*
         - getting_started/_*/*
         - building_the_hmi_sdk_with_yocto/_*/*
-        - hmi_applications/_*/* 
+        - hmi_applications/_*/*
         - wiki/_*/*
         - faq/_*/*
         - download/_*/*
@@ -157,6 +159,8 @@ plugins:
           - assets/javascripts/tablesort.js
       css_files:
           - assets/stylesheets/extra.css
+          - assets/stylesheets/card.css
+          - assets/stylesheets/extra-materialx.css
   - table-reader
   # macros must be in the bottom one
   - macros
