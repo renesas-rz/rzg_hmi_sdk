@@ -1,13 +1,13 @@
 ## HMI Frameworks
 
-The HMI SDK supports the following GUI frameworks and libraries for HMI development. It also includes sample applications built with these frameworks and libraries. 
+The HMI SDK supports the following GUI frameworks and libraries for HMI development. It also includes sample applications built with these frameworks and libraries.
 For more information about the applications, see [Overview](overview/index.md).
 
 ### [LVGL (Light and Versatile Graphics Library)](https://lvgl.io/)
 
 LVGL is a free and open-source graphics library that provides everything needed to create an embedded GUI with easy-to-use graphical elements, beautiful visual effects, and a low memory footprint. It is hardware-independent, works with any microcontroller or display,  making it ideal for resource-constrained environments.
 
-![](hmi_frameworks/images/LVGL-Logo-colored@3x.png){ align=right width=220 style=max-width:35%; }
+![](hmi_frameworks/images/LVGL-Logo-colored@3x.png){ align=right width=220 style=max-width:35%;border:none; }
 
 <br>
 A GUI built with LVGL offers several advantages:
@@ -37,4 +37,3 @@ Flutter-based UI applications offer several advantages:
 * Rich UI and user experience comparable to mobile apps
 * Cross-platform compatibility
 * Cloud integration and OTA support using extensive libraries
-
