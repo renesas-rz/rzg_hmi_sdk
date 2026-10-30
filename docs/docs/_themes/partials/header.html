@@ -1,12 +1,17 @@
 {#-
   Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
-  Copyright (c) 2024-2025 Renesas Electronics Corporation and/or its affiliates
+  Copyright (c) 2024-2026 Renesas Electronics Corporation and/or its affiliates
   SPDX-License-Identifier: MIT
 
   This code was originally taken from
     https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/header.html
   and have sources in
     https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/partials/header.html
+
+  Part of this code was originally taken from
+    https://github.com/jaywhj/mkdocs-materialx/blob/main/material/templates/partials/header.html
+  and have sources in
+    https://github.com/jaywhj/mkdocs-materialx/blob/main/src/templates/partials/header.html
 -#}
 
 {% set class = "md-header" %}
@@ -80,7 +85,8 @@
     {% if config.extra.alternate %}
       {% include "partials/alternate.html" %}
     {% endif %}
-    {% if "material/search" in config.plugins %}
+    {% if "materialx/search" in config.plugins %}
+      {% set search = config.plugins["materialx/search"] | attr("config") %}
       <label class="md-header__button md-icon" for="__search">
         {% set icon = config.theme.icon.search or "material/magnify" %}
         {% include ".icons/" ~ icon ~ ".svg" %}
